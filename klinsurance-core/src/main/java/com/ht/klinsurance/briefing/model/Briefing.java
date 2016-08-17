@@ -49,5 +49,6 @@ public class Briefing {
 
     private Date createTime;
 
-
+    /*******************************************************/
+    private String projectName;//项目名字
 }
