@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.report.mapper.ReportMapper" >
+
+  <sql id="Base_Column_List" >
+    report_id,report_no, user_id, project_id, word_template_id, insure_type, insure_code, insurer,
+    insurer_name, insure_deadline, insure_amount, deductible, accident_time, accident_place, 
+    accident_cause, accident_pass, liability_affirm, reported_loss_amount, verify_loss_amount, 
+    adjustment_amount, surveyor, certificate_code, foreword_content, object_description, 
+    survey_time, survey_place, survey_case, insurer_representative, survey_surveyor, 
+    claimant_description, danger_time, danger_place, damaged_object, danger_case, iorder_liability, 
+    verify_loss_gist, verify_loss_process, repeat_insure, third_liability, deductible_salvage, 
+    loss_adjustment, surveyor_conclusion, report_file, remark, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.report.model.Report" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from report
+    where report_id = #{reportId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteById"  >
+    delete from report
+    where report_id = #{reportId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="addReport" parameterType="com.ht.klinsurance.report.model.Report" >
+    insert into report
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="reportId != null" >
+        report_id,
+      </if>
+      <if test="reportNo != null" >
+        report_no,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="wordTemplateId != null" >
+        word_template_id,
+      </if>
+      <if test="insureType != null" >
+        insure_type,
+      </if>
+      <if test="insureCode != null" >
+        insure_code,
+      </if>
+      <if test="insurer != null" >
+        insurer,
+      </if>
+      <if test="insurerName != null" >
+        insurer_name,
+      </if>
+      <if test="insureDeadline != null" >
+        insure_deadline,
+      </if>
+      <if test="insureAmount != null" >
+        insure_amount,
+      </if>
+      <if test="deductible != null" >
+        deductible,
+      </if>
+      <if test="accidentTime != null" >
+        accident_time,
+      </if>
+      <if test="accidentPlace != null" >
+        accident_place,
+      </if>
+      <if test="accidentCause != null" >
+        accident_cause,
+      </if>
+      <if test="accidentPass != null" >
+        accident_pass,
+      </if>
+      <if test="liabilityAffirm != null" >
+        liability_affirm,
+      </if>
+      <if test="reportedLossAmount != null" >
+        reported_loss_amount,
+      </if>
+      <if test="verifyLossAmount != null" >
+        verify_loss_amount,
+      </if>
+      <if test="adjustmentAmount != null" >
+        adjustment_amount,
+      </if>
+      <if test="surveyor != null" >
+        surveyor,
+      </if>
+      <if test="certificateCode != null" >
+        certificate_code,
+      </if>
+      <if test="forewordContent != null" >
+        foreword_content,
+      </if>
+      <if test="objectDescription != null" >
+        object_description,
+      </if>
+      <if test="surveyTime != null" >
+        survey_time,
+      </if>
+      <if test="surveyPlace != null" >
+        survey_place,
+      </if>
+      <if test="surveyCase != null" >
+        survey_case,
+      </if>
+      <if test="insurerRepresentative != null" >
+        insurer_representative,
+      </if>
+      <if test="surveySurveyor != null" >
+        survey_surveyor,
+      </if>
+      <if test="claimantDescription != null" >
+        claimant_description,
+      </if>
+      <if test="dangerTime != null" >
+        danger_time,
+      </if>
+      <if test="dangerPlace != null" >
+        danger_place,
+      </if>
+      <if test="damagedObject != null" >
+        damaged_object,
+      </if>
+      <if test="dangerCase != null" >
+        danger_case,
+      </if>
+      <if test="iorderLiability != null" >
+        iorder_liability,
+      </if>
+      <if test="verifyLossGist != null" >
+        verify_loss_gist,
+      </if>
+      <if test="verifyLossProcess != null" >
+        verify_loss_process,
+      </if>
+      <if test="repeatInsure != null" >
+        repeat_insure,
+      </if>
+      <if test="thirdLiability != null" >
+        third_liability,
+      </if>
+      <if test="deductibleSalvage != null" >
+        deductible_salvage,
+      </if>
+      <if test="lossAdjustment != null" >
+        loss_adjustment,
+      </if>
+      <if test="surveyorConclusion != null" >
+        surveyor_conclusion,
+      </if>
+      <if test="reportFile != null" >
+        report_file,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="reportId != null" >
+        #{reportId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportNo != null" >
+        #{reportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="wordTemplateId != null" >
+        #{wordTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="insureType != null" >
+        #{insureType,jdbcType=VARCHAR},
+      </if>
+      <if test="insureCode != null" >
+        #{insureCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insurer != null" >
+        #{insurer,jdbcType=VARCHAR},
+      </if>
+      <if test="insurerName != null" >
+        #{insurerName,jdbcType=VARCHAR},
+      </if>
+      <if test="insureDeadline != null" >
+        #{insureDeadline,jdbcType=VARCHAR},
+      </if>
+      <if test="insureAmount != null" >
+        #{insureAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="deductible != null" >
+        #{deductible,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentTime != null" >
+        #{accidentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accidentPlace != null" >
+        #{accidentPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentCause != null" >
+        #{accidentCause,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentPass != null" >
+        #{accidentPass,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilityAffirm != null" >
+        #{liabilityAffirm,jdbcType=VARCHAR},
+      </if>
+      <if test="reportedLossAmount != null" >
+        #{reportedLossAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="verifyLossAmount != null" >
+        #{verifyLossAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustmentAmount != null" >
+        #{adjustmentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="surveyor != null" >
+        #{surveyor,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateCode != null" >
+        #{certificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="forewordContent != null" >
+        #{forewordContent,jdbcType=VARCHAR},
+      </if>
+      <if test="objectDescription != null" >
+        #{objectDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyTime != null" >
+        #{surveyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="surveyPlace != null" >
+        #{surveyPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyCase != null" >
+        #{surveyCase,jdbcType=VARCHAR},
+      </if>
+      <if test="insurerRepresentative != null" >
+        #{insurerRepresentative,jdbcType=VARCHAR},
+      </if>
+      <if test="surveySurveyor != null" >
+        #{surveySurveyor,jdbcType=VARCHAR},
+      </if>
+      <if test="claimantDescription != null" >
+        #{claimantDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="dangerTime != null" >
+        #{dangerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dangerPlace != null" >
+        #{dangerPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="damagedObject != null" >
+        #{damagedObject,jdbcType=VARCHAR},
+      </if>
+      <if test="dangerCase != null" >
+        #{dangerCase,jdbcType=VARCHAR},
+      </if>
+      <if test="iorderLiability != null" >
+        #{iorderLiability,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyLossGist != null" >
+        #{verifyLossGist,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyLossProcess != null" >
+        #{verifyLossProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="repeatInsure != null" >
+        #{repeatInsure,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdLiability != null" >
+        #{thirdLiability,jdbcType=VARCHAR},
+      </if>
+      <if test="deductibleSalvage != null" >
+        #{deductibleSalvage,jdbcType=VARCHAR},
+      </if>
+      <if test="lossAdjustment != null" >
+        #{lossAdjustment,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyorConclusion != null" >
+        #{surveyorConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="reportFile != null" >
+        #{reportFile,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.report.model.Report" >
+    update report
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportNo != null" >
+        report_no = #{reportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="wordTemplateId != null" >
+        word_template_id = #{wordTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="insureType != null" >
+        insure_type = #{insureType,jdbcType=VARCHAR},
+      </if>
+      <if test="insureCode != null" >
+        insure_code = #{insureCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insurer != null" >
+        insurer = #{insurer,jdbcType=VARCHAR},
+      </if>
+      <if test="insurerName != null" >
+        insurer_name = #{insurerName,jdbcType=VARCHAR},
+      </if>
+      <if test="insureDeadline != null" >
+        insure_deadline = #{insureDeadline,jdbcType=VARCHAR},
+      </if>
+      <if test="insureAmount != null" >
+        insure_amount = #{insureAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="deductible != null" >
+        deductible = #{deductible,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentTime != null" >
+        accident_time = #{accidentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accidentPlace != null" >
+        accident_place = #{accidentPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentCause != null" >
+        accident_cause = #{accidentCause,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentPass != null" >
+        accident_pass = #{accidentPass,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilityAffirm != null" >
+        liability_affirm = #{liabilityAffirm,jdbcType=VARCHAR},
+      </if>
+      <if test="reportedLossAmount != null" >
+        reported_loss_amount = #{reportedLossAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="verifyLossAmount != null" >
+        verify_loss_amount = #{verifyLossAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustmentAmount != null" >
+        adjustment_amount = #{adjustmentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="surveyor != null" >
+        surveyor = #{surveyor,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateCode != null" >
+        certificate_code = #{certificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="forewordContent != null" >
+        foreword_content = #{forewordContent,jdbcType=VARCHAR},
+      </if>
+      <if test="objectDescription != null" >
+        object_description = #{objectDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyTime != null" >
+        survey_time = #{surveyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="surveyPlace != null" >
+        survey_place = #{surveyPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyCase != null" >
+        survey_case = #{surveyCase,jdbcType=VARCHAR},
+      </if>
+      <if test="insurerRepresentative != null" >
+        insurer_representative = #{insurerRepresentative,jdbcType=VARCHAR},
+      </if>
+      <if test="surveySurveyor != null" >
+        survey_surveyor = #{surveySurveyor,jdbcType=VARCHAR},
+      </if>
+      <if test="claimantDescription != null" >
+        claimant_description = #{claimantDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="dangerTime != null" >
+        danger_time = #{dangerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dangerPlace != null" >
+        danger_place = #{dangerPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="damagedObject != null" >
+        damaged_object = #{damagedObject,jdbcType=VARCHAR},
+      </if>
+      <if test="dangerCase != null" >
+        danger_case = #{dangerCase,jdbcType=VARCHAR},
+      </if>
+      <if test="iorderLiability != null" >
+        iorder_liability = #{iorderLiability,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyLossGist != null" >
+        verify_loss_gist = #{verifyLossGist,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyLossProcess != null" >
+        verify_loss_process = #{verifyLossProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="repeatInsure != null" >
+        repeat_insure = #{repeatInsure,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdLiability != null" >
+        third_liability = #{thirdLiability,jdbcType=VARCHAR},
+      </if>
+      <if test="deductibleSalvage != null" >
+        deductible_salvage = #{deductibleSalvage,jdbcType=VARCHAR},
+      </if>
+      <if test="lossAdjustment != null" >
+        loss_adjustment = #{lossAdjustment,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyorConclusion != null" >
+        surveyor_conclusion = #{surveyorConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="reportFile != null" >
+        report_file = #{reportFile,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where report_id = #{reportId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

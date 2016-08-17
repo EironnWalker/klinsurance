@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" href="../../css/base.css"/>
+</head>
+<body>
+<div class="content-top-10">
+    <div class="info-title">上次同步信息</div>
+    <ul class="ul-one color-666 info-ul">
+            <li>
+                <div class="horizontal">
+                    <div class="name">上次同步时间：</div>
+                    <div class="flex-1 text-right">2016.06.06</div>
+                </div>
+            </li>
+            <li>
+                <div class="horizontal">
+                    <div class="name">上次同步项目：</div>
+                    <div class="flex-1 text-right">浙江销售台风致损模板</div>
+                </div>
+            </li>
+            <li>
+                <div class="horizontal">
+                    <div class="name">上次同步模板：</div>
+                    <div class="flex-1 text-right">台风致损模板</div>
+                </div>
+            </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">上次同步单价库：</div>
+                <div class="flex-1 text-right">已同步（数量：<span class="red">50</span>个）</div>
+            </div>
+        </li>
+    </ul>
+</div>
+    <div class="btn-wrap">
+        <a class="btn btn-active">开始同步本次项目数据</a>
+    </div>
+<script src="../../script/lib/jquery.js"></script>
+<script type="text/javascript">
+    $("li .flex-1").each(function(){
+        if ($(this).height() > 20) {
+            $(this).removeClass("text-right");
+        }
+    })
+</script>
+</body>
+</html>

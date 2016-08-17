@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.briefing.mapper.BriefingLossImageMapper" >
+  <sql id="Base_Column_List" >
+    briefing_loss_image_id, briefing_loss_id, original_image, image, description, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.briefing.model.BriefingLossImage" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from briefing_loss_image
+    where briefing_loss_image_id = #{briefingLossImageId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from briefing_loss_image
+    where briefing_loss_image_id = #{briefingLossImageId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByBriefingLossId">
+    delete from briefing_loss_image
+    where briefing_loss_id = #{briefingLossId,jdbcType=VARCHAR}
+
+  </delete>
+
+  <insert id="addBriefingLossImage" parameterType="com.ht.klinsurance.briefing.model.BriefingLossImage" >
+    insert into briefing_loss_image
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="briefingLossImageId != null" >
+        briefing_loss_image_id,
+      </if>
+      <if test="briefingLossId != null" >
+        briefing_loss_id,
+      </if>
+      <if test="originalImage != null" >
+        original_image,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="briefingLossImageId != null" >
+        #{briefingLossImageId,jdbcType=VARCHAR},
+      </if>
+      <if test="briefingLossId != null" >
+        #{briefingLossId,jdbcType=VARCHAR},
+      </if>
+      <if test="originalImage != null" >
+        #{originalImage,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.briefing.model.BriefingLossImage" >
+    update briefing_loss_image
+    <set >
+      <if test="briefingLossId != null" >
+        briefing_loss_id = #{briefingLossId,jdbcType=VARCHAR},
+      </if>
+      <if test="originalImage != null" >
+        original_image = #{originalImage,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where briefing_loss_image_id = #{briefingLossImageId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

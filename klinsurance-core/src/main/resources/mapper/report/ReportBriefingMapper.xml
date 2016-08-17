@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.report.mapper.ReportBriefingMapper" >
+
+  <sql id="Base_Column_List" >
+    report_briefing_id, report_id, briefing_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.report.model.ReportBriefing" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from report_briefing
+    where report_briefing_id = #{reportBriefingId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from report_briefing
+    where report_briefing_id = #{reportBriefingId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByReportId">
+     delete from report_briefing
+    where report_id = #{reportId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="addReportBriefing" parameterType="com.ht.klinsurance.report.model.ReportBriefing" >
+    insert into report_briefing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="reportBriefingId != null" >
+        report_briefing_id,
+      </if>
+      <if test="reportId != null" >
+        report_id,
+      </if>
+      <if test="briefingId != null" >
+        briefing_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="reportBriefingId != null" >
+        #{reportBriefingId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportId != null" >
+        #{reportId,jdbcType=VARCHAR},
+      </if>
+      <if test="briefingId != null" >
+        #{briefingId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.report.model.ReportBriefing" >
+    update report_briefing
+    <set >
+      <if test="reportId != null" >
+        report_id = #{reportId,jdbcType=VARCHAR},
+      </if>
+      <if test="briefingId != null" >
+        briefing_id = #{briefingId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where report_briefing_id = #{reportBriefingId,jdbcType=VARCHAR}
+  </update>
+</mapper>

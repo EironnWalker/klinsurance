@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.loss.mapper.LossMapper" >
+
+  <sql id="Base_Column_List" >
+    loss_id, user_id, project_id, place,place_no, customer_sign_path, customer_sign_time, remark,
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey"  resultType="com.ht.klinsurance.loss.model.Loss"  parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from loss
+    where loss_id = #{lossId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from loss
+    where loss_id = #{lossId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="addLoss" parameterType="com.ht.klinsurance.loss.model.Loss" >
+    insert into loss
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lossId != null" >
+        loss_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="place != null" >
+        place,
+      </if>
+      <if test="placeNo != null" >
+        place_no,
+      </if>
+      <if test="customerSignPath != null" >
+        customer_sign_path,
+      </if>
+      <if test="customerSignTime != null" >
+        customer_sign_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lossId != null" >
+        #{lossId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null" >
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="placeNo != null" >
+        #{placeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSignPath != null" >
+        #{customerSignPath,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSignTime != null" >
+        #{customerSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.loss.model.Loss" >
+    update loss
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null" >
+        place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="placeNo != null" >
+        place_no = #{placeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSignPath != null" >
+        customer_sign_path = #{customerSignPath,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSignTime != null" >
+        customer_sign_time = #{customerSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where loss_id = #{lossId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.loss.mapper.LossItemMapper" >
+
+  <sql id="Base_Column_List" >
+    loss_item_id, project_id, loss_id, loss_item_name, loss_number, length, width, height, 
+    price, real_loss_amount, reported_loss_amount, remark, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="com.ht.klinsurance.loss.model.LossItem">
+    select 
+    <include refid="Base_Column_List" />
+    from loss_item
+    where loss_item_id = #{lossItemId,jdbcType=VARCHAR}
+  </select>
+  <select id="findLossItemPage" resultType="com.ht.klinsurance.loss.model.LossItem">
+    select
+    loss_item.loss_item_id, loss_item.project_id, loss_item.loss_id, loss_item.loss_item_name, loss_item.loss_number, loss_item.length,loss_item. width, loss_item.height,
+    loss_item.price, loss_item.real_loss_amount,loss_item.reported_loss_amount, loss_item.remark, loss_item.create_time
+    ,project.project_name as project_name ,loss.place as loss_place
+    from loss_item
+     LEFT  JOIN  project ON project.project_id = loss_item.project_id
+     LEFT  JOIN  loss ON loss.loss_id = loss_item.loss_id
+    <where>
+      <if test="lossItemName!=null and lossItemName!=''">
+        and loss_item_name like concat(#{lossItemName,jdbcType=VARCHAR},"%")
+      </if>
+
+    </where>
+    order by create_time DESC
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from loss_item
+    where loss_item_id = #{lossItemId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteBylossId">
+      delete from loss_item
+    where loss_id = #{lossId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="addLossItem" parameterType="com.ht.klinsurance.loss.model.LossItem" >
+    insert into loss_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lossItemId != null" >
+        loss_item_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="lossId != null" >
+        loss_id,
+      </if>
+      <if test="lossItemName != null" >
+        loss_item_name,
+      </if>
+      <if test="lossNumber != null" >
+        loss_number,
+      </if>
+      <if test="length != null" >
+        length,
+      </if>
+      <if test="width != null" >
+        width,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="realLossAmount != null" >
+        real_loss_amount,
+      </if>
+      <if test="reportedLossAmount != null" >
+        reported_loss_amount,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lossItemId != null" >
+        #{lossItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="lossId != null" >
+        #{lossId,jdbcType=VARCHAR},
+      </if>
+      <if test="lossItemName != null" >
+        #{lossItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="lossNumber != null" >
+        #{lossNumber,jdbcType=INTEGER},
+      </if>
+      <if test="length != null" >
+        #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="width != null" >
+        #{width,jdbcType=DECIMAL},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="realLossAmount != null" >
+        #{realLossAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="reportedLossAmount != null" >
+        #{reportedLossAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.loss.model.LossItem" >
+    update loss_item
+    <set >
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="lossId != null" >
+        loss_id = #{lossId,jdbcType=VARCHAR},
+      </if>
+      <if test="lossItemName != null" >
+        loss_item_name = #{lossItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="lossNumber != null" >
+        loss_number = #{lossNumber,jdbcType=INTEGER},
+      </if>
+      <if test="length != null" >
+        length = #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="width != null" >
+        width = #{width,jdbcType=DECIMAL},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="realLossAmount != null" >
+        real_loss_amount = #{realLossAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="reportedLossAmount != null" >
+        reported_loss_amount = #{reportedLossAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where loss_item_id = #{lossItemId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

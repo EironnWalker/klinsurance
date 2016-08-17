@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.project.mapper.ProjectSyncLogMapper" >
+
+  <sql id="Base_Column_List" >
+    project_sync_log_id, project_id, project_name, content, is_success, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="com.ht.klinsurance.project.model.ProjectSyncLog">
+    select 
+    <include refid="Base_Column_List" />
+    from project_sync_log
+    where project_sync_log_id = #{projectSyncLogId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from project_sync_log
+    where project_sync_log_id = #{projectSyncLogId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="addProjectSyncLog" parameterType="com.ht.klinsurance.project.model.ProjectSyncLog" >
+    insert into project_sync_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projectSyncLogId != null" >
+        project_sync_log_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="isSuccess != null" >
+        is_success,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projectSyncLogId != null" >
+        #{projectSyncLogId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null" >
+        #{isSuccess,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.project.model.ProjectSyncLog" >
+    update project_sync_log
+    <set >
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null" >
+        is_success = #{isSuccess,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where project_sync_log_id = #{projectSyncLogId,jdbcType=VARCHAR}
+  </update>
+</mapper>

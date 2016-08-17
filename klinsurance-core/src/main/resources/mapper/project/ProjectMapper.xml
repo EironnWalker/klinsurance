@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.klinsurance.project.mapper.ProjectMapper">
+
+  <sql id="Base_Column_List">
+    pro_id, project_id,project_no, user_id, project_name, project_sponsor, project_time, insure_no, insure_name,
+    insurer_id, insurer_name, accident_time, accident_site, accident_cause, responsibility_no, 
+    responsibility_name, certification_code, insure_deadline, remark, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="com.ht.klinsurance.project.model.Project">
+    select 
+    <include refid="Base_Column_List" />
+    from project
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </select>
+  <select id="findProjectByUserId" resultType="com.ht.klinsurance.project.model.Project">
+    select
+    <include refid="Base_Column_List" />
+    from project
+    <where>
+    <if test="userId!=null and userId!=''">
+      and user_id =#{userId}
+    </if>
+      <if test="createTime!=null and createTime!=''">
+        and create_time > #{createTime}
+      </if>
+
+    </where>
+
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from project
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteAll">
+    delete from project
+  </delete>
+  <delete id="deleteByUserId" parameterType="java.lang.String">
+  delete from project   where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="addProject" parameterType="com.ht.klinsurance.project.model.Project">
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+
+      <if test="proId != null">
+        pro_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="projectNo != null">
+        project_no,
+      </if>
+
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="projectSponsor != null">
+        project_sponsor,
+      </if>
+      <if test="projectTime != null">
+        project_time,
+      </if>
+      <if test="insureNo != null">
+        insure_no,
+      </if>
+      <if test="insureName != null">
+        insure_name,
+      </if>
+      <if test="insurerId != null">
+        insurer_id,
+      </if>
+      <if test="insurerName != null">
+        insurer_name,
+      </if>
+      <if test="accidentTime != null">
+        accident_time,
+      </if>
+      <if test="accidentSite != null">
+        accident_site,
+      </if>
+      <if test="accidentCause != null">
+        accident_cause,
+      </if>
+      <if test="responsibilityNo != null">
+        responsibility_no,
+      </if>
+      <if test="responsibilityName != null">
+        responsibility_name,
+      </if>
+      <if test="certificationCode != null">
+        certification_code,
+      </if>
+      <if test="insureDeadline != null">
+        insure_deadline,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="proId != null">
+        #{proId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNo != null">
+        #{projectNo,jdbcType=VARCHAR},
+      </if>
+
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectSponsor != null">
+        #{projectSponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="projectTime != null">
+        #{projectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insureNo != null">
+        #{insureNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insureName != null">
+        #{insureName,jdbcType=VARCHAR},
+      </if>
+      <if test="insurerId != null">
+        #{insurerId,jdbcType=VARCHAR},
+      </if>
+      <if test="insurerName != null">
+        #{insurerName,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentTime != null">
+        #{accidentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accidentSite != null">
+        #{accidentSite,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentCause != null">
+        #{accidentCause,jdbcType=VARCHAR},
+      </if>
+      <if test="responsibilityNo != null">
+        #{responsibilityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="responsibilityName != null">
+        #{responsibilityName,jdbcType=VARCHAR},
+      </if>
+      <if test="certificationCode != null">
+        #{certificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insureDeadline != null">
+        #{insureDeadline,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="addProjectList">
+
+    <foreach collection="list" item="item" index="index" separator=";">
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="item.proId != null">
+        pro_id,
+      </if>
+      <if test="item.projectId != null">
+      project_id,
+    </if>
+      <if test="item.projectNo != null">
+        project_no,
+      </if>
+      <if test="item.userId != null">
+        user_id,
+      </if>
+      <if test="item.projectName != null">
+        project_name,
+      </if>
+      <if test="item.projectSponsor != null">
+        project_sponsor,
+      </if>
+      <if test="item.projectTime != null">
+        project_time,
+      </if>
+      <if test="item.insureNo != null">
+        insure_no,
+      </if>
+      <if test="item.insureName != null">
+        insure_name,
+      </if>
+      <if test="item.insurerId != null">
+        insurer_id,
+      </if>
+      <if test="item.insurerName != null">
+        insurer_name,
+      </if>
+      <if test="item.accidentTime != null">
+        accident_time,
+      </if>
+      <if test="item.accidentSite != null">
+        accident_site,
+      </if>
+      <if test="item.accidentCause != null">
+        accident_cause,
+      </if>
+      <if test="item.responsibilityNo != null">
+        responsibility_no,
+      </if>
+      <if test="item.responsibilityName != null">
+        responsibility_name,
+      </if>
+      <if test="item.certificationCode != null">
+        certification_code,
+      </if>
+      <if test="item.insureDeadline != null">
+        insure_deadline,
+      </if>
+      <if test="item.remark != null">
+        remark,
+      </if>
+      <if test="item.createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="item.proId != null">
+        #{item.proId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectId != null">
+        #{item.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectNo != null">
+        #{item.projectNo,jdbcType=VARCHAR},
+      </if>
+      <if test="item.userId != null">
+        #{item.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectName != null">
+        #{item.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectSponsor != null">
+        #{item.projectSponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectTime != null">
+        #{item.projectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="item.insureNo != null">
+        #{item.insureNo,jdbcType=VARCHAR},
+      </if>
+      <if test="item.insureName != null">
+        #{item.insureName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.insurerId != null">
+        #{item.insurerId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.insurerName != null">
+        #{item.insurerName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.accidentTime != null">
+        #{item.accidentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="item.accidentSite != null">
+        #{item.accidentSite,jdbcType=VARCHAR},
+      </if>
+      <if test="item.accidentCause != null">
+        #{item.accidentCause,jdbcType=VARCHAR},
+      </if>
+      <if test="item.responsibilityNo != null">
+        #{item.responsibilityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="item.responsibilityName != null">
+        #{item.responsibilityName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.certificationCode != null">
+        #{item.certificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.insureDeadline != null">
+        #{item.insureDeadline,jdbcType=VARCHAR},
+      </if>
+      <if test="item.remark != null">
+        #{item.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createTime != null">
+        #{item.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    </foreach>
+
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.project.model.Project">
+    update project
+    <set>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNo != null">
+      project_no = #{projectNo,jdbcType=VARCHAR},
+    </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectSponsor != null">
+        project_sponsor = #{projectSponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="projectTime != null">
+        project_time = #{projectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insureNo != null">
+        insure_no = #{insureNo,jdbcType=VARCHAR},
+      </if>
+      <if test="insureName != null">
+        insure_name = #{insureName,jdbcType=VARCHAR},
+      </if>
+      <if test="insurerId != null">
+        insurer_id = #{insurerId,jdbcType=VARCHAR},
+      </if>
+      <if test="insurerName != null">
+        insurer_name = #{insurerName,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentTime != null">
+        accident_time = #{accidentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accidentSite != null">
+        accident_site = #{accidentSite,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentCause != null">
+        accident_cause = #{accidentCause,jdbcType=VARCHAR},
+      </if>
+      <if test="responsibilityNo != null">
+        responsibility_no = #{responsibilityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="responsibilityName != null">
+        responsibility_name = #{responsibilityName,jdbcType=VARCHAR},
+      </if>
+      <if test="certificationCode != null">
+        certification_code = #{certificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insureDeadline != null">
+        insure_deadline = #{insureDeadline,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </update>
+</mapper>

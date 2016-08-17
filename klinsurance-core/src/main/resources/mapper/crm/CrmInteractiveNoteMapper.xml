@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.crm.mapper.CrmInteractiveNoteMapper" >
+  <sql id="Base_Column_List" >
+    interactive_note_id, receive_id, tran_type, create_date, cust_mod_flag, contact_mod_flag, 
+    memo, version, tran_date, project_id, project_name, cust_id, cust_name, contact_id, 
+    contact_name, case_id, case_name, create_name, cur_cust_st, cur_project_st, cur_contact_st, 
+    next_con_date, company_in, contact_in, con_type, primsec_id, proj_prog, proj_tast, 
+    case_prog, case_tast, proj_cust_tast, other_tast, preorproj, preorcust, address, 
+    cust_dept, train_title, problem, offer_valid, case_tast_name, mail_name, mail_id, 
+    operator_code, operator_name, operator_date, belongs_id, belongs_dept, belongs_dept_id, 
+    belongs, proj_type, cust_type,user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.crm.model.CrmInteractiveNote">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_interactive_note
+    where interactive_note_id = #{interactiveNoteId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from crm_interactive_note
+    where interactive_note_id = #{interactiveNoteId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteAllByusrId">
+      delete from crm_interactive_note
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insertCrmInteractiveNote" parameterType="com.ht.klinsurance.crm.model.CrmInteractiveNote" >
+    insert into crm_interactive_note
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="interactiveNoteId != null" >
+        interactive_note_id,
+      </if>
+      <if test="receiveId != null" >
+        receive_id,
+      </if>
+      <if test="tranType != null" >
+        tran_type,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="custModFlag != null" >
+        cust_mod_flag,
+      </if>
+      <if test="contactModFlag != null" >
+        contact_mod_flag,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="tranDate != null" >
+        tran_date,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="custId != null" >
+        cust_id,
+      </if>
+      <if test="custName != null" >
+        cust_name,
+      </if>
+      <if test="contactId != null" >
+        contact_id,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="caseId != null" >
+        case_id,
+      </if>
+      <if test="caseName != null" >
+        case_name,
+      </if>
+      <if test="createName != null" >
+        create_name,
+      </if>
+      <if test="curCustSt != null" >
+        cur_cust_st,
+      </if>
+      <if test="curProjectSt != null" >
+        cur_project_st,
+      </if>
+      <if test="curContactSt != null" >
+        cur_contact_st,
+      </if>
+      <if test="nextConDate != null" >
+        next_con_date,
+      </if>
+      <if test="companyIn != null" >
+        company_in,
+      </if>
+      <if test="contactIn != null" >
+        contact_in,
+      </if>
+      <if test="conType != null" >
+        con_type,
+      </if>
+      <if test="primsecId != null" >
+        primsec_id,
+      </if>
+      <if test="projProg != null" >
+        proj_prog,
+      </if>
+      <if test="projTast != null" >
+        proj_tast,
+      </if>
+      <if test="caseProg != null" >
+        case_prog,
+      </if>
+      <if test="caseTast != null" >
+        case_tast,
+      </if>
+      <if test="projCustTast != null" >
+        proj_cust_tast,
+      </if>
+      <if test="otherTast != null" >
+        other_tast,
+      </if>
+      <if test="preorproj != null" >
+        preorproj,
+      </if>
+      <if test="preorcust != null" >
+        preorcust,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="custDept != null" >
+        cust_dept,
+      </if>
+      <if test="trainTitle != null" >
+        train_title,
+      </if>
+      <if test="problem != null" >
+        problem,
+      </if>
+      <if test="offerValid != null" >
+        offer_valid,
+      </if>
+      <if test="caseTastName != null" >
+        case_tast_name,
+      </if>
+      <if test="mailName != null" >
+        mail_name,
+      </if>
+      <if test="mailId != null" >
+        mail_id,
+      </if>
+      <if test="operatorCode != null" >
+        operator_code,
+      </if>
+      <if test="operatorName != null" >
+        operator_name,
+      </if>
+      <if test="operatorDate != null" >
+        operator_date,
+      </if>
+      <if test="belongsId != null" >
+        belongs_id,
+      </if>
+      <if test="belongsDept != null" >
+        belongs_dept,
+      </if>
+      <if test="belongsDeptId != null" >
+        belongs_dept_id,
+      </if>
+      <if test="belongs != null" >
+        belongs,
+      </if>
+      <if test="projType != null" >
+        proj_type,
+      </if>
+      <if test="custType != null" >
+        cust_type,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="interactiveNoteId != null" >
+        #{interactiveNoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="tranType != null" >
+        #{tranType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="custModFlag != null" >
+        #{custModFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="contactModFlag != null" >
+        #{contactModFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="tranDate != null" >
+        #{tranDate,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactId != null" >
+        #{contactId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null" >
+        #{caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="caseName != null" >
+        #{caseName,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null" >
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="curCustSt != null" >
+        #{curCustSt,jdbcType=VARCHAR},
+      </if>
+      <if test="curProjectSt != null" >
+        #{curProjectSt,jdbcType=VARCHAR},
+      </if>
+      <if test="curContactSt != null" >
+        #{curContactSt,jdbcType=VARCHAR},
+      </if>
+      <if test="nextConDate != null" >
+        #{nextConDate,jdbcType=VARCHAR},
+      </if>
+      <if test="companyIn != null" >
+        #{companyIn,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIn != null" >
+        #{contactIn,jdbcType=VARCHAR},
+      </if>
+      <if test="conType != null" >
+        #{conType,jdbcType=VARCHAR},
+      </if>
+      <if test="primsecId != null" >
+        #{primsecId,jdbcType=VARCHAR},
+      </if>
+      <if test="projProg != null" >
+        #{projProg,jdbcType=VARCHAR},
+      </if>
+      <if test="projTast != null" >
+        #{projTast,jdbcType=VARCHAR},
+      </if>
+      <if test="caseProg != null" >
+        #{caseProg,jdbcType=VARCHAR},
+      </if>
+      <if test="caseTast != null" >
+        #{caseTast,jdbcType=VARCHAR},
+      </if>
+      <if test="projCustTast != null" >
+        #{projCustTast,jdbcType=VARCHAR},
+      </if>
+      <if test="otherTast != null" >
+        #{otherTast,jdbcType=VARCHAR},
+      </if>
+      <if test="preorproj != null" >
+        #{preorproj,jdbcType=VARCHAR},
+      </if>
+      <if test="preorcust != null" >
+        #{preorcust,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="custDept != null" >
+        #{custDept,jdbcType=VARCHAR},
+      </if>
+      <if test="trainTitle != null" >
+        #{trainTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="problem != null" >
+        #{problem,jdbcType=VARCHAR},
+      </if>
+      <if test="offerValid != null" >
+        #{offerValid,jdbcType=VARCHAR},
+      </if>
+      <if test="caseTastName != null" >
+        #{caseTastName,jdbcType=VARCHAR},
+      </if>
+      <if test="mailName != null" >
+        #{mailName,jdbcType=VARCHAR},
+      </if>
+      <if test="mailId != null" >
+        #{mailId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorCode != null" >
+        #{operatorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null" >
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorDate != null" >
+        #{operatorDate,jdbcType=VARCHAR},
+      </if>
+      <if test="belongsId != null" >
+        #{belongsId,jdbcType=VARCHAR},
+      </if>
+      <if test="belongsDept != null" >
+        #{belongsDept,jdbcType=VARCHAR},
+      </if>
+      <if test="belongsDeptId != null" >
+        #{belongsDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="belongs != null" >
+        #{belongs,jdbcType=VARCHAR},
+      </if>
+      <if test="projType != null" >
+        #{projType,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null" >
+        #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+
+    </trim>
+  </insert>
+  <insert id="insertCrmInteractiveNoteList">
+    <foreach collection="list" item="item" index="index" separator=";">
+    insert into crm_interactive_note
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="item.interactiveNoteId != null" >
+        interactive_note_id,
+      </if>
+      <if test="item.receiveId != null" >
+        receive_id,
+      </if>
+      <if test="item.tranType != null" >
+        tran_type,
+      </if>
+      <if test="item.createDate != null" >
+        create_date,
+      </if>
+      <if test="item.custModFlag != null" >
+        cust_mod_flag,
+      </if>
+      <if test="item.contactModFlag != null" >
+        contact_mod_flag,
+      </if>
+      <if test="item.memo != null" >
+        memo,
+      </if>
+      <if test="item.version != null" >
+        version,
+      </if>
+      <if test="item.tranDate != null" >
+        tran_date,
+      </if>
+      <if test="item.projectId != null" >
+        project_id,
+      </if>
+      <if test="item.projectName != null" >
+        project_name,
+      </if>
+      <if test="item.custId != null" >
+        cust_id,
+      </if>
+      <if test="item.custName != null" >
+        cust_name,
+      </if>
+      <if test="item.contactId != null" >
+        contact_id,
+      </if>
+      <if test="item.contactName != null" >
+        contact_name,
+      </if>
+      <if test="item.caseId != null" >
+        case_id,
+      </if>
+      <if test="item.caseName != null" >
+        case_name,
+      </if>
+      <if test="item.createName != null" >
+        create_name,
+      </if>
+      <if test="item.curCustSt != null" >
+        cur_cust_st,
+      </if>
+      <if test="item.curProjectSt != null" >
+        cur_project_st,
+      </if>
+      <if test="item.curContactSt != null" >
+        cur_contact_st,
+      </if>
+      <if test="item.nextConDate != null" >
+        next_con_date,
+      </if>
+      <if test="item.companyIn != null" >
+        company_in,
+      </if>
+      <if test="item.contactIn != null" >
+        contact_in,
+      </if>
+      <if test="item.conType != null" >
+        con_type,
+      </if>
+      <if test="item.primsecId != null" >
+        primsec_id,
+      </if>
+      <if test="item.projProg != null" >
+        proj_prog,
+      </if>
+      <if test="item.projTast != null" >
+        proj_tast,
+      </if>
+      <if test="item.caseProg != null" >
+        case_prog,
+      </if>
+      <if test="item.caseTast != null" >
+        case_tast,
+      </if>
+      <if test="item.projCustTast != null" >
+        proj_cust_tast,
+      </if>
+      <if test="item.otherTast != null" >
+        other_tast,
+      </if>
+      <if test="item.preorproj != null" >
+        preorproj,
+      </if>
+      <if test="item.preorcust != null" >
+        preorcust,
+      </if>
+      <if test="item.address != null" >
+        address,
+      </if>
+      <if test="item.custDept != null" >
+        cust_dept,
+      </if>
+      <if test="item.trainTitle != null" >
+        train_title,
+      </if>
+      <if test="item.problem != null" >
+        problem,
+      </if>
+      <if test="item.offerValid != null" >
+        offer_valid,
+      </if>
+      <if test="item.caseTastName != null" >
+        case_tast_name,
+      </if>
+      <if test="item.mailName != null" >
+        mail_name,
+      </if>
+      <if test="item.mailId != null" >
+        mail_id,
+      </if>
+      <if test="item.operatorCode != null" >
+        operator_code,
+      </if>
+      <if test="item.operatorName != null" >
+        operator_name,
+      </if>
+      <if test="item.operatorDate != null" >
+        operator_date,
+      </if>
+      <if test="item.belongsId != null" >
+        belongs_id,
+      </if>
+      <if test="item.belongsDept != null" >
+        belongs_dept,
+      </if>
+      <if test="item.belongsDeptId != null" >
+        belongs_dept_id,
+      </if>
+      <if test="item.belongs != null" >
+        belongs,
+      </if>
+      <if test="item.projType != null" >
+        proj_type,
+      </if>
+      <if test="item.custType != null" >
+        cust_type,
+      </if>
+      <if test="item.userId != null" >
+        user_id,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="item.interactiveNoteId != null" >
+        #{item.interactiveNoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.receiveId != null" >
+        #{item.receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.tranType != null" >
+        #{item.tranType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createDate != null" >
+        #{item.createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.custModFlag != null" >
+        #{item.custModFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.contactModFlag != null" >
+        #{item.contactModFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.memo != null" >
+        #{item.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="item.version != null" >
+        #{item.version,jdbcType=VARCHAR},
+      </if>
+      <if test="item.tranDate != null" >
+        #{item.tranDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectId != null" >
+        #{item.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectName != null" >
+        #{item.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.custId != null" >
+        #{item.custId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.custName != null" >
+        #{item.custName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.contactId != null" >
+        #{item.contactId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.contactName != null" >
+        #{item.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.caseId != null" >
+        #{item.caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.caseName != null" >
+        #{item.caseName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createName != null" >
+        #{item.createName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.curCustSt != null" >
+        #{item.curCustSt,jdbcType=VARCHAR},
+      </if>
+      <if test="item.curProjectSt != null" >
+        #{item.curProjectSt,jdbcType=VARCHAR},
+      </if>
+      <if test="item.curContactSt != null" >
+        #{item.curContactSt,jdbcType=VARCHAR},
+      </if>
+      <if test="item.nextConDate != null" >
+        #{item.nextConDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.companyIn != null" >
+        #{item.companyIn,jdbcType=VARCHAR},
+      </if>
+      <if test="item.contactIn != null" >
+        #{item.contactIn,jdbcType=VARCHAR},
+      </if>
+      <if test="item.conType != null" >
+        #{item.conType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.primsecId != null" >
+        #{item.primsecId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projProg != null" >
+        #{item.projProg,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projTast != null" >
+        #{item.projTast,jdbcType=VARCHAR},
+      </if>
+      <if test="item.caseProg != null" >
+        #{item.caseProg,jdbcType=VARCHAR},
+      </if>
+      <if test="item.caseTast != null" >
+        #{item.caseTast,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projCustTast != null" >
+        #{item.projCustTast,jdbcType=VARCHAR},
+      </if>
+      <if test="item.otherTast != null" >
+        #{item.otherTast,jdbcType=VARCHAR},
+      </if>
+      <if test="item.preorproj != null" >
+        #{item.preorproj,jdbcType=VARCHAR},
+      </if>
+      <if test="item.preorcust != null" >
+        #{item.preorcust,jdbcType=VARCHAR},
+      </if>
+      <if test="item.address != null" >
+        #{item.address,jdbcType=VARCHAR},
+      </if>
+      <if test="item.custDept != null" >
+        #{item.custDept,jdbcType=VARCHAR},
+      </if>
+      <if test="item.trainTitle != null" >
+        #{item.trainTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="item.problem != null" >
+        #{item.problem,jdbcType=VARCHAR},
+      </if>
+      <if test="item.offerValid != null" >
+        #{item.offerValid,jdbcType=VARCHAR},
+      </if>
+      <if test="item.caseTastName != null" >
+        #{item.caseTastName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.mailName != null" >
+        #{item.mailName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.mailId != null" >
+        #{item.mailId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.operatorCode != null" >
+        #{item.operatorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.operatorName != null" >
+        #{item.operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.operatorDate != null" >
+        #{item.operatorDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.belongsId != null" >
+        #{item.belongsId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.belongsDept != null" >
+        #{item.belongsDept,jdbcType=VARCHAR},
+      </if>
+      <if test="item.belongsDeptId != null" >
+        #{item.belongsDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.belongs != null" >
+        #{item.belongs,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projType != null" >
+        #{item.projType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.custType != null" >
+        #{item.custType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.userId != null" >
+        #{item.userId,jdbcType=VARCHAR},
+      </if>
+
+    </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.crm.model.CrmInteractiveNote" >
+    update crm_interactive_note
+    <set >
+      <if test="receiveId != null" >
+        receive_id = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="tranType != null" >
+        tran_type = #{tranType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="custModFlag != null" >
+        cust_mod_flag = #{custModFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="contactModFlag != null" >
+        contact_mod_flag = #{contactModFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="tranDate != null" >
+        tran_date = #{tranDate,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        cust_id = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        cust_name = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactId != null" >
+        contact_id = #{contactId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null" >
+        case_id = #{caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="caseName != null" >
+        case_name = #{caseName,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null" >
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="curCustSt != null" >
+        cur_cust_st = #{curCustSt,jdbcType=VARCHAR},
+      </if>
+      <if test="curProjectSt != null" >
+        cur_project_st = #{curProjectSt,jdbcType=VARCHAR},
+      </if>
+      <if test="curContactSt != null" >
+        cur_contact_st = #{curContactSt,jdbcType=VARCHAR},
+      </if>
+      <if test="nextConDate != null" >
+        next_con_date = #{nextConDate,jdbcType=VARCHAR},
+      </if>
+      <if test="companyIn != null" >
+        company_in = #{companyIn,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIn != null" >
+        contact_in = #{contactIn,jdbcType=VARCHAR},
+      </if>
+      <if test="conType != null" >
+        con_type = #{conType,jdbcType=VARCHAR},
+      </if>
+      <if test="primsecId != null" >
+        primsec_id = #{primsecId,jdbcType=VARCHAR},
+      </if>
+      <if test="projProg != null" >
+        proj_prog = #{projProg,jdbcType=VARCHAR},
+      </if>
+      <if test="projTast != null" >
+        proj_tast = #{projTast,jdbcType=VARCHAR},
+      </if>
+      <if test="caseProg != null" >
+        case_prog = #{caseProg,jdbcType=VARCHAR},
+      </if>
+      <if test="caseTast != null" >
+        case_tast = #{caseTast,jdbcType=VARCHAR},
+      </if>
+      <if test="projCustTast != null" >
+        proj_cust_tast = #{projCustTast,jdbcType=VARCHAR},
+      </if>
+      <if test="otherTast != null" >
+        other_tast = #{otherTast,jdbcType=VARCHAR},
+      </if>
+      <if test="preorproj != null" >
+        preorproj = #{preorproj,jdbcType=VARCHAR},
+      </if>
+      <if test="preorcust != null" >
+        preorcust = #{preorcust,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="custDept != null" >
+        cust_dept = #{custDept,jdbcType=VARCHAR},
+      </if>
+      <if test="trainTitle != null" >
+        train_title = #{trainTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="problem != null" >
+        problem = #{problem,jdbcType=VARCHAR},
+      </if>
+      <if test="offerValid != null" >
+        offer_valid = #{offerValid,jdbcType=VARCHAR},
+      </if>
+      <if test="caseTastName != null" >
+        case_tast_name = #{caseTastName,jdbcType=VARCHAR},
+      </if>
+      <if test="mailName != null" >
+        mail_name = #{mailName,jdbcType=VARCHAR},
+      </if>
+      <if test="mailId != null" >
+        mail_id = #{mailId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorCode != null" >
+        operator_code = #{operatorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null" >
+        operator_name = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorDate != null" >
+        operator_date = #{operatorDate,jdbcType=VARCHAR},
+      </if>
+      <if test="belongsId != null" >
+        belongs_id = #{belongsId,jdbcType=VARCHAR},
+      </if>
+      <if test="belongsDept != null" >
+        belongs_dept = #{belongsDept,jdbcType=VARCHAR},
+      </if>
+      <if test="belongsDeptId != null" >
+        belongs_dept_id = #{belongsDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="belongs != null" >
+        belongs = #{belongs,jdbcType=VARCHAR},
+      </if>
+      <if test="projType != null" >
+        proj_type = #{projType,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null" >
+        cust_type = #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where interactive_note_id = #{interactiveNoteId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

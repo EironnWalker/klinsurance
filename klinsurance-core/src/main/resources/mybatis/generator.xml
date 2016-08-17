@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- MySQL jar -->
+    <classPathEntry
+            location="D:\Tools\apache-maven-3.2.5\repostory\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
+
+    <context id="my" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="false"/>
+            <property name="suppressAllComments" value="true"/>
+            <!-- 关闭实体类注释 -->
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://121.42.157.174:3306/klinsurance_db?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=round"
+                        userId="haitao_mysql" password="haitao123*"/>
+
+        <!-- java 实体类 -->
+        <javaModelGenerator
+                targetPackage="com.ht.klinsurance.crm.model"
+                targetProject="D:\Tools\idea_workspace\klinsurance\klinsurance-core\src\main\java">
+            <!-- 设置是否将生成的实体类放在targetPackage包中 -->
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- Mapper XML 文件-->
+        <sqlMapGenerator
+                targetPackage="mapper.crm"
+                targetProject="D:\Tools\idea_workspace\klinsurance\klinsurance-core\src\main\resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- Mapper接口的生成配置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                targetPackage="com.ht.klinsurance.crm.mapper"
+                targetProject="D:\Tools\idea_workspace\klinsurance\klinsurance-core\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="crm_interactive_note" domainObjectName="crmInteractiveNote"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="crm_project" domainObjectName="crmProject"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="crm_schedule" domainObjectName="crmSchedule"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+    </context>
+</generatorConfiguration>

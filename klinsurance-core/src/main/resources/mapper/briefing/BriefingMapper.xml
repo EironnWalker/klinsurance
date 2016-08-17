@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.briefing.mapper.BriefingMapper" >
+  <sql id="Base_Column_List" >
+    briefing_id,briefing_no, user_id, project_id, word_template_id, survey_time, survey_place,survey_lat,survey_lng, insurer,
+    insurer_name, insurer_phone, surveyor, accident_description, loss_description, next_work, 
+    main_surveyor, sub_surveyor, manager, briefing_file, remark, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.briefing.model.Briefing" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from briefing
+    where briefing_id = #{briefingId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from briefing
+    where briefing_id = #{briefingId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="addBriefing" parameterType="com.ht.klinsurance.briefing.model.Briefing" >
+    insert into briefing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="briefingId != null" >
+        briefing_id,
+      </if>
+      <if test="briefingNo != null" >
+        briefing_no,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="wordTemplateId != null" >
+        word_template_id,
+      </if>
+      <if test="surveyTime != null" >
+        survey_time,
+      </if>
+      <if test="surveyPlace != null" >
+        survey_place,
+      </if>
+      <if test="surveyLat != null" >
+        survey_lat,
+      </if>
+      <if test="surveyLng != null" >
+        survey_lng,
+      </if>
+      <if test="insurer != null" >
+        insurer,
+      </if>
+      <if test="insurerName != null" >
+        insurer_name,
+      </if>
+      <if test="insurerPhone != null" >
+        insurer_phone,
+      </if>
+      <if test="surveyor != null" >
+        surveyor,
+      </if>
+      <if test="accidentDescription != null" >
+        accident_description,
+      </if>
+      <if test="lossDescription != null" >
+        loss_description,
+      </if>
+      <if test="nextWork != null" >
+        next_work,
+      </if>
+      <if test="mainSurveyor != null" >
+        main_surveyor,
+      </if>
+      <if test="subSurveyor != null" >
+        sub_surveyor,
+      </if>
+      <if test="manager != null" >
+        manager,
+      </if>
+      <if test="briefingFile != null" >
+        briefing_file,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="briefingId != null" >
+        #{briefingId,jdbcType=VARCHAR},
+      </if>
+      <if test="briefingNo != null" >
+        #{briefingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="wordTemplateId != null" >
+        #{wordTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyTime != null" >
+        #{surveyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="surveyPlace != null" >
+        #{surveyPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyLat != null" >
+        #{surveyLat,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyLng != null" >
+        #{surveyLng,jdbcType=VARCHAR},
+      </if>
+      <if test="insurer != null" >
+        #{insurer,jdbcType=VARCHAR},
+      </if>
+      <if test="insurerName != null" >
+        #{insurerName,jdbcType=VARCHAR},
+      </if>
+      <if test="insurerPhone != null" >
+        #{insurerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyor != null" >
+        #{surveyor,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentDescription != null" >
+        #{accidentDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="lossDescription != null" >
+        #{lossDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="nextWork != null" >
+        #{nextWork,jdbcType=VARCHAR},
+      </if>
+      <if test="mainSurveyor != null" >
+        #{mainSurveyor,jdbcType=VARCHAR},
+      </if>
+      <if test="subSurveyor != null" >
+        #{subSurveyor,jdbcType=VARCHAR},
+      </if>
+      <if test="manager != null" >
+        #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="briefingFile != null" >
+        #{briefingFile,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.briefing.model.Briefing" >
+    update briefing
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="briefingNo != null" >
+        briefing_no = #{briefingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wordTemplateId != null" >
+        word_template_id = #{wordTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyTime != null" >
+        survey_time = #{surveyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="surveyPlace != null" >
+        survey_place = #{surveyPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyLat != null" >
+        survey_lat = #{surveyLat,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyLng != null" >
+        survey_lng = #{surveyLng,jdbcType=VARCHAR},
+      </if>
+      <if test="insurer != null" >
+        insurer = #{insurer,jdbcType=VARCHAR},
+      </if>
+      <if test="insurerName != null" >
+        insurer_name = #{insurerName,jdbcType=VARCHAR},
+      </if>
+      <if test="insurerPhone != null" >
+        insurer_phone = #{insurerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyor != null" >
+        surveyor = #{surveyor,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentDescription != null" >
+        accident_description = #{accidentDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="lossDescription != null" >
+        loss_description = #{lossDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="nextWork != null" >
+        next_work = #{nextWork,jdbcType=VARCHAR},
+      </if>
+      <if test="mainSurveyor != null" >
+        main_surveyor = #{mainSurveyor,jdbcType=VARCHAR},
+      </if>
+      <if test="subSurveyor != null" >
+        sub_surveyor = #{subSurveyor,jdbcType=VARCHAR},
+      </if>
+      <if test="manager != null" >
+        manager = #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="briefingFile != null" >
+        briefing_file = #{briefingFile,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where briefing_id = #{briefingId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.crm.mapper.CrmProjectMapper" >
+
+  <sql id="Base_Column_List" >
+    project_id, project_num, buss_src, buss_type, buss_org, principal, operator_id, nature, 
+    start_dt, end_dt, name, prediction_cost, prediction_income, contact_id, project_member, 
+    descriptiom, remark, status, prediction_premium, buss_org_name, principal_name, operator_name, 
+    contact_name, abroad, ctrl_type, currency, creater_id, docking, proj_sector, proj_channel, 
+    current_node, current_status, proj_type, renewal_id, renewal_times, renewal_name, 
+    flow_type, plan_end_dt, bid_end_dt, bill_end_dt, locations, is_finish, cancel_result, 
+    finish_date, process_date, insurance_type, insurance_type_name, insurance_type1, 
+    tb_flag, creater_unitid, creater_deptid, affiliation_id, spacecp, commissiondate, 
+    crm_project_id, is_delegation, buss_important1, buss_important2,user_id
+  </sql>
+  <select id="selectByPrimaryKey"  resultType="com.ht.klinsurance.customer.model.Customer" >
+    select 
+    <include refid="Base_Column_List" />
+    from crm_project
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from crm_project
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByUserId">
+    delete from crm_project
+     where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.ht.klinsurance.crm.model.CrmProject" >
+    insert into crm_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="projectNum != null" >
+        project_num,
+      </if>
+      <if test="bussSrc != null" >
+        buss_src,
+      </if>
+      <if test="bussType != null" >
+        buss_type,
+      </if>
+      <if test="bussOrg != null" >
+        buss_org,
+      </if>
+      <if test="principal != null" >
+        principal,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="nature != null" >
+        nature,
+      </if>
+      <if test="startDt != null" >
+        start_dt,
+      </if>
+      <if test="endDt != null" >
+        end_dt,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="predictionCost != null" >
+        prediction_cost,
+      </if>
+      <if test="predictionIncome != null" >
+        prediction_income,
+      </if>
+      <if test="contactId != null" >
+        contact_id,
+      </if>
+      <if test="projectMember != null" >
+        project_member,
+      </if>
+      <if test="descriptiom != null" >
+        descriptiom,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="predictionPremium != null" >
+        prediction_premium,
+      </if>
+      <if test="bussOrgName != null" >
+        buss_org_name,
+      </if>
+      <if test="principalName != null" >
+        principal_name,
+      </if>
+      <if test="operatorName != null" >
+        operator_name,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="abroad != null" >
+        abroad,
+      </if>
+      <if test="ctrlType != null" >
+        ctrl_type,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="createrId != null" >
+        creater_id,
+      </if>
+      <if test="docking != null" >
+        docking,
+      </if>
+      <if test="projSector != null" >
+        proj_sector,
+      </if>
+      <if test="projChannel != null" >
+        proj_channel,
+      </if>
+      <if test="currentNode != null" >
+        current_node,
+      </if>
+      <if test="currentStatus != null" >
+        current_status,
+      </if>
+      <if test="projType != null" >
+        proj_type,
+      </if>
+      <if test="renewalId != null" >
+        renewal_id,
+      </if>
+      <if test="renewalTimes != null" >
+        renewal_times,
+      </if>
+      <if test="renewalName != null" >
+        renewal_name,
+      </if>
+      <if test="flowType != null" >
+        flow_type,
+      </if>
+      <if test="planEndDt != null" >
+        plan_end_dt,
+      </if>
+      <if test="bidEndDt != null" >
+        bid_end_dt,
+      </if>
+      <if test="billEndDt != null" >
+        bill_end_dt,
+      </if>
+      <if test="locations != null" >
+        locations,
+      </if>
+      <if test="isFinish != null" >
+        is_finish,
+      </if>
+      <if test="cancelResult != null" >
+        cancel_result,
+      </if>
+      <if test="finishDate != null" >
+        finish_date,
+      </if>
+      <if test="processDate != null" >
+        process_date,
+      </if>
+      <if test="insuranceType != null" >
+        insurance_type,
+      </if>
+      <if test="insuranceTypeName != null" >
+        insurance_type_name,
+      </if>
+      <if test="insuranceType1 != null" >
+        insurance_type1,
+      </if>
+      <if test="tbFlag != null" >
+        tb_flag,
+      </if>
+      <if test="createrUnitid != null" >
+        creater_unitid,
+      </if>
+      <if test="createrDeptid != null" >
+        creater_deptid,
+      </if>
+      <if test="affiliationId != null" >
+        affiliation_id,
+      </if>
+      <if test="spacecp != null" >
+        spacecp,
+      </if>
+      <if test="commissiondate != null" >
+        commissiondate,
+      </if>
+      <if test="crmProjectId != null" >
+        crm_project_id,
+      </if>
+      <if test="isDelegation != null" >
+        is_delegation,
+      </if>
+      <if test="bussImportant1 != null" >
+        buss_important1,
+      </if>
+      <if test="bussImportant2 != null" >
+        buss_important2,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectNum != null" >
+        #{projectNum,jdbcType=VARCHAR},
+      </if>
+      <if test="bussSrc != null" >
+        #{bussSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="bussType != null" >
+        #{bussType,jdbcType=VARCHAR},
+      </if>
+      <if test="bussOrg != null" >
+        #{bussOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="principal != null" >
+        #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="nature != null" >
+        #{nature,jdbcType=VARCHAR},
+      </if>
+      <if test="startDt != null" >
+        #{startDt,jdbcType=VARCHAR},
+      </if>
+      <if test="endDt != null" >
+        #{endDt,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="predictionCost != null" >
+        #{predictionCost,jdbcType=VARCHAR},
+      </if>
+      <if test="predictionIncome != null" >
+        #{predictionIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="contactId != null" >
+        #{contactId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectMember != null" >
+        #{projectMember,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptiom != null" >
+        #{descriptiom,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="predictionPremium != null" >
+        #{predictionPremium,jdbcType=VARCHAR},
+      </if>
+      <if test="bussOrgName != null" >
+        #{bussOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="principalName != null" >
+        #{principalName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null" >
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="abroad != null" >
+        #{abroad,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlType != null" >
+        #{ctrlType,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null" >
+        #{createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="docking != null" >
+        #{docking,jdbcType=VARCHAR},
+      </if>
+      <if test="projSector != null" >
+        #{projSector,jdbcType=VARCHAR},
+      </if>
+      <if test="projChannel != null" >
+        #{projChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="currentNode != null" >
+        #{currentNode,jdbcType=VARCHAR},
+      </if>
+      <if test="currentStatus != null" >
+        #{currentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projType != null" >
+        #{projType,jdbcType=VARCHAR},
+      </if>
+      <if test="renewalId != null" >
+        #{renewalId,jdbcType=VARCHAR},
+      </if>
+      <if test="renewalTimes != null" >
+        #{renewalTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="renewalName != null" >
+        #{renewalName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowType != null" >
+        #{flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="planEndDt != null" >
+        #{planEndDt,jdbcType=VARCHAR},
+      </if>
+      <if test="bidEndDt != null" >
+        #{bidEndDt,jdbcType=VARCHAR},
+      </if>
+      <if test="billEndDt != null" >
+        #{billEndDt,jdbcType=VARCHAR},
+      </if>
+      <if test="locations != null" >
+        #{locations,jdbcType=VARCHAR},
+      </if>
+      <if test="isFinish != null" >
+        #{isFinish,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelResult != null" >
+        #{cancelResult,jdbcType=VARCHAR},
+      </if>
+      <if test="finishDate != null" >
+        #{finishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="processDate != null" >
+        #{processDate,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null" >
+        #{insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceTypeName != null" >
+        #{insuranceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType1 != null" >
+        #{insuranceType1,jdbcType=VARCHAR},
+      </if>
+      <if test="tbFlag != null" >
+        #{tbFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createrUnitid != null" >
+        #{createrUnitid,jdbcType=VARCHAR},
+      </if>
+      <if test="createrDeptid != null" >
+        #{createrDeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="affiliationId != null" >
+        #{affiliationId,jdbcType=VARCHAR},
+      </if>
+      <if test="spacecp != null" >
+        #{spacecp,jdbcType=VARCHAR},
+      </if>
+      <if test="commissiondate != null" >
+        #{commissiondate,jdbcType=VARCHAR},
+      </if>
+      <if test="crmProjectId != null" >
+        #{crmProjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelegation != null" >
+        #{isDelegation,jdbcType=VARCHAR},
+      </if>
+      <if test="bussImportant1 != null" >
+        #{bussImportant1,jdbcType=VARCHAR},
+      </if>
+      <if test="bussImportant2 != null" >
+        #{bussImportant2,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+
+    </trim>
+  </insert>
+  <insert id="addCrmProjectList">
+    <foreach collection="list" item="item" index="index" separator=";">
+    insert into crm_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="item.projectId != null" >
+        project_id,
+      </if>
+      <if test="item.projectNum != null" >
+        project_num,
+      </if>
+      <if test="item.bussSrc != null" >
+        buss_src,
+      </if>
+      <if test="item.bussType != null" >
+        buss_type,
+      </if>
+      <if test="item.bussOrg != null" >
+        buss_org,
+      </if>
+      <if test="item.principal != null" >
+        principal,
+      </if>
+      <if test="item.operatorId != null" >
+        operator_id,
+      </if>
+      <if test="item.nature != null" >
+        nature,
+      </if>
+      <if test="item.startDt != null" >
+        start_dt,
+      </if>
+      <if test="item.endDt != null" >
+        end_dt,
+      </if>
+      <if test="item.name != null" >
+        name,
+      </if>
+      <if test="item.predictionCost != null" >
+        prediction_cost,
+      </if>
+      <if test="item.predictionIncome != null" >
+        prediction_income,
+      </if>
+      <if test="item.contactId != null" >
+        contact_id,
+      </if>
+      <if test="item.projectMember != null" >
+        project_member,
+      </if>
+      <if test="item.descriptiom != null" >
+        descriptiom,
+      </if>
+      <if test="item.remark != null" >
+        remark,
+      </if>
+      <if test="item.status != null" >
+        status,
+      </if>
+      <if test="item.predictionPremium != null" >
+        prediction_premium,
+      </if>
+      <if test="item.bussOrgName != null" >
+        buss_org_name,
+      </if>
+      <if test="item.principalName != null" >
+        principal_name,
+      </if>
+      <if test="item.operatorName != null" >
+        operator_name,
+      </if>
+      <if test="item.contactName != null" >
+        contact_name,
+      </if>
+      <if test="item.abroad != null" >
+        abroad,
+      </if>
+      <if test="item.ctrlType != null" >
+        ctrl_type,
+      </if>
+      <if test="item.currency != null" >
+        currency,
+      </if>
+      <if test="item.createrId != null" >
+        creater_id,
+      </if>
+      <if test="item.docking != null" >
+        docking,
+      </if>
+      <if test="item.projSector != null" >
+        proj_sector,
+      </if>
+      <if test="item.projChannel != null" >
+        proj_channel,
+      </if>
+      <if test="item.currentNode != null" >
+        current_node,
+      </if>
+      <if test="item.currentStatus != null" >
+        current_status,
+      </if>
+      <if test="item.projType != null" >
+        proj_type,
+      </if>
+      <if test="item.renewalId != null" >
+        renewal_id,
+      </if>
+      <if test="item.renewalTimes != null" >
+        renewal_times,
+      </if>
+      <if test="item.renewalName != null" >
+        renewal_name,
+      </if>
+      <if test="item.flowType != null" >
+        flow_type,
+      </if>
+      <if test="item.planEndDt != null" >
+        plan_end_dt,
+      </if>
+      <if test="item.bidEndDt != null" >
+        bid_end_dt,
+      </if>
+      <if test="item.billEndDt != null" >
+        bill_end_dt,
+      </if>
+      <if test="item.locations != null" >
+        locations,
+      </if>
+      <if test="item.isFinish != null" >
+        is_finish,
+      </if>
+      <if test="item.cancelResult != null" >
+        cancel_result,
+      </if>
+      <if test="item.finishDate != null" >
+        finish_date,
+      </if>
+      <if test="item.processDate != null" >
+        process_date,
+      </if>
+      <if test="item.insuranceType != null" >
+        insurance_type,
+      </if>
+      <if test="item.insuranceTypeName != null" >
+        insurance_type_name,
+      </if>
+      <if test="item.insuranceType1 != null" >
+        insurance_type1,
+      </if>
+      <if test="item.tbFlag != null" >
+        tb_flag,
+      </if>
+      <if test="item.createrUnitid != null" >
+        creater_unitid,
+      </if>
+      <if test="item.createrDeptid != null" >
+        creater_deptid,
+      </if>
+      <if test="item.affiliationId != null" >
+        affiliation_id,
+      </if>
+      <if test="item.spacecp != null" >
+        spacecp,
+      </if>
+      <if test="item.commissiondate != null" >
+        commissiondate,
+      </if>
+      <if test="item.crmProjectId != null" >
+        crm_project_id,
+      </if>
+      <if test="item.isDelegation != null" >
+        is_delegation,
+      </if>
+      <if test="item.bussImportant1 != null" >
+        buss_important1,
+      </if>
+      <if test="item.bussImportant2 != null" >
+        buss_important2,
+      </if>
+      <if test="item.userId != null" >
+        user_id,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="item.projectId != null" >
+        #{item.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectNum != null" >
+        #{item.projectNum,jdbcType=VARCHAR},
+      </if>
+      <if test="item.bussSrc != null" >
+        #{item.bussSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="item.bussType != null" >
+        #{item.bussType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.bussOrg != null" >
+        #{item.bussOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="item.principal != null" >
+        #{item.principal,jdbcType=VARCHAR},
+      </if>
+      <if test="item.operatorId != null" >
+        #{item.operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.nature != null" >
+        #{item.nature,jdbcType=VARCHAR},
+      </if>
+      <if test="item.startDt != null" >
+        #{item.startDt,jdbcType=VARCHAR},
+      </if>
+      <if test="item.endDt != null" >
+        #{item.endDt,jdbcType=VARCHAR},
+      </if>
+      <if test="item.name != null" >
+        #{item.name,jdbcType=VARCHAR},
+      </if>
+      <if test="item.predictionCost != null" >
+        #{item.predictionCost,jdbcType=VARCHAR},
+      </if>
+      <if test="item.predictionIncome != null" >
+        #{item.predictionIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="item.contactId != null" >
+        #{item.contactId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectMember != null" >
+        #{item.projectMember,jdbcType=VARCHAR},
+      </if>
+      <if test="item.descriptiom != null" >
+        #{item.descriptiom,jdbcType=VARCHAR},
+      </if>
+      <if test="item.remark != null" >
+        #{item.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="item.status != null" >
+        #{item.status,jdbcType=VARCHAR},
+      </if>
+      <if test="item.predictionPremium != null" >
+        #{item.predictionPremium,jdbcType=VARCHAR},
+      </if>
+      <if test="item.bussOrgName != null" >
+        #{item.bussOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.principalName != null" >
+        #{item.principalName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.operatorName != null" >
+        #{item.operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.contactName != null" >
+        #{item.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.abroad != null" >
+        #{item.abroad,jdbcType=VARCHAR},
+      </if>
+      <if test="item.ctrlType != null" >
+        #{item.ctrlType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.currency != null" >
+        #{item.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createrId != null" >
+        #{item.createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.docking != null" >
+        #{item.docking,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projSector != null" >
+        #{item.projSector,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projChannel != null" >
+        #{item.projChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="item.currentNode != null" >
+        #{item.currentNode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.currentStatus != null" >
+        #{item.currentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projType != null" >
+        #{item.projType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.renewalId != null" >
+        #{item.renewalId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.renewalTimes != null" >
+        #{item.renewalTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="item.renewalName != null" >
+        #{item.renewalName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.flowType != null" >
+        #{item.flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.planEndDt != null" >
+        #{item.planEndDt,jdbcType=VARCHAR},
+      </if>
+      <if test="item.bidEndDt != null" >
+        #{item.bidEndDt,jdbcType=VARCHAR},
+      </if>
+      <if test="item.billEndDt != null" >
+        #{item.billEndDt,jdbcType=VARCHAR},
+      </if>
+      <if test="item.locations != null" >
+        #{item.locations,jdbcType=VARCHAR},
+      </if>
+      <if test="item.isFinish != null" >
+        #{item.isFinish,jdbcType=VARCHAR},
+      </if>
+      <if test="item.cancelResult != null" >
+        #{item.cancelResult,jdbcType=VARCHAR},
+      </if>
+      <if test="item.finishDate != null" >
+        #{item.finishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.processDate != null" >
+        #{item.processDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.insuranceType != null" >
+        #{item.insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.insuranceTypeName != null" >
+        #{item.insuranceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.insuranceType1 != null" >
+        #{item.insuranceType1,jdbcType=VARCHAR},
+      </if>
+      <if test="item.tbFlag != null" >
+        #{item.tbFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createrUnitid != null" >
+        #{item.createrUnitid,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createrDeptid != null" >
+        #{item.createrDeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="item.affiliationId != null" >
+        #{item.affiliationId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.spacecp != null" >
+        #{item.spacecp,jdbcType=VARCHAR},
+      </if>
+      <if test="item.commissiondate != null" >
+        #{item.commissiondate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.crmProjectId != null" >
+        #{item.crmProjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.isDelegation != null" >
+        #{item.isDelegation,jdbcType=VARCHAR},
+      </if>
+      <if test="item.bussImportant1 != null" >
+        #{item.bussImportant1,jdbcType=VARCHAR},
+      </if>
+      <if test="item.bussImportant2 != null" >
+        #{item.bussImportant2,jdbcType=VARCHAR},
+      </if>
+      <if test="item.userId != null" >
+        #{item.userId,jdbcType=VARCHAR},
+      </if>
+
+    </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.crm.model.CrmProject" >
+    update crm_project
+    <set >
+      <if test="projectNum != null" >
+        project_num = #{projectNum,jdbcType=VARCHAR},
+      </if>
+      <if test="bussSrc != null" >
+        buss_src = #{bussSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="bussType != null" >
+        buss_type = #{bussType,jdbcType=VARCHAR},
+      </if>
+      <if test="bussOrg != null" >
+        buss_org = #{bussOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="principal != null" >
+        principal = #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="nature != null" >
+        nature = #{nature,jdbcType=VARCHAR},
+      </if>
+      <if test="startDt != null" >
+        start_dt = #{startDt,jdbcType=VARCHAR},
+      </if>
+      <if test="endDt != null" >
+        end_dt = #{endDt,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="predictionCost != null" >
+        prediction_cost = #{predictionCost,jdbcType=VARCHAR},
+      </if>
+      <if test="predictionIncome != null" >
+        prediction_income = #{predictionIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="contactId != null" >
+        contact_id = #{contactId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectMember != null" >
+        project_member = #{projectMember,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptiom != null" >
+        descriptiom = #{descriptiom,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="predictionPremium != null" >
+        prediction_premium = #{predictionPremium,jdbcType=VARCHAR},
+      </if>
+      <if test="bussOrgName != null" >
+        buss_org_name = #{bussOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="principalName != null" >
+        principal_name = #{principalName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null" >
+        operator_name = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="abroad != null" >
+        abroad = #{abroad,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrlType != null" >
+        ctrl_type = #{ctrlType,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null" >
+        creater_id = #{createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="docking != null" >
+        docking = #{docking,jdbcType=VARCHAR},
+      </if>
+      <if test="projSector != null" >
+        proj_sector = #{projSector,jdbcType=VARCHAR},
+      </if>
+      <if test="projChannel != null" >
+        proj_channel = #{projChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="currentNode != null" >
+        current_node = #{currentNode,jdbcType=VARCHAR},
+      </if>
+      <if test="currentStatus != null" >
+        current_status = #{currentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projType != null" >
+        proj_type = #{projType,jdbcType=VARCHAR},
+      </if>
+      <if test="renewalId != null" >
+        renewal_id = #{renewalId,jdbcType=VARCHAR},
+      </if>
+      <if test="renewalTimes != null" >
+        renewal_times = #{renewalTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="renewalName != null" >
+        renewal_name = #{renewalName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowType != null" >
+        flow_type = #{flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="planEndDt != null" >
+        plan_end_dt = #{planEndDt,jdbcType=VARCHAR},
+      </if>
+      <if test="bidEndDt != null" >
+        bid_end_dt = #{bidEndDt,jdbcType=VARCHAR},
+      </if>
+      <if test="billEndDt != null" >
+        bill_end_dt = #{billEndDt,jdbcType=VARCHAR},
+      </if>
+      <if test="locations != null" >
+        locations = #{locations,jdbcType=VARCHAR},
+      </if>
+      <if test="isFinish != null" >
+        is_finish = #{isFinish,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelResult != null" >
+        cancel_result = #{cancelResult,jdbcType=VARCHAR},
+      </if>
+      <if test="finishDate != null" >
+        finish_date = #{finishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="processDate != null" >
+        process_date = #{processDate,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null" >
+        insurance_type = #{insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceTypeName != null" >
+        insurance_type_name = #{insuranceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType1 != null" >
+        insurance_type1 = #{insuranceType1,jdbcType=VARCHAR},
+      </if>
+      <if test="tbFlag != null" >
+        tb_flag = #{tbFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createrUnitid != null" >
+        creater_unitid = #{createrUnitid,jdbcType=VARCHAR},
+      </if>
+      <if test="createrDeptid != null" >
+        creater_deptid = #{createrDeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="affiliationId != null" >
+        affiliation_id = #{affiliationId,jdbcType=VARCHAR},
+      </if>
+      <if test="spacecp != null" >
+        spacecp = #{spacecp,jdbcType=VARCHAR},
+      </if>
+      <if test="commissiondate != null" >
+        commissiondate = #{commissiondate,jdbcType=VARCHAR},
+      </if>
+      <if test="crmProjectId != null" >
+        crm_project_id = #{crmProjectId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelegation != null" >
+        is_delegation = #{isDelegation,jdbcType=VARCHAR},
+      </if>
+      <if test="bussImportant1 != null" >
+        buss_important1 = #{bussImportant1,jdbcType=VARCHAR},
+      </if>
+      <if test="bussImportant2 != null" >
+        buss_important2 = #{bussImportant2,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

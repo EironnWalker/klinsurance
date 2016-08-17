@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//wycore-mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--框架设置-->
+    <settings>
+        <!-- 设置MyBatis日志类型 -->
+        <setting name="logImpl" value="LOG4J"/>
+
+        <!-- 使用驼峰命名法转换字段 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--别名设置-->
+    <typeAliases>
+        <package name="com.ht.ilcom.charge.model"/>
+        <package name="com.ht.ilcom.customer.model"/>
+        <package name="com.ht.ilcom.equip.model"/>
+        <package name="com.ht.ilcom.estate.model"/>
+        <package name="com.ht.ilcom.meter.model"/>
+        <package name="com.ht.ilcom.platform.model"/>
+        <package name="com.ht.ilcom.run.model"/>
+        <package name="com.ht.ilcom.serve.model"/>
+        <package name="com.ht.ilcom.social.model"/>
+        <package name="com.ht.ilcom.sys.model"/>
+    </typeAliases>
+
+    <plugins>
+        <!-- 设置分页 -->
+        <plugin interceptor="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
+            <property name="dialectClass" value="com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect"/>
+        </plugin>
+
+        <!--存储过程-->
+        <plugin interceptor="com.github.miemiedev.mybatis.callable.CallableConvertInterceptor">
+            <property name="resultHandler" value="com.github.miemiedev.mybatis.callable.handler.SimpleResultHandler"/>
+        </plugin>
+    </plugins>
+
+</configuration>

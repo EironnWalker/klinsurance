@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.text.mapper.TextTemplateMapper" >
+
+  <sql id="Base_Column_List" >
+    text_template_id, name, content, tags, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.text.model.TextTemplate"  parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from text_template
+    where text_template_id = #{textTemplateId,jdbcType=VARCHAR}
+  </select>
+  <select id="findTextTemplateList" resultType="com.ht.klinsurance.text.model.TextTemplate">
+    select
+    <include refid="Base_Column_List" />
+    from text_template
+    <where>
+      <if test="createTime!=null and createTime!=''">
+        and create_time > #{createTime}
+      </if>
+    </where>
+
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from text_template
+    where text_template_id = #{textTemplateId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="addTextTemplate" parameterType="com.ht.klinsurance.text.model.TextTemplate" >
+    insert into text_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="textTemplateId != null" >
+        text_template_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="tags != null" >
+        tags,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="textTemplateId != null" >
+        #{textTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null" >
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.text.model.TextTemplate" >
+    update text_template
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null" >
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where text_template_id = #{textTemplateId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

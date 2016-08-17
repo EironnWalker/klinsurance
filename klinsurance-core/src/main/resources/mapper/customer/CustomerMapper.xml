@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.customer.mapper.CustomerMapper" >
+
+  <sql id="Base_Column_List" >
+    customer_id, name, link_man,link_man_pinyin , link_phone, province, city, county, address, remark,superior_id,superior,classification,
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.customer.model.Customer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </select>
+  <select id="findCustomerList" resultType="com.ht.klinsurance.customer.model.Customer">
+
+    select
+    <include refid="Base_Column_List" />
+    from customer
+    <where>
+    <if test="createTime!=null and createTime!=''">
+      and create_time > #{createTime}
+    </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from customer
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteAll">
+     delete from customer
+  </delete>
+
+  <insert id="addCustomer" parameterType="com.ht.klinsurance.customer.model.Customer" >
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="linkMan != null" >
+        link_man,
+      </if>
+      <if test="linkManPinyin != null" >
+        link_man_pinyin,
+      </if>
+
+      <if test="linkPhone != null" >
+        link_phone,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="superiorId != null" >
+        superior_id,
+      </if>
+      <if test="superior != null" >
+        superior,
+      </if>
+      <if test="classification != null" >
+        classification,
+      </if>
+
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null" >
+        #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkManPinyin != null" >
+        #{linkManPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null" >
+        #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+      #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="superiorId != null" >
+        #{superiorId,jdbcType=VARCHAR},
+      </if>
+      <if test="superior != null" >
+        #{superior,jdbcType=VARCHAR},
+      </if>
+      <if test="classification != null" >
+        #{classification,jdbcType=VARCHAR},
+      </if>
+
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="addCustomerList">
+    <foreach collection="list" item="item" index="index" separator=";">
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="item.customerId != null" >
+        customer_id,
+      </if>
+      <if test="item.name != null" >
+        name,
+      </if>
+      <if test="item.linkMan != null" >
+        link_man,
+      </if>
+      <if test="item.linkManPinyin != null" >
+        link_man_pinyin,
+      </if>
+
+      <if test="item.linkPhone != null" >
+        link_phone,
+      </if>
+      <if test="item.province != null" >
+        province,
+      </if>
+      <if test="item.city != null" >
+        city,
+      </if>
+      <if test="item.county != null" >
+        county,
+      </if>
+      <if test="item.address != null" >
+        address,
+      </if>
+      <if test="item.remark != null" >
+        remark,
+      </if>
+      <if test="item.superiorId != null" >
+        superior_id,
+      </if>
+      <if test="item.superior != null" >
+        superior,
+      </if>
+      <if test="item.classification != null" >
+        classification,
+      </if>
+
+      <if test="item.createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="item.customerId != null" >
+        #{item.customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.name != null" >
+        #{item.name,jdbcType=VARCHAR},
+      </if>
+      <if test="item.linkMan != null" >
+        #{item.linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="item.linkManPinyin != null" >
+        #{item.linkManPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="item.linkPhone != null" >
+        #{item.linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="item.province != null" >
+        #{item.province,jdbcType=VARCHAR},
+      </if>
+      <if test="item.city != null" >
+        #{item.city,jdbcType=VARCHAR},
+      </if>
+      <if test="item.county != null" >
+        #{item.county,jdbcType=VARCHAR},
+      </if>
+      <if test="item.address != null" >
+        #{item.address,jdbcType=VARCHAR},
+      </if>
+      <if test="item.remark != null" >
+        #{item.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="item.superiorId != null" >
+        #{item.superiorId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.superior != null" >
+        #{item.superior,jdbcType=VARCHAR},
+      </if>
+      <if test="item.classification != null" >
+        #{item.classification,jdbcType=VARCHAR},
+      </if>
+
+      <if test="item.createTime != null" >
+        #{item.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+</foreach>
+
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.customer.model.Customer" >
+    update customer
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null" >
+        link_man = #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkManPinyin != null" >
+        link_man_pinyin = #{linkManPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null" >
+        link_phone = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="superiorId != null" >
+        superior_id = #{superiorId,jdbcType=VARCHAR},
+      </if>
+      <if test="superior != null" >
+        superior = #{superior,jdbcType=VARCHAR},
+      </if>
+      <if test="classification != null" >
+        superior = #{classification,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

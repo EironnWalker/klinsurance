@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.loss.mapper.LossItemDictMapper" >
+
+  <sql id="Base_Column_List" >
+    loss_item_dict_id, loss_item_dict_pid,loss_item_dict_no, name, price_unit, numeraire,numeraireMsg, remark, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.loss.model.LossItemDict" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from loss_item_dict
+    where loss_item_dict_id = #{lossItemDictId,jdbcType=VARCHAR}
+  </select>
+  <select id="findLossItemDictList" resultType="com.ht.klinsurance.loss.model.LossItemDict">
+    select
+    <include refid="Base_Column_List" />
+    from loss_item_dict
+    <where>
+      <if test="createTime!=null and createTime!=''">
+        and create_time > #{createTime}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from loss_item_dict
+    where loss_item_dict_id = #{lossItemDictId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteAll">
+       delete from loss_item_dict
+  </delete>
+  <insert id="addLossItemDict" parameterType="com.ht.klinsurance.loss.model.LossItemDict" >
+    insert into loss_item_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lossItemDictId != null" >
+        loss_item_dict_id,
+      </if>
+      <if test="lossItemDictPid != null" >
+        loss_item_dict_pid,
+      </if>
+      <if test="lossItemDictNo != null" >
+        loss_item_dict_no,
+      </if>
+
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="priceUnit != null" >
+        price_unit,
+      </if>
+      <if test="numeraire != null" >
+        numeraire,
+      </if>
+      <if test="numeraireMsg != null" >
+        numeraire_msg,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lossItemDictId != null" >
+        #{lossItemDictId,jdbcType=VARCHAR},
+      </if>
+      <if test="lossItemDictPid != null" >
+        #{lossItemDictPid,jdbcType=VARCHAR},
+      </if>
+      <if test="lossItemDictNo != null" >
+        #{lossItemDictNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="priceUnit != null" >
+        #{priceUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="numeraire != null" >
+        #{numeraire,jdbcType=VARCHAR},
+      </if>
+      <if test="numeraireMsg != null" >
+        #{numeraireMsg,jdbcType=VARCHAR},
+      </if>
+
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="addLossItemDictList">
+
+    <foreach collection="list" item="item" index="index" separator=";">
+    insert into loss_item_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="item.lossItemDictId != null" >
+        loss_item_dict_id,
+      </if>
+      <if test="item.lossItemDictPid != null" >
+        loss_item_dict_pid,
+      </if>
+      <if test="item.lossItemDictNo != null" >
+        loss_item_dict_no,
+      </if>
+
+      <if test="item.name != null" >
+        name,
+      </if>
+      <if test="item.priceUnit != null" >
+        price_unit,
+      </if>
+      <if test="item.numeraire != null" >
+        numeraire,
+      </if>
+      <if test="item.numeraireMsg != null" >
+        numeraire_msg,
+      </if>
+      <if test="item.remark != null" >
+        remark,
+      </if>
+      <if test="item.createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="item.lossItemDictId != null" >
+        #{item.lossItemDictId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.lossItemDictPid != null" >
+        #{item.lossItemDictPid,jdbcType=VARCHAR},
+      </if>
+      <if test="item.lossItemDictNo != null" >
+        #{item.lossItemDictNo,jdbcType=VARCHAR},
+      </if>
+      <if test="item.name != null" >
+        #{item.name,jdbcType=VARCHAR},
+      </if>
+      <if test="item.priceUnit != null" >
+        #{item.priceUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="item.numeraire != null" >
+        #{item.numeraire,jdbcType=VARCHAR},
+      </if>
+      <if test="item.numeraireMsg != null" >
+        #{item.numeraireMsg,jdbcType=VARCHAR},
+      </if>
+
+      <if test="item.remark != null" >
+        #{item.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createTime != null" >
+        #{item.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.loss.model.LossItemDict" >
+    update loss_item_dict
+    <set >
+      <if test="lossItemDictPid != null" >
+        loss_item_dict_pid = #{lossItemDictPid,jdbcType=VARCHAR},
+      </if>
+      <if test="lossItemDictNo != null" >
+        loss_item_dict_no = #{lossItemDictNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="priceUnit != null" >
+        price_unit = #{priceUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="numeraire != null" >
+        numeraire = #{numeraire,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where loss_item_dict_id = #{lossItemDictId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

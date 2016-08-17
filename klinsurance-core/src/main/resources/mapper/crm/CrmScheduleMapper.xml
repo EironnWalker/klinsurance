@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.crm.mapper.CrmScheduleMapper" >
+
+  <sql id="Base_Column_List" >
+    schedule_id, shedule_title, sender_id, sender_name, project_id, project_name, cust_id, 
+    cust_name, contact_id, contact_name, start_date, end_date, mail_flag, sms_flag, sysmsg_flag, 
+    memo, version, reamin_date, allday_flag, create_date, remind_type, case_id, case_name, 
+    cust_type, is_sys_rate, remain_rate, canl_status, con_type, proj_type, user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.crm.model.CrmSchedule">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_schedule
+    where schedule_id = #{scheduleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from crm_schedule
+    where schedule_id = #{scheduleId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteAllByUserId">
+    delete from crm_schedule
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.ht.klinsurance.crm.model.CrmSchedule" >
+    insert into crm_schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scheduleId != null" >
+        schedule_id,
+      </if>
+      <if test="sheduleTitle != null" >
+        shedule_title,
+      </if>
+      <if test="senderId != null" >
+        sender_id,
+      </if>
+      <if test="senderName != null" >
+        sender_name,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="custId != null" >
+        cust_id,
+      </if>
+      <if test="custName != null" >
+        cust_name,
+      </if>
+      <if test="contactId != null" >
+        contact_id,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="mailFlag != null" >
+        mail_flag,
+      </if>
+      <if test="smsFlag != null" >
+        sms_flag,
+      </if>
+      <if test="sysmsgFlag != null" >
+        sysmsg_flag,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="reaminDate != null" >
+        reamin_date,
+      </if>
+      <if test="alldayFlag != null" >
+        allday_flag,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="remindType != null" >
+        remind_type,
+      </if>
+      <if test="caseId != null" >
+        case_id,
+      </if>
+      <if test="caseName != null" >
+        case_name,
+      </if>
+      <if test="custType != null" >
+        cust_type,
+      </if>
+      <if test="isSysRate != null" >
+        is_sys_rate,
+      </if>
+      <if test="remainRate != null" >
+        remain_rate,
+      </if>
+      <if test="canlStatus != null" >
+        canl_status,
+      </if>
+      <if test="conType != null" >
+        con_type,
+      </if>
+      <if test="projType != null" >
+        proj_type,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scheduleId != null" >
+        #{scheduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="sheduleTitle != null" >
+        #{sheduleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="senderId != null" >
+        #{senderId,jdbcType=VARCHAR},
+      </if>
+      <if test="senderName != null" >
+        #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactId != null" >
+        #{contactId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="mailFlag != null" >
+        #{mailFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="smsFlag != null" >
+        #{smsFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="sysmsgFlag != null" >
+        #{sysmsgFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="reaminDate != null" >
+        #{reaminDate,jdbcType=VARCHAR},
+      </if>
+      <if test="alldayFlag != null" >
+        #{alldayFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="remindType != null" >
+        #{remindType,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null" >
+        #{caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="caseName != null" >
+        #{caseName,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null" >
+        #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="isSysRate != null" >
+        #{isSysRate,jdbcType=VARCHAR},
+      </if>
+      <if test="remainRate != null" >
+        #{remainRate,jdbcType=VARCHAR},
+      </if>
+      <if test="canlStatus != null" >
+        #{canlStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="conType != null" >
+        #{conType,jdbcType=VARCHAR},
+      </if>
+      <if test="projType != null" >
+        #{projType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+
+    </trim>
+  </insert>
+  <insert id="addCrmScheduleList">
+    <foreach collection="list" item="item" index="index" separator=";">
+    insert into crm_schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="item.scheduleId != null" >
+        schedule_id,
+      </if>
+      <if test="item.sheduleTitle != null" >
+        shedule_title,
+      </if>
+      <if test="item.senderId != null" >
+        sender_id,
+      </if>
+      <if test="item.senderName != null" >
+        sender_name,
+      </if>
+      <if test="item.projectId != null" >
+        project_id,
+      </if>
+      <if test="item.projectName != null" >
+        project_name,
+      </if>
+      <if test="item.custId != null" >
+        cust_id,
+      </if>
+      <if test="item.custName != null" >
+        cust_name,
+      </if>
+      <if test="item.contactId != null" >
+        contact_id,
+      </if>
+      <if test="item.contactName != null" >
+        contact_name,
+      </if>
+      <if test="item.startDate != null" >
+        start_date,
+      </if>
+      <if test="item.endDate != null" >
+        end_date,
+      </if>
+      <if test="item.mailFlag != null" >
+        mail_flag,
+      </if>
+      <if test="item.smsFlag != null" >
+        sms_flag,
+      </if>
+      <if test="item.sysmsgFlag != null" >
+        sysmsg_flag,
+      </if>
+      <if test="item.memo != null" >
+        memo,
+      </if>
+      <if test="item.version != null" >
+        version,
+      </if>
+      <if test="item.reaminDate != null" >
+        reamin_date,
+      </if>
+      <if test="item.alldayFlag != null" >
+        allday_flag,
+      </if>
+      <if test="item.createDate != null" >
+        create_date,
+      </if>
+      <if test="item.remindType != null" >
+        remind_type,
+      </if>
+      <if test="item.caseId != null" >
+        case_id,
+      </if>
+      <if test="item.caseName != null" >
+        case_name,
+      </if>
+      <if test="item.custType != null" >
+        cust_type,
+      </if>
+      <if test="item.isSysRate != null" >
+        is_sys_rate,
+      </if>
+      <if test="item.remainRate != null" >
+        remain_rate,
+      </if>
+      <if test="item.canlStatus != null" >
+        canl_status,
+      </if>
+      <if test="item.conType != null" >
+        con_type,
+      </if>
+      <if test="item.projType != null" >
+        proj_type,
+      </if>
+      <if test="item.userId != null" >
+        user_id,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="item.scheduleId != null" >
+        #{item.scheduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.sheduleTitle != null" >
+        #{item.sheduleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="item.senderId != null" >
+        #{item.senderId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.senderName != null" >
+        #{item.senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectId != null" >
+        #{item.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectName != null" >
+        #{item.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.custId != null" >
+        #{item.custId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.custName != null" >
+        #{item.custName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.contactId != null" >
+        #{item.contactId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.contactName != null" >
+        #{item.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.startDate != null" >
+        #{item.startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.endDate != null" >
+        #{item.endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.mailFlag != null" >
+        #{item.mailFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.smsFlag != null" >
+        #{item.smsFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.sysmsgFlag != null" >
+        #{item.sysmsgFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.memo != null" >
+        #{item.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="item.version != null" >
+        #{item.version,jdbcType=VARCHAR},
+      </if>
+      <if test="item.reaminDate != null" >
+        #{item.reaminDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.alldayFlag != null" >
+        #{item.alldayFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createDate != null" >
+        #{item.createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.remindType != null" >
+        #{item.remindType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.caseId != null" >
+        #{item.caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.caseName != null" >
+        #{item.caseName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.custType != null" >
+        #{item.custType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.isSysRate != null" >
+        #{item.isSysRate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.remainRate != null" >
+        #{item.remainRate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.canlStatus != null" >
+        #{item.canlStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="item.conType != null" >
+        #{item.conType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projType != null" >
+        #{item.projType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.userId != null" >
+        #{item.userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.crm.model.CrmSchedule" >
+    update crm_schedule
+    <set >
+      <if test="sheduleTitle != null" >
+        shedule_title = #{sheduleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="senderId != null" >
+        sender_id = #{senderId,jdbcType=VARCHAR},
+      </if>
+      <if test="senderName != null" >
+        sender_name = #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        cust_id = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        cust_name = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactId != null" >
+        contact_id = #{contactId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="mailFlag != null" >
+        mail_flag = #{mailFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="smsFlag != null" >
+        sms_flag = #{smsFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="sysmsgFlag != null" >
+        sysmsg_flag = #{sysmsgFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="reaminDate != null" >
+        reamin_date = #{reaminDate,jdbcType=VARCHAR},
+      </if>
+      <if test="alldayFlag != null" >
+        allday_flag = #{alldayFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="remindType != null" >
+        remind_type = #{remindType,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null" >
+        case_id = #{caseId,jdbcType=VARCHAR},
+      </if>
+      <if test="caseName != null" >
+        case_name = #{caseName,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null" >
+        cust_type = #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="isSysRate != null" >
+        is_sys_rate = #{isSysRate,jdbcType=VARCHAR},
+      </if>
+      <if test="remainRate != null" >
+        remain_rate = #{remainRate,jdbcType=VARCHAR},
+      </if>
+      <if test="canlStatus != null" >
+        canl_status = #{canlStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="conType != null" >
+        con_type = #{conType,jdbcType=VARCHAR},
+      </if>
+      <if test="projType != null" >
+        proj_type = #{projType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where schedule_id = #{scheduleId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

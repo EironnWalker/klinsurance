@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.loss.mapper.LossItemHistoryPriceMapper" >
+
+
+  <sql id="Base_Column_List" >
+    history_price_id, amount, height, length, place, price, project_id, project_name, 
+    real_price, remark, reported_loss, width, item_id,item_name, standard_id, standard_name, standatd_item_id
+  </sql>
+  <select id="selectByPrimaryKey"   parameterType="java.lang.String" resultType="com.ht.klinsurance.loss.model.LossItemHistoryPrice">
+    select 
+    <include refid="Base_Column_List" />
+    from loss_item_history_price
+    where history_price_id = #{historyPriceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from loss_item_history_price
+    where history_price_id = #{historyPriceId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteAll">
+     delete from loss_item_history_price
+  </delete>
+  <insert id="addLossItemHistoryPrice"  >
+    <foreach collection="list" item="item" index="index" separator=";">
+    insert into loss_item_history_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="item.historyPriceId != null" >
+        history_price_id,
+      </if>
+      <if test="item.amount != null" >
+        amount,
+      </if>
+      <if test="item.height != null" >
+        height,
+      </if>
+      <if test="item.length != null" >
+        length,
+      </if>
+      <if test="item.place != null" >
+        place,
+      </if>
+      <if test="item.price != null" >
+        price,
+      </if>
+      <if test="item.projectId != null" >
+        project_id,
+      </if>
+      <if test="item.projectName != null" >
+        project_name,
+      </if>
+      <if test="item.realPrice != null" >
+        real_price,
+      </if>
+      <if test="item.remark != null" >
+        remark,
+      </if>
+      <if test="item.reportedLoss != null" >
+        reported_loss,
+      </if>
+      <if test="item.width != null" >
+        width,
+      </if>
+      <if test="item.itemId != null" >
+        item_id,
+      </if>
+      <if test="item.itemName != null" >
+        item_name,
+      </if>
+
+      <if test="item.standardId != null" >
+        standard_id,
+      </if>
+      <if test="item.standardName != null" >
+        standard_name,
+      </if>
+      <if test="item.standatdItemId != null" >
+        standatd_item_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="item.historyPriceId != null" >
+        #{item.historyPriceId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.amount != null" >
+        #{item.amount,jdbcType=VARCHAR},
+      </if>
+      <if test="item.height != null" >
+        #{item.height,jdbcType=VARCHAR},
+      </if>
+      <if test="item.length != null" >
+        #{item.length,jdbcType=VARCHAR},
+      </if>
+      <if test="item.place != null" >
+        #{item.place,jdbcType=VARCHAR},
+      </if>
+      <if test="item.price != null" >
+        #{item.price,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectId != null" >
+        #{item.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.projectName != null" >
+        #{item.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.realPrice != null" >
+        #{item.realPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="item.remark != null" >
+        #{item.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="item.reportedLoss != null" >
+        #{item.reportedLoss,jdbcType=VARCHAR},
+      </if>
+      <if test="item.width != null" >
+        #{item.width,jdbcType=VARCHAR},
+      </if>
+      <if test="item.itemId != null" >
+        #{item.itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.itemName != null" >
+        #{item.itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.standardId != null" >
+        #{item.standardId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.standardName != null" >
+        #{item.standardName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.standatdItemId != null" >
+        #{item.standatdItemId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.loss.model.LossItemHistoryPrice" >
+    update loss_item_history_price
+    <set >
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null" >
+        length = #{length,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null" >
+        place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="realPrice != null" >
+        real_price = #{realPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="reportedLoss != null" >
+        reported_loss = #{reportedLoss,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null" >
+        width = #{width,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="standardId != null" >
+        standard_id = #{standardId,jdbcType=VARCHAR},
+      </if>
+      <if test="standardName != null" >
+        standard_name = #{standardName,jdbcType=VARCHAR},
+      </if>
+      <if test="standatdItemId != null" >
+        standatd_item_id = #{standatdItemId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where history_price_id = #{historyPriceId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>
