@@ -10,6 +10,12 @@
     from briefing_loss_image
     where briefing_loss_image_id = #{briefingLossImageId,jdbcType=VARCHAR}
   </select>
+  <select id="findByLoss" resultType="com.ht.klinsurance.briefing.model.BriefingLossImage" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from briefing_loss_image
+    where loss_id = #{lossId,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from briefing_loss_image
     where briefing_loss_image_id = #{briefingLossImageId,jdbcType=VARCHAR}

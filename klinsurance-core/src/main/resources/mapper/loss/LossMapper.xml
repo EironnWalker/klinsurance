@@ -12,6 +12,16 @@
     from loss
     where loss_id = #{lossId,jdbcType=VARCHAR}
   </select>
+  <select id="findByBriefing"  resultType="com.ht.klinsurance.loss.model.Loss"  parameterType="java.lang.String">
+    SELECT
+        a.loss_id, a.user_id, a.project_id, a.place,a.place_no, a.customer_sign_path, a.customer_sign_time, a.remark,
+        a.create_time
+    FROM
+        briefing_loss a
+    LEFT JOIN loss b ON a.loss_id = b.loss_id
+    WHERE
+	a.briefing_id =  #{briefingId,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from loss
     where loss_id = #{lossId,jdbcType=VARCHAR}

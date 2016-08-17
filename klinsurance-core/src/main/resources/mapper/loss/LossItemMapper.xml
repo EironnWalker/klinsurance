@@ -28,14 +28,12 @@
     </where>
     order by create_time DESC
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from loss_item
-    where loss_item_id = #{lossItemId,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteBylossId">
-      delete from loss_item
+  <select id="findByLoss" resultType="com.ht.klinsurance.loss.model.LossItem">
+    select
+    <include refid="Base_Column_List" />
+    from loss_item
     where loss_id = #{lossId,jdbcType=VARCHAR}
-  </delete>
+  </select>
   <insert id="addLossItem" parameterType="com.ht.klinsurance.loss.model.LossItem" >
     insert into loss_item
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -163,5 +161,12 @@
     </set>
     where loss_item_id = #{lossItemId,jdbcType=VARCHAR}
   </update>
-
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from loss_item
+    where loss_item_id = #{lossItemId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteBylossId">
+    delete from loss_item
+    where loss_id = #{lossId,jdbcType=VARCHAR}
+  </delete>
 </mapper>
