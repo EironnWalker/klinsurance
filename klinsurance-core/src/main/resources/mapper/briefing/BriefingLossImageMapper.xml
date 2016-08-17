@@ -16,16 +16,6 @@
     from briefing_loss_image
     where loss_id = #{lossId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from briefing_loss_image
-    where briefing_loss_image_id = #{briefingLossImageId,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByBriefingLossId">
-    delete from briefing_loss_image
-    where briefing_loss_id = #{briefingLossId,jdbcType=VARCHAR}
-
-  </delete>
-
   <insert id="addBriefingLossImage" parameterType="com.ht.klinsurance.briefing.model.BriefingLossImage" >
     insert into briefing_loss_image
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -90,5 +80,12 @@
     </set>
     where briefing_loss_image_id = #{briefingLossImageId,jdbcType=VARCHAR}
   </update>
-
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from briefing_loss_image
+    where briefing_loss_image_id = #{briefingLossImageId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByBriefingLossId">
+    delete from briefing_loss_image
+    where briefing_loss_id = #{briefingLossId,jdbcType=VARCHAR}
+  </delete>
 </mapper>
