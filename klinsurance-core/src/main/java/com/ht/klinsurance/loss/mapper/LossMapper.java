@@ -5,11 +5,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LossMapper {
-    int deleteByPrimaryKey(String lossId);
+    Loss selectByPrimaryKey(String lossId);
 
     int addLoss(Loss record);
 
-    Loss selectByPrimaryKey(String lossId);
-
     int updateByPrimaryKeySelective(Loss record);
+
+    int deleteByPrimaryKey(String lossId);
 }
