@@ -8,6 +8,7 @@ import com.ht.klinsurance.briefing.model.BriefingLoss;
 import com.ht.klinsurance.briefing.model.BriefingLossImage;
 import com.ht.klinsurance.briefing.model.BriefingLossItem;
 import com.ht.klinsurance.briefing.service.IBriefingService;
+import com.ht.klinsurance.briefing.service.IBuildBriefingService;
 import com.ht.klinsurance.common.BaseAction;
 import com.ht.klinsurance.loss.model.Loss;
 import com.ht.klinsurance.loss.model.LossItem;
@@ -29,6 +30,8 @@ public class BriefingAction extends BaseAction
 {
     @Resource
     private IBriefingService briefingService;
+    @Resource
+    private IBuildBriefingService buildBriefingService;
 
     /**
      * 保存简报
@@ -82,6 +85,14 @@ public class BriefingAction extends BaseAction
             }
         } catch (Exception e) {
             log.error("添加简报", e);
+        }
+    }
+    @RequestMapping("test")
+    public void test(){
+        try {
+            buildBriefingService.buildBriefing("4080cd0624f74f349bbed81727f5da70");
+        } catch (Exception e) {
+            log.error("测试生成简报", e);
         }
     }
 }

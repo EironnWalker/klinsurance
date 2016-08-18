@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class Loss {
@@ -27,7 +28,7 @@ public class Loss {
     private Date createTime;
 
     /*******************额外字段*****************************************/
-    private List<LossItem> lossItems;//损失项详情
 
-    private List<List<BriefingLossImage>> briefingLossImages;//图片信息
+    private String briefingLossId;
+    private List<Map<String,BriefingLossImage>> briefingLossImages;//图片信息
 }

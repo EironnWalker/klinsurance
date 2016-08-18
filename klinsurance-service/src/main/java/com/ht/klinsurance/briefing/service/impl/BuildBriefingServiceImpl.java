@@ -5,13 +5,12 @@ import com.ht.klinsurance.briefing.mapper.BriefingMapper;
 import com.ht.klinsurance.briefing.model.Briefing;
 import com.ht.klinsurance.briefing.model.BriefingLossImage;
 import com.ht.klinsurance.briefing.service.IBuildBriefingService;
-import com.ht.klinsurance.common.FtpServeHelper;
+import com.ht.klinsurance.common.HttpImageUtils;
 import com.ht.klinsurance.common.KlConsts;
 import com.ht.klinsurance.common.WordUtils;
 import com.ht.klinsurance.loss.mapper.LossItemMapper;
 import com.ht.klinsurance.loss.mapper.LossMapper;
 import com.ht.klinsurance.loss.model.Loss;
-import com.ht.klinsurance.loss.model.LossItem;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,30 +41,31 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
         Map<String,Object> param = new HashMap<>();
 
         //简报信息
-        Briefing briefing = briefingMapper.selectByPrimaryKey(briefingId);
+        Briefing briefing = briefingMapper.findDetailInfo(briefingId);
+        //Briefing briefing = briefingMapper.selectByPrimaryKey(briefingId);
         //损失项信息
         List<Loss> lossList = lossMapper.findByBriefing(briefingId);
 
         //图片信息
-        List<List<BriefingLossImage>> imageList = new ArrayList<>();
+        List<Map<String,BriefingLossImage>> imageList = new ArrayList<>();
         for(Loss loss:lossList){
             //由于word模板损失项图片都是三个一行，为了满足要求，每个list里面放三条数据
-            List<LossItem> itemList = lossItemMapper.findByLoss(loss.getLossId());
-            loss.setLossItems(itemList);
+          /*  List<LossItem> itemList = lossItemMapper.findByLoss(loss.getLossId());
+            loss.setLossItems(itemList);*/
 
-            List<BriefingLossImage> images = briefingLossImageMapper.findByLoss(loss.getLossId());
+            List<BriefingLossImage> images = briefingLossImageMapper.findByLoss(loss.getBriefingLossId());
 
-            List<BriefingLossImage> tempImages ;
+            Map<String,BriefingLossImage> tempImages ;
             for(int i=0;i<images.size();i++){
-                tempImages= new ArrayList<>();
-                tempImages.add(images.get(i));
+                tempImages= new HashMap<>();
+                tempImages.put("info1",images.get(i));
                 //生成要替换的图片信息
                 param.put(images.get(i).getBriefingLossImageId(), addImageInfo(images.get(i)));
 
-                for(i=0;i<2;i++){
+                for(i=2;i<4;i++){
                     i++;
                     if(i<images.size()){
-                        tempImages.add(images.get(i));
+                        tempImages.put("info" + i, images.get(i));
                         //生成要替换的图片信息
                         param.put(images.get(i).getBriefingLossImageId(), addImageInfo(images.get(i)));
                     }else{
@@ -80,7 +80,7 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
         dataMap.put("briefing",briefing);
         dataMap.put("lossList",lossList);
 
-        WordUtils.createWord("简报.ftl", "d:/简报1.docx", "d:/简报.docx", dataMap, param);
+        WordUtils.createWord("简报模板.ftl", "d:/简报1.docx", "d:/简报.docx", dataMap, param);
     }
 
     /**
@@ -95,7 +95,7 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
         header.put("height", KlConsts.WORD_IMAGE_HEIGHT);
         header.put("type", "png");
         header.put("content",
-                WordUtils.inputStream2ByteArray(FtpServeHelper.getFileInputStream(image.getImage()), true));
+                WordUtils.inputStream2ByteArray(HttpImageUtils.getFtpFileIs(image.getImage()), true));
 
         return header;
     }
