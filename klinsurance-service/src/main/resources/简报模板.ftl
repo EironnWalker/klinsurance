@@ -697,6 +697,7 @@
 								</w:p>
 							</w:tc>
 						</w:tr>
+						<#list loss.briefingLossImages as image>
 						<w:tr>
 							<w:tblPrEx>
 								<w:tblBorders>
@@ -719,7 +720,7 @@
 								<w:trHeight w:val="2389" w:hRule="atLeast"/>
 								<w:jc w:val="center"/>
 							</w:trPr>
-							<#list loss.briefingLossImages as image>
+							
 							<w:tc>
 								<w:tcPr>
 									<w:tcW w:w="3437" w:type="dxa"/>
