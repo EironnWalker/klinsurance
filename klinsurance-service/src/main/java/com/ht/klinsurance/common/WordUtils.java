@@ -49,7 +49,7 @@ public class WordUtils {
         }
 
         //将模板和数据模型合并生成文件
-        Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile)));
+        Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile),"UTF-8"));
 
         //生成文件
         template.process(infoMap, out);
