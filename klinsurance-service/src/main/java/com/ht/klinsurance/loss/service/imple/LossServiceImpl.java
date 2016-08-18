@@ -40,8 +40,9 @@ public class LossServiceImpl implements ILossService {
 
        String filePath =  FileUploadUtil.uploadFilePic(picList);
         loss.setCustomerSignPath(filePath);
-        int result = lossMapper.deleteByPrimaryKey(loss.getLossId());
-        result*=lossMapper.addLoss(loss);
+         lossMapper.deleteByPrimaryKey(loss.getLossId());
+        int result = 0;
+         result*=lossMapper.addLoss(loss);
         result*=lossItemMapper.deleteBylossId(loss.getLossId());
         if(itemList!=null&&itemList.size()>0)
         {
