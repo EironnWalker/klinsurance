@@ -14,8 +14,16 @@
   </select>
   <select id="findByBriefing"  resultType="com.ht.klinsurance.loss.model.Loss"  parameterType="java.lang.String">
     SELECT
-        a.loss_id, a.user_id, a.project_id, a.place,a.place_no, a.customer_sign_path, a.customer_sign_time, a.remark,
-        a.create_time
+      b.loss_id,
+      b.user_id,
+      b.project_id,
+      b.place,
+      b.place_no,
+      b.customer_sign_path,
+      b.customer_sign_time,
+      b.remark,
+      b.create_time,
+      a.briefing_loss_id
     FROM
         briefing_loss a
     LEFT JOIN loss b ON a.loss_id = b.loss_id

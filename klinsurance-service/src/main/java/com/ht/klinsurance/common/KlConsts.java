@@ -10,6 +10,12 @@ public class KlConsts {
     public static final String BASE_DIR_PIC = "pic";
     //ftp语音目录
     public static final String BASE_DIR_VOICE = "voice";
+    //生成word时图片高度
+    public static final Integer WORD_IMAGE_HEIGHT = 180;
+    //生成word时图片宽度
+    public static final Integer WORD_IMAGE_WIDTH = 220;
+
+    public static  final String  IMG_SERVICE ;
 
     public static  final String  KLIN_BASE_URL ;
     public static  final String  COMMPSW ;
@@ -18,5 +24,6 @@ public class KlConsts {
 
         KLIN_BASE_URL = HtProperties.get("klinsur.http");
         COMMPSW= HtProperties.get("klinsur.commPsw");
+        IMG_SERVICE= HtProperties.get("ip.img_service");
     }
 }

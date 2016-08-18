@@ -14,7 +14,7 @@
     select
     <include refid="Base_Column_List" />
     from briefing_loss_image
-    where loss_id = #{lossId,jdbcType=VARCHAR}
+    where briefing_loss_id = #{briefingLossId,jdbcType=VARCHAR}
   </select>
   <insert id="addBriefingLossImage" parameterType="com.ht.klinsurance.briefing.model.BriefingLossImage" >
     insert into briefing_loss_image

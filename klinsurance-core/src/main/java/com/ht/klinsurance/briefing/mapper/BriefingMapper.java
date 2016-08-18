@@ -5,12 +5,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BriefingMapper {
-    int deleteByPrimaryKey(String briefingId);
-
-    int addBriefing(Briefing record);
 
     Briefing selectByPrimaryKey(String briefingId);
 
+    Briefing findDetailInfo(String briefingId);
+
+    int addBriefing(Briefing record);
+
     int updateByPrimaryKeySelective(Briefing record);
 
+    int deleteByPrimaryKey(String briefingId);
 }

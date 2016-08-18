@@ -1,8 +1,12 @@
 package com.ht.klinsurance.loss.model;
 
+import com.ht.klinsurance.briefing.model.BriefingLossImage;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 @Data
 public class Loss {
     private String lossId;
@@ -23,5 +27,8 @@ public class Loss {
 
     private Date createTime;
 
+    /*******************额外字段*****************************************/
 
+    private String briefingLossId;
+    private List<Map<String,BriefingLossImage>> briefingLossImages;//图片信息
 }

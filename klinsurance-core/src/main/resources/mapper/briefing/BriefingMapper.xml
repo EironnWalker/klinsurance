@@ -12,6 +12,15 @@
     from briefing
     where briefing_id = #{briefingId,jdbcType=VARCHAR}
   </select>
+  <select id="findDetailInfo" resultType="com.ht.klinsurance.briefing.model.Briefing" parameterType="java.lang.String" >
+    select
+    a.briefing_id,a.briefing_no, a.user_id, a.project_id, a.word_template_id, a.survey_time, a.survey_place,a.survey_lat,
+    a.survey_lng, a.insurer,a.insurer_name, a.insurer_phone, a.surveyor, a.accident_description, a.loss_description,
+    a.next_work,a.main_surveyor, a.sub_surveyor, a.manager, a.briefing_file, a.remark, a.create_time,b.project_name
+    from briefing a
+    left JOIN project b on a.project_id=b.project_id
+    where a.briefing_id = #{briefingId,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from briefing
     where briefing_id = #{briefingId,jdbcType=VARCHAR}

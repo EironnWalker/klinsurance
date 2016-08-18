@@ -12,10 +12,10 @@ public interface BriefingLossImageMapper {
 
     /**
      * 根据损失项查询图片信息
-     * @param lossId
+     * @param briefingLossId
      * @return
      */
-    List<BriefingLossImage> findByLoss(String lossId);
+    List<BriefingLossImage> findByLoss(String briefingLossId);
 
     int addBriefingLossImage(BriefingLossImage record);
 
