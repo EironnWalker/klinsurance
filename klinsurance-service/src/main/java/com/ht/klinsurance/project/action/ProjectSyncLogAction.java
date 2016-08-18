@@ -15,6 +15,7 @@ import com.ht.klinsurance.loss.model.LossItem;
 import com.ht.klinsurance.project.service.IProjectSyncLogService;
 import com.ht.klinsurance.report.model.Report;
 import com.ht.klinsurance.report.model.ReportBriefing;
+import com.ht.klinsurance.synce.ISynceDataService;
 import com.ht.klinsurance.text.model.TextTemplate;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,8 @@ public class ProjectSyncLogAction extends BaseAction
 {
     @Resource
     private IProjectSyncLogService projectSyncLogService;
+    @Resource
+    private ISynceDataService synceDataService;
 
     /**
      * 获取可同步数据信息，并将手机端未同步数据同步到手机端
@@ -122,6 +125,9 @@ public class ProjectSyncLogAction extends BaseAction
                 textTemplateList= HtGson.fromJson(textTemplateListStr, new TypeToken<List<TextTemplate>>() { });
             }
 
+            //首先从对方数据库同步项目数据信息到服务
+            synceDataService.synceProjectByUserId(userId);
+            //将数据返回到手机端
             HtMap resultMap = projectSyncLogService.getCanSyncMessage(userId, date,  briefingList, briefingLossList,
                      briefingLossImageList, briefingLossItemList,
                      customerList, lossList,
