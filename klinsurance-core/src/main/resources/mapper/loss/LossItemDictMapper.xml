@@ -3,7 +3,7 @@
 <mapper namespace="com.ht.klinsurance.loss.mapper.LossItemDictMapper" >
 
   <sql id="Base_Column_List" >
-    loss_item_dict_id, loss_item_dict_pid,loss_item_dict_no, name, price_unit, numeraire,numeraireMsg, remark, create_time
+    loss_item_dict_id, loss_item_dict_pid,loss_item_dict_no, name, price_unit, numeraire,numeraire_msg, remark, create_time
   </sql>
   <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.loss.model.LossItemDict" parameterType="java.lang.String" >
     select 

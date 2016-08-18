@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 损失项
+ * 损失项（弃用，历史损失项已经换了）
  * @author liuqi
  * @date 2016/8/3
  */
@@ -25,7 +25,7 @@ public class LossItemAction {
     private ILossItemService lossItemService;
 
     /**
-     * 分页查看损失项历史
+     * 分页查看损失项历史(弃用，历史损失项已经换了)
      * @param page
      * @param itemName
      * @param response
