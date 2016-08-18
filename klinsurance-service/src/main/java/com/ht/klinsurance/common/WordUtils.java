@@ -27,7 +27,7 @@ public class WordUtils {
      * @param imageInfo 要替换的图片信息
      * @throws Exception
      */
-    public static String createWord(String ftl,String fakeFile,String realFile,Map<String,Object> infoMap,Map<String, Object> imageInfo) throws Exception{
+    public static void createWord(String ftl,String fakeFile,String realFile,Map<String,Object> infoMap,Map<String, Object> imageInfo) throws Exception{
         //创建配置实例
         Configuration configuration = new Configuration();
 
@@ -65,9 +65,12 @@ public class WordUtils {
         CustomXWPFDocument doc = WordUtils.generateWord(imageInfo, fakeFile);
         FileOutputStream fopts = new FileOutputStream(realFile);
         doc.write(fopts);
+        doc.getPackage().close();
         fopts.close();
-
-        return fakeFile;
+        File file = new File(fakeFile);
+        if(file.exists()){
+            file.delete();
+        }
     }
     /**
      * 根据指定的参数值、模板，生成 word 文档
