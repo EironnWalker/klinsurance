@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -88,9 +89,11 @@ public class BriefingAction extends BaseAction
         }
     }
     @RequestMapping("test")
-    public void test(){
+    public void test(HttpServletRequest request){
+        String path=request.getSession().getServletContext().getRealPath("/");
         try {
-            buildBriefingService.buildBriefing("4080cd0624f74f349bbed81727f5da70");
+            String ftpUrl=buildBriefingService.buildBriefing(path,"4080cd0624f74f349bbed81727f5da70");
+            System.out.println("ftpUrl："+ftpUrl);
         } catch (Exception e) {
             log.error("测试生成简报", e);
         }
