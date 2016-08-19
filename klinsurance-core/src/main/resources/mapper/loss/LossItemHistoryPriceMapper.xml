@@ -13,6 +13,15 @@
     from loss_item_history_price
     where history_price_id = #{historyPriceId,jdbcType=VARCHAR}
   </select>
+  <select id="findLossItemHistoryPricePage" resultType="com.ht.klinsurance.loss.model.LossItemHistoryPrice">
+    select
+    <include refid="Base_Column_List" />
+    from loss_item_history_price
+    where
+    <if test="itemName!=null and itemName!=''">
+       item_name like concat("%",#{itemName,jdbcType=VARCHAR},"%")
+    </if>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from loss_item_history_price
     where history_price_id = #{historyPriceId,jdbcType=VARCHAR}
