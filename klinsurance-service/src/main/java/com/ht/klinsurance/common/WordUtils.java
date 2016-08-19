@@ -2,12 +2,14 @@ package com.ht.klinsurance.common;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import org.apache.commons.lang.StringUtils;
 import org.apache.poi.POIXMLDocument;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.usermodel.*;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -21,13 +23,14 @@ public class WordUtils {
     /**
      * 生成word
      * @param ftl 模板名
-     * @param fakeFile 要生成word的虚拟路径+名
-     * @param realFile 要生成word的真实路径+名
+     * @param webPath web根目录
      * @param infoMap 模板里面要替换的信息
      * @param imageInfo 要替换的图片信息
      * @throws Exception
      */
-    public static void createWord(String ftl,String fakeFile,String realFile,Map<String,Object> infoMap,Map<String, Object> imageInfo) throws Exception{
+    public static String createWord(String ftl,String webPath,Map<String,Object> infoMap,Map<String, Object> imageInfo) throws Exception{
+        String fakeFile=webPath+"upload/简报1.docx";
+        String realFile=webPath+"upload/简报.docx";;
         //创建配置实例
         Configuration configuration = new Configuration();
 
@@ -67,10 +70,25 @@ public class WordUtils {
         doc.write(fopts);
         doc.getPackage().close();
         fopts.close();
+
+        //删除临时文件
         File file = new File(fakeFile);
         if(file.exists()){
             file.delete();
         }
+        List<String> fileList = new ArrayList<>();
+        fileList.add(realFile);
+        String ftpUrl=FileUploadUtil.uploadFileWord(fileList,"docx");
+        //如果成功上传到ftp，删除文件，返回ftp路径
+        if(StringUtils.isNotBlank(ftpUrl)){
+           /* file = new File(realFile);
+            if(file.exists()){
+                file.delete();
+            }*/
+
+            return ftpUrl;
+        }
+        return "";
     }
     /**
      * 根据指定的参数值、模板，生成 word 文档

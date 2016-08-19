@@ -8,7 +8,6 @@ import com.ht.klinsurance.briefing.service.IBuildBriefingService;
 import com.ht.klinsurance.common.HttpImageUtils;
 import com.ht.klinsurance.common.KlConsts;
 import com.ht.klinsurance.common.WordUtils;
-import com.ht.klinsurance.loss.mapper.LossItemMapper;
 import com.ht.klinsurance.loss.mapper.LossMapper;
 import com.ht.klinsurance.loss.model.Loss;
 import org.springframework.stereotype.Service;
@@ -30,13 +29,11 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
     @Resource
     private LossMapper lossMapper;
     @Resource
-    private LossItemMapper lossItemMapper;
-    @Resource
     private BriefingMapper briefingMapper;
     @Resource
     private BriefingLossImageMapper briefingLossImageMapper;
     @Override
-    public void buildBriefing(String briefingId) throws Exception{
+    public String buildBriefing(String webPath,String briefingId) throws Exception{
         Map<String,Object> dataMap = new HashMap<>();
         Map<String,Object> param = new HashMap<>();
 
@@ -80,7 +77,7 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
         dataMap.put("briefing",briefing);
         dataMap.put("lossList",lossList);
 
-        WordUtils.createWord("简报模板.ftl", "d:/简报1.docx", "d:/简报.docx", dataMap, param);
+        return WordUtils.createWord("简报模板.ftl", webPath, dataMap, param);
     }
 
     /**

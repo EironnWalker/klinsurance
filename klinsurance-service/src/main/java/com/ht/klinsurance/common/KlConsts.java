@@ -9,7 +9,7 @@ public class KlConsts {
     //ftp图片目录
     public static final String BASE_DIR_PIC = "pic";
     //ftp语音目录
-    public static final String BASE_DIR_VOICE = "voice";
+    public static final String BASE_DIR_WORD = "word";
     //生成word时图片高度
     public static final Integer WORD_IMAGE_HEIGHT = 180;
     //生成word时图片宽度

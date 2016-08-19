@@ -8,8 +8,9 @@ public interface IBuildBriefingService {
 
     /**
      * 生成简报信息
+     * @param webPath
      * @param briefingId
      */
-    void buildBriefing(String briefingId) throws Exception;
+    String buildBriefing(String webPath,String briefingId) throws Exception;
 }
 
