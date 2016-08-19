@@ -194,7 +194,7 @@
         #{insureDeadline,jdbcType=VARCHAR},
       </if>
       <if test="insureAmount != null" >
-        #{insureAmount,jdbcType=DECIMAL},
+        #{insureAmount,jdbcType=VARCHAR},
       </if>
       <if test="deductible != null" >
         #{deductible,jdbcType=VARCHAR},
@@ -215,13 +215,13 @@
         #{liabilityAffirm,jdbcType=VARCHAR},
       </if>
       <if test="reportedLossAmount != null" >
-        #{reportedLossAmount,jdbcType=DECIMAL},
+        #{reportedLossAmount,jdbcType=VARCHAR},
       </if>
       <if test="verifyLossAmount != null" >
-        #{verifyLossAmount,jdbcType=DECIMAL},
+        #{verifyLossAmount,jdbcType=VARCHAR},
       </if>
       <if test="adjustmentAmount != null" >
-        #{adjustmentAmount,jdbcType=DECIMAL},
+        #{adjustmentAmount,jdbcType=VARCHAR},
       </if>
       <if test="surveyor != null" >
         #{surveyor,jdbcType=VARCHAR},
@@ -331,7 +331,7 @@
         insure_deadline = #{insureDeadline,jdbcType=VARCHAR},
       </if>
       <if test="insureAmount != null" >
-        insure_amount = #{insureAmount,jdbcType=DECIMAL},
+        insure_amount = #{insureAmount,jdbcType=VARCHAR},
       </if>
       <if test="deductible != null" >
         deductible = #{deductible,jdbcType=VARCHAR},
@@ -352,13 +352,13 @@
         liability_affirm = #{liabilityAffirm,jdbcType=VARCHAR},
       </if>
       <if test="reportedLossAmount != null" >
-        reported_loss_amount = #{reportedLossAmount,jdbcType=DECIMAL},
+        reported_loss_amount = #{reportedLossAmount,jdbcType=VARCHAR},
       </if>
       <if test="verifyLossAmount != null" >
-        verify_loss_amount = #{verifyLossAmount,jdbcType=DECIMAL},
+        verify_loss_amount = #{verifyLossAmount,jdbcType=VARCHAR},
       </if>
       <if test="adjustmentAmount != null" >
-        adjustment_amount = #{adjustmentAmount,jdbcType=DECIMAL},
+        adjustment_amount = #{adjustmentAmount,jdbcType=VARCHAR},
       </if>
       <if test="surveyor != null" >
         surveyor = #{surveyor,jdbcType=VARCHAR},
