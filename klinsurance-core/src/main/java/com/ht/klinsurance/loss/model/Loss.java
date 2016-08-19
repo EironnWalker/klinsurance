@@ -30,5 +30,6 @@ public class Loss {
     /*******************额外字段*****************************************/
 
     private String briefingLossId;
+    private List<LossItem> lossItems;
     private List<Map<String,BriefingLossImage>> briefingLossImages;//图片信息
 }

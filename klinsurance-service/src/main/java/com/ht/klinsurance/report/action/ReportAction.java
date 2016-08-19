@@ -6,11 +6,13 @@ import com.ht.common.http.HtResponse;
 import com.ht.klinsurance.common.BaseAction;
 import com.ht.klinsurance.report.model.Report;
 import com.ht.klinsurance.report.model.ReportBriefing;
+import com.ht.klinsurance.report.service.IBuildReportService;
 import com.ht.klinsurance.report.service.IReportService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -25,6 +27,8 @@ public class ReportAction extends BaseAction
 {
     @Resource
     private IReportService reportService;
+    @Resource
+    private IBuildReportService buildReportService;
 
     /**
      * 生成报告
@@ -49,6 +53,20 @@ public class ReportAction extends BaseAction
             }
         } catch (Exception e) {
             log.error("添加报告", e);
+        }
+    }
+
+    /**
+     * 生成报告
+     * @param request
+     */
+    @RequestMapping("test")
+    public void test(HttpServletRequest request){
+        try {
+            String path=request.getSession().getServletContext().getRealPath("/");
+            buildReportService.buildReport(path,"12d22584dd074f48846b7b477b204643");
+        } catch (Exception e) {
+            log.error("生成报告",e);
         }
     }
 }
