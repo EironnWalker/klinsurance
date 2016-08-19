@@ -77,16 +77,7 @@ public class WordUtils {
         }
         List<String> fileList = new ArrayList<>();
         fileList.add(realFile);
-        //String ftpUrl=FileUploadUtil.uploadFileWord(fileList,"docx");
-        //如果成功上传到ftp，删除文件，返回ftp路径
-        /*if(StringUtils.isNotBlank(ftpUrl)){
-            file = new File(realFile);
-            if(file.exists()){
-                file.delete();
-            }
 
-            return ftpUrl;
-        }*/
         return realFile;
     }
     /**
