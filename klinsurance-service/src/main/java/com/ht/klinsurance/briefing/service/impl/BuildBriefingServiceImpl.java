@@ -62,10 +62,10 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
                 //生成要替换的图片信息
                 param.put(images.get(i).getBriefingLossImageId(), addImageInfo(images.get(i)));
 
-                for(i=2;i<4;i++){
+                for(int j=2;j<4;j++){
                     i++;
                     if(i<images.size()){
-                        tempImages.put("info" + i, images.get(i));
+                        tempImages.put("info" + j, images.get(i));
                         //生成要替换的图片信息
                         param.put(images.get(i).getBriefingLossImageId(), addImageInfo(images.get(i)));
                     }else{
