@@ -9,15 +9,15 @@ import com.ht.klinsurance.common.KlConsts;
 import com.ht.klinsurance.common.WordUtils;
 import com.ht.klinsurance.loss.mapper.LossMapper;
 import com.ht.klinsurance.loss.model.Loss;
+import com.ht.klinsurance.word.mapper.WordTemplateMapper;
+import com.ht.klinsurance.word.model.WordTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author feicy
@@ -32,6 +32,8 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
     private BriefingMapper briefingMapper;
     @Resource
     private BriefingLossImageMapper briefingLossImageMapper;
+    @Resource
+    private WordTemplateMapper wordTemplateMapper;
     @Override
     public String buildBriefing(String webPath,String briefingId) throws Exception{
         Map<String,Object> dataMap = new HashMap<>();
@@ -76,8 +78,13 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
         //将相应信息放到集合里
         dataMap.put("briefing",briefing);
         dataMap.put("lossList", lossList);
+        //获取模板
+        WordTemplate template=wordTemplateMapper.selectByPrimaryKey(briefing.getWordTemplateId());
 
-        return WordUtils.createWord("简报模板.ftl", webPath, dataMap, param);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String path=webPath+"upload/webapp/"+briefing.getProjectId()+"/简报-"+briefingId+"-"+format.format(new Date());
+
+        return WordUtils.createWord(template.getName(), path, dataMap, param);
     }
 
     /**

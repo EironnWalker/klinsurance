@@ -22,14 +22,15 @@ public class WordUtils {
     /**
      * 生成word
      * @param ftl 模板名
-     * @param webPath web根目录
+     * @param path 文件目录
      * @param infoMap 模板里面要替换的信息
      * @param imageInfo 要替换的图片信息
      * @throws Exception
      */
-    public static String createWord(String ftl,String webPath,Map<String,Object> infoMap,Map<String, Object> imageInfo) throws Exception{
-        String fakeFile=webPath+"upload/简报1.docx";
-        String realFile=webPath+"upload/简报.docx";;
+    public static String createWord(String ftl,String path,Map<String,Object> infoMap,Map<String, Object> imageInfo)
+            throws Exception{
+        String fakeFile=path+"1.docx";
+        String realFile=path+".docx";;
         //创建配置实例
         Configuration configuration = new Configuration();
 
@@ -67,8 +68,8 @@ public class WordUtils {
         CustomXWPFDocument doc = WordUtils.generateWord(imageInfo, fakeFile);
         FileOutputStream fopts = new FileOutputStream(realFile);
         doc.write(fopts);
-        doc.getPackage().close();
         fopts.close();
+        doc.getPackage().close();
 
         //删除临时文件
         File file = new File(fakeFile);

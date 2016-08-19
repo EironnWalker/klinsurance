@@ -11,15 +11,15 @@ import com.ht.klinsurance.loss.model.LossItem;
 import com.ht.klinsurance.report.mapper.ReportMapper;
 import com.ht.klinsurance.report.model.Report;
 import com.ht.klinsurance.report.service.IBuildReportService;
+import com.ht.klinsurance.word.mapper.WordTemplateMapper;
+import com.ht.klinsurance.word.model.WordTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author feicy
@@ -37,6 +37,8 @@ public class BuildReportServiceImpl implements IBuildReportService {
     private LossItemMapper lossItemMapper;
     @Resource
     private BriefingLossImageMapper briefingLossImageMapper;
+    @Resource
+    private WordTemplateMapper wordTemplateMapper;
     @Override
     public String buildReport(String webPath,String reportId) throws Exception{
         Map<String,Object> dataMap = new HashMap<>();
@@ -81,8 +83,13 @@ public class BuildReportServiceImpl implements IBuildReportService {
         //将相应信息放到集合里
         dataMap.put("report",report);
         dataMap.put("lossList", lossList);
+        //获取模板
+        WordTemplate template=wordTemplateMapper.selectByPrimaryKey(report.getWordTemplateId());
 
-        return WordUtils.createWord("报告模板.ftl", webPath, dataMap, param);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String path=webPath+"upload/webapp/"+report.getProjectId()+"/报告-"+reportId+"-"+format.format(new Date());
+
+        return WordUtils.createWord(template.getName(), path, dataMap, param);
     }
 
     /**
@@ -98,7 +105,7 @@ public class BuildReportServiceImpl implements IBuildReportService {
         header.put("height", KlConsts.WORD_IMAGE_HEIGHT);
         header.put("type", "png");
         header.put("content",
-                WordUtils.inputStream2ByteArray(new FileInputStream(webPath+"/upload"+image.getImage()), true));
+                WordUtils.inputStream2ByteArray(new FileInputStream(webPath+"/webapp/upload"+image.getImage()), true));
 
         return header;
     }
