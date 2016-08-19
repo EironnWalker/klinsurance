@@ -19,7 +19,7 @@ public class Test {
         Map<String, Object> dataMap = new HashMap<String, Object>();
 
         /** 组装数据 */
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
         dataMap.put("currentDate", sdf.format(new Date()));
         dataMap.put("location", "中国石油天然气股份有限公司浙江销售分公司宁波市");
         dataMap.put("insuranceInfo", "中国石油天然气股份有限公司浙江销售分公司");
@@ -54,28 +54,28 @@ public class Test {
 
         FtpServeHelper.getConnection();
 
-        Map<String,Object> header = new HashMap<String, Object>();
+       Map<String,Object> header = new HashMap<String, Object>();
         header.put("width", 220);
         header.put("height", 180);
         header.put("type", "png");
         header.put("content",
-                WordUtils.inputStream2ByteArray(FtpServeHelper.getFileInputStream("/pic/20160808/0872b3e0223c43f0a59d8cc3ca7ba238.jpg"), true));
+                WordUtils.inputStream2ByteArray(new FileInputStream("d:/图片1.jpg"), true));
         param.put("bd04cc2d2c5b11e6bd17000c299447f9", header);
 
         header = new HashMap<String, Object>();
         header.put("width", 220);
         header.put("height", 180);
         header.put("type", "png");
-        header.put("content", WordUtils.inputStream2ByteArray(new FileInputStream("d:/简报/图片5.png"), true));
+        header.put("content", WordUtils.inputStream2ByteArray(new FileInputStream("d:/图片1.jpg"), true));
         param.put("d6a20d183edb11e6959400163e000231", header);
 
         header = new HashMap<String, Object>();
         header.put("width", 220);
         header.put("height", 180);
         header.put("type", "png");
-        header.put("content", WordUtils.inputStream2ByteArray(new FileInputStream("d:/简报/图片6.png"), true));
+        header.put("content", WordUtils.inputStream2ByteArray(new FileInputStream("d:/图片1.jpg"), true));
         param.put("f983631e573711e6afad00163e000231", header);
 
-        WordUtils.createWord("简报.ftl", "d:/简报1.docx", "d:/简报.docx", dataMap, param);
+        WordUtils.createWord("简报.ftl", "d:/简报1.docx", dataMap, dataMap);
     }
 }
