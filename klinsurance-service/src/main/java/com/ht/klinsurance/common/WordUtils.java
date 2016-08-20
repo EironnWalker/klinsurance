@@ -48,6 +48,10 @@ public class WordUtils {
         if (!outFile.getParentFile().getParentFile().exists()) {
             outFile.getParentFile().getParentFile().mkdirs();
         }
+        //如果输出目标文件夹不存在，则创建
+        if (!outFile.getParentFile().exists()) {
+            outFile.getParentFile().mkdirs();
+        }
 
         //将模板和数据模型合并生成文件
         Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile),"UTF-8"));
