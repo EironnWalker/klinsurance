@@ -8,15 +8,18 @@ import java.util.Map;
 
 @Repository
 public interface WordTemplateMapper {
-    int deleteByPrimaryKey(String wordTemplateId);
+
+    WordTemplate selectByPrimaryKey(String wordTemplateId);
+
+    List<WordTemplate> findWordTemplateList(Map<String, Object> parameter);
 
     int insert(WordTemplate record);
 
     int insertSelective(WordTemplate record);
 
-    WordTemplate selectByPrimaryKey(String wordTemplateId);
-
     int updateByPrimaryKeySelective(WordTemplate record);
 
-    List<WordTemplate> findWordTemplateList(Map<String, Object> parameter);
+    int deleteByPrimaryKey(String wordTemplateId);
+
+
 }

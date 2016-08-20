@@ -1,5 +1,6 @@
 package com.ht.klinsurance.common;
 
+import com.ht.klinsurance.briefing.model.BriefingLossImage;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.apache.poi.POIXMLDocument;
@@ -8,10 +9,7 @@ import org.apache.poi.xwpf.usermodel.*;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 处理word工具类
@@ -22,14 +20,15 @@ public class WordUtils {
     /**
      * 生成word
      * @param ftl 模板名
-     * @param webPath web根目录
+     * @param path 文件目录
      * @param infoMap 模板里面要替换的信息
      * @param imageInfo 要替换的图片信息
      * @throws Exception
      */
-    public static String createWord(String ftl,String webPath,Map<String,Object> infoMap,Map<String, Object> imageInfo) throws Exception{
-        String fakeFile=webPath+"upload/简报1.docx";
-        String realFile=webPath+"upload/简报.docx";;
+    public static void createWord(String ftl,String path,Map<String,Object> infoMap,Map<String, Object> imageInfo)
+            throws Exception{
+        String fakeFile=path+"1.docx";
+        String realFile=path+".docx";
         //创建配置实例
         Configuration configuration = new Configuration();
 
@@ -67,18 +66,14 @@ public class WordUtils {
         CustomXWPFDocument doc = WordUtils.generateWord(imageInfo, fakeFile);
         FileOutputStream fopts = new FileOutputStream(realFile);
         doc.write(fopts);
-        doc.getPackage().close();
         fopts.close();
+        doc.getPackage().close();
 
         //删除临时文件
         File file = new File(fakeFile);
         if(file.exists()){
             file.delete();
         }
-        List<String> fileList = new ArrayList<>();
-        fileList.add(realFile);
-
-        return realFile;
     }
     /**
      * 根据指定的参数值、模板，生成 word 文档
@@ -234,5 +229,23 @@ public class WordUtils {
             index = index + lengthOne;
         }
         return result;
+    }
+    /**
+     * 拼装替换图片信息
+     * @param webPath
+     * @param image
+     * @return
+     * @throws Exception
+     */
+    public static Map<String,Object> addImageInfo(String webPath,BriefingLossImage image) throws Exception{
+
+        Map<String,Object> header = new HashMap<String, Object>();
+        header.put("width", KlConsts.WORD_IMAGE_WIDTH);
+        header.put("height", KlConsts.WORD_IMAGE_HEIGHT);
+        header.put("type","jpg");
+        header.put("content",
+                WordUtils.inputStream2ByteArray(new FileInputStream(webPath+"upload"+image.getImage()), true));
+
+        return header;
     }
 }

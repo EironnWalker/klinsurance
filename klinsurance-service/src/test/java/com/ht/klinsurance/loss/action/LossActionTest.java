@@ -1,23 +1,11 @@
 package com.ht.klinsurance.loss.action;
 
-import com.google.gson.reflect.TypeToken;
-import com.ht.common.gson.HtGson;
-import com.ht.common.ht.HtMap;
-import com.ht.common.http.HtRequest;
-import com.ht.common.utils.UUIDGenerate;
-import com.ht.klinsurance.loss.model.Loss;
-import com.ht.klinsurance.loss.model.LossItem;
 import junit.framework.TestCase;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class LossActionTest extends TestCase {
 
     public void testAddLoss() throws Exception {
-        Loss loss = new Loss();
+       /* Loss loss = new Loss();
         loss.setCreateTime(new Date());
         loss.setCustomerSignPath("siginPath");
         loss.setProjectId("1");
@@ -48,6 +36,6 @@ public class LossActionTest extends TestCase {
         parameter.put("lossItemJson", HtGson.toJson(itemList, new TypeToken<List<LossItem>>() {
         }));
         String dataBean = HtRequest.post("http://192.168.0.67:8080/klinsurance-service/lossAction/addLoss", parameter);
-        System.out.println(dataBean);
+        System.out.println(dataBean);*/
     }
 }
