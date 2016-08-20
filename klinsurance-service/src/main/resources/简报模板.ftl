@@ -296,7 +296,7 @@
 								<w:szCs w:val="21"/>
 								<w:highlight w:val="none"/>
 							</w:rPr>
-							<w:t>${briefing.surveyTime?string('yyyy-MM-dd')}</w:t>
+							<w:t><#if briefing.surveyTime?? >${briefing.surveyTime?string('yyyy-MM-dd')}</#if></w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -317,7 +317,7 @@
 								<w:szCs w:val="21"/>
 								<w:highlight w:val="none"/>
 							</w:rPr>
-							<w:t>查勘地点：${briefing.surveyPlace}</w:t>
+							<w:t>查勘地点：${(briefing.surveyPlace)!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -360,7 +360,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
 								<w:szCs w:val="21"/>
 							</w:rPr>
-							<w:t>${briefing.insurerName}</w:t>
+							<w:t>${briefing.insurerName!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -403,7 +403,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
 								<w:szCs w:val="21"/>
 							</w:rPr>
-							<w:t>${briefing.surveyor}</w:t>
+							<w:t>${briefing.surveyor!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -457,7 +457,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
 								<w:szCs w:val="21"/>
 							</w:rPr>
-							<w:t>${briefing.accidentDescription}</w:t>
+							<w:t>${briefing.accidentDescription!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -517,7 +517,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
 								<w:szCs w:val="21"/>
 							</w:rPr>
-							<w:t>${briefing.lossDescription}</w:t>
+							<w:t>${briefing.lossDescription!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -621,7 +621,7 @@
 					</w:p>
 					<w:tbl>
 						<w:tblPr>
-							<w:tblStyle w:val="15"/>
+							<w:tblStyle w:val="29"/>
 							<w:tblW w:w="10260" w:type="dxa"/>
 							<w:jc w:val="center"/>
 							<w:tblInd w:w="0" w:type="dxa"/>
@@ -646,7 +646,7 @@
 							<w:gridCol w:w="3403"/>
 							<w:gridCol w:w="3420"/>
 						</w:tblGrid>
-						<#list lossList as loss>      
+						<#list lossList as loss>   
 						<w:tr>
 							<w:tblPrEx>
 								<w:tblBorders>
@@ -666,7 +666,7 @@
 								</w:tblCellMar>
 							</w:tblPrEx>
 							<w:trPr>
-								<w:trHeight w:val="692" w:hRule="exact"/>
+								<w:trHeight w:val="365" w:hRule="atLeast"/>
 								<w:jc w:val="center"/>
 							</w:trPr>
 							<w:tc>
@@ -674,25 +674,27 @@
 									<w:tcW w:w="10260" w:type="dxa"/>
 									<w:gridSpan w:val="3"/>
 									<w:shd w:val="clear" w:color="auto" w:fill="8C8C8C"/>
+									<w:vAlign w:val="top"/>
 								</w:tcPr>
 								<w:p>
 									<w:pPr>
-										<w:spacing w:line="360" w:lineRule="auto"/>
-										<w:ind w:right="57"/>
+										<w:adjustRightInd w:val="0"/>
+										<w:snapToGrid w:val="0"/>
 										<w:jc w:val="left"/>
 										<w:rPr>
-											<w:rFonts w:ascii="方正兰亭黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭黑_GBK" w:cs="Arial"/>
+											<w:rFonts w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK"/>
 											<w:b/>
+											<w:bCs/>
 											<w:sz w:val="24"/>
 										</w:rPr>
 									</w:pPr>
 									<w:r>
 										<w:rPr>
-											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭黑_GBK" w:cs="Arial"/>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>1、${loss.place}</w:t>
+										<w:t>${loss_index?if_exists+1}、${loss.place}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -717,134 +719,80 @@
 								</w:tblCellMar>
 							</w:tblPrEx>
 							<w:trPr>
-								<w:trHeight w:val="2389" w:hRule="atLeast"/>
+								<w:trHeight w:val="152" w:hRule="atLeast"/>
 								<w:jc w:val="center"/>
 							</w:trPr>
-							
 							<w:tc>
 								<w:tcPr>
 									<w:tcW w:w="3437" w:type="dxa"/>
+									<w:vAlign w:val="top"/>
 								</w:tcPr>
 								<w:p>
 									<w:pPr>
-										<w:spacing w:line="360" w:lineRule="auto"/>
-										<w:ind w:right="57"/>
-										<w:rPr>
-											<w:ins w:id="2" w:author="fei" w:date="2016-08-18T11:06:24Z"/>
-											<w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-											<w:szCs w:val="21"/>
-										</w:rPr>
-									</w:pPr>
-								</w:p>
-								<w:p>
-									<w:pPr>
-										<w:spacing w:line="240" w:lineRule="auto"/>
-										<w:ind w:right="0"/>
-										<w:rPr>
-											<w:ins w:id="3" w:author="fei" w:date="2016-08-18T11:06:24Z"/>
-											<w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:eastAsia="宋体" w:cs="Arial"/>
-											<w:kern w:val="2"/>
-											<w:sz w:val="21"/>
-											<w:szCs w:val="21"/>
-											<w:lang w:val="en-US" w:eastAsia="zh-CN" w:bidi="ar-SA"/>
-										</w:rPr>
-									</w:pPr>
-								</w:p>
-								<w:p>
-									<w:pPr>
-										<w:spacing w:line="240" w:lineRule="auto"/>
-										<w:ind w:right="0"/>
-										<w:rPr>
-											<w:ins w:id="4" w:author="fei" w:date="2016-08-18T11:06:24Z"/>
-											<w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:eastAsia="宋体" w:cs="Arial"/>
-											<w:kern w:val="2"/>
-											<w:sz w:val="21"/>
-											<w:szCs w:val="21"/>
-											<w:lang w:val="en-US" w:eastAsia="zh-CN" w:bidi="ar-SA"/>
-										</w:rPr>
-									</w:pPr>
-								</w:p>
-								<w:p>
-									<w:pPr>
-										<w:spacing w:line="240" w:lineRule="auto"/>
-										<w:ind w:right="0"/>
+										<w:adjustRightInd w:val="0"/>
+										<w:snapToGrid w:val="0"/>
 										<w:jc w:val="center"/>
 										<w:rPr>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="方正兰亭细黑_GBK"/>
 											<w:lang w:val="en-US" w:eastAsia="zh-CN"/>
 										</w:rPr>
 									</w:pPr>
-									<w:ins w:id="5" w:author="fei" w:date="2016-08-18T11:06:26Z">
-										<w:r>
-											<w:rPr>
-												<w:rFonts w:hint="eastAsia" w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-												<w:kern w:val="2"/>
-												<w:sz w:val="21"/>
-												<w:szCs w:val="21"/>
-												<w:lang w:val="en-US" w:eastAsia="zh-CN" w:bidi="ar-SA"/>
-											</w:rPr>
-											<w:t><#if image.info1?? >${image.info1.briefingLossImageId}</#if></w:t>
-										</w:r>
-									</w:ins>
+									<w:r>
+										<w:rPr>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="方正兰亭细黑_GBK"/>
+											<w:lang w:val="en-US" w:eastAsia="zh-CN"/>
+										</w:rPr>
+										<w:t><#if image.info1?? >${image.info1.briefingLossImageId}</#if></w:t>
+									</w:r>
 								</w:p>
 							</w:tc>
 							<w:tc>
 								<w:tcPr>
 									<w:tcW w:w="3403" w:type="dxa"/>
-									<w:vAlign w:val="bottom"/>
+									<w:vAlign w:val="top"/>
 								</w:tcPr>
 								<w:p>
 									<w:pPr>
-										<w:spacing w:line="360" w:lineRule="auto"/>
-										<w:ind w:right="57"/>
+										<w:adjustRightInd w:val="0"/>
+										<w:snapToGrid w:val="0"/>
 										<w:jc w:val="center"/>
 										<w:rPr>
-											<w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-											<w:b/>
-											<w:szCs w:val="21"/>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="方正兰亭细黑_GBK"/>
 										</w:rPr>
 									</w:pPr>
-									<w:ins w:id="6" w:author="fei" w:date="2016-08-18T11:06:35Z">
-										<w:r>
-											<w:rPr>
-												<w:rFonts w:hint="eastAsia" w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-												<w:b/>
-												<w:szCs w:val="21"/>
-												<w:lang w:val="en-US" w:eastAsia="zh-CN"/>
-											</w:rPr>
-											<w:t><#if image.info2?? >${image.info2.briefingLossImageId}</#if></w:t>
-										</w:r>
-									</w:ins>
+									<w:r>
+										<w:rPr>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="方正兰亭细黑_GBK"/>
+											<w:lang w:val="en-US" w:eastAsia="zh-CN"/>
+										</w:rPr>
+										<w:t><#if image.info2?? >${image.info2.briefingLossImageId}</#if></w:t>
+									</w:r>
 								</w:p>
 							</w:tc>
 							<w:tc>
 								<w:tcPr>
 									<w:tcW w:w="3420" w:type="dxa"/>
-									<w:vAlign w:val="bottom"/>
+									<w:vAlign w:val="top"/>
 								</w:tcPr>
 								<w:p>
 									<w:pPr>
-										<w:spacing w:line="360" w:lineRule="auto"/>
-										<w:ind w:right="57"/>
+										<w:adjustRightInd w:val="0"/>
+										<w:snapToGrid w:val="0"/>
 										<w:jc w:val="center"/>
 										<w:rPr>
-											<w:rFonts w:hint="eastAsia" w:ascii="Arial" w:hAnsi="Arial" w:eastAsia="宋体" w:cs="Arial"/>
-											<w:szCs w:val="21"/>
-											<w:lang w:val="en-US" w:eastAsia="zh-CN"/>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="方正兰亭细黑_GBK"/>
 										</w:rPr>
 									</w:pPr>
-									<w:ins w:id="8" w:author="fei" w:date="2016-08-18T11:06:44Z">
-										<w:r>
-											<w:rPr>
-												<w:rFonts w:hint="eastAsia" w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
-												<w:szCs w:val="21"/>
-												<w:lang w:val="en-US" w:eastAsia="zh-CN"/>
-											</w:rPr>
-											<w:t><#if image.info3?? >${image.info3.briefingLossImageId}</#if></w:t>
-										</w:r>
-									</w:ins>								
+									<w:r>
+										<w:rPr>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="方正兰亭细黑_GBK"/>
+											<w:lang w:val="en-US" w:eastAsia="zh-CN"/>
+										</w:rPr>
+										<w:t><#if image.info3?? >${image.info3.briefingLossImageId}</#if></w:t>
+									</w:r>
 								</w:p>
 							</w:tc>
-						</w:tr>						
+						</w:tr>
 						<w:tr>
 							<w:tblPrEx>
 								<w:tblBorders>
@@ -864,26 +812,26 @@
 								</w:tblCellMar>
 							</w:tblPrEx>
 							<w:trPr>
-								<w:trHeight w:val="445" w:hRule="atLeast"/>
+								<w:trHeight w:val="152" w:hRule="atLeast"/>
 								<w:jc w:val="center"/>
 							</w:trPr>
 							<w:tc>
 								<w:tcPr>
 									<w:tcW w:w="3437" w:type="dxa"/>
+									<w:vAlign w:val="top"/>
 								</w:tcPr>
 								<w:p>
 									<w:pPr>
-										<w:spacing w:line="360" w:lineRule="auto"/>
-										<w:ind w:right="57"/>
+										<w:adjustRightInd w:val="0"/>
+										<w:snapToGrid w:val="0"/>
 										<w:jc w:val="center"/>
 										<w:rPr>
-											<w:rFonts w:ascii="方正兰亭黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭黑_GBK" w:cs="Arial"/>
-											<w:szCs w:val="21"/>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="方正兰亭细黑_GBK"/>
 										</w:rPr>
 									</w:pPr>
 									<w:r>
 										<w:rPr>
-											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭黑_GBK" w:cs="Arial"/>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
 										<w:t><#if image.info1?? >${image.info1.description}</#if></w:t>
@@ -893,20 +841,20 @@
 							<w:tc>
 								<w:tcPr>
 									<w:tcW w:w="3403" w:type="dxa"/>
+									<w:vAlign w:val="top"/>
 								</w:tcPr>
 								<w:p>
 									<w:pPr>
-										<w:spacing w:line="360" w:lineRule="auto"/>
-										<w:ind w:right="57"/>
+										<w:adjustRightInd w:val="0"/>
+										<w:snapToGrid w:val="0"/>
 										<w:jc w:val="center"/>
 										<w:rPr>
-											<w:rFonts w:ascii="方正兰亭黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭黑_GBK" w:cs="Arial"/>
-											<w:szCs w:val="21"/>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="方正兰亭细黑_GBK"/>
 										</w:rPr>
 									</w:pPr>
 									<w:r>
 										<w:rPr>
-											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭黑_GBK" w:cs="Arial"/>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
 										<w:t><#if image.info2?? >${image.info2.description}</#if></w:t>
@@ -916,20 +864,20 @@
 							<w:tc>
 								<w:tcPr>
 									<w:tcW w:w="3420" w:type="dxa"/>
+									<w:vAlign w:val="top"/>
 								</w:tcPr>
 								<w:p>
 									<w:pPr>
-										<w:spacing w:line="360" w:lineRule="auto"/>
-										<w:ind w:right="57"/>
+										<w:adjustRightInd w:val="0"/>
+										<w:snapToGrid w:val="0"/>
 										<w:jc w:val="center"/>
 										<w:rPr>
-											<w:rFonts w:ascii="方正兰亭黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭黑_GBK" w:cs="Arial"/>
-											<w:szCs w:val="21"/>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="方正兰亭细黑_GBK"/>
 										</w:rPr>
 									</w:pPr>
 									<w:r>
 										<w:rPr>
-											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭黑_GBK" w:cs="Arial"/>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
 										<w:t><#if image.info3?? >${image.info3.description}</#if></w:t>
@@ -938,6 +886,7 @@
 							</w:tc>
 						</w:tr>
 						</#list> 
+						<#if loss.remark ?? >
 						<w:tr>
 							<w:tblPrEx>
 								<w:tblBorders>
@@ -955,54 +904,46 @@
 									<w:bottom w:w="0" w:type="dxa"/>
 									<w:right w:w="108" w:type="dxa"/>
 								</w:tblCellMar>
-							</w:tblPrEx>
+							</w:tblPrEx>							
 							<w:trPr>
-								<w:trHeight w:val="651" w:hRule="atLeast"/>
+								<w:trHeight w:val="252" w:hRule="atLeast"/>
 								<w:jc w:val="center"/>
 							</w:trPr>
-							<#if loss.remark ?? >
 							<w:tc>
 								<w:tcPr>
 									<w:tcW w:w="10260" w:type="dxa"/>
 									<w:gridSpan w:val="3"/>
+									<w:vAlign w:val="top"/>
 								</w:tcPr>
 								<w:p>
 									<w:pPr>
-										<w:pStyle w:val="21"/>
-										<w:numPr>
-											<w:ilvl w:val="0"/>
-											<w:numId w:val="3"/>
-										</w:numPr>
-										<w:spacing w:line="360" w:lineRule="auto"/>
-										<w:ind w:right="57" w:firstLineChars="0"/>
+										<w:adjustRightInd w:val="0"/>
+										<w:snapToGrid w:val="0"/>
+										<w:jc w:val="center"/>
 										<w:rPr>
-											<w:rFonts w:ascii="方正兰亭黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭黑_GBK" w:cs="Arial"/>
-											<w:color w:val="000000" w:themeColor="text1"/>
-											<w:szCs w:val="21"/>
-											<w14:textFill>
-												<w14:solidFill>
-													<w14:schemeClr w14:val="tx1"/>
-												</w14:solidFill>
-											</w14:textFill>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK"/>
+											<w:b/>
+											<w:bCs/>
+											<w:sz w:val="24"/>
+											<w:lang w:val="en-US" w:eastAsia="zh-CN"/>
 										</w:rPr>
 									</w:pPr>
 									<w:r>
 										<w:rPr>
-											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭黑_GBK" w:cs="Arial"/>
-											<w:color w:val="000000" w:themeColor="text1"/>
-											<w:szCs w:val="21"/>
-											<w14:textFill>
-												<w14:solidFill>
-													<w14:schemeClr w14:val="tx1"/>
-												</w14:solidFill>
-											</w14:textFill>
+											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="Arial" w:eastAsia="方正兰亭细黑_GBK"/>
+											<w:b/>
+											<w:bCs/>
+											<w:sz w:val="24"/>
+											<w:lang w:val="en-US" w:eastAsia="zh-CN"/>
 										</w:rPr>
-										<w:t>${loss.remark}</w:t>
+										<w:t>${(loss.remark)!}</w:t>
 									</w:r>
-								</w:p>									
+									<w:bookmarkStart w:id="21" w:name="_GoBack"/>
+									<w:bookmarkEnd w:id="21"/>
+								</w:p>
 							</w:tc>
-							</#if>
 						</w:tr>
+						</#if>
 						</#list> 
 					</w:tbl>
 					<w:p>
@@ -1066,7 +1007,7 @@
 								<w:b/>
 								<w:szCs w:val="21"/>
 							</w:rPr>
-							<w:t>${briefing.nextWork}</w:t>
+							<w:t>${briefing.nextWork!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -1322,7 +1263,7 @@
 											<w:sz w:val="21"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
-										<w:t>${briefing.mainSurveyor}</w:t>
+										<w:t>${briefing.mainSurveyor!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -1351,7 +1292,7 @@
 											<w:sz w:val="21"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
-										<w:t>${briefing.subSurveyor}</w:t>
+										<w:t>${briefing.subSurveyor!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -1382,7 +1323,7 @@
 											<w:sz w:val="21"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
-										<w:t>${briefing.manager}</w:t>
+										<w:t>${briefing.manager!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
