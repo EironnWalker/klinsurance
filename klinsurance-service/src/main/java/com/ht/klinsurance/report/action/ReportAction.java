@@ -64,7 +64,8 @@ public class ReportAction extends BaseAction
     public void test(HttpServletRequest request){
         try {
             String path=request.getSession().getServletContext().getRealPath("/");
-            buildReportService.buildReport(path,"12d22584dd074f48846b7b477b204643");
+            String ftpUrl=buildReportService.buildReport(path,"12d22584dd074f48846b7b477b204643");
+            System.out.println("ftpUrl：" + ftpUrl);
         } catch (Exception e) {
             log.error("生成报告",e);
         }
