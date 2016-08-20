@@ -45,8 +45,8 @@ public class WordUtils {
         File outFile = new File(fakeFile);
 
         //如果输出目标文件夹不存在，则创建
-        if (!outFile.getParentFile().exists()) {
-            outFile.getParentFile().mkdirs();
+        if (!outFile.getParentFile().getParentFile().exists()) {
+            outFile.getParentFile().getParentFile().mkdirs();
         }
 
         //将模板和数据模型合并生成文件
