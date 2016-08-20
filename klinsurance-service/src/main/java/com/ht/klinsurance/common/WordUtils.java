@@ -25,10 +25,10 @@ public class WordUtils {
      * @param imageInfo 要替换的图片信息
      * @throws Exception
      */
-    public static String createWord(String ftl,String path,Map<String,Object> infoMap,Map<String, Object> imageInfo)
+    public static void createWord(String ftl,String path,Map<String,Object> infoMap,Map<String, Object> imageInfo)
             throws Exception{
         String fakeFile=path+"1.docx";
-        String realFile=path+".docx";;
+        String realFile=path+".docx";
         //创建配置实例
         Configuration configuration = new Configuration();
 
@@ -74,10 +74,6 @@ public class WordUtils {
         if(file.exists()){
             file.delete();
         }
-        List<String> fileList = new ArrayList<>();
-        fileList.add(realFile);
-
-        return realFile;
     }
     /**
      * 根据指定的参数值、模板，生成 word 文档
