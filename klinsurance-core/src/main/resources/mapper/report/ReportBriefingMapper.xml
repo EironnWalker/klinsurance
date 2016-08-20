@@ -11,14 +11,12 @@
     from report_briefing
     where report_briefing_id = #{reportBriefingId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from report_briefing
+  <select id="findByReport" resultType="com.ht.klinsurance.report.model.ReportBriefing" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from report_briefing
     where report_briefing_id = #{reportBriefingId,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByReportId">
-     delete from report_briefing
-    where report_id = #{reportId,jdbcType=VARCHAR}
-  </delete>
+  </select>
   <insert id="addReportBriefing" parameterType="com.ht.klinsurance.report.model.ReportBriefing" >
     insert into report_briefing
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -65,4 +63,12 @@
     </set>
     where report_briefing_id = #{reportBriefingId,jdbcType=VARCHAR}
   </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from report_briefing
+    where report_briefing_id = #{reportBriefingId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByReportId">
+    delete from report_briefing
+    where report_id = #{reportId,jdbcType=VARCHAR}
+  </delete>
 </mapper>

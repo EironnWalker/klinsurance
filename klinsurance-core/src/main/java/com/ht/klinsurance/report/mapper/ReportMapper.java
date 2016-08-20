@@ -5,12 +5,19 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReportMapper {
-    int deleteById(String reportId);
-
-    int addReport(Report record);
 
     Report selectByPrimaryKey(String reportId);
 
+    /**
+     * 查询报告详情
+     * @param reportId
+     * @return
+     */
+    Report findDetail(String reportId);
+
+    int addReport(Report record);
+
     int updateByPrimaryKeySelective(Report record);
 
+    int deleteById(String reportId);
 }

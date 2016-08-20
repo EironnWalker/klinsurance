@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ht.klinsurance.report.mapper.ReportMapper" >
-
   <sql id="Base_Column_List" >
     report_id,report_no, user_id, project_id, word_template_id, insure_type, insure_code, insurer,
     insurer_name, insure_deadline, insure_amount, deductible, accident_time, accident_place, 
@@ -18,11 +17,67 @@
     from report
     where report_id = #{reportId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteById"  >
-    delete from report
+  <select id="findDetail" resultType="com.ht.klinsurance.report.model.Report" parameterType="java.lang.String" >
+    SELECT
+        a.report_id,
+        a.report_no,
+        a.user_id,
+        a.project_id,
+        a.word_template_id,
+        a.insure_type,
+        a.insure_code,
+        a.insurer,
+        a.insurer_name,
+        a.insure_deadline,
+        a.insure_amount,
+        a.deductible,
+        a.accident_time,
+        a.accident_place,
+        a.accident_cause,
+        a.accident_pass,
+        a.liability_affirm,
+        a.reported_loss_amount,
+        a.verify_loss_amount,
+        a.adjustment_amount,
+        a.surveyor,
+        a.certificate_code,
+        a.foreword_content,
+        a.object_description,
+        a.survey_time,
+        a.survey_place,
+        a.survey_case,
+        a.insurer_representative,
+        a.survey_surveyor,
+        a.claimant_description,
+        a.danger_time,
+        a.danger_place,
+        a.damaged_object,
+        a.danger_case,
+        a.iorder_liability,
+        a.verify_loss_gist,
+        a.verify_loss_process,
+        a.repeat_insure,
+        a.third_liability,
+        a.deductible_salvage,
+        a.loss_adjustment,
+        a.surveyor_conclusion,
+        a.report_file,
+        a.remark,
+        a.create_time,
+        b.project_name,
+        c.address as insurer_address,
+        c.link_man as ins_link_man,
+        c.link_phone as ins_link_phone,
+        d.`name` as sur_name,
+        d.mobile as sur_phone,
+        d.tel as sur_tel
+    FROM
+        report a
+    LEFT JOIN project b ON a.project_id = b.project_id
+    LEFT JOIN customer c on a.insurer=c.customer_id
+    LEFT JOIN user d on a.surveyor=d.user_id
     where report_id = #{reportId,jdbcType=VARCHAR}
-  </delete>
-
+  </select>
   <insert id="addReport" parameterType="com.ht.klinsurance.report.model.Report" >
     insert into report
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -438,5 +493,8 @@
     </set>
     where report_id = #{reportId,jdbcType=VARCHAR}
   </update>
-
+  <delete id="deleteById"  >
+    delete from report
+    where report_id = #{reportId,jdbcType=VARCHAR}
+  </delete>
 </mapper>

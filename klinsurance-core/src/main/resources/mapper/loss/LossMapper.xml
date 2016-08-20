@@ -30,6 +30,25 @@
     WHERE
 	a.briefing_id =  #{briefingId,jdbcType=VARCHAR}
   </select>
+  <select id="findByReport"  resultType="com.ht.klinsurance.loss.model.Loss"  parameterType="java.lang.String">
+    SELECT
+      b.loss_id,
+      b.user_id,
+      b.project_id,
+      b.place,
+      b.place_no,
+      b.customer_sign_path,
+      b.customer_sign_time,
+      b.remark,
+      b.create_time,
+      a.briefing_loss_id
+    FROM
+      report_briefing c
+      LEFT JOIN briefing_loss a on c.briefing_id=a.briefing_id
+      LEFT JOIN loss b ON a.loss_id = b.loss_id
+    WHERE
+	c.report_id =  #{reportId,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from loss
     where loss_id = #{lossId,jdbcType=VARCHAR}

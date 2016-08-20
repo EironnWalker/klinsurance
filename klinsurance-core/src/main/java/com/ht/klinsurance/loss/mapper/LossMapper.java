@@ -16,6 +16,12 @@ public interface LossMapper {
      * @return
      */
     List<Loss> findByBriefing(String briefingId);
+    /**
+     * 根据报告获取定损项信息
+     * @param reportId
+     * @return
+     */
+    List<Loss> findByReport(String reportId);
 
     int addLoss(Loss record);
 
