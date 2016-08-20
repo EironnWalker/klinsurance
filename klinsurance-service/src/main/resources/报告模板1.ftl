@@ -62,16 +62,7 @@
 								<w:sz w:val="24"/>
 							</w:rPr>
 							<w:t>${report.reportNo}</w:t>
-						</w:r>
-
-							<w:rPr>
-								<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
-								<w:b/>
-								<w:color w:val="000000"/>
-								<w:sz w:val="24"/>
-							</w:rPr>
-							<w:t>1</w:t>
-						</w:r>
+						</w:r>						
 					</w:p>
 					<w:p>
 						<w:pPr>
@@ -2505,7 +2496,7 @@
 											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.reportedLossAmount}</w:t>
+										<w:t>RMB${report.reportedLossAmount}元</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2589,7 +2580,7 @@
 											<w:rFonts w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.verifyLossAmount}</w:t>
+										<w:t>RMB${report.verifyLossAmount}元</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2673,7 +2664,7 @@
 											<w:rFonts w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.adjustmentAmount}</w:t>
+										<w:t>RMB${report.adjustmentAmount}元</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -5465,6 +5456,7 @@
 							</w:tc>
 						</w:tr>
 						</#list> 
+						<#if loss.remark ?? >
 						<w:tr>
 							<w:tblPrEx>
 								<w:tblBorders>
@@ -5482,8 +5474,7 @@
 									<w:bottom w:w="0" w:type="dxa"/>
 									<w:right w:w="108" w:type="dxa"/>
 								</w:tblCellMar>
-							</w:tblPrEx>
-							<#if loss.remark ?? >
+							</w:tblPrEx>							
 							<w:trPr>
 								<w:trHeight w:val="252" w:hRule="atLeast"/>
 								<w:jc w:val="center"/>
@@ -5521,8 +5512,8 @@
 									<w:bookmarkEnd w:id="21"/>
 								</w:p>
 							</w:tc>
-							</#if>
 						</w:tr>
+						</#if>
 						</#list> 
 					</w:tbl>
 					<w:p>
