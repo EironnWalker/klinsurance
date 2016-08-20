@@ -5,7 +5,6 @@ import com.ht.klinsurance.briefing.mapper.BriefingMapper;
 import com.ht.klinsurance.briefing.model.Briefing;
 import com.ht.klinsurance.briefing.model.BriefingLossImage;
 import com.ht.klinsurance.briefing.service.IBuildBriefingService;
-import com.ht.klinsurance.common.KlConsts;
 import com.ht.klinsurance.common.WordUtils;
 import com.ht.klinsurance.loss.mapper.LossMapper;
 import com.ht.klinsurance.loss.model.Loss;
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.io.FileInputStream;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -58,15 +57,18 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
             for(int i=0;i<images.size();i++){
                 tempImages= new HashMap<>();
                 tempImages.put("info1",images.get(i));
-                //生成要替换的图片信息
-                param.put(images.get(i).getBriefingLossImageId(), addImageInfo(webPath,images.get(i)));
-
+                if( new File(webPath+"upload/"+ images.get(i).getImage()).exists()){
+                    //生成要替换的图片信息
+                    param.put(images.get(i).getBriefingLossImageId(), WordUtils.addImageInfo(webPath, images.get(i)));
+                }
                 for(int j=2;j<4;j++){
                     i++;
                     if(i<images.size()){
                         tempImages.put("info" + j, images.get(i));
-                        //生成要替换的图片信息
-                        param.put(images.get(i).getBriefingLossImageId(), addImageInfo(webPath,images.get(i)));
+                        if( new File(webPath+"upload/"+ images.get(i).getImage()).exists()){
+                            //生成要替换的图片信息
+                            param.put(images.get(i).getBriefingLossImageId(), WordUtils.addImageInfo(webPath, images.get(i)));
+                        }
                     }else{
                         break;
                     }
@@ -82,25 +84,9 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
         WordTemplate template=wordTemplateMapper.selectByPrimaryKey(briefing.getWordTemplateId());
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String path=webPath+"upload/webapp/"+briefing.getProjectId()+"/简报-"+briefingId+"-"+format.format(new Date());
+        String path=webPath+"upload/"+briefing.getProjectId()+"/简报-"+briefingId+"-"+format.format(new Date());
 
         return WordUtils.createWord(template.getName(), path, dataMap, param);
     }
 
-    /**
-     * 拼装替换图片信息
-     * @param image
-     * @return
-     * @throws Exception
-     */
-    private Map<String,Object> addImageInfo(String webPath,BriefingLossImage image) throws Exception{
-        Map<String,Object> header = new HashMap<String, Object>();
-        header.put("width", KlConsts.WORD_IMAGE_WIDTH);
-        header.put("height", KlConsts.WORD_IMAGE_HEIGHT);
-        header.put("type", "png");
-        header.put("content",
-                WordUtils.inputStream2ByteArray(new FileInputStream(webPath+"/upload"+image.getImage()), true));
-
-        return header;
-    }
 }

@@ -1,5 +1,6 @@
 package com.ht.klinsurance.common;
 
+import com.ht.klinsurance.briefing.model.BriefingLossImage;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.apache.poi.POIXMLDocument;
@@ -8,10 +9,7 @@ import org.apache.poi.xwpf.usermodel.*;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 处理word工具类
@@ -235,5 +233,23 @@ public class WordUtils {
             index = index + lengthOne;
         }
         return result;
+    }
+    /**
+     * 拼装替换图片信息
+     * @param webPath
+     * @param image
+     * @return
+     * @throws Exception
+     */
+    public static Map<String,Object> addImageInfo(String webPath,BriefingLossImage image) throws Exception{
+
+        Map<String,Object> header = new HashMap<String, Object>();
+        header.put("width", KlConsts.WORD_IMAGE_WIDTH);
+        header.put("height", KlConsts.WORD_IMAGE_HEIGHT);
+        header.put("type","jpg");
+        header.put("content",
+                WordUtils.inputStream2ByteArray(new FileInputStream(webPath+"upload"+image.getImage()), true));
+
+        return header;
     }
 }

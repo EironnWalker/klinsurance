@@ -2,7 +2,6 @@ package com.ht.klinsurance.report.service.impl;
 
 import com.ht.klinsurance.briefing.mapper.BriefingLossImageMapper;
 import com.ht.klinsurance.briefing.model.BriefingLossImage;
-import com.ht.klinsurance.common.KlConsts;
 import com.ht.klinsurance.common.WordUtils;
 import com.ht.klinsurance.loss.mapper.LossItemMapper;
 import com.ht.klinsurance.loss.mapper.LossMapper;
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.io.FileInputStream;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -63,15 +62,19 @@ public class BuildReportServiceImpl implements IBuildReportService {
             for(int i=0;i<images.size();i++){
                 tempImages= new HashMap<>();
                 tempImages.put("info1",images.get(i));
-                //生成要替换的图片信息
-                param.put(images.get(i).getBriefingLossImageId(), addImageInfo(webPath,images.get(i)));
+                if( new File(webPath+"upload/"+ images.get(i).getImage()).exists()){
+                    //生成要替换的图片信息
+                    param.put(images.get(i).getBriefingLossImageId(), WordUtils.addImageInfo(webPath, images.get(i)));
+                }
 
                 for(int j=2;j<4;j++){
                     i++;
                     if(i<images.size()){
                         tempImages.put("info" + j, images.get(i));
-                        //生成要替换的图片信息
-                        param.put(images.get(i).getBriefingLossImageId(), addImageInfo(webPath,images.get(i)));
+                        if( new File(webPath+"upload/"+ images.get(i).getImage()).exists()){
+                            //生成要替换的图片信息
+                            param.put(images.get(i).getBriefingLossImageId(), WordUtils.addImageInfo(webPath, images.get(i)));
+                        }
                     }else{
                         break;
                     }
@@ -87,26 +90,9 @@ public class BuildReportServiceImpl implements IBuildReportService {
         WordTemplate template=wordTemplateMapper.selectByPrimaryKey(report.getWordTemplateId());
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String path=webPath+"upload/webapp/"+report.getProjectId()+"/报告-"+reportId+"-"+format.format(new Date());
+        String path=webPath+"webapp/"+report.getProjectId()+"/报告-"+reportId+"-"+format.format(new Date());
 
         return WordUtils.createWord(template.getName(), path, dataMap, param);
     }
 
-    /**
-     * 拼装替换图片信息
-     * @param webPath
-     * @param image
-     * @return
-     * @throws Exception
-     */
-    private Map<String,Object> addImageInfo(String webPath,BriefingLossImage image) throws Exception{
-        Map<String,Object> header = new HashMap<String, Object>();
-        header.put("width", KlConsts.WORD_IMAGE_WIDTH);
-        header.put("height", KlConsts.WORD_IMAGE_HEIGHT);
-        header.put("type", "png");
-        header.put("content",
-                WordUtils.inputStream2ByteArray(new FileInputStream(webPath+"/webapp/upload"+image.getImage()), true));
-
-        return header;
-    }
 }
