@@ -106,7 +106,7 @@
 							<w:rPr>
 								<w:sz w:val="40"/>
 							</w:rPr>
-							<w:t>${(reprot.projectName)!}</w:t>
+							<w:t>${report.projectName!}</w:t>
 						</w:r>
 						<w:r>
 							<w:rPr>
