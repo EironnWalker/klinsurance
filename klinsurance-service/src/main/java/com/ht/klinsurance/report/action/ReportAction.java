@@ -37,7 +37,7 @@ public class ReportAction extends BaseAction
      * @param response
      */
     @RequestMapping("addReport")
-    public void addReport(String reportJson,String reportBriefingJson, HttpServletResponse response)
+    public void addReport(String reportJson,String reportBriefingJson, HttpServletResponse response,HttpServletRequest request)
     {
         try {
 
@@ -46,8 +46,10 @@ public class ReportAction extends BaseAction
             List<ReportBriefing> reportBriefingList =  HtGson.fromJson(reportBriefingJson, new TypeToken<List<ReportBriefing>>() {
             });
             int  result = reportService.creataReport(report, reportBriefingList);
+            String path=request.getSession().getServletContext().getRealPath("/");
+            String ftpUrl=buildReportService.buildReport(path,report.getReportId());
             if (result>0) {
-                HtResponse.outJson(response, true, null);
+                HtResponse.outJson(response, true, ftpUrl);
             } else {
                 HtResponse.outJson(response, false, null);
             }
