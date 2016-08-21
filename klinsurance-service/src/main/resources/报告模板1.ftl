@@ -1647,7 +1647,7 @@
 								<w:sz w:val="32"/>
 								<w:szCs w:val="28"/>
 							</w:rPr>
-							<w:t>${report.projectName}</w:t>
+							<w:t>${report.projectName!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -1794,7 +1794,7 @@
 											<w:sz w:val="24"/>
 											<w:szCs w:val="28"/>
 										</w:rPr>
-										<w:t>${report.insureType}</w:t>
+										<w:t>${report.insureType!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -1881,7 +1881,7 @@
 											<w:sz w:val="24"/>
 											<w:szCs w:val="28"/>
 										</w:rPr>
-										<w:t>${report.insureCode}</w:t>
+										<w:t>${report.insureCode!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -1967,7 +1967,7 @@
 											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.insurerName}</w:t>
+										<w:t>${report.insurerName!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2063,7 +2063,7 @@
 											<w:color w:val="000000"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.insureAmount}</w:t>
+										<w:t>${report.insureAmount!}</w:t>
 									</w:r>
 									<w:r>
 										<w:rPr>
@@ -2155,7 +2155,7 @@
 											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.accidentTime?string('yyyy-MM-dd')}</w:t>
+										<w:t><#if report.accidentTime?? >${report.accidentTime?string('yyyy-MM-dd')}</#if></w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2241,7 +2241,7 @@
 											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.accidentPlace}</w:t>
+										<w:t>${report.accidentPlace!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2328,7 +2328,7 @@
 											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.accidentCause}</w:t>
+										<w:t>${report.accidentCause!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2412,7 +2412,7 @@
 											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.liabilityAffirm}</w:t>
+										<w:t>${report.liabilityAffirm!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2496,7 +2496,7 @@
 											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>RMB${report.reportedLossAmount}元</w:t>
+										<w:t>RMB${report.reportedLossAmount!}元</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2580,7 +2580,7 @@
 											<w:rFonts w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>RMB${report.verifyLossAmount}元</w:t>
+										<w:t>RMB${report.verifyLossAmount!}元</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2664,7 +2664,7 @@
 											<w:rFonts w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>RMB${report.adjustmentAmount}元</w:t>
+										<w:t>RMB${report.adjustmentAmount!}元</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2748,7 +2748,7 @@
 											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.surName}</w:t>
+										<w:t>${report.surName!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2832,7 +2832,7 @@
 											<w:rFonts w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.certificateCode}</w:t>
+										<w:t>${report.certificateCode!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -4195,7 +4195,7 @@
 								<w:sz w:val="24"/>
 								<w:szCs w:val="28"/>
 							</w:rPr>
-							<w:t>${report.forewordContent}</w:t>
+							<w:t>${report.forewordContent!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -4304,7 +4304,7 @@
 											<w:sz w:val="24"/>
 											<w:szCs w:val="28"/>
 										</w:rPr>
-										<w:t>：${report.insureType}</w:t>
+										<w:t>：${report.insureType!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -4377,7 +4377,7 @@
 											<w:sz w:val="24"/>
 											<w:szCs w:val="28"/>
 										</w:rPr>
-										<w:t>${report.insureCode}</w:t>
+										<w:t>${report.insureCode!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -4450,7 +4450,7 @@
 											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.insurerName}</w:t>
+										<w:t>${report.insurerName!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -4516,7 +4516,7 @@
 											<w:sz w:val="24"/>
 											<w:szCs w:val="28"/>
 										</w:rPr>
-										<w:t>：${report.insureDeadline}</w:t>
+										<w:t>：${report.insureDeadline!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -4589,7 +4589,7 @@
 											<w:sz w:val="24"/>
 											<w:szCs w:val="28"/>
 										</w:rPr>
-										<w:t>${report.insureAmount}</w:t>
+										<w:t>${report.insureAmount!}</w:t>
 									</w:r>
 									<w:r>
 										<w:rPr>
@@ -4661,7 +4661,7 @@
 											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>：${report.deductible}</w:t>
+										<w:t>：${report.deductible!}</w:t>
 									</w:r>
 								</w:p>
 								<w:p>
@@ -4734,7 +4734,7 @@
 								<w:kern w:val="2"/>
 								<w:szCs w:val="28"/>
 							</w:rPr>
-							<w:t>${report.objectDescription}</w:t>
+							<w:t>${report.objectDescription!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -4777,7 +4777,7 @@
 								<w:sz w:val="24"/>
 								<w:szCs w:val="28"/>
 							</w:rPr>
-							<w:t>${report.accidentPass}</w:t>
+							<w:t>${report.accidentPass!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -4845,7 +4845,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 								<w:sz w:val="24"/>
 							</w:rPr>
-							<w:t>${report.surveyTime?string('yyyy-MM-dd')}</w:t>
+							<w:t><#if report.surveyTime ?? >${report.surveyTime?string('yyyy-MM-dd')}</#if></w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -4887,7 +4887,7 @@
 								<w:color w:val="000000"/>
 								<w:sz w:val="24"/>
 							</w:rPr>
-							<w:t>${report.surveyPlace}</w:t>
+							<w:t>${report.surveyPlace!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -4986,7 +4986,7 @@
 											<w:color w:val="000000"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.insurerRepresentative}</w:t>
+										<w:t>${report.insurerRepresentative!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -5034,7 +5034,7 @@
 											<w:color w:val="000000"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.insurerName}</w:t>
+										<w:t>${report.insurerName!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -5096,7 +5096,7 @@
 											<w:color w:val="000000"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${report.surName}</w:t>
+										<w:t>${report.surName!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -5186,7 +5186,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 								<w:sz w:val="24"/>
 							</w:rPr>
-							<w:t>${report.surveyCase}</w:t>
+							<w:t>${report.surveyCase!}</w:t>
 						</w:r>
 					</w:p>
 					<w:tbl>
@@ -5557,7 +5557,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:eastAsia="方正兰亭细黑_GBK"/>
 								<w:sz w:val="24"/>
 							</w:rPr>
-							<w:t>${report.claimantDescription}</w:t>
+							<w:t>${report.claimantDescription!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -5991,7 +5991,7 @@
 											<w:kern w:val="0"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
-										<w:t>${loss.place}</w:t>
+										<w:t>${loss.place!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -6023,7 +6023,7 @@
 											<w:kern w:val="0"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
-										<w:t>${lossItem.lossItemName}</w:t>
+										<w:t>${lossItem.lossItemName!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -6055,7 +6055,7 @@
 											<w:kern w:val="0"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
-										<w:t>${lossItem.lossNumber}</w:t>
+										<w:t>${lossItem.lossNumber!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -6086,7 +6086,7 @@
 											<w:kern w:val="0"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
-										<w:t>${lossItem.length}</w:t>
+										<w:t>${lossItem.length!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -6117,7 +6117,7 @@
 											<w:kern w:val="0"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
-										<w:t>${lossItem.width}</w:t>
+										<w:t>${lossItem.width!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -6148,7 +6148,7 @@
 											<w:kern w:val="0"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
-										<w:t>${lossItem.height}</w:t>
+										<w:t>${lossItem.height!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -6179,7 +6179,7 @@
 											<w:kern w:val="0"/>
 											<w:szCs w:val="21"/>
 										</w:rPr>
-										<w:t>${lossItem.price}</w:t>
+										<w:t>${lossItem.price!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -6435,7 +6435,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:eastAsia="方正兰亭细黑_GBK"/>
 								<w:sz w:val="24"/>
 							</w:rPr>
-							<w:t>2、出险地点：${report.dangerPlace}；</w:t>
+							<w:t>2、出险地点：${report.dangerPlace!}；</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -6452,7 +6452,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:eastAsia="方正兰亭细黑_GBK"/>
 								<w:sz w:val="24"/>
 							</w:rPr>
-							<w:t>3、受损标的：${report.damagedObject}</w:t>
+							<w:t>3、受损标的：${report.damagedObject!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -6469,7 +6469,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:eastAsia="方正兰亭细黑_GBK"/>
 								<w:sz w:val="24"/>
 							</w:rPr>
-							<w:t>4、出险原因：${report.dangerCase}；</w:t>
+							<w:t>4、出险原因：${report.dangerCase!}；</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -6510,7 +6510,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:eastAsia="方正兰亭细黑_GBK"/>
 								<w:sz w:val="24"/>
 							</w:rPr>
-							<w:t>${report.iorderLiability}</w:t>
+							<w:t>${report.iorderLiability!}</w:t>
 						</w:r>
 					</w:p>					
 					<w:p>
@@ -6573,7 +6573,7 @@
 								<w:rFonts w:ascii="方正兰亭细黑_GBK" w:eastAsia="方正兰亭细黑_GBK"/>
 								<w:sz w:val="24"/>
 							</w:rPr>
-							<w:t>${report.verifyLossGist}</w:t>
+							<w:t>${report.verifyLossGist!}</w:t>
 						</w:r>						
 					</w:p>
 					<w:p>
@@ -6609,7 +6609,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:eastAsia="方正兰亭细黑_GBK"/>
 								<w:sz w:val="24"/>
 							</w:rPr>
-							<w:t>${report.verifyLossProcess}</w:t>
+							<w:t>${report.verifyLossProcess!}</w:t>
 						</w:r>						
 					</w:p>
 					<w:p>
@@ -6653,7 +6653,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:eastAsia="方正兰亭细黑_GBK"/>
 								<w:sz w:val="24"/>
 							</w:rPr>
-							<w:t>${report.repeatInsure}</w:t>
+							<w:t>${report.repeatInsure!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -6697,7 +6697,7 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:eastAsia="方正兰亭细黑_GBK"/>
 								<w:sz w:val="24"/>
 							</w:rPr>
-							<w:t>${report.thirdLiability}</w:t>
+							<w:t>${report.thirdLiability!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -6745,7 +6745,7 @@
 								<w:sz w:val="24"/>
 								<w:szCs w:val="28"/>
 							</w:rPr>
-							<w:t>${report.deductibleSalvage}</w:t>
+							<w:t>${report.deductibleSalvage!}</w:t>
 						</w:r>
 					</w:p>					
 					<w:p>
@@ -6793,7 +6793,7 @@
 								<w:sz w:val="24"/>
 								<w:szCs w:val="28"/>
 							</w:rPr>
-							<w:t>${report.lossAdjustment}</w:t>
+							<w:t>${report.lossAdjustment!}</w:t>
 						</w:r>						
 					</w:p>
 					<w:p>
@@ -6841,7 +6841,7 @@
 								<w:sz w:val="24"/>
 								<w:szCs w:val="28"/>
 							</w:rPr>
-							<w:t>${report.surveyorConclusion}</w:t>
+							<w:t>${report.surveyorConclusion!}</w:t>
 						</w:r>
 					</w:p>					
 					<w:p>
@@ -6979,7 +6979,7 @@
 								<w:szCs w:val="28"/>
 								<w:u w:val="single"/>
 							</w:rPr>
-							<w:t xml:space="preserve">${report.surName} </w:t>
+							<w:t xml:space="preserve">${report.surName!} </w:t>
 						</w:r>
 						<w:r>
 							<w:rPr>
@@ -6988,7 +6988,7 @@
 								<w:szCs w:val="28"/>
 								<w:u w:val="single"/>
 							</w:rPr>
-							<w:t>证号：${report.certificateCode}</w:t>
+							<w:t>证号：${report.certificateCode!}</w:t>
 						</w:r>
 						<w:r>
 							<w:rPr>
