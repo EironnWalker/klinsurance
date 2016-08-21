@@ -90,7 +90,7 @@ public class BuildReportServiceImpl implements IBuildReportService {
         WordTemplate template=wordTemplateMapper.selectByPrimaryKey(report.getWordTemplateId());
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String path="upload/"+report.getProjectId()+"/报告-"+reportId+"-"+format.format(new Date());
+        String path="upload/"+report.getProjectId()+"/baogao-"+reportId+"-"+format.format(new Date());
 
         WordUtils.createWord(template.getName(), webPath+path, dataMap, param);
 
