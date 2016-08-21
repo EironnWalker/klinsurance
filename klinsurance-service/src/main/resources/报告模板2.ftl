@@ -57,7 +57,7 @@
 							<w:rPr>
 								<w:sz w:val="28"/>
 							</w:rPr>
-							<w:t>报告编号 ${report.reportNo}</w:t>
+							<w:t>报告编号 ${report.reportNo!}</w:t>
 						</w:r>
 						<w:r>
 							<w:t xml:space="preserve"> </w:t>
@@ -424,7 +424,7 @@
 							<w:ind w:left="934"/>
 						</w:pPr>
 						<w:r>
-							<w:t xml:space="preserve">公 司 名 称 ： ${report.insurerName} </w:t>
+							<w:t xml:space="preserve">公 司 名 称 ： ${report.insurerName!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -600,7 +600,7 @@
 							<w:rPr>
 								<w:sz w:val="36"/>
 							</w:rPr>
-							<w:t xml:space="preserve">${report.projectName} </w:t>
+							<w:t xml:space="preserve">${report.projectName!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -676,7 +676,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">型 ：${report.insureType} </w:t>
+							<w:t xml:space="preserve">型 ：${report.insureType!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -684,7 +684,7 @@
 							<w:ind w:left="-5"/>
 						</w:pPr>
 						<w:r>
-							<w:t xml:space="preserve">被 保 险 人 名 称 ：${report.insurerName} </w:t>
+							<w:t xml:space="preserve">被 保 险 人 名 称 ：${report.insurerName!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -711,7 +711,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t>额 ：${report.insureAmount} 元出</w:t>
+							<w:t>额 ：${report.insureAmount!} 元出</w:t>
 						</w:r>
 						<w:r>
 							<w:tab/>
@@ -729,7 +729,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">间 ：${report.accidentTime?string('yyyy-MM-dd')} </w:t>
+							<w:t xml:space="preserve">间 ：<#if report.accidentTime ?? >${report.accidentTime?string('yyyy-MM-dd')}</#if> </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -756,7 +756,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t>点 ：${report.accidentPlace}</w:t>
+							<w:t>点 ：${report.accidentPlace!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -783,7 +783,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">因 ：${report.accidentCause} </w:t>
+							<w:t xml:space="preserve">因 ：${report.accidentCause!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -814,7 +814,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t>定 ：${report.liabilityAffirm}</w:t>
+							<w:t>定 ：${report.liabilityAffirm!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -824,7 +824,7 @@
 							<w:jc w:val="both"/>
 						</w:pPr>
 						<w:r>
-							<w:t>报 损 金 额 ：RMB${report.reportedLossAmount} 元</w:t>
+							<w:t>报 损 金 额 ：RMB${report.reportedLossAmount!} 元</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -834,7 +834,7 @@
 							<w:jc w:val="both"/>
 						</w:pPr>
 						<w:r>
-							<w:t>核 损 金 额 ：RMB${report.verifyLossAmount}元</w:t>
+							<w:t>核 损 金 额 ：RMB${report.verifyLossAmount!}元</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -844,7 +844,7 @@
 							<w:jc w:val="both"/>
 						</w:pPr>
 						<w:r>
-							<w:t>理 算 公 估 师 ：${report.surName}</w:t>
+							<w:t>理 算 公 估 师 ：${report.surName!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -876,7 +876,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t>号 ：${report.certificateCode}</w:t>
+							<w:t>号 ：${report.certificateCode!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -1583,7 +1583,7 @@
 							<w:ind w:left="490"/>
 						</w:pPr>
 						<w:r>
-							<w:t>${report.forewordContent}</w:t>
+							<w:t>${report.forewordContent!}</w:t>
 						</w:r>
 					</w:p>					
 					<w:p>
@@ -1645,7 +1645,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">型 ：${report.insureType} </w:t>
+							<w:t xml:space="preserve">型 ：${report.insureType!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -1684,7 +1684,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">号 ：${report.insureCode} </w:t>
+							<w:t xml:space="preserve">号 ：${report.insureCode!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -1692,7 +1692,7 @@
 							<w:ind w:left="581"/>
 						</w:pPr>
 						<w:r>
-							<w:t xml:space="preserve">被保险人名称 ：${report.insurerName} </w:t>
+							<w:t xml:space="preserve">被保险人名称 ：${report.insurerName!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -1731,7 +1731,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">限 ：${report.insureDeadline} </w:t>
+							<w:t xml:space="preserve">限 ：${report.insureDeadline!} </w:t>
 						</w:r>
 					</w:p>					
 					<w:p>
@@ -1770,7 +1770,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t>额 ：${report.insureAmount}</w:t>
+							<w:t>额 ：${report.insureAmount!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -1804,7 +1804,7 @@
 							<w:ind w:left="490"/>
 						</w:pPr>
 						<w:r>
-							<w:t>${report.accidentPass}</w:t>
+							<w:t>${report.accidentPass!}</w:t>
 						</w:r>
 					</w:p>								
 					<w:p>
@@ -1848,7 +1848,7 @@
 							<w:ind w:left="490"/>
 						</w:pPr>
 						<w:r>
-							<w:t xml:space="preserve">${report.surveyTime?string('yyyy-MM-dd')} </w:t>
+							<w:t xml:space="preserve"><#if report.surveyTime ?? >${report.surveyTime?string('yyyy-MM-dd')} </#if></w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -1868,7 +1868,7 @@
 							<w:ind w:left="490"/>
 						</w:pPr>
 						<w:r>
-							<w:t xml:space="preserve">${report.surveyPlace} </w:t>
+							<w:t xml:space="preserve">${report.surveyPlace!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -1897,7 +1897,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">${report.insurerRepresentative} ：${report.insurerName} </w:t>
+							<w:t xml:space="preserve">${report.insurerRepresentative!} ：${report.insurerName!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -1914,7 +1914,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">${report.surName} ：竞胜保险公估有限公司 </w:t>
+							<w:t xml:space="preserve">${report.surName!} ：竞胜保险公估有限公司 </w:t>
 						</w:r>
 					</w:p>					
 					<w:p>
@@ -1987,7 +1987,7 @@
 										<w:ind w:left="0" w:firstLine="0"/>
 									</w:pPr>
 									<w:r>
-										<w:t xml:space="preserve">${loss_index?if_exists+1}、${loss.place} </w:t>
+										<w:t xml:space="preserve">${loss_index?if_exists+1}、${loss.place!} </w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2287,7 +2287,7 @@
 							<w:ind w:left="490"/>
 						</w:pPr>
 						<w:r>
-							<w:t xml:space="preserve">${report.claimantDescription} </w:t>
+							<w:t xml:space="preserve">${report.claimantDescription!} </w:t>
 						</w:r>
 					</w:p>
 					<w:tbl>
@@ -2640,7 +2640,7 @@
 										<w:rPr>
 											<w:sz w:val="22"/>
 										</w:rPr>
-										<w:t xml:space="preserve">${loss.place} </w:t>
+										<w:t xml:space="preserve">${loss.place!} </w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2666,7 +2666,7 @@
 										<w:rPr>
 											<w:sz w:val="22"/>
 										</w:rPr>
-										<w:t xml:space="preserve">${lossItem.lossItemName} </w:t>
+										<w:t xml:space="preserve">${lossItem.lossItemName!} </w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2695,7 +2695,7 @@
 											<w:rFonts w:hint="eastAsia"/>
 											<w:lang w:eastAsia="zh-CN"/>
 										</w:rPr>
-										<w:t>${lossItem.lossNumber}</w:t>
+										<w:t>${lossItem.lossNumber!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2734,7 +2734,7 @@
 											<w:sz w:val="22"/>
 											<w:lang w:eastAsia="zh-CN"/>
 										</w:rPr>
-										<w:t>${lossItem.length}</w:t>
+										<w:t>${lossItem.length!}</w:t>
 									</w:r>
 									<w:r>
 										<w:rPr>
@@ -2791,7 +2791,7 @@
 											<w:sz w:val="22"/>
 											<w:lang w:eastAsia="zh-CN"/>
 										</w:rPr>
-										<w:t>${lossItem.width}</w:t>
+										<w:t>${lossItem.width!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2823,7 +2823,7 @@
 											<w:sz w:val="22"/>
 											<w:lang w:eastAsia="zh-CN"/>
 										</w:rPr>
-										<w:t>${lossItem.height}</w:t>
+										<w:t>${lossItem.height!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -3017,7 +3017,7 @@
 							<w:ind w:hanging="379"/>
 						</w:pPr>
 						<w:r>
-							<w:t>保险金额：${report.insureAmount}</w:t>
+							<w:t>保险金额：${report.insureAmount!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -3029,7 +3029,7 @@
 							<w:ind w:hanging="379"/>
 						</w:pPr>
 						<w:r>
-							<w:t>保险标的：${report.objectDescription}</w:t>
+							<w:t>保险标的：${report.objectDescription!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -3073,7 +3073,7 @@
 							<w:ind w:left="370"/>
 						</w:pPr>
 						<w:r>
-							<w:t xml:space="preserve">${report.dangerCase} </w:t>
+							<w:t xml:space="preserve">${report.dangerCase!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -3094,7 +3094,7 @@
 							<w:ind w:left="-15" w:firstLine="480"/>
 						</w:pPr>
 						<w:r>
-							<w:t>${report.iorderLiability}</w:t>
+							<w:t>${report.iorderLiability!}</w:t>
 						</w:r>
 					</w:p>					
 					<w:p>
@@ -3137,7 +3137,7 @@
 							<w:ind w:left="536"/>
 						</w:pPr>
 						<w:r>
-							<w:t xml:space="preserve">${report.verifyLossGist}</w:t>
+							<w:t xml:space="preserve">${report.verifyLossGist!}</w:t>
 						</w:r>
 					</w:p>				
 					<w:p>
@@ -3161,7 +3161,7 @@
 							<w:ind w:hanging="396"/>
 						</w:pPr>
 						<w:r>
-							<w:t xml:space="preserve">${report.verifyLossProcess} </w:t>
+							<w:t xml:space="preserve">${report.verifyLossProcess!} </w:t>
 						</w:r>
 					</w:p>					
 					<w:p>
@@ -3210,7 +3210,7 @@
 							<w:jc w:val="right"/>
 						</w:pPr>
 						<w:r>
-							<w:t>${report.deductibleSalvage}</w:t>
+							<w:t>${report.deductibleSalvage!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -3241,7 +3241,7 @@
 							<w:ind w:left="490"/>
 						</w:pPr>
 						<w:r>
-							<w:t>${report.surveyorConclusion}</w:t>
+							<w:t>${report.surveyorConclusion!}</w:t>
 						</w:r>
 					</w:p>					
 					<w:p>
