@@ -27,7 +27,7 @@ public class WordUtils {
      */
     public static void createWord(String ftl,String path,Map<String,Object> infoMap,Map<String, Object> imageInfo)
             throws Exception{
-        String fakeFile=path+"1.docx";
+        String fakeFile=path+"temp.docx";
         String realFile=path+".docx";
         //创建配置实例
         Configuration configuration = new Configuration();

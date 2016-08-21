@@ -83,7 +83,7 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
         //获取模板
         WordTemplate template=wordTemplateMapper.selectByPrimaryKey(briefing.getWordTemplateId());
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         String path="upload/"+briefing.getProjectId()+"/简报-"+briefingId+"-"+format.format(new Date());
 
         WordUtils.createWord(template.getName(), webPath+path, dataMap, param);
