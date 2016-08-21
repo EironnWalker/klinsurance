@@ -2866,7 +2866,7 @@
 											<w:sz w:val="22"/>
 											<w:lang w:eastAsia="zh-CN"/>
 										</w:rPr>
-										<w:t>${lossItem.price}</w:t>
+										<w:t>${lossItem.price!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
