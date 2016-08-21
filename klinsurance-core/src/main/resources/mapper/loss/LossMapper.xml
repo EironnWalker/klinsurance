@@ -26,7 +26,7 @@
       a.briefing_loss_id
     FROM
         briefing_loss a
-    LEFT JOIN loss b ON a.loss_id = b.loss_id
+    inner JOIN loss b ON a.loss_id = b.loss_id
     WHERE
 	a.briefing_id =  #{briefingId,jdbcType=VARCHAR}
   </select>
@@ -44,8 +44,8 @@
       a.briefing_loss_id
     FROM
       report_briefing c
-      LEFT JOIN briefing_loss a on c.briefing_id=a.briefing_id
-      LEFT JOIN loss b ON a.loss_id = b.loss_id
+      inner JOIN briefing_loss a on c.briefing_id=a.briefing_id
+      inner JOIN loss b ON a.loss_id = b.loss_id
     WHERE
 	c.report_id =  #{reportId,jdbcType=VARCHAR}
   </select>
