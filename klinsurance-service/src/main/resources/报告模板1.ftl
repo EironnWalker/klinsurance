@@ -451,7 +451,7 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>中石油专属财产保险股份有限公司</w:t>
+										<w:t></w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -537,7 +537,7 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>中国北京市西城区金融街1号金亚光大厦15层</w:t>
+										<w:t></w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -623,7 +623,7 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>张雄涛</w:t>
+										<w:t></w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -709,16 +709,8 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>010-688509</w:t>
-									</w:r>
-									<w:r>
-										<w:rPr>
-											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
-											<w:b/>
-											<w:sz w:val="24"/>
-										</w:rPr>
-										<w:t>75</w:t>
-									</w:r>
+										<w:t></w:t>
+									</w:r>								
 								</w:p>
 							</w:tc>
 						</w:tr>

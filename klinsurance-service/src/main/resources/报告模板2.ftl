@@ -323,7 +323,7 @@
 							<w:ind w:left="934"/>
 						</w:pPr>
 						<w:r>
-							<w:t xml:space="preserve">公 司 名 称 ： 中国人民财产保险股份有限公司珠海市分公司 </w:t>
+							<w:t xml:space="preserve">公 司 名 称 ： </w:t>
 						</w:r>
 						<w:r>
 							<w:tab/>
@@ -341,7 +341,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">址 ： 珠海市吉大景园路 39 号保险大厦 208 室 </w:t>
+							<w:t xml:space="preserve">址 ：</w:t>
 						</w:r>
 						<w:r>
 							<w:tab/>
@@ -368,7 +368,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">人 ： 白立 </w:t>
+							<w:t xml:space="preserve">人 ：  </w:t>
 						</w:r>
 						<w:r>
 							<w:tab/>
@@ -401,7 +401,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">话 ： 0756-3362090 </w:t>
+							<w:t xml:space="preserve">话 ： </w:t>
 						</w:r>
 						<w:r>
 							<w:tab/>
