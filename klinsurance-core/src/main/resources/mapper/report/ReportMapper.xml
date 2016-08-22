@@ -74,7 +74,7 @@
         e.name as client_name,
         e.address as client_address,
         e.link_man as client_link_man,
-        e.link_phone as client_link_phone,
+        e.link_phone as client_link_phone
     FROM
         report a
     LEFT JOIN project b ON a.project_id = b.project_id
