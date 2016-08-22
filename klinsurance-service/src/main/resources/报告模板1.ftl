@@ -175,7 +175,7 @@
 								<w:sz w:val="40"/>
 								<w:szCs w:val="28"/>
 							</w:rPr>
-							<w:t>${(reprot.projectName)!}</w:t>
+							<w:t>${reprot.projectName!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -922,7 +922,7 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${(report.insurerAddress)!}</w:t>
+										<w:t>${report.insurerAddress!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -1009,7 +1009,7 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${(report.insLinkMan)!}</w:t>
+										<w:t>${report.insLinkMan!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -1096,7 +1096,7 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${(report.insLinkPhone)!}</w:t>
+										<w:t>${report.insLinkPhone!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -1396,7 +1396,7 @@
 											<w:color w:val="000000"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${(report.surName)!}</w:t>
+										<w:t>${report.surName!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -1483,7 +1483,7 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${(report.surPhone)!}</w:t>
+										<w:t>${report.surPhone!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -1570,7 +1570,7 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>${(report.surTel)!}</w:t>
+										<w:t>${report.surTel!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -5498,7 +5498,7 @@
 											<w:sz w:val="24"/>
 											<w:lang w:val="en-US" w:eastAsia="zh-CN"/>
 										</w:rPr>
-										<w:t>${(loss.remark)!}</w:t>
+										<w:t>${loss.remark!}</w:t>
 									</w:r>
 									<w:bookmarkStart w:id="21" w:name="_GoBack"/>
 									<w:bookmarkEnd w:id="21"/>

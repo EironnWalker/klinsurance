@@ -439,7 +439,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t>${(report.insurerAddress)!}</w:t>
+							<w:t>${report.insurerAddress!}</w:t>
 						</w:r>
 						<w:r>
 							<w:tab/>
@@ -457,7 +457,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve"> ${(report.insLinkMan)!} </w:t>
+							<w:t xml:space="preserve"> ${report.insLinkMan!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -491,7 +491,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve"> ${(report.insLinkPhone)!} </w:t>
+							<w:t xml:space="preserve"> ${report.insLinkPhone!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -545,7 +545,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">人 ： ${(report.surName)!} </w:t>
+							<w:t xml:space="preserve">人 ： ${report.surName!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -560,7 +560,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">话 ： ${(report.surPhone)!} </w:t>
+							<w:t xml:space="preserve">话 ： ${report.surPhone!} </w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -575,7 +575,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t>真 ：${(report.surTel)!}</w:t>
+							<w:t>真 ：${report.surTel!}</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -2243,7 +2243,7 @@
 											<w:rFonts w:hint="eastAsia"/>
 											<w:lang w:val="en-US" w:eastAsia="zh-CN"/>
 										</w:rPr>
-										<w:t>${(loss.remark)!}</w:t>
+										<w:t>${loss.remark!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
