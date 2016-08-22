@@ -123,6 +123,8 @@ public class BriefingServiceImpl implements IBriefingService {
            }
            //生成简报
            String ftpUrl = buildBriefingService.buildBriefing(path,briefing.getBriefingId());
+           briefing.setBriefingFile(ftpUrl);
+           briefingMapper.updateByPrimaryKeySelective(briefing);
            return ftpUrl;
        }catch (Exception e)
        {

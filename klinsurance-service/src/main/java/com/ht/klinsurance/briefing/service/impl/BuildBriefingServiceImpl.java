@@ -87,8 +87,6 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
         String path="upload/"+briefing.getProjectId()+"/jianbao-"+briefingId+"-"+format.format(new Date());
 
         WordUtils.createWord(template.getName(), webPath+path, dataMap, param);
-        briefing.setBriefingFile(path+".docx");
-        briefingMapper.updateByPrimaryKeySelective(briefing);
         return path+".docx";
     }
 
