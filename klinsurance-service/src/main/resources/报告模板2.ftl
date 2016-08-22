@@ -323,7 +323,7 @@
 							<w:ind w:left="934"/>
 						</w:pPr>
 						<w:r>
-							<w:t xml:space="preserve">公 司 名 称 ： </w:t>
+							<w:t xml:space="preserve">公 司 名 称 ：${report.clientName!} </w:t>
 						</w:r>
 						<w:r>
 							<w:tab/>
@@ -341,7 +341,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">址 ：</w:t>
+							<w:t xml:space="preserve">址 ：${report.clientAddress!}</w:t>
 						</w:r>
 						<w:r>
 							<w:tab/>
@@ -368,7 +368,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">人 ：  </w:t>
+							<w:t xml:space="preserve">人 ：${report.clientLinkMan!}  </w:t>
 						</w:r>
 						<w:r>
 							<w:tab/>
@@ -401,7 +401,7 @@
 							<w:tab/>
 						</w:r>
 						<w:r>
-							<w:t xml:space="preserve">话 ： </w:t>
+							<w:t xml:space="preserve">话 ：${report.clientLinkPhone!} </w:t>
 						</w:r>
 						<w:r>
 							<w:tab/>

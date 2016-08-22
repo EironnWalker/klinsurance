@@ -70,12 +70,17 @@
         c.link_phone as ins_link_phone,
         d.`name` as sur_name,
         d.mobile as sur_phone,
-        d.tel as sur_tel
+        d.tel as sur_tel,
+        e.name as client_name,
+        e.address as client_address,
+        e.link_man as client_link_man,
+        e.link_phone as client_link_phone
     FROM
         report a
     LEFT JOIN project b ON a.project_id = b.project_id
     LEFT JOIN customer c on a.insurer=c.customer_id
     LEFT JOIN user d on a.surveyor=d.user_id
+    LEFT JOIN customer e on a.client_id=e.customer_id
     where report_id = #{reportId,jdbcType=VARCHAR}
   </select>
   <insert id="addReport" parameterType="com.ht.klinsurance.report.model.Report" >

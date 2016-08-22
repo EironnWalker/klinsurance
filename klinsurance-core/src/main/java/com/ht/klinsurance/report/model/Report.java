@@ -105,6 +105,14 @@ public class Report {
     private String insLinkMan;//被保险人联系人
 
     private String insLinkPhone;//被保险人联系电话
+
+     private String clientName;//委托人
+
+     private String clientAddress;//委托人地址
+
+    private String clientLinkMan;//委托人联系人
+
+    private String clientLinkPhone;//被委托人联系电话
     private String surName;//公估人名字
     private String surPhone;//公估人电话
     private String surTel;//公估人传真

@@ -427,7 +427,7 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>：</w:t>
+										<w:t>：${report.clientName!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -514,7 +514,7 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>：</w:t>
+										<w:t>：${report.clientAddress!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -600,7 +600,7 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>：</w:t>
+										<w:t>：${report.clientLinkMan!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -686,7 +686,7 @@
 											<w:b/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>：</w:t>
+										<w:t>：${report.clientLinkPhone!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
