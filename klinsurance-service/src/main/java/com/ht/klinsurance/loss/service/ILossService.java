@@ -19,5 +19,5 @@ public interface ILossService {
      * @param picList
      * @return
      */
-    int addLoss(Loss loss,List<LossItem> itemList,List<String> picList);
+    int addLoss(Loss loss,List<LossItem> itemList);
 }

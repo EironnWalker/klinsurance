@@ -1,6 +1,5 @@
 package com.ht.klinsurance.loss.service.imple;
 
-import com.ht.klinsurance.common.FileUploadUtil;
 import com.ht.klinsurance.loss.mapper.LossItemMapper;
 import com.ht.klinsurance.loss.mapper.LossMapper;
 import com.ht.klinsurance.loss.model.Loss;
@@ -35,11 +34,11 @@ public class LossServiceImpl implements ILossService {
      * @return
      */
     @Override
-    public int addLoss(Loss loss, List<LossItem> itemList,List<String> picList)
+    public int addLoss(Loss loss, List<LossItem> itemList)
     {
 
-       String filePath =  FileUploadUtil.uploadFilePic(picList);
-        loss.setCustomerSignPath(filePath);
+       //String filePath =  FileUploadUtil.uploadFilePic(picList);
+       // loss.setCustomerSignPath(filePath);
          lossMapper.deleteByPrimaryKey(loss.getLossId());
         int result = 0;
          result*=lossMapper.addLoss(loss);
