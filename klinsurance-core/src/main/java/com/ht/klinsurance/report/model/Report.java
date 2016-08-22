@@ -95,6 +95,8 @@ public class Report {
 
     private Date createTime;
 
+    private String clientId;
+
     /**************************************************/
     private String projectName;//项目名
 

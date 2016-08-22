@@ -9,7 +9,7 @@
     survey_time, survey_place, survey_case, insurer_representative, survey_surveyor, 
     claimant_description, danger_time, danger_place, damaged_object, danger_case, iorder_liability, 
     verify_loss_gist, verify_loss_process, repeat_insure, third_liability, deductible_salvage, 
-    loss_adjustment, surveyor_conclusion, report_file, remark, create_time
+    loss_adjustment, surveyor_conclusion, report_file, remark, create_time,client_id
   </sql>
   <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.report.model.Report" parameterType="java.lang.String" >
     select 
@@ -216,6 +216,10 @@
       <if test="createTime != null" >
         create_time,
       </if>
+      <if test="clientId != null" >
+        client_id,
+      </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="reportId != null" >
@@ -353,6 +357,10 @@
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="clientId != null" >
+        #{clientId,jdbcType=TIMESTAMP},
+      </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.report.model.Report" >
@@ -490,6 +498,10 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="clientId != null" >
+        client_id = #{clientId,jdbcType=TIMESTAMP},
+      </if>
+
     </set>
     where report_id = #{reportId,jdbcType=VARCHAR}
   </update>
