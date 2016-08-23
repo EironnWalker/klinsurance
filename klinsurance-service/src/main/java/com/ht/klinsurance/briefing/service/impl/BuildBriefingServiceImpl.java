@@ -45,8 +45,9 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
         List<Loss> lossList = lossMapper.findByBriefing(briefingId);
 
         //图片信息
-        List<Map<String,BriefingLossImage>> imageList = new ArrayList<>();
+        List<Map<String,BriefingLossImage>> imageList;
         for(Loss loss:lossList){
+            imageList = new ArrayList<>();
             //由于word模板损失项图片都是三个一行，为了满足要求，每个list里面放三条数据
           /*  List<LossItem> itemList = lossItemMapper.findByLoss(loss.getLossId());
             loss.setLossItems(itemList);*/
