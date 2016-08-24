@@ -22,7 +22,7 @@
         <package name="com.ht.ilcom.run.model"/>
         <package name="com.ht.ilcom.serve.model"/>
         <package name="com.ht.ilcom.social.model"/>
-        <package name="com.ht.klinsurance.sys.model"/>
+        <package name="com.ht.ilcom.sys.model"/>
     </typeAliases>
 
     <plugins>
