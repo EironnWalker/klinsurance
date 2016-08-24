@@ -7,6 +7,8 @@ import java.util.Date;
 public class User {
     private String userId;
 
+    private String roleId;
+
     private String loginName;
 
     private String loginPwd;

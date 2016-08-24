@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.sys.mapper.SysRoleMenuMapper">
+
+    <select id="findAuthorityTree" resultType="com.ht.klinsurance.sys.model.SysRoleMenu">
+        SELECT
+            loginSysMenu.menu_code                  AS `id`,
+            loginSysMenu.menu_pcode                 AS p_id,
+            loginSysMenu.name,
+            IF(selectSysMenu.role_id IS NULL, 0, 1) AS checked,
+            IF(loginSysMenu.menu_pcode = 0, 1, 0)   AS is_parent,
+            IF(loginSysMenu.menu_pcode = 0, 1, 0)   AS `open`,
+            loginSysMenu.seq_num
+        FROM
+            (
+                SELECT
+                    sysMenu.menu_code  AS menu_code,
+                    sysMenu.menu_pcode AS menu_pcode,
+                    sysMenu.name,
+                    sysMenu.seq_num
+                FROM
+                    sys_menu AS sysMenu
+                    LEFT JOIN sys_role_menu AS sysRoleMenu ON sysRoleMenu.menu_code = sysMenu.menu_code
+                WHERE
+                    role_id = #{loginRoleId}
+            ) AS loginSysMenu
+            LEFT JOIN
+            (
+                SELECT
+                    role_menu_id,
+                    role_id,
+                    menu_code
+                FROM
+                    sys_role_menu
+                WHERE
+                    role_id = #{currentRoleId}
+            ) AS selectSysMenu ON loginSysMenu.menu_code = selectSysMenu.menu_code
+        ORDER BY
+            seq_num
+    </select>
+
+    <insert id="batchAddRoleMenus">
+        INSERT INTO sys_role_menu (role_menu_id, role_id, menu_code)
+        values
+        <foreach collection="menuCodeArray" item="item" index="index" separator=",">
+            (replace(uuid(),'-',''), #{roleId}, #{item})
+        </foreach>
+    </insert>
+
+    <delete id="deleteByRoleId">
+        DELETE FROM sys_role_menu
+        WHERE role_id = #{roleId,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="copySysRoleMenu">
+        INSERT INTO sys_role_menu (role_menu_id, role_id, menu_code)
+            SELECT
+                REPLACE(UUID(), '-', '') AS role_menu_id,
+                #{targetRunRoleId},
+                srm.menu_code
+            FROM sys_role_menu AS srm
+            WHERE srm.role_id = #{sourceRunRoleId}
+    </insert>
+
+</mapper>
