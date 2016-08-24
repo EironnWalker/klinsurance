@@ -91,7 +91,7 @@
         #{lossItemName,jdbcType=VARCHAR},
       </if>
       <if test="lossNumber != null" >
-        #{lossNumber,jdbcType=INTEGER},
+        #{lossNumber,jdbcType=DECIMAL},
       </if>
       <if test="length != null" >
         #{length,jdbcType=DECIMAL},
@@ -132,7 +132,7 @@
         loss_item_name = #{lossItemName,jdbcType=VARCHAR},
       </if>
       <if test="lossNumber != null" >
-        loss_number = #{lossNumber,jdbcType=INTEGER},
+        loss_number = #{lossNumber,jdbcType=DECIMAL},
       </if>
       <if test="length != null" >
         length = #{length,jdbcType=DECIMAL},

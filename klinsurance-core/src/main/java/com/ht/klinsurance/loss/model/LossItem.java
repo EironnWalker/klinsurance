@@ -14,7 +14,7 @@ public class LossItem {
 
     private String lossItemName;
 
-    private Integer lossNumber;
+    private BigDecimal lossNumber;
 
     private BigDecimal length;
 

@@ -3,7 +3,7 @@
 <mapper namespace="com.ht.klinsurance.text.mapper.TextTemplateMapper" >
 
   <sql id="Base_Column_List" >
-    text_template_id, name, content, tags, create_time
+    text_template_id, name, content, tags, create_time,is_shared
   </sql>
   <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.text.model.TextTemplate"  parameterType="java.lang.String" >
     select 
@@ -45,6 +45,9 @@
       <if test="createTime != null" >
         create_time,
       </if>
+      <if test="isShared != null" >
+        is_shared,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="textTemplateId != null" >
@@ -61,6 +64,9 @@
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isShared != null" >
+        #{isShared,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -79,6 +85,9 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="isShared != null" >
+        is_shared = #{isShared,jdbcType=TINYINT},
+    </if>
     </set>
     where text_template_id = #{textTemplateId,jdbcType=VARCHAR}
   </update>
