@@ -304,6 +304,7 @@ public class SynceDataServiceImpl implements ISynceDataService {
                 lossItemDict.setNumeraire(lossItemDictBeanList.get(i).getNUMERAIRE());
                 lossItemDict.setNumeraireMsg(lossItemDictBeanList.get(i).getNUMERAIREMSG());
                 lossItemDict.setName(lossItemDictBeanList.get(i).getNAME());
+                lossItemDict.setFlag(lossItemDictBeanList.get(i).getFLAG());
                 lossItemDict.setLossItemDictNo(lossItemDictBeanList.get(i).getNO());
                 if(lossItemDictBeanList.get(i).getPARENT()==null)
                 {
@@ -487,6 +488,7 @@ public class SynceDataServiceImpl implements ISynceDataService {
            lossItemDictBean.setNUMERAIRE(lossItemDict.getNumeraire());
            lossItemDictBean.setNUMERAIREMSG(lossItemDict.getNumeraireMsg());
            lossItemDictBean.setPARENT( lossItemDict.getLossItemDictPid());
+           lossItemDictBean.setFLAG( lossItemDict.getFlag());
            String itemStr = HtGson.toJson(lossItemDictBean, new TypeToken<LossItemDictBean>() {
            });
            HtMap htMap = new HtMap();

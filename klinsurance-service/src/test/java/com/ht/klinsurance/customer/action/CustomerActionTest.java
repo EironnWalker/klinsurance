@@ -26,8 +26,8 @@ public class CustomerActionTest extends TestCase {
         //}
             HtMap parameter = new HtMap();
 
-            parameter.put("customerJson", "10");
-            String dataBean = HtRequest.post("http://192.168.23.4:8080/klinsurance-service/customerAction/addCustomer", parameter);
+            parameter.put("customerJson", "4");
+            String dataBean = HtRequest.post("http://192.168.23.6:8080/klinsurance-service/customerAction/addCustomer", parameter);
             System.out.println(dataBean);
     }
 

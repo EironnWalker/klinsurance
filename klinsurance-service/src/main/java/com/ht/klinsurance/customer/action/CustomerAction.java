@@ -70,6 +70,7 @@ public class CustomerAction extends BaseAction {
                 lossItemDict.setNumeraire("6");
                 lossItemDict.setNumeraireMsg("吨");
                 lossItemDict.setRemark("描述");
+                lossItemDict.setFlag("0");
                 lossItemDict.setLossItemDictPid("1");
                 synceDataService.addLossItemDict(lossItemDict);
             }else if(customerJson.equals("7"))
