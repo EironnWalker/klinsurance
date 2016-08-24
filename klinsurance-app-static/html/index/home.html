@@ -8,34 +8,71 @@
     <link rel="stylesheet" href="../../css/base.css"/>
 </head>
 <body class="bg-white">
-<div class="home-top bg-cover" style="background-image: url(../../image/index/home_top_bg.jpg)">
-    <div class="icon-menu"></div>
+<div class="home-top bg-cover" style="background-image: url(../../image/home_top_bg.jpg)">
+    <!--<span class="icon-menu"></span>-->
     <div>昆仑保险经纪</div>
     <div>风险管理专家</div>
 </div>
 <div class="home-list">
-    <a class="bg-cover btn-active" style="background-image: url(../../image/index/info-sync.jpg)">
+    <a class="bg-cover btn-active" href="info" style="background-image: url(../../image/info-sync.jpg)">
         <div class="title">信息同步<span>Information In Sync</span></div>
         <div class="icon icon-info-sync"></div>
     </a>
 </div>
 <div class="home-list">
-    <a class="bg-cover btn-active" style="background-image: url(../../image/index/site-survey.jpg)">
+    <a class="bg-cover btn-active" href="site" style="background-image: url(../../image/site-survey.jpg)">
         <div class="title">现场查勘<span>Site Survey</span></div>
         <div class="icon icon-site-survey"></div>
     </a>
 </div>
 <div class="home-list">
-    <a class="bg-cover btn-active" style="background-image: url(../../image/index/survey-report.jpg)">
+    <a class="bg-cover btn-active" href="report" style="background-image: url(../../image/survey-report.jpg)">
         <div class="title">查勘报告<span>Survey Report</span></div>
         <div class="icon icon-survey-report"></div>
     </a>
 </div>
 <div class="home-list">
-    <a class="bg-cover btn-active" style="background-image: url(../../image/index/template-manage.jpg)">
+    <a class="bg-cover btn-active" href="temp" style="background-image: url(../../image/template-manage.jpg)">
         <div class="title">模板管理<span>Template Manager</span></div>
         <div class="icon icon-template-manager"></div>
     </a>
 </div>
+<script src="../../script/lib/jquery.js"></script>
+<script type="text/javascript">
+    var url;
+    apiready = function() {
+        $(".home-list a").click(function() {
+            url =$(this).attr("href");
+            if (url == "info") {
+                api.openWin({
+                    name: 'html/information/info_sync',
+                    url: '../information/info_sync_win.html',
+                    bounces: false
+                });
+            }
+            else if (url == "site") {
+                api.openWin({
+                    name: 'html/site/loss_assessment',
+                    url: '../site/loss_assessment_win.html',
+                    bounces: false
+                });
+            }
+            else if (url == "report") {
+                api.openWin({
+                    name: 'html/report/report',
+                    url: '../report/report_win.html',
+                    bounces: false
+                });
+            }
+            else if (url == "temp") {
+                api.openWin({
+                    name: 'html/template/select',
+                    url: '../template/select_win.html',
+                    bounces: false
+                });
+            }
+        } )
+    }
+</script>
 </body>
 </html>

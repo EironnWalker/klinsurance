@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" href="../../css/base.css"/>
+</head>
+<body>
+<header>
+    <div class="left">
+        <a class="icon icon-back" onclick="api.closeWin();"></a>
+    </div>
+    <h1>文字模板选择</h1>
+    <div class="right">
+        <a onclick="addTemp();">添加</a>
+    </div>
+</header>
+<script src="../../script/lib/jquery.js"></script>
+<script type="text/javascript">
+    apiready = function () {
+        api.openFrame({
+            name: '/html/report/select_frm.html',
+            url: api.wgtRootDir + '/html/report/select_frm.html',
+            rect: {
+                x: 0,
+                y: $("header").height(),
+                w: 'auto',
+                h: 'auto'
+            },
+            pageParam: api.pageParam,
+            bounces: true
+        });
+    };
+    function addTemp() {
+        api.openWin({
+            name: '/html/temp/manage_win.html',
+            url: api.wgtRootDir + '/html/temp/manage_win.html',
+            pageParam: {name: 'pageparamname'}
+        });
+    }
+</script>
+</body>
+</html>
