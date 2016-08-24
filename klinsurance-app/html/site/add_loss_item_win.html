@@ -12,17 +12,14 @@
     <div class="left">
         <a class="icon icon-back" onclick="api.closeWin();"></a>
     </div>
-    <h1>山东省烟台市莱山区创业路</h1>
-    <div class="right">
-        <a onclick="addLoss();">添加</a>
-    </div>
+    <h1>损失项</h1>
 </header>
 <script src="../../script/lib/jquery.js"></script>
 <script type="text/javascript">
     apiready = function () {
         api.openFrame({
-            name: '/html/site/loss_assessment_frm.html',
-            url: api.wgtRootDir + '/html/site/loss_assessment_frm.html',
+            name: '/html/site/add_loss_item_frm.html',
+            url: api.wgtRootDir + '/html/site/add_loss_item_frm.html',
             rect: {
                 x: 0,
                 y: $("header").height(),
@@ -30,13 +27,6 @@
                 h: 'auto'
             },
             bounces: true
-        });
-    };
-    function addLoss() {
-        api.openWin({
-            name: '/html/site/add_loss_win.html',
-            url: api.wgtRootDir + '/html/site/add_loss_win.html',
-            bounces: false
         });
     }
 </script>

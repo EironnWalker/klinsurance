@@ -143,6 +143,9 @@ ul .icon-go {
     width: 100%;
     font-size: 15px;
 }
+.ul-one .wrap input, .ul-one .wrap select {
+    color: #666;
+}
 .ul-one .wrap select {
     width: 100%;
     /*padding: 0 5px;*/
