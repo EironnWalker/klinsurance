@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <style>
+        .ul-one.name-right .name {
+            width: 56px;
+        }
+    </style>
+</head>
+<body>
+<form id="form-manage">
+    <ul class="ul-one textarea name-right">
+        <li>
+            <div class="horizontal input">
+                <div class="name">模板名称</div>
+                <a class="wrap flex-1">
+                    <input placeholder="模板名称" id="name" name="name" validate="{required: true}" errormsg="模板名称"/>
+                </a>
+                <div class="icon-wrap big">
+                    <a class="btn-active icon-record" data-id="name"></a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">模板详情</div>
+                <a class="wrap flex-1">
+                    <textarea id="detail" placeholder="模板详情" name="detail" validate="{required: true}" errormsg="模板详情"></textarea>
+                </a>
+                <div class="icon-wrap big">
+                    <a class="btn-active icon-record" data-id="detail"></a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">模板标签</div>
+                <a class="wrap flex-1">
+                    <textarea placeholder="标签" name="tip" readonly validate="{required: true}" errormsg="标签"></textarea>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">模板标签</div>
+                <div class="flex-1 tip-wrap">
+                    <div class="wrap">
+                        <div>
+                            <div class="orange">重要</div><div class="brown">重要</div>
+                            <div class="blue">优质优质</div><div class="red">优质</div>
+                            <div class="grey">优质</div><div class="pink">回访</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+<div class="btn-wrap">
+    <a class="btn btn-active">保存</a>
+</div>
+</form>
+<script src="../../script/lib/jquery.js"></script>
+    <script src="../../script/lib/jquery.validate.js"></script>
+<script src="manage_frm.js"></script>
+</body>
+</html>
