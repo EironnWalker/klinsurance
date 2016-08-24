@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-<form id="form-loss" action="">
+<form id="form-loss-item" action="">
 <div class="content-top-10">
     <ul class="ul-one no-active">
         <li onclick="goList();">
@@ -35,20 +35,20 @@
         <li>
             <div class="horizontal">
                 <div class="name">名称</div>
-                <a class="wrap flex-1"><input name="long" validate="{required: true}" errormsg="名称" placeholder="请输入名称"/></a>
+                <a class="wrap flex-1"><input name="name" validate="{required: true}" errormsg="名称" placeholder="请输入名称"/></a>
             </div>
         </li>
         <li>
             <div class="horizontal">
                 <div class="name">单价单位</div>
-                <a class="wrap flex-1"><input name="long" validate="{required: true}" errormsg="长" placeholder="请输入单价单位"/></a>
+                <a class="wrap flex-1"><input name="unit1" validate="{required: true}" errormsg="长" placeholder="请输入单价单位"/></a>
             </div>
         </li>
         <li>
             <div class="horizontal">
                 <div class="name">定价单位</div>
                 <a class="wrap flex-1">
-                    <select class="select-right">
+                    <select class="select-right" name="unit2">
                         <option>请选择</option>
                         <option>普通</option>
                     </select>
@@ -60,7 +60,7 @@
             <div class="horizontal">
                 <div class="name">是否计算数量</div>
                 <a class="wrap flex-1">
-                    <select class="select-right">
+                    <select class="select-right" name="count">
                         <option>请选择</option>
                         <option>普通</option>
                     </select>
@@ -98,6 +98,6 @@
 </form>
 <script src="../../script/lib/jquery.js"></script>
 <script src="../../script/lib/jquery.validate.js"></script>
-<script src="add_loss_frm.js"></script>
+<script src="add_loss_item_frm.js"></script>
 </body>
 </html>
