@@ -128,6 +128,7 @@ public class BriefingServiceImpl implements IBriefingService {
            return ftpUrl;
        }catch (Exception e)
        {
+           e.printStackTrace();
            return  null;
        }
     }
