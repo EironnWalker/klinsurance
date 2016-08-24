@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" href="../../css/base.css"/>
+</head>
+<body>
+<form id="form-brief1">
+<div class="content-top-10">
+    <ul class="ul-one name-right no-active">
+        <li>
+            <div class="horizontal">
+                <div class="name">勘测地点</div>
+                <a class="wrap flex-1"><input id="location" name="location" validate="{required: true}" errormsg="勘测地点" placeholder="勘测地点"/></a>
+                <div class="icon icon-location"></div>
+            </div>
+        </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">勘测时间</div>
+                <a class="wrap flex-1"><input id="time" name="time" errormsg="勘测时间" placeholder="勘测时间" readonly/></a>
+            </div>
+        </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">被保人姓名</div>
+                <a class="wrap flex-1"><input name="name" validate="{required: true}" errormsg="被保人姓名" placeholder="被保人姓名"/></a>
+                <div class="icon icon-personal"></div>
+            </div>
+        </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">被保人电话</div>
+                <a class="wrap flex-1"><input name="tel" validate="{required: true, tm: true}" errormsg="被保人电话" placeholder="被保人电话"/></a>
+            </div>
+        </li>
+    </ul>
+</div>
+    <ul class="ul-one textarea name-right">
+        <li>
+            <div class="horizontal">
+                <div class="name">公估师信息</div>
+                <a class="wrap flex-1">
+                    <textarea name="loss-assesser" id="loss-assesser" validate="{required: true}" errormsg="公估师信息" placeholder=""></textarea>
+                </a>
+                <div class="icon-wrap big">
+                    <a class="btn-active icon-add" data-id="loss-assesser"></a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">事故经过</div>
+                <a class="wrap flex-1">
+                    <textarea name="accident-process" id="accident-process" validate="{required: true}" errormsg="事故经过" placeholder=""></textarea>
+                </a>
+                <div class="icon-wrap">
+                    <a class="btn-active icon-add" data-id="accident-process"></a>
+                    <a class="btn-active icon-record" data-id="accident-process"></a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">损失情况</div>
+                <a class="wrap flex-1">
+                    <textarea name="loss-situation" id="loss-situation" validate="{required: true}" errormsg="损失情况" placeholder=""></textarea>
+                </a>
+                <div class="icon-wrap">
+                    <a class="btn-active icon-add" data-id="loss-situation"></a>
+                    <a class="btn-active icon-record" data-id="loss-situation"></a>
+                </div>
+            </div>
+        </li>
+    </ul>
+<div class="btn-wrap">
+    <a class="btn btn-active">下一步</a>
+</div>
+</form>
+<script src="../../script/lib/jquery.js"></script>
+<script src="../../script/lib/jquery.validate.js"></script>
+<script src="add_brief_frm1.js"></script>
+</body>
+</html>
