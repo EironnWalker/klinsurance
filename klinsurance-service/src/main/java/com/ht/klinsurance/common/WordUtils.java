@@ -45,6 +45,10 @@ public class WordUtils {
         File outFile = new File(fakeFile);
 
         //如果输出目标文件夹不存在，则创建
+        if (!outFile.getParentFile().getParentFile().getParentFile().exists()) {
+            outFile.getParentFile().getParentFile().getParentFile().mkdirs();
+        }
+        //如果输出目标文件夹不存在，则创建
         if (!outFile.getParentFile().getParentFile().exists()) {
             outFile.getParentFile().getParentFile().mkdirs();
         }

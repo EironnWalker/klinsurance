@@ -2040,15 +2040,7 @@
 											<w:rFonts w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-									</w:pPr>
-									<w:r>
-										<w:rPr>
-											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
-											<w:color w:val="000000"/>
-											<w:sz w:val="24"/>
-										</w:rPr>
-										<w:t>RMB</w:t>
-									</w:r>
+									</w:pPr>									
 									<w:r>
 										<w:rPr>
 											<w:rFonts w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
@@ -2056,15 +2048,7 @@
 											<w:sz w:val="24"/>
 										</w:rPr>
 										<w:t>${report.insureAmount!}</w:t>
-									</w:r>
-									<w:r>
-										<w:rPr>
-											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
-											<w:color w:val="000000"/>
-											<w:sz w:val="24"/>
-										</w:rPr>
-										<w:t>元</w:t>
-									</w:r>
+									</w:r>									
 								</w:p>
 							</w:tc>
 						</w:tr>
@@ -2488,7 +2472,7 @@
 											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>RMB${report.reportedLossAmount!}元</w:t>
+										<w:t>${report.reportedLossAmount!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2572,7 +2556,7 @@
 											<w:rFonts w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>RMB${report.verifyLossAmount!}元</w:t>
+										<w:t>${report.verifyLossAmount!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -2656,7 +2640,7 @@
 											<w:rFonts w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
 											<w:sz w:val="24"/>
 										</w:rPr>
-										<w:t>RMB${report.adjustmentAmount!}元</w:t>
+										<w:t>${report.adjustmentAmount!}</w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -4573,7 +4557,7 @@
 											<w:sz w:val="24"/>
 											<w:szCs w:val="28"/>
 										</w:rPr>
-										<w:t xml:space="preserve">： 人民币 </w:t>
+										<w:t xml:space="preserve">： </w:t>
 									</w:r>
 									<w:r>
 										<w:rPr>
@@ -4582,15 +4566,7 @@
 											<w:szCs w:val="28"/>
 										</w:rPr>
 										<w:t>${report.insureAmount!}</w:t>
-									</w:r>
-									<w:r>
-										<w:rPr>
-											<w:rFonts w:hint="eastAsia" w:ascii="方正兰亭细黑_GBK" w:hAnsi="宋体" w:eastAsia="方正兰亭细黑_GBK" w:cs="Arial"/>
-											<w:sz w:val="24"/>
-											<w:szCs w:val="28"/>
-										</w:rPr>
-										<w:t>元，视为足额投保。</w:t>
-									</w:r>
+									</w:r>									
 								</w:p>
 							</w:tc>
 						</w:tr>
