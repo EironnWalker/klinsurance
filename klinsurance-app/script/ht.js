@@ -1,8 +1,8 @@
 var ht = (function ($) {
     "use strict";
     var ip = {}; // 服务地址
-    ip.insuranceservice="http://219.146.138.106:9100/inscrm-service";
-    ip.insuranceimg = "http://192.168.0.202:9292/upload/inscrm-app";
+    ip.insuranceservice="http://192.168.0.66:9100/klinsurance-service";
+    ip.insuranceimg = "http://192.168.0.202:9292/upload/klinsurance-app";
 
     // 常量
     var constants = {};
@@ -11,6 +11,7 @@ var ht = (function ($) {
     constants.name = "name"; // 用户名字
     constants.phone = "phone"; // 用户电话
     constants.headImg = "headImg"; // 头像
+    constants.rightCode = "rightCode"; // 手势密码
 
     var apicloud = {};
     apicloud.showProgress = function (str) {
