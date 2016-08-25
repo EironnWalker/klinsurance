@@ -143,6 +143,9 @@ ul .icon-go {
     width: 100%;
     font-size: 15px;
 }
+.ul-one .wrap input, .ul-one .wrap select {
+    color: #666;
+}
 .ul-one .wrap select {
     width: 100%;
     /*padding: 0 5px;*/
@@ -1203,7 +1206,31 @@ input {
     font-size: 18px;
     padding-right: 15px;
 }
-
+.name.checkbox {
+    width: auto !important;
+    color: #666;
+}
+.name.checkbox .aui-checkbox {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 0;
+    background-color: transparent;
+    border: 1px solid #666;
+    border-radius: 2px;
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
+}
+.name.checkbox .aui-checkbox:checked, .name.checkbox .aui-checkbox.aui-checked {
+    background-color: transparent;
+    border: 1px solid #666;
+}
+.name.checkbox .aui-checkbox:checked:before, .name.checkbox .aui-checkbox.aui-checked:before {
+    color: #666;
+    top: 0;
+    left: 0;
+}
 
 
 /*特殊字体*/

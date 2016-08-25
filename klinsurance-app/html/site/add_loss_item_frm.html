@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../css/base.css"/>
     <style>
         .ul-one .name {
-            width: 60px;
+            width: 100px;
         }
         .ul-one.textarea .name {
             width: 50px;
@@ -16,14 +16,14 @@
     </style>
 </head>
 <body>
-<form id="form-loss" action="">
+<form id="form-loss-item" action="">
 <div class="content-top-10">
     <ul class="ul-one no-active">
         <li onclick="goList();">
         <div class="horizontal select">
-            <div class="name">损失项</div>
+            <div class="name">上级项目</div>
                 <a class="wrap flex-1">
-                    <input id="loss-detail" name="detail" validate="required: true" errormsg="损失项" placeholder="请选择损失项"/>
+                    <input id="loss-detail" name="detail" placeholder="请选择损失项"/>
                 </a>
                 <!--<select class="select-right">-->
                     <!--<option>加油站入口处6米</option>-->
@@ -34,27 +34,38 @@
     </li>
         <li>
             <div class="horizontal">
-                <div class="name">数量</div>
-                <a class="wrap flex-1"><input name="long" validate="{required: true, number: true}" errormsg="数量" placeholder="请输入数量"/></a>
-                m³
+                <div class="name">名称</div>
+                <a class="wrap flex-1"><input name="name" validate="{required: true}" errormsg="名称" placeholder="请输入名称"/></a>
             </div>
         </li>
         <li>
             <div class="horizontal">
-                <div class="name">长</div>
-                <a class="wrap flex-1"><input name="long" validate="{required: true, number: true}" errormsg="长" placeholder="请输入长"/></a>
+                <div class="name">单价单位</div>
+                <a class="wrap flex-1"><input name="unit1" validate="{required: true}" errormsg="长" placeholder="请输入单价单位"/></a>
             </div>
         </li>
         <li>
             <div class="horizontal">
-                <div class="name">宽</div>
-                <a class="wrap flex-1"><input name="width" validate="{required: true, number: true}" errormsg="宽" placeholder="请输入宽"/></a>
+                <div class="name">定价单位</div>
+                <a class="wrap flex-1">
+                    <select class="select-right" name="unit2">
+                        <option>请选择</option>
+                        <option>普通</option>
+                    </select>
+                </a>
+                <div class="icon icon-go"></div>
             </div>
         </li>
         <li>
             <div class="horizontal">
-                <div class="name">高</div>
-                <a class="wrap flex-1"><input name="high" validate="{required: true, number: true}" errormsg="高" placeholder="请输入高"/></a>
+                <div class="name">是否计算数量</div>
+                <a class="wrap flex-1">
+                    <select class="select-right" name="count">
+                        <option>请选择</option>
+                        <option>普通</option>
+                    </select>
+                </a>
+                <div class="icon icon-go"></div>
             </div>
         </li>
         <!--<li>-->
@@ -87,6 +98,6 @@
 </form>
 <script src="../../script/lib/jquery.js"></script>
 <script src="../../script/lib/jquery.validate.js"></script>
-<script src="add_loss_frm.js"></script>
+<script src="add_loss_item_frm.js"></script>
 </body>
 </html>

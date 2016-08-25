@@ -11,12 +11,12 @@
 <body>
 <header>
     <div class="left">
-        <a class="icon icon-back" onclick="closeWin();"></a>
+        <a class="icon icon-back" onclick="api.closeWin()"></a>
     </div>
-    <h1>损失项列表</h1>
+    <h1>损失项</h1>
 
     <div class="right">
-        <a onclick="confirmLoss();">确定</a>
+        <a>添加损失项</a>
     </div>
 </header>
 <script src="../../script/lib/jquery.js"></script>
@@ -35,16 +35,13 @@
             bounces: true
         });
     };
-    function confirmLoss() {
-        api.execScript({
-            frameName: '/html/site/loss_list_frm.html',
-            script: 'selectLoss();'
+    $(".right a").click(function () {
+        api.openWin({
+            name: '/html/site/add_loss_item_win.html',
+            url: api.wgtRootDir + '/html/site/add_loss_item_win.html',
+            pageParam: {name: 'pageparamname'}
         });
-        api.closeWin();
-    }
-    function closeWin() {
-        api.closeWin();
-    }
+    });
 </script>
 </body>
 </html>

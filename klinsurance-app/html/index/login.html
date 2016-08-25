@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" href="../../css/base.css"/>
+</head>
+<body class="bg-cover" style="background-image: url(../../image/login_bg.jpg)">
+    <div class="logo-wrap">
+        <img class="width-full" src="../../image/logo.png"/>
+    </div>
+    <form class="login-wrap" id="form">
+        <div class="wrapper">
+            <div class="wrap horizontal">
+                <div class="icon icon-personal"></div>
+                <div class="flex-1">
+                    <input id="loginName" name="loginName" validate="{required:true}" errormsg="登录账号"  type="text" placeholder="请输入登录账号"/>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="wrap horizontal">
+                <div class="icon icon-psw"></div>
+                <div class="flex-1">
+                    <input id="loginPwd" name="loginPwd" validate="{required:true,rangelength:[5,16]}" errormsg="登录密码" type="password" class="aui-input" placeholder="请输入登录密码"/>
+                </div>
+            </div>
+        </div>
+        <div class="remember">
+         <div class="btn-wrap">
+            <a class="btn btn-active" id="loginBtn">登录</a>
+        </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="../../script/lib/jquery.js"></script>
+    <script type="text/javascript" src="../../script/lib/jquery.validate.js"></script>
+    <script type="text/javascript" src="../../script/ht.js"></script>
+    <script type="text/javascript" src="login.js"></script>
+</body>
+</html>
