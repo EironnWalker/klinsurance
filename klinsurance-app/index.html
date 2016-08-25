@@ -15,9 +15,7 @@
         api.setStatusBarStyle({
             style: 'light'
         });
-
         var userId = ht.storage.getLocalStorage(ht.constants.userId);
-        var rightCode = ht.storage.getLocalStorage(ht.constants.rightCode);
         if (userId) {
             api.openWin({
                 name: '/html/index/guesture.html',

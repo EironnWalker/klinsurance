@@ -1,8 +1,5 @@
-var exitNum = 0;//退出次数
 var rightCode = '';//退出次数
 apiready = function () {
-    //双击返回退出
-    exitApp();
     if (ht.storage.getLocalStorage(ht.constants.rightCode)) {
         rightCode = ht.storage.getLocalStorage(ht.constants.rightCode);
     }
@@ -39,34 +36,15 @@ apiready = function () {
             }
         } else {
             alert(JSON.stringify(err));
+            api.toast({
+                msg: '手势密码模块错误，请退出重试！',
+                duration: 2000,
+                location: 'bottom'
+            });
         }
     });
 };
 
-//添加返回按钮的监听
-function exitApp() {
-    api.addEventListener({
-        name: 'keyback'
-    }, function (ret, err) {
-        if (exitNum == 0) {
-            exitNum = 1;
-            api.toast({
-                msg: '再次点击返回退出应用',
-                duration: 2000,
-                location: 'bottom'
-            });
-            setTimeout(function () {
-                exitNum = 0;
-            }, 2000)
-        } else {
-            api.closeWidget({
-                id: api.appId,  //填写自己的id
-                retData: {name: 'closeWidget'},
-                silent: true
-            });
-        }
-    });
-}
 //添加返回按钮的监听
 function goIndex() {
     api.openWin({
