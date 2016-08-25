@@ -1,5 +1,32 @@
 var url;
+var db;
 apiready = function () {
+    db = api.require('db');
+    var fs = api.require('fs');
+    fs.exist({
+        path: 'fs://klinsurance_db.db'
+    }, function (ret, err) {
+        if (ret.exist) {
+            db.openDatabase({
+                name: 'klinsurance_db.db',
+                path: 'fs://klinsurance_db.db'
+            }, function (ret, err) {
+            });
+        } else {
+            fs.copyTo({
+                oldPath: 'widget://wgt/klinsurance_db.db',
+                newPath: 'fs://'
+            }, function (ret, err) {
+                if (ret.status) {
+                    db.openDatabase({
+                        name: 'klinsurance_db.db',
+                        path: 'fs://klinsurance_db.db'
+                    }, function (ret, err) {
+                    });
+                }
+            });
+        }
+    });
     $(".home-list a").click(function () {
         url = $(this).attr("data-href");
         if (url == "info") {

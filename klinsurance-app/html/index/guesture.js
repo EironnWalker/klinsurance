@@ -45,7 +45,6 @@ apiready = function () {
     });
 };
 
-//添加返回按钮的监听
 function goIndex() {
     api.openWin({
         name: '/html/index/index_win.html',

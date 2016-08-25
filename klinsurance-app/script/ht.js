@@ -12,6 +12,7 @@ var ht = (function ($) {
     constants.phone = "phone"; // 用户电话
     constants.headImg = "headImg"; // 头像
     constants.rightCode = "rightCode"; // 手势密码
+    constants.lastSyncInfo = "lastSyncInfo"; // 上次同步内容
 
     var apicloud = {};
     apicloud.showProgress = function (str) {
