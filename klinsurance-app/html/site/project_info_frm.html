@@ -2,7 +2,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title></title>
     <link rel="stylesheet" href="../../css/base.css"/>
@@ -14,33 +15,29 @@
         <div class="flex-1"><input id="search" placeholder="搜索"/></div>
         <div class="icon-record" data-id="search"></div>
     </div>
-    <a class="btn btn-active">搜索</a>
+    <a class="btn btn-active" onclick="searchProject()">搜索</a>
 </div>
 <div class="content-bottom-10">
-    <ul class="ul-three project-info active">
-            <li onclick="goLocationList();">
-                <div class="horizontal">
-                    <div class="flex-1 ellipsis">
-                        <div class="name red">事故名称</div>
-                        <div class="location">事故地点：山东省烟台市</div>
-                        <div class="time">事故时间：2016.06.06　16：05：55</div>
-                    </div>
-                    <!--<div class="icon-go"></div>-->
-                </div>
-            </li>
+    <ul class="ul-three project-info active" id="content">
+    </ul>
+</div>
+<script src="../../script/lib/jquery.js"></script>
+<script type="text/javascript" src="../../script/ht.js"></script>
+<script type="text/javascript" src="../../script/lib/template.js"></script>
+<script src="project_info_frm.js"></script>
+<script type="text/html" id="templateProject">
+    {{each data as project}}
         <li onclick="goLocationList();">
             <div class="horizontal">
                 <div class="flex-1 ellipsis">
-                    <div class="name red">事故名称</div>
-                    <div class="location">事故地点：山东省烟台市</div>
-                    <div class="time">事故时间：2016.06.06　16：05：55</div>
+                    <div class="name red">{{project.projectName}}</div>
+                    <div class="location">事故地点：{{project.accidentSite}}</div>
+                    <div class="time">事故时间：{{project.createTime}}</div>
                 </div>
                 <!--<div class="icon-go"></div>-->
             </div>
         </li>
-    </ul>
-</div>
-<script src="../../script/lib/jquery.js"></script>
-<script src="project_info_frm.js"></script>
+    {{/each}}
+</script>
 </body>
 </html>
