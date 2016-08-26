@@ -44,7 +44,8 @@ apiready = function () {
     });
 };
 //查询共有多少条数据
-function queryTotalPage() {
+function queryTotalPage(content) {
+    searchContent = content;
     var sql = "SELECT count(*) as total FROM project ";
     if (searchContent) {
         sql += "where projectName like '%" + searchContent + "%'";
@@ -123,20 +124,4 @@ function goLocationList() {
             pageParam: {id: 'pageparamname'}
         });
     }
-}
-
-$(".icon-record").click(
-    function () {
-        startRecord($(this).attr('data-id'));
-    }
-);
-
-function startRecord(id) {
-    TranslateModule.startRecord(function back(ret) {
-        $('#' + id).val(ret.data);
-    });
-}
-function searchProject() {
-    searchContent = $("#search").val();
-    queryTotalPage();
 }

@@ -2,7 +2,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title></title>
     <link rel="stylesheet" href="../../css/base.css"/>
@@ -14,22 +15,53 @@
     </div>
     <h1>项目信息</h1>
 </header>
+<div class="search-wrap horizontal">
+    <div class="horizontal flex-1">
+        <div class="icon-search"></div>
+        <div class="flex-1"><input id="search" placeholder="搜索"/></div>
+        <div class="icon-record" data-id="search"></div>
+    </div>
+    <a class="btn btn-active" onclick="searchProject()">搜索</a>
+</div>
 <script src="../../script/lib/jquery.js"></script>
 <script src="../../script/ht.js"></script>
 <script type="text/javascript">
-    apiready = function() {
+    var TranslateModule = null;
+    apiready = function () {
+        TranslateModule = api.require('TranslateModule');
         var headerHeight = $("header").fixStatusBar();
         api.openFrame({
             name: '/html/site/project_info_frm.html',
             url: api.wgtRootDir + '/html/site/project_info_frm.html',
             rect: {
                 x: 0,
-                y: headerHeight,
+                y: headerHeight + $(".horizontal").outerHeight(true),
                 w: 'auto',
                 h: 'auto'
             },
             pageParam: api.pageParam,
             bounces: true
+        });
+    };
+    $(".icon-record").click(
+            function () {
+                startRecord($(this).attr('data-id'));
+            }
+    );
+
+    function startRecord(id) {
+        TranslateModule.startRecord(function back(ret) {
+            $('#' + id).val(ret.data);
+        });
+    }
+    function searchProject() {
+        var searchContent = $("#search").val();
+        //在当前window中找到
+        //名为frmName的frame，并在该frame中执行jsfun脚本
+        var jsfun = "queryTotalPage('" + searchContent + "')";
+        api.execScript({
+            frameName: '/html/site/project_info_frm.html',
+            script: jsfun
         });
     }
 </script>
