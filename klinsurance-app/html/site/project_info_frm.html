@@ -19,7 +19,7 @@
 <script src="project_info_frm.js"></script>
 <script type="text/html" id="templateProject">
     {{each data as project}}
-        <li onclick="goLocationList();">
+        <li onclick="goLocationList('{{project.projectId}}');">
             <div class="horizontal">
                 <div class="flex-1 ellipsis">
                     <div class="name red">{{project.projectName}}</div>

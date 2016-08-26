@@ -77,7 +77,7 @@ function queryTotalPage(content) {
 // @isReload：是否为刷新操作
 function loadData(nowPage1) {
     if (nowPage1 == 0) {
-        ht.apicloud.showProgress();
+        ht.apicloud.showProgress("正在加载");
         nowPage1 = 1;
     }
     var sql = "SELECT * FROM project ";
@@ -110,18 +110,18 @@ function loadData(nowPage1) {
     );
 }
 
-function goLocationList() {
+function goLocationList(projectId) {
     if (pageType == 'site') {
         api.openWin({
             name: '/html/site/location_list_win.html',
             url: api.wgtRootDir + '/html/site/location_list_win.html',
-            pageParam: {id: 'pageparamname'}
+            pageParam: {id: projectId}
         });
     } else if (pageType == 'report') {
         api.openWin({
             name: '/html/report/report_win.html',
             url: api.wgtRootDir + '/html/report/report_win.html',
-            pageParam: {id: 'pageparamname'}
+            pageParam: {id: projectId}
         });
     }
 }
