@@ -25,3 +25,11 @@ function startDesigh() {
         $(".sign img").attr("src", ret.data)
     });
 }
+
+$(".ul-one").click(function() {
+    api.openWin({
+        name: '/html/site/add_loss_win.html',
+        url: api.wgtRootDir + '/html/site/add_loss_win.html',
+        pageParam: {name: 'pageparamname'}
+    });
+});
