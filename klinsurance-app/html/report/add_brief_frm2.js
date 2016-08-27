@@ -36,14 +36,25 @@ function startRecord(id) {
 
 function doAddLocation(lossIdStr) {
     if (lossIdStr.length > 0) {
-        var sql = "SELECT * FROM loss where userId = '" + userId + "' and lossId in ("+lossIdStr+")";
+        var sql = "SELECT * FROM loss where userId = '" + userId + "' and lossId in (" + lossIdStr + ")";
         db.selectSql({
             name: 'klinsurance_db.db',
             sql: sql
         }, function (ret, err) {
             if (ret.status) {
-
-                var html = template('templateLoss', ret);
+                var queryRet = ret;
+                for (var i = 0; i < queryRet.data.length; i++) {
+                    db.selectSql({
+                        name: 'klinsurance_db.db',
+                        sql: "SELECT * FROM loss_item where lossId = '" + queryRet.data[i].lossId + "'"
+                    }, function (ret, err) {
+                        if (ret.status) {
+                            queryRet.data[i]["lossItem"] = ret.data;
+                            queryRet.data[i]["lossImage"] = null;
+                        }
+                    });
+                }
+                var html = template('templateLoss', queryRet);
                 $("#content").append(html);
             } else {
                 api.toast({
