@@ -22,7 +22,7 @@
 <script src="location_frm.js"></script>
 <script type="text/html" id="templateLoss">
     {{each data as loss}}
-    <div class="content-bottom-10 ul-select">
+    <div class="content-bottom-10 ul-select" onclick="selectClick('{{loss.lossId}}')">
         <input class="aui-radio" name="location" type="checkbox" id="{{loss.lossId}}"/>
         <ul class="ul-one no-active">
             <li>

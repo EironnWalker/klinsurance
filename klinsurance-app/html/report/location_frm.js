@@ -1,5 +1,3 @@
-var location_id = null;
-var location_detail = null;
 var db;
 apiready = function () {
     db = api.require('db');
@@ -71,27 +69,23 @@ apiready = function () {
         }
     });
 };
-$(function () {
-    $("li .flex-1").each(function () {
-        if ($(this).height() > 20) {
-            $(this).removeClass("text-right");
+function selectClick(lossId) {
+    $("#" + lossId).prop("checked", true);
+}
+function selectLocation() {
+    var lossIdStr = "";
+    $("input:checkbox").each(function (index, element) {
+        if (element.checked) {
+            lossIdStr += "'" + element.getAttribute("id") + "',";
         }
     });
-    $(".ul-select").first().click();
-});
-$(".ul-select").click(function () {
-    $(this).find("input[type='radio']")[0].checked = true;
-    location_id = $(this).find(".id").html();
-    location_detail = $(this).find(".location").html();
-});
-
-function selectLocation() {
     api.execScript({
         name: '/html/report/add_brief_win2.html',
         frameName: '/html/report/add_brief_frm2.html',
-        script: 'doAddLocation("' + location_id + '","' + location_detail + '");'
+        script: 'doAddLocation("' + lossIdStr.substr(0, lossIdStr.length - 1) + '");'
     });
 }
+
 //日期格式化
 Date.prototype.pattern = function (fmt) {
     var o = {

@@ -2,7 +2,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title></title>
     <link rel="stylesheet" href="../../css/base.css"/>
@@ -12,15 +13,33 @@
         }
     </style>
 </head>
-<body><form id="form-brief2">
-    <div class="content-top-10 content-fixed">
+<body>
+<div id="content">
+</div>
+<div class="btn-fixed">
+    <div class="btn btn-active">下一步</div>
+</div>
+<script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
+<script src="../../script/lib/jquery.validate.js"></script>
+<script type="text/javascript" src="../../script/lib/template.js"></script>
+<script src="add_brief_frm2.js"></script>
+<script type="text/html" id="templateLoss">
+    {{each data as loss i}}
+        {{if i ==data.length}}
+            <div class="content-top-10 content-fixed" id="{{loss.lossId}}">
+        {{else}}
+            <div class="content-top-10" id="{{loss.lossId}}">
+        {{/if}}
         <ul class="ul-one no-active add-brief2">
             <li>
                 <div class="horizontal">
                     <div class="name">地点</div>
                     <a class="wrap flex-1 color-666">
-                        <input name="stake-number" id="stake-number" validate="{required: true}" errormsg="地点" placeholder=""/>
+                        <input name="stake-number" validate="{required: true}" errormsg="地点"
+                               value="{{loss.place}}"/>
                     </a>
+
                     <div class="icon icon-record" data-id="stake-number"></div>
                 </div>
             </li>
@@ -72,18 +91,14 @@
                 <div class="wrap">
                     <a class="bg-cover" style="background-image: url(../../image/home_top_bg.jpg)"></a>
                     <span class="icon-cross"></span>
+
                     <p class="ellipsis">请描述</p>
                 </div>
             </div>
             <img src="../../image/add_pic.svg"/>
         </div>
     </div>
-    <div class="btn-fixed">
-        <div class="btn btn-active">下一步</div>
-    </div>
-</form>
-<script src="../../script/lib/jquery.js"></script>
-<script src="../../script/lib/jquery.validate.js"></script>
-<script src="add_brief_frm2.js"></script>
+    {{/each}}
+</script>
 </body>
 </html>
