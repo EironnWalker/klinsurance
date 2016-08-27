@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-<form id="form-manage">
+<form id="form-manage" method="post" action="">
     <ul class="ul-one textarea name-right">
         <li>
             <div class="horizontal input">
@@ -47,13 +47,17 @@
         </li>
         <li>
             <div class="horizontal">
+                <div class="name checkbox">
+                    <input class="aui-checkbox" type="checkbox" checked="">是否共享
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="horizontal">
                 <div class="name">模板标签</div>
                 <div class="flex-1 tip-wrap">
                     <div class="wrap">
-                        <div>
-                            <div class="orange">重要</div><div class="brown">重要</div>
-                            <div class="blue">优质优质</div><div class="red">优质</div>
-                            <div class="grey">优质</div><div class="pink">回访</div>
+                        <div id="tip">
                         </div>
                     </div>
                 </div>
@@ -66,6 +70,13 @@
 </form>
 <script src="../../script/lib/jquery.js"></script>
     <script src="../../script/lib/jquery.validate.js"></script>
+<script src="../../script/ht.js"></script>
+<script src="../../script/lib/template.js"></script>
+<script type="text/html" id="tip-template">
+    {{each data as item}}
+    <div onclick="tipActive(this)" data-code="{{item.code}}">{{item.name}}</div>
+    {{/each}}
+</script>
 <script src="manage_frm.js"></script>
 </body>
 </html>

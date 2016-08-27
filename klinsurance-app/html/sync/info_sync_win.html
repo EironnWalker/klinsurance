@@ -16,14 +16,16 @@
     <h1>信息同步</h1>
 </header>
 <script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
 <script>
     apiready = function () {
+        var headerHeight = $("header").fixStatusBar();
         api.openFrame({
             name: '/html/sync/info_sync_frm.html',
             url: api.wgtRootDir + '/html/sync/info_sync_frm.html',
             rect: {
                 x: 0,
-                y: $('header').height(),
+                y: headerHeight,
                 w: 'auto',
                 h: 'auto'
             },

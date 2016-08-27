@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <style>
+        .ul-one .name {
+            width: 100px;
+        }
+        .ul-one.textarea .name {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+<form id="form-loss-item" action="">
+<div class="content-top-10">
+    <ul class="ul-one no-active">
+        <li onclick="goList();">
+        <div class="horizontal select">
+            <div class="name">上级项目</div>
+                <a class="wrap flex-1">
+                    <input id="loss-detail" name="detail" placeholder="请选择损失项"/>
+                </a>
+                <!--<select class="select-right">-->
+                    <!--<option>加油站入口处6米</option>-->
+                    <!--<option>普通</option>-->
+                <!--</select>-->
+            <div class="icon icon-go"></div>
+        </div>
+    </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">名称</div>
+                <a class="wrap flex-1"><input name="name" validate="{required: true}" errormsg="名称" placeholder="请输入名称"/></a>
+            </div>
+        </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">单价单位</div>
+                <a class="wrap flex-1"><input name="unit1" validate="{required: true}" errormsg="长" placeholder="请输入单价单位"/></a>
+            </div>
+        </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">定价单位</div>
+                <a class="wrap flex-1">
+                    <select class="select-right" name="unit2">
+                        <option>请选择</option>
+                        <option>普通</option>
+                    </select>
+                </a>
+                <div class="icon icon-go"></div>
+            </div>
+        </li>
+        <li>
+            <div class="horizontal">
+                <div class="name">是否计算数量</div>
+                <a class="wrap flex-1">
+                    <select class="select-right" name="count">
+                        <option>请选择</option>
+                        <option>普通</option>
+                    </select>
+                </a>
+                <div class="icon icon-go"></div>
+            </div>
+        </li>
+        <!--<li>-->
+            <!--<div class="horizontal">-->
+                <!--<div class="name">价格</div>-->
+                <!--<a class="wrap flex-1"><input id="loss-money" name="money" validate="{required: true, number: true}" errormsg="价格" placeholder="请输入价格"/></a>-->
+            <!--</div>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<div class="horizontal">-->
+                <!--<div class="name">其它</div>-->
+                <!--<a class="wrap flex-1"><input name="other" placeholder=""/></a>-->
+            <!--</div>-->
+        <!--</li>-->
+    </ul>
+</div>
+    <ul class="ul-one textarea">
+        <li>
+            <div class="horizontal">
+                <div class="name">描述</div>
+                <a class="wrap flex-1">
+                    <textarea name="description" placeholder="请描述"></textarea>
+                </a>
+            </div>
+        </li>
+    </ul>
+<div class="btn-wrap">
+    <a class="btn btn-active">保存</a>
+</div>
+</form>
+<script src="../../script/lib/jquery.js"></script>
+<script src="../../script/lib/jquery.validate.js"></script>
+<script src="add_loss_item_frm.js"></script>
+</body>
+</html>

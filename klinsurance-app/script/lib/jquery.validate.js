@@ -41,6 +41,8 @@ jQuery.fn.extend({
 			onkeyup: false,
 			onclick: false,
 			focusInvalid: false,
+			rules: rules,
+			messages: messages,
 			showErrors: function (errorMap, errorList) {
 				// 只显示第一条错误信息
 				if (!!errorList && errorList.length > 0) {
@@ -48,7 +50,7 @@ jQuery.fn.extend({
 					var errorcontent = errorList[0].message;
 					//base.message.toast(errormsg + errorcontent);
 
-					var systemType = api.systemType;
+					//var systemType = api.systemType;
 					//if(systemType =="ios") {
 					//	api.toast({
 					//		msg: errormsg + errorcontent,

@@ -1,4 +1,17 @@
+var BaiduPush = null;
 var paramLocation;
+var locationJson;
+apiready = function() {
+    BaiduPush = api.require('LocationModule');
+    BaiduPush.initDb();//将模块中的数据库写入手机
+    $(".icon-location").click();
+};
+$(".icon-location").click(function() {
+    BaiduPush.startLocation(function (ret,err) {
+        locationJson = JSON.parse(ret.data);
+        $("#location").val(locationJson.province + locationJson.city + locationJson.district + locationJson.street);
+    });
+});
 $(function() {
     $("#form-location").baseValidate({
         submitHandler: function() {

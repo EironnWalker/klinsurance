@@ -8,13 +8,48 @@ import java.util.Map;
 
 @Repository
 public interface TextTemplateTagMapper {
-    int deleteByPrimaryKey(String textTemplateTagId);
 
-    int insertSelective(TextTemplateTag record);
+    /**
+     * 查找所有的用户标签
+     * @return
+     */
+    List<TextTemplateTag> findAll();
 
-    TextTemplateTag selectByPrimaryKey(String textTemplateTagId);
+    /**
+     * 查询文字模板标签
+     * @param textTemplateTagId
+     * @return
+     */
+    TextTemplateTag findById(String textTemplateTagId);
 
-    int updateByPrimaryKeySelective(TextTemplateTag record);
+    /**
+     * 查询最大的标签
+     * @return
+     */
+    String findTagMax();
+
 
     List<TextTemplateTag> findTextTemplateTagList(Map<String, Object> parameter );
+
+    /**
+     * 添加用户标签
+     * @param record
+     * @return
+     */
+    int add(TextTemplateTag record);
+
+    /**
+     * 更新文字模板标签
+     * @param record
+     * @return
+     */
+    int update(TextTemplateTag record);
+
+    /**
+     * 删除文字模板标签
+     * @param textTemplateTagId
+     * @return
+     */
+    int deleteById(String textTemplateTagId);
+
 }

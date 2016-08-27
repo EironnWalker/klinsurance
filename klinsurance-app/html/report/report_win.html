@@ -22,17 +22,19 @@
     <h2 id="1" class="flex-1">报告信息</h2>
 </div>
 <script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
 <script type="text/javascript">
     var pageType;
     var nowPage;
     apiready = function () {
+        var headerHeight = $("header").fixStatusBar();
         api.openFrameGroup({
             name: 'group1',
             background: '#ebebeb',
-            scrollEnabled: true,
+            scrollEnabled: false,
             rect: {
                 x: 0,
-                y: $("header").height() + $(".tab").height(),
+                y: headerHeight+ $(".tab").height(),
                 w: 'auto',
                 h: 'auto'
             },
@@ -40,10 +42,12 @@
             frames: [{
                 name: '/html/report/sub_brief_frm.html',
                 url: api.wgtRootDir + '/html/report/sub_brief_frm.html',
+                pageParam: api.pageParam,
                 bgColor: '#ebebeb'
             }, {
                 name: '/html/report/sub_report_frm.html',
                 url: api.wgtRootDir + '/html/report/sub_report_frm.html',
+                pageParam: api.pageParam,
                 bgColor: '#ebebeb'
             }]
         }, function (ret, err) {

@@ -11,6 +11,8 @@ public class User {
 
     private String loginPwd;
 
+    private String roleId;
+
     private String name;
 
     private String namePinyin;

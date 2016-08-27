@@ -20,44 +20,37 @@
 <!--未展开时-->
 <div class="tip-wrap">
     <div class="wrap hidden">
-        <div>
-            <div class="orange">重要</div><div class="brown">重要</div>
-            <div class="blue">优质优质</div><div class="red">优质</div>
-            <div class="grey">优质</div><div class="pink">回访</div>
+        <div id="tip">
         </div>
     </div>
     <div class="icon icon-unfold"></div>
 </div>
-<ul class="ul-template">
-    <li>
-        <div class="horizontal">
-            <div class="name">模板名称</div>
-            <div class="flex-1">文字模板</div>
-        </div>
-        <div class="horizontal">
-            <div class="name">模板详情</div>
-            <div class="flex-1">
-                <div class="detail">文字模板详情模板详情模板详情模板详情模板详情模板</div>
-                <p>某某　2016.05.25</p>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="horizontal">
-            <div class="name">模板名称</div>
-            <div class="flex-1">文字模板</div>
-            <input class="aui-radio" type="checkbox"/>
-        </div>
-        <div class="horizontal">
-            <div class="name">模板详情</div>
-            <div class="flex-1">
-                <div class="detail">文字模板详情模板详情模板详情模板详情模板详情模板</div>
-                <p>某某　2016.05.25</p>
-            </div>
-        </div>
-    </li>
+<ul class="ul-template" id="temp">
 </ul>
 <script src="../../script/lib/jquery.js"></script>
+<script src="../../script/lib/template.js"></script>
+<script type="text/html" id="tip-template">
+    {{each data as item}}
+    <div onclick="tipActive(this)" data-code="{{item.code}}">{{item.name}}</div>
+    {{/each}}
+</script>
+<script type="text/html" id="temp-template">
+    {{each data as item}}
+    <li>
+        <div class="horizontal">
+            <div class="name">模板名称</div>
+            <div class="flex-1">{{item.name}}</div>
+        </div>
+        <div class="horizontal">
+            <div class="name">模板详情</div>
+            <div class="flex-1">
+                <div class="detail">{{item.content}}</div>
+                <p>{{item.create_time}}</p>
+            </div>
+        </div>
+    </li>
+    {{/each}}
+</script>
 <script src="select_frm.js"></script>
 </body>
 </html>

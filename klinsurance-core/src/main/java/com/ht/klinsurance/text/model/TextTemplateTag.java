@@ -5,6 +5,7 @@ import lombok.Data;
 import java.util.Date;
 @Data
 public class TextTemplateTag {
+
     private String textTemplateTagId;
 
     private String code;
