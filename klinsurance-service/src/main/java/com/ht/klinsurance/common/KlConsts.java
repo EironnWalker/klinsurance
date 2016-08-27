@@ -16,11 +16,11 @@ public class KlConsts {
     public static final Integer WORD_IMAGE_WIDTH = 220;
     /*********************发送邮件相关参数*********************************/
     //发送邮件的邮箱
-    public static final String EMAIL_SEND_EMAIL = "klapp@kunlunrisk.com";
+    public static final String EMAIL_SEND_EMAIL;
     //发送邮件的邮箱密码
-    public static final String EMAIL_SEND_PWD = "IHv5qBJJ54";
+    public static final String EMAIL_SEND_PWD;
     //发送邮件的smtp服务器
-    public static final String EMAIL_SMTP = "smtp.163.com";
+    public static final String EMAIL_SMTP;
     /**********************end********************************/
 
     //分页数量
@@ -35,5 +35,9 @@ public class KlConsts {
         KLIN_BASE_URL = HtProperties.get("klinsur.http");
         COMMPSW= HtProperties.get("klinsur.commPsw");
         IMG_SERVICE= HtProperties.get("ip.img_service");
+
+        EMAIL_SEND_EMAIL= HtProperties.get("email.send_email");
+        EMAIL_SEND_PWD= HtProperties.get("email.send_pwd");
+        EMAIL_SMTP= HtProperties.get("email.smtp_serve");
     }
 }
