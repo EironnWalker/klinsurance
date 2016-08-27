@@ -304,6 +304,7 @@ public class SynceDataServiceImpl implements ISynceDataService {
                 lossItemDict.setNumeraire(lossItemDictBeanList.get(i).getNUMERAIRE());
                 lossItemDict.setNumeraireMsg(lossItemDictBeanList.get(i).getNUMERAIREMSG());
                 lossItemDict.setName(lossItemDictBeanList.get(i).getNAME());
+                lossItemDict.setFlag(lossItemDictBeanList.get(i).getFLAG());
                 lossItemDict.setLossItemDictNo(lossItemDictBeanList.get(i).getNO());
                 if(lossItemDictBeanList.get(i).getPARENT()==null)
                 {
@@ -477,30 +478,36 @@ public class SynceDataServiceImpl implements ISynceDataService {
      * @return
      */
     @Override
-    public int addLossItemDict(LossItemDict lossItemDict) {
-        int result = 1;
-        LossItemDictBean  lossItemDictBean = new LossItemDictBean();
-        lossItemDictBean.setDESCRIPTION(lossItemDict.getRemark());
-        lossItemDictBean.setMONEY_TYPE(lossItemDict.getPriceUnit());
-        lossItemDictBean.setNAME(lossItemDict.getName());
-        lossItemDictBean.setNUMERAIRE(lossItemDict.getNumeraire());
-        lossItemDictBean.setNUMERAIREMSG(lossItemDict.getNumeraireMsg());
-        lossItemDictBean.setPARENT( lossItemDict.getLossItemDictPid());
-        String itemStr = HtGson.toJson(lossItemDictBean, new TypeToken<LossItemDictBean>() {
-        });
-        HtMap htMap = new HtMap();
-        try {
-            htMap.put("loseJson", URLEncoder.encode(itemStr, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        String resultStr =  HtRequest.post(KlConsts.KLIN_BASE_URL + "/add/loseProject", htMap);
-        JsonObject jsonObject = HtGson.fromJson(resultStr, new TypeToken<JsonObject>() {
-        });
-        lossItemDict.setLossItemDictId(jsonObject.get("ID").toString());
-        lossItemDict.setLossItemDictNo(jsonObject.get("NO").toString());
-        lossItemDict.setCreateTime(new Date());
-        result = lossItemDictMapper.addLossItemDict(lossItemDict);
-        return result;
+    public LossItemDict addLossItemDict(LossItemDict lossItemDict) {
+       try {
+           int result = 1;
+           LossItemDictBean  lossItemDictBean = new LossItemDictBean();
+           lossItemDictBean.setDESCRIPTION(lossItemDict.getRemark());
+           lossItemDictBean.setMONEY_TYPE(lossItemDict.getPriceUnit());
+           lossItemDictBean.setNAME(lossItemDict.getName());
+           lossItemDictBean.setNUMERAIRE(lossItemDict.getNumeraire());
+           lossItemDictBean.setNUMERAIREMSG(lossItemDict.getNumeraireMsg());
+           lossItemDictBean.setPARENT( lossItemDict.getLossItemDictPid());
+           lossItemDictBean.setFLAG( lossItemDict.getFlag());
+           String itemStr = HtGson.toJson(lossItemDictBean, new TypeToken<LossItemDictBean>() {
+           });
+           HtMap htMap = new HtMap();
+           try {
+               htMap.put("loseJson", URLEncoder.encode(itemStr, "UTF-8"));
+           } catch (UnsupportedEncodingException e) {
+               e.printStackTrace();
+           }
+           String resultStr =  HtRequest.post(KlConsts.KLIN_BASE_URL + "/add/loseProject", htMap);
+           JsonObject jsonObject = HtGson.fromJson(resultStr, new TypeToken<JsonObject>() {
+           });
+           lossItemDict.setLossItemDictId(jsonObject.get("ID").toString());
+           lossItemDict.setLossItemDictNo(jsonObject.get("NO").toString());
+           lossItemDict.setCreateTime(new Date());
+           result = lossItemDictMapper.addLossItemDict(lossItemDict);
+       }catch (Exception e)
+       {
+           return null;
+       }
+        return lossItemDict;
     }
 }

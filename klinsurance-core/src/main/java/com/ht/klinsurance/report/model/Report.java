@@ -2,7 +2,6 @@ package com.ht.klinsurance.report.model;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.Date;
 @Data
 public class Report {
@@ -26,7 +25,7 @@ public class Report {
 
     private String insureDeadline;
 
-    private BigDecimal insureAmount;
+    private String insureAmount;
 
     private String deductible;
 
@@ -40,11 +39,11 @@ public class Report {
 
     private String liabilityAffirm;
 
-    private BigDecimal reportedLossAmount;
+    private String reportedLossAmount;
 
-    private BigDecimal verifyLossAmount;
+    private String verifyLossAmount;
 
-    private BigDecimal adjustmentAmount;
+    private String adjustmentAmount;
 
     private String surveyor;
 
@@ -95,6 +94,8 @@ public class Report {
     private String remark;
 
     private Date createTime;
+
+    private String clientId;
 
     /**************************************************/
     private String projectName;//项目名

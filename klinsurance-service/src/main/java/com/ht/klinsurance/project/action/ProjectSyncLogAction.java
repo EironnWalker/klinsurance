@@ -139,4 +139,100 @@ public class ProjectSyncLogAction extends BaseAction
             log.error("数据同步方法", e);
         }
     }
+
+    /**
+     * 将手机端数据同步到服务器
+     * @param briefingListStr
+     * @param briefingLossListStr
+     * @param briefingLossImageListStr
+     * @param briefingLossItemListStr
+     * @param customerListStr
+     * @param lossListStr
+     * @param lossItemListStr
+     * @param reportListStr
+     * @param reportBriefingListStr
+     * @param textTemplateListStr
+     * @param response
+     */
+    @RequestMapping("putPhoneSyncMessage")
+    public void putPhoneSyncMessage(
+                                  String briefingListStr,String briefingLossListStr,
+                                  String briefingLossImageListStr,String briefingLossItemListStr,
+                                  String customerListStr,String lossListStr,
+                                  String lossItemListStr,String reportListStr,
+                                  String reportBriefingListStr,String textTemplateListStr,
+                                  HttpServletResponse response)
+    {
+        try {
+
+            List<Briefing> briefingList = null;
+            List<BriefingLoss> briefingLossList= null;
+            List<BriefingLossImage> briefingLossImageList =null;
+            List<BriefingLossItem> briefingLossItemList =null;
+            List<Customer> customerList =null;
+            List<Loss> lossList = null;
+            List<LossItem> lossItemList =null;
+            List<Report> reportList = null;
+            List<ReportBriefing> reportBriefingList =null;
+            List<TextTemplate> textTemplateList = null;
+            //配装从手机端传过来的数据
+            if(briefingListStr!=null)
+            {
+                briefingList = HtGson.fromJson(briefingListStr, new TypeToken<List<Briefing>>() { });
+            }
+            if(briefingLossListStr!=null)
+            {
+                briefingLossList = HtGson.fromJson(briefingLossListStr, new TypeToken<List<BriefingLoss>>() { });
+            }
+            if(briefingLossImageListStr!=null)
+            {
+                briefingLossImageList = HtGson.fromJson(briefingLossImageListStr, new TypeToken<List<BriefingLossImage>>() { });
+            }
+            if(briefingLossItemListStr!=null)
+            {
+                briefingLossItemList = HtGson.fromJson(briefingLossItemListStr, new TypeToken<List<BriefingLossItem>>() { });
+            }
+            if(customerListStr!=null)
+            {
+                customerList = HtGson.fromJson(customerListStr, new TypeToken<List<Customer>>() { });
+            }
+            if(lossListStr!=null)
+            {
+                lossList = HtGson.fromJson(lossListStr, new TypeToken<List<Loss>>() { });
+            }
+            if(lossItemListStr!=null)
+            {
+                lossItemList = HtGson.fromJson(lossItemListStr, new TypeToken<List<LossItem>>() { });
+            }
+            if(reportListStr!=null)
+            {
+                reportList = HtGson.fromJson(reportListStr, new TypeToken<List<Report>>() { });
+            }
+            if(reportBriefingListStr!=null)
+            {
+                reportBriefingList = HtGson.fromJson(reportBriefingListStr, new TypeToken<List<ReportBriefing>>() { });
+            }
+            if(textTemplateListStr!=null)
+            {
+                textTemplateList= HtGson.fromJson(textTemplateListStr, new TypeToken<List<TextTemplate>>() { });
+            }
+
+            //将数据返回到手机端
+            int result = projectSyncLogService.putPhoneSyncMessage(  briefingList, briefingLossList,
+                    briefingLossImageList, briefingLossItemList,
+                    customerList, lossList,
+                    lossItemList, reportList,
+                    reportBriefingList, textTemplateList);
+            if(result>0)
+            {
+                HtResponse.outJson(response, true, "保存成功");
+            }else{
+                HtResponse.outJson(response, false, "保存失败");
+            }
+
+
+        } catch (Exception e) {
+            log.error("数据同步方法", e);
+        }
+    }
 }

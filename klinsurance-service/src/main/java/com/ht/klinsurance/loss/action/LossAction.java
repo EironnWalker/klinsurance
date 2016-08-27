@@ -28,15 +28,15 @@ public class LossAction extends BaseAction
     private ILossService lossService;
 
     @RequestMapping("addLoss")
-    public void addLoss(String lossJson,String lossItemJson,String picFileJson, HttpServletResponse response) {
+    public void addLoss(String lossJson,String lossItemJson, HttpServletResponse response) {
         try {
             Loss loss =  HtGson.fromJson(lossJson, new TypeToken<Loss>() {
             });
             List<LossItem>  lossItemList =  HtGson.fromJson(lossItemJson, new TypeToken<List<LossItem>>() {
             });
-            List<String> picList = HtGson.fromJson(picFileJson, new TypeToken<List<String>>() {
-            });
-            int  result = lossService.addLoss(loss,lossItemList,picList);
+            //List<String> picList = HtGson.fromJson(picFileJson, new TypeToken<List<String>>() {
+            //});
+            int  result = lossService.addLoss(loss,lossItemList);
             if (result>0) {
                 HtResponse.outJson(response, true, null);
             } else {

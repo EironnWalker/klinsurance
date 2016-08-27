@@ -26,6 +26,6 @@ public interface IBriefingService {
      * @param lossItemList
      * @return
      */
-    int saveBriefing(Briefing briefing,List<BriefingLoss> briefingLossList,List<BriefingLossItem> briefingLossItemList,
-                     List<BriefingLossImage> briefingLossImageList,List<Loss> lossList,List<LossItem> lossItemList);
+    String saveBriefing(Briefing briefing,List<BriefingLoss> briefingLossList,List<BriefingLossItem> briefingLossItemList,
+                     List<BriefingLossImage> briefingLossImageList,List<Loss> lossList,List<LossItem> lossItemList,String path);
 }

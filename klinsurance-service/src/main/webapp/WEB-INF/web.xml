@@ -45,6 +45,16 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <display-name>FileUploadServlet</display-name>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <servlet-class>com.ht.klinsurance.common.FileUploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <url-pattern>/fileUpload/fileUploadServlet</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/css/*</url-pattern>

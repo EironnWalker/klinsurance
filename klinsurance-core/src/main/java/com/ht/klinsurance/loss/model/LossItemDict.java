@@ -22,4 +22,6 @@ public class LossItemDict {
     private String remark;
 
     private Date createTime;
+
+    private String flag;
 }

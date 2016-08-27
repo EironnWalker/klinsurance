@@ -14,5 +14,6 @@ public class LossItemDictBean {
     private String NUMERAIREMSG;
     private String PARENT;
     private String PARENT_NAME;
+    private String FLAG;
 
 }

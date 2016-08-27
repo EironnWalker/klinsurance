@@ -8,7 +8,6 @@ import com.ht.klinsurance.briefing.model.BriefingLoss;
 import com.ht.klinsurance.briefing.model.BriefingLossImage;
 import com.ht.klinsurance.briefing.model.BriefingLossItem;
 import com.ht.klinsurance.briefing.service.IBriefingService;
-import com.ht.klinsurance.briefing.service.IBuildBriefingService;
 import com.ht.klinsurance.common.BaseAction;
 import com.ht.klinsurance.loss.model.Loss;
 import com.ht.klinsurance.loss.model.LossItem;
@@ -31,8 +30,6 @@ public class BriefingAction extends BaseAction
 {
     @Resource
     private IBriefingService briefingService;
-    @Resource
-    private IBuildBriefingService buildBriefingService;
 
     /**
      * 保存简报
@@ -47,7 +44,7 @@ public class BriefingAction extends BaseAction
     @RequestMapping("addBriefing")
     public void addBriefing(String briefingJson,String briefingLossListJson,String briefingLossItemJson ,
                             String briefingLossImageListJson,String lossListJson,String lossItemListJson,
-                            HttpServletResponse response)
+                            HttpServletResponse response,HttpServletRequest request)
     {
         try {
             Briefing briefing =  HtGson.fromJson(briefingJson, new TypeToken<Briefing>() {
@@ -77,10 +74,11 @@ public class BriefingAction extends BaseAction
                 lossItemList = HtGson.fromJson(lossItemListJson,
                         new TypeToken<List<LossItem>>() {});
             }
-            int  result = briefingService.saveBriefing( briefing, briefingLossList, briefingLossItemList,
-                    briefingLossImageList, lossList,lossItemList);
-            if (result>0) {
-                HtResponse.outJson(response, true, null);
+            String   ftpUrl = briefingService.saveBriefing( briefing, briefingLossList, briefingLossItemList,
+                    briefingLossImageList, lossList,lossItemList,request.getSession().getServletContext().getRealPath("/"));
+
+            if (ftpUrl!=null) {
+                HtResponse.outJson(response, true, ftpUrl);
             } else {
                 HtResponse.outJson(response, false, null);
             }
@@ -92,8 +90,8 @@ public class BriefingAction extends BaseAction
     public void test(HttpServletRequest request){
         String path=request.getSession().getServletContext().getRealPath("/");
         try {
-            String ftpUrl=buildBriefingService.buildBriefing(path,"4080cd0624f74f349bbed81727f5da70");
-            System.out.println("ftpUrl："+ftpUrl);
+            //String ftpUrl=buildBriefingService.buildBriefing(path,"4080cd0624f74f349bbed81727f5da70");
+            //System.out.println("ftpUrl："+ftpUrl);
         } catch (Exception e) {
             log.error("测试生成简报", e);
         }

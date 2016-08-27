@@ -1,5 +1,7 @@
 package com.ht.klinsurance.customer.action;
 
+import com.ht.common.ht.HtMap;
+import com.ht.common.http.HtRequest;
 import junit.framework.TestCase;
 
 public class CustomerActionTest extends TestCase {
@@ -22,11 +24,11 @@ public class CustomerActionTest extends TestCase {
         //    String dataBean = HtRequest.post("http://192.168.0.67:8888/klinsurance-service/customerAction/addCustomer", parameter);
         //    System.out.println(dataBean);
         //}
-            /*HtMap parameter = new HtMap();
+            HtMap parameter = new HtMap();
 
-            parameter.put("customerJson", "8");
-            String dataBean = HtRequest.post("http://192.168.23.3:8080/klinsurance-service/customerAction/addCustomer", parameter);
-            System.out.println(dataBean);*/
+            parameter.put("customerJson", "6");
+            String dataBean = HtRequest.post("http://192.168.23.6:8080/klinsurance-service/customerAction/addCustomer", parameter);
+            System.out.println(dataBean);
     }
 
 
