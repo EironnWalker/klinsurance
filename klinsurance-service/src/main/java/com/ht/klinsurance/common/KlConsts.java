@@ -14,6 +14,15 @@ public class KlConsts {
     public static final Integer WORD_IMAGE_HEIGHT = 180;
     //生成word时图片宽度
     public static final Integer WORD_IMAGE_WIDTH = 220;
+    /*********************发送邮件相关参数*********************************/
+    //发送邮件的邮箱
+    public static final String EMAIL_SEND_EMAIL = "klapp@kunlunrisk.com";
+    //发送邮件的邮箱密码
+    public static final String EMAIL_SEND_PWD = "IHv5qBJJ54";
+    //发送邮件的smtp服务器
+    public static final String EMAIL_SMTP = "smtp.163.com";
+    /**********************end********************************/
+
     //分页数量
     public static final Integer PAGE_LIMIT = 10;
     public static  final String  IMG_SERVICE ;
