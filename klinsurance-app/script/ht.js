@@ -197,12 +197,16 @@ var ht = (function ($) {
             return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
         });
     };
+    var formatData = function(data){
+        return data != undefined && data ? '"' + data + '"' : null;
+    };
     return {
         ip: ip,
         constants:constants,
         apicloud: apicloud,
         message: message,
         uuid: uuid,
+        formatData: formatData,
         storage: storage
     };
 })(jQuery);
