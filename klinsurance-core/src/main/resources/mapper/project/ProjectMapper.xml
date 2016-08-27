@@ -24,9 +24,27 @@
       <if test="createTime!=null and createTime!=''">
         and create_time > #{createTime}
       </if>
-
     </where>
-
+  </select>
+  <select id="findPageList" resultType="com.ht.klinsurance.project.model.Project">
+        SELECT
+         pro_id, p.project_id,project_no, p.user_id, project_name, project_sponsor, project_time, insure_no, p.insure_name,
+            insurer_id, p.insurer_name, p.accident_time, accident_site, p.accident_cause, responsibility_no,
+            responsibility_name, certification_code, p.insure_deadline, p.remark, p.create_time,
+                c.link_man, c.link_phone, if(IFNULL(r.report_id,FALSE),'有','无') is_report, if(IFNULL(b.briefing_id ,FALSE),'有','无') is_briefing
+        FROM project p
+        LEFT JOIN customer c on p.insurer_id = c.customer_id
+        LEFT JOIN
+            (SELECT briefing_id,project_id FROM briefing GROUP BY project_id) b
+            on p.project_id = b.project_id
+        LEFT JOIN
+        (SELECT report_id,project_id FROM report GROUP BY project_id ) r
+        on p.project_id = r.project_id
+    <where>
+      <if test="projectName != null and projectName != ''">
+        and p.project_name like concat('%',#{projectName},'%')
+      </if>
+    </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from project

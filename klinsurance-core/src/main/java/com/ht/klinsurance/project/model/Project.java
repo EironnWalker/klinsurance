@@ -46,4 +46,10 @@ public class Project {
 
     private String projectNo;
 
+    //=====================非表字段====================
+
+    private String isReport;//报告信息
+
+    private String isBriefing;//项目简报
+
   }
