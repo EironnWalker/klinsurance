@@ -115,13 +115,13 @@ function goLocationList(projectId) {
         api.openWin({
             name: '/html/site/location_list_win.html',
             url: api.wgtRootDir + '/html/site/location_list_win.html',
-            pageParam: {id: projectId}
+            pageParam: {projectId: projectId}
         });
     } else if (pageType == 'report') {
         api.openWin({
             name: '/html/report/report_win.html',
             url: api.wgtRootDir + '/html/report/report_win.html',
-            pageParam: {id: projectId}
+            pageParam: {projectId: projectId}
         });
     }
 }
