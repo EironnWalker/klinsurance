@@ -4,29 +4,98 @@ var TranslateModule = null;
 var locationJson;
 var projectId;
 var userId;
+var db;
+var isAdd;
+var briefingId;
 apiready = function () {
-    projectId = api.pageParam.projectId;
-    userId = ht.storage.getLocalStorage(ht.constants.userId);
+    db = api.require('db');
     BaiduPush = api.require('LocationModule');
     BaiduPush.initDb();//将模块中的数据库写入手机
     HTDatePicker = api.require('HTDatePicker');
     TranslateModule = api.require('TranslateModule');
     $(".icon-location").click();
-    $("#userId").val(userId);
-    $("#briefingId").val(ht.uuid());
-    var myDate = new Date();//时间实例
-    $("#briefingNo").val(myDate.pattern("yyyyMMddHHmmss")+myDate.getMilliseconds());
-    $("#projectId").val(projectId);
-    $("#surveyTime").val(myDate.pattern("yyyy-MM-dd HH:mm:ss"));
+    projectId = api.pageParam.projectId;
+    isAdd = api.pageParam.isAdd;
+    userId = ht.storage.getLocalStorage(ht.constants.userId);
+    if (isAdd == 1) {
+        $("#userId").val(userId);
+        var myDate = new Date();//时间实例
+        $("#briefingNo").val(myDate.pattern("yyyyMMddHHmmss") + myDate.getMilliseconds());
+        $("#projectId").val(projectId);
+        $("#surveyTime").val(myDate.pattern("yyyy-MM-dd HH:mm:ss"));
+    } else {
+        briefingId = api.pageParam.briefingId;
+    }
     $("form").baseValidate(function () {
-        api.openWin({
-            name: '/html/report/add_brief_win2.html',
-            url: api.wgtRootDir + '/html/report/add_brief_win2.html',
-            pageParam: {name: 'pageparamname'}
+        var uuid = ht.uuid();
+        var data = form2json('form');
+        var sql;
+        if (isAdd == 1) {
+            sql = 'INSERT INTO briefing (briefingId, briefingNo, userId, projectId, wordTemplateId, surveyTime, surveyPlace,' +
+                ' surveyLat, surveyLng, insurer, insurerName, insurerPhone, surveyor, accidentDescription, lossDescription, ' +
+                'nextWork, mainSurveyor, subSurveyor, manager, briefingFile, remark, createTime, isSync) VALUES ('
+                + formatData(uuid) + ','
+                + formatData(data.briefingNo) + ','
+                + formatData(data.userId) + ','
+                + formatData(data.projectId) + ','
+                + formatData(data.wordTemplateId) + ','
+                + formatData(data.surveyTime) + ','
+                + formatData(data.surveyPlace) + ','
+                + formatData(data.surveyLat) + ','
+                + formatData(data.surveyLng) + ','
+                + formatData(data.insurer) + ','
+                + formatData(data.insurerName) + ','
+                + formatData(data.insurerPhone) + ','
+                + formatData(data.surveyor) + ','
+                + formatData(data.accidentDescription) + ','
+                + formatData(data.lossDescription) + ','
+                + formatData(data.nextWork) + ','
+                + formatData(data.mainSurveyor) + ','
+                + formatData(data.subSurveyor) + ','
+                + formatData(data.manager) + ','
+                + formatData(data.briefingFile) + ','
+                + formatData(data.remark) + ','
+                + formatData(new Date().pattern("yyyy-MM-dd HH:mm:ss")) + ','
+                + formatData(1) + ')';
+        } else {
+            sql = 'UPDATE "briefing" SET'
+                + '"surveyTime" = ' + formatData(data.surveyTime) + ','
+                + '"surveyPlace" = ' + formatData(data.surveyPlace) + ','
+                + '"surveyLat" = ' + formatData(data.surveyLat) + ','
+                + '"surveyLng" = ' + formatData(data.surveyLng) + ','
+                + '"insurer" = ' + formatData(data.insurer) + ','
+                + '"insurerName" = ' + formatData(data.insurerName) + ','
+                + '"insurerPhone" = ' + formatData(data.insurerPhone) + ','
+                + '"surveyor" = ' + formatData(data.surveyor) + ','
+                + '"accidentDescription" = ' + formatData(data.accidentDescription) + ','
+                + '"lossDescription" = ' + formatData(data.lossDescription) + ','
+                + '"isSync" = ' + formatData(1)
+                + ' WHERE briefingId = "' + $("#briefingId").val() + '"';
+        }
+        db.executeSql({
+            name: 'klinsurance_db.db',
+            sql: sql
+        }, function (ret, err) {
+            if (ret.status) {
+                if (isAdd == 1) {
+                    $("#briefingId").val(uuid);
+                }
+                api.openWin({
+                    name: '/html/report/add_brief_win2.html',
+                    url: api.wgtRootDir + '/html/report/add_brief_win2.html',
+                    pageParam: {briefingId: $("#briefingId").val()}
+                });
+            } else {
+                api.toast({
+                    msg: '数据错误，请稍后重试！',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+            }
         });
     });
 };
-function nextStep(){
+function nextStep() {
     $("form").submit();
 }
 $(".icon-location").click(function () {
@@ -107,3 +176,8 @@ Date.prototype.pattern = function (fmt) {
     }
     return fmt;
 };
+
+//格式化数据
+function formatData(data) {
+    return data != undefined && data ? '"' + data + '"' : null;
+}
