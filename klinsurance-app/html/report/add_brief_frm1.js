@@ -83,7 +83,10 @@ apiready = function () {
                 api.openWin({
                     name: '/html/report/add_brief_win2.html',
                     url: api.wgtRootDir + '/html/report/add_brief_win2.html',
-                    pageParam: {briefingId: $("#briefingId").val()}
+                    pageParam: {
+                        briefingId: $("#briefingId").val(),
+                        projectId:projectId
+                    }
                 });
             } else {
                 api.toast({

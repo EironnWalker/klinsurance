@@ -16,53 +16,36 @@
     </div>
     <a class="btn btn-active">搜索</a>
 </div>
-<div class="content-bottom-10 ul-select">
-    <input class="aui-radio" name="location" type="radio"/>
-    <ul class="ul-one no-active">
-        <li>
-            <div class="horizontal">
-                <div class="name">编号</div>
-                <div class="flex-1 color-666 text-right id">111154684</div>
-            </div>
-        </li>
-        <li>
-            <div class="horizontal">
-                <div class="name">时间</div>
-                <div class="flex-1 color-666 text-right">2016.06.06</div>
-            </div>
-        </li>
-        <li>
-            <div class="horizontal">
-                <div class="name">地点</div>
-                <div class="flex-1 color-666 text-right location">111湖南省长沙市芙蓉区湖南省长沙市芙蓉区</div>
-            </div>
-        </li>
-    </ul>
-</div>
-<div class="content-bottom-10 ul-select">
-    <input class="aui-radio" name="location" type="radio"/>
-    <ul class="ul-one no-active">
-        <li>
-            <div class="horizontal">
-                <div class="name">编号</div>
-                <div class="flex-1 color-666 text-right id">222154684</div>
-            </div>
-        </li>
-        <li>
-            <div class="horizontal">
-                <div class="name">时间</div>
-                <div class="flex-1 color-666 text-right">2016.06.06</div>
-            </div>
-        </li>
-        <li>
-            <div class="horizontal">
-                <div class="name">地点</div>
-                <div class="flex-1 color-666 text-right location">222湖南省长沙市芙蓉区湖南省长沙市芙蓉区222湖南省长沙市芙蓉区湖南省长沙市芙蓉区</div>
-            </div>
-        </li>
-    </ul>
-</div>
 <script src="../../script/lib/jquery.js"></script>
+<script type="text/javascript" src="../../script/ht.js"></script>
+<script type="text/javascript" src="../../script/lib/template.js"></script>
 <script src="location_frm.js"></script>
+<script type="text/html" id="templateLoss">
+    {{each data as loss}}
+    <div class="content-bottom-10 ul-select">
+        <input class="aui-radio" name="location" type="checkbox" id="{{loss.lossId}}"/>
+        <ul class="ul-one no-active">
+            <li>
+                <div class="horizontal">
+                    <div class="name">编号</div>
+                    <div class="flex-1 color-666 text-right id">{{loss.placeNo}}</div>
+                </div>
+            </li>
+            <li>
+                <div class="horizontal">
+                    <div class="name">时间</div>
+                    <div class="flex-1 color-666 text-right">{{loss.createTime}}</div>
+                </div>
+            </li>
+            <li>
+                <div class="horizontal">
+                    <div class="name">地点</div>
+                    <div class="flex-1 color-666 text-right location">{{loss.place}}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    {{/each}}
+</script>
 </body>
 </html>
