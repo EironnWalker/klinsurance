@@ -7872,7 +7872,7 @@
 							<w:sz w:val="21"/>
 							<w:lang w:eastAsia="zh-CN"/>
 						</w:rPr>
-						<w:t>20150818兰成渝输油气管道暴雨损失案</w:t>
+						<w:t>${report.projectName!}</w:t>
 					</w:r>
 				</w:p>
 			</w:hdr>
