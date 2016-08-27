@@ -14,7 +14,8 @@ public class KlConsts {
     public static final Integer WORD_IMAGE_HEIGHT = 180;
     //生成word时图片宽度
     public static final Integer WORD_IMAGE_WIDTH = 220;
-
+    //分页数量
+    public static final Integer PAGE_LIMIT = 10;
     public static  final String  IMG_SERVICE ;
 
     public static  final String  KLIN_BASE_URL ;
