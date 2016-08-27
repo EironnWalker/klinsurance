@@ -11,6 +11,16 @@
 <body>
 <div class="content-bottom-10">
     <ul class="ul-three project-info active" id="content">
+        <li onclick="goLocationList('0001');">
+            <div class="horizontal">
+                <div class="flex-1 ellipsis">
+                    <div class="name red">1</div>
+                    <div class="location">事故地点：2</div>
+                    <div class="time">事故时间：3</div>
+                </div>
+                <!--<div class="icon-go"></div>-->
+            </div>
+        </li>
     </ul>
 </div>
 <script src="../../script/lib/jquery.js"></script>
@@ -19,16 +29,16 @@
 <script src="project_info_frm.js"></script>
 <script type="text/html" id="templateProject">
     {{each data as project}}
-        <li onclick="goLocationList('{{project.projectId}}');">
-            <div class="horizontal">
-                <div class="flex-1 ellipsis">
-                    <div class="name red">{{project.projectName}}</div>
-                    <div class="location">事故地点：{{project.accidentSite}}</div>
-                    <div class="time">事故时间：{{project.createTime}}</div>
-                </div>
-                <!--<div class="icon-go"></div>-->
+    <li onclick="goLocationList('{{project.projectId}}');">
+        <div class="horizontal">
+            <div class="flex-1 ellipsis">
+                <div class="name red">{{project.projectName}}</div>
+                <div class="location">事故地点：{{project.accidentSite}}</div>
+                <div class="time">事故时间：{{project.createTime}}</div>
             </div>
-        </li>
+            <!--<div class="icon-go"></div>-->
+        </div>
+    </li>
     {{/each}}
 </script>
 </body>

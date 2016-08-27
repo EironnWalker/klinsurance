@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../css/base.css"/>
 </head>
 <body>
-<form id="form-brief1">
+<form id="form">
     <input type="hidden" id="briefingId" name="briefingId"/>
     <input type="hidden" id="briefingNo" name="briefingNo"/>
     <input type="hidden" id="userId" name="userId"/>
@@ -23,7 +23,7 @@
                 <div class="horizontal">
                     <div class="name">勘测地点</div>
                     <a class="wrap flex-1"><input id="surveyPlace" name="surveyPlace" validate="{required: true}"
-                                                  errormsg="勘测地点" placeholder="勘测地点"/></a>
+                                                  errormsg="勘测地点" placeholder="勘测地点" value="勘测地点"/></a>
                     <div class="icon icon-location"></div>
                 </div>
             </li>
@@ -38,14 +38,14 @@
                 <div class="horizontal">
                     <div class="name">被保人</div>
                     <a class="wrap flex-1"><input validate="{required: true}" errormsg="被保人"
-                                                  placeholder="请选择被保人"/></a>
+                                                  placeholder="请选择被保人" value="被保人"/></a>
                 </div>
             </li>
             <li>
                 <div class="horizontal">
                     <div class="name">联系人</div>
                     <a class="wrap flex-1"><input name="insurerName" validate="{required: true}" errormsg="联系人"
-                                                  placeholder="填写联系人"/></a>
+                                                  placeholder="填写联系人" value="联系人"/></a>
 
                     <div class="icon icon-personal"></div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="horizontal">
                     <div class="name">联系方式</div>
                     <a class="wrap flex-1"><input name="insurerPhone" validate="{required: true, tm: true}"
-                                                  errormsg="联系方式" placeholder="请填写联系方式"/></a>
+                                                  errormsg="联系方式" placeholder="请填写联系方式" value="13311111111"/></a>
                 </div>
             </li>
         </ul>
@@ -65,7 +65,7 @@
                 <div class="name">公估师信息</div>
                 <a class="wrap flex-1">
                     <textarea name="surveyor" id="surveyor" validate="{required: true}" errormsg="公估师信息"
-                              placeholder=""></textarea>
+                              placeholder="">公估师信息</textarea>
                 </a>
 
                 <div class="icon-wrap big">
@@ -78,7 +78,7 @@
                 <div class="name">事故经过</div>
                 <a class="wrap flex-1">
                     <textarea name="accidentDescription" id="accidentDescription" validate="{required: true}"
-                              errormsg="事故经过" placeholder=""></textarea>
+                              errormsg="事故经过" placeholder="">事故经过</textarea>
                 </a>
 
                 <div class="icon-wrap">
@@ -92,7 +92,7 @@
                 <div class="name">损失情况</div>
                 <a class="wrap flex-1">
                     <textarea name="lossDescription" id="lossDescription" validate="{required: true}" errormsg="损失情况"
-                              placeholder=""></textarea>
+                              placeholder="">损失情况</textarea>
                 </a>
 
                 <div class="icon-wrap">

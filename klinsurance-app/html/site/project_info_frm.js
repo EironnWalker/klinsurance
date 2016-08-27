@@ -9,7 +9,7 @@ apiready = function () {
     db = api.require('db');
     pageType = api.pageParam.type;
     TranslateModule = api.require('TranslateModule');
-    queryTotalPage();
+    //queryTotalPage();
     // 下拉刷新
     api.setRefreshHeaderInfo({
         visible: true,
