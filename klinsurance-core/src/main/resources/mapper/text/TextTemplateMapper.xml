@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ht.klinsurance.text.mapper.TextTemplateMapper" >
-
-  <sql id="Base_Column_List" >
-    text_template_id, name, content, tags, create_time,is_shared
-  </sql>
-  <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.text.model.TextTemplate"  parameterType="java.lang.String" >
+  <select id="findById" resultType="com.ht.klinsurance.text.model.TextTemplate"  parameterType="java.lang.String" >
     select 
-    <include refid="Base_Column_List" />
+    text_template_id, name, content, tags, create_time
     from text_template
     where text_template_id = #{textTemplateId,jdbcType=VARCHAR}
+  </select>
+  <select id="findList" resultType="com.ht.klinsurance.text.model.TextTemplate">
+    select
+    text_template_id, name, content, tags, create_time
+    from text_template
+    <where>
+      <if test="search!=null and search!=''">
+        and name like concat('%',#{search},'%')
+      </if>
+      <if test="tagCodes!=null and tagCodes!=''">
+        and
+        <foreach collection="tagCodes" item="tagCode" separator="or">
+          tag_codes like CONCAT('%',#{tagCode},'%')
+        </foreach>
+      </if>
+    </where>
+    order by create_time desc
   </select>
   <select id="findTextTemplateList" resultType="com.ht.klinsurance.text.model.TextTemplate">
     select

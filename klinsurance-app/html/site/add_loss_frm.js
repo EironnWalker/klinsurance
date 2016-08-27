@@ -13,7 +13,7 @@ function goList() {
 
 function doChangeLoss(lossId,lossDetail,lossMoney){
     $("#loss-detail").val(lossDetail);
-    $("#loss-money").val(lossMoney);
+    //$("#loss-money").val(lossMoney);
     loss_id = lossId;
 }
 

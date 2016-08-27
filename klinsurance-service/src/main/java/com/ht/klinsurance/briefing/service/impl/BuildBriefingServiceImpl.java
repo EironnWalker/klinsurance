@@ -5,7 +5,7 @@ import com.ht.klinsurance.briefing.mapper.BriefingMapper;
 import com.ht.klinsurance.briefing.model.Briefing;
 import com.ht.klinsurance.briefing.model.BriefingLossImage;
 import com.ht.klinsurance.briefing.service.IBuildBriefingService;
-import com.ht.klinsurance.common.WordUtils;
+import com.ht.klinsurance.utils.word.WordUtils;
 import com.ht.klinsurance.loss.mapper.LossMapper;
 import com.ht.klinsurance.loss.model.Loss;
 import com.ht.klinsurance.word.mapper.WordTemplateMapper;

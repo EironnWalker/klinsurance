@@ -1,8 +1,8 @@
 var ht = (function ($) {
     "use strict";
     var ip = {}; // 服务地址
-    ip.insuranceservice="http://219.146.138.106:9100/inscrm-service";
-    ip.insuranceimg = "http://192.168.0.202:9292/upload/inscrm-app";
+    ip.insuranceservice="http://192.168.0.66:9100/klinsurance-service";
+    ip.insuranceimg = "http://192.168.0.202:9292/upload/klinsurance-app";
 
     // 常量
     var constants = {};
@@ -11,6 +11,8 @@ var ht = (function ($) {
     constants.name = "name"; // 用户名字
     constants.phone = "phone"; // 用户电话
     constants.headImg = "headImg"; // 头像
+    constants.rightCode = "rightCode"; // 手势密码
+    constants.lastSyncInfo = "lastSyncInfo"; // 上次同步内容
 
     var apicloud = {};
     apicloud.showProgress = function (str) {
@@ -187,11 +189,20 @@ var ht = (function ($) {
         };
         index = layer.open(def);
     };
+    var uuid = function(){
+        var d = new Date().getTime();
+        return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
+        });
+    };
     return {
         ip: ip,
         constants:constants,
         apicloud: apicloud,
         message: message,
+        uuid: uuid,
         storage: storage
     };
 })(jQuery);
