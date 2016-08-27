@@ -75,7 +75,7 @@ public class FileUploadServlet extends HttpServlet {
 
                 InputStream is = item.getInputStream();
                     try {
-                    path = upload+"\\"+name+".jpg";
+                    path = upload+"/"+name+".jpg";
                     inputStream2File(is, path);
                         break;
                     } catch (Exception e) {
