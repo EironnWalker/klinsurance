@@ -15,14 +15,16 @@
     <h1>损失项</h1>
 </header>
 <script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
 <script type="text/javascript">
     apiready = function () {
+        var headerHeight = $("header").fixStatusBar();
         api.openFrame({
             name: '/html/site/add_loss_frm.html',
             url: api.wgtRootDir + '/html/site/add_loss_frm.html',
             rect: {
                 x: 0,
-                y: $("header").height(),
+                y: headerHeight,
                 w: 'auto',
                 h: 'auto'
             },
