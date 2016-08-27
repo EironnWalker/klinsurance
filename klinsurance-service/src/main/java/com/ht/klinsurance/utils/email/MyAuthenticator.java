@@ -8,9 +8,10 @@ import javax.mail.PasswordAuthentication;
  * @date 2016/8/27
  */
 public class MyAuthenticator extends Authenticator {
-    private static final String userName = "klapp@kunlunrisk.com";
-    //private static final String userName = "feichenyun@126.com";
-    private static final String passWord = "IHv5qBJJ54";
+    //private static final String userName = "klapp@kunlunrisk.com";
+    private static final String userName = "feichenyun@126.com";
+    //private static final String passWord = "IHv5qBJJ54";
+    private static final String passWord = "fei370612";
     // * @author Michael.wu
 //* 密码和用户的验证
     public MyAuthenticator() {
