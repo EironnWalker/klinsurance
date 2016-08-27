@@ -26,7 +26,6 @@
     </where>
   </select>
   <select id="findList" resultType="com.ht.klinsurance.user.model.User">
-
     select
     <include refid="Base_Column_List" />
     from user
@@ -38,7 +37,16 @@
         and create_time > #{createTime}
       </if>
     </where>
-
+  </select>
+  <select id="findByIds" resultType="com.ht.klinsurance.user.model.User">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where
+      user_id in
+      <foreach collection="array" separator="," open="(" close=")" item="id">
+        #{id}
+      </foreach>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from user

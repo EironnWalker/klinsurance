@@ -8,19 +8,27 @@ import java.util.Map;
 
 @Repository
 public interface UserMapper {
-    int deleteByPrimaryKey(String userId);
 
-    int deleteAll();
+    User selectByPrimaryKey(String userId);
+
+    List<User> findListByParam(User user);
+
+    List<User> findList(Map<String, Object> parameter);
+
+    /**
+     * 批量查询用户
+     * @param ids
+     * @return
+     */
+    List<User> findByIds(String[] ids);
 
     int addUser(User record);
 
     int addUserList(List<User> list);
 
-    User selectByPrimaryKey(String userId);
-
     int updateUser(User record);
 
-    List<User> findListByParam(User user);
+    int deleteByPrimaryKey(String userId);
 
-    List<User> findList(Map<String, Object> parameter);
+    int deleteAll();
 }
