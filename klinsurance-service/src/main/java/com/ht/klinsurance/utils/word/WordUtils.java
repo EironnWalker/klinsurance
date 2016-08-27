@@ -1,6 +1,7 @@
-package com.ht.klinsurance.common;
+package com.ht.klinsurance.utils.word;
 
 import com.ht.klinsurance.briefing.model.BriefingLossImage;
+import com.ht.klinsurance.common.KlConsts;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.apache.poi.POIXMLDocument;

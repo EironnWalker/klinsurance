@@ -2,7 +2,7 @@ package com.ht.klinsurance.report.service.impl;
 
 import com.ht.klinsurance.briefing.mapper.BriefingLossImageMapper;
 import com.ht.klinsurance.briefing.model.BriefingLossImage;
-import com.ht.klinsurance.common.WordUtils;
+import com.ht.klinsurance.utils.word.WordUtils;
 import com.ht.klinsurance.loss.mapper.LossItemMapper;
 import com.ht.klinsurance.loss.mapper.LossMapper;
 import com.ht.klinsurance.loss.model.Loss;
