@@ -10,6 +10,13 @@
 </head>
 <body>
 <form id="form-brief1">
+    <input type="hidden" id="briefingId" name="briefingId"/>
+    <input type="hidden" id="briefingNo" name="briefingNo"/>
+    <input type="hidden" id="userId" name="userId"/>
+    <input type="hidden" id="projectId" name="projectId"/>
+    <input type="hidden" id="surveyLat" name="surveyLat"/>
+    <input type="hidden" id="surveyLng" name="surveyLng"/>
+    <input type="hidden" id="insurer" name="insurer"/>
     <div class="content-top-10">
         <ul class="ul-one name-right no-active">
             <li>
@@ -17,9 +24,6 @@
                     <div class="name">勘测地点</div>
                     <a class="wrap flex-1"><input id="surveyPlace" name="surveyPlace" validate="{required: true}"
                                                   errormsg="勘测地点" placeholder="勘测地点"/></a>
-                    <input type="hidden" id="surveyLat" name="surveyLat"/>
-                    <input type="hidden" id="surveyLng" name="surveyLng"/>
-
                     <div class="icon icon-location"></div>
                 </div>
             </li>
@@ -30,7 +34,6 @@
                                                   readonly/></a>
                 </div>
             </li>
-            <input type="text" name="insurer"/>
             <li>
                 <div class="horizontal">
                     <div class="name">被保人</div>
