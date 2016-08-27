@@ -3,7 +3,7 @@
 <mapper namespace="com.ht.klinsurance.text.mapper.TextTemplateMapper" >
   <select id="findById" resultType="com.ht.klinsurance.text.model.TextTemplate"  parameterType="java.lang.String" >
     select 
-    text_template_id, name, content, tags, create_time
+    text_template_id, name, content, tags, create_time,is_shared
     from text_template
     where text_template_id = #{textTemplateId,jdbcType=VARCHAR}
   </select>
@@ -26,7 +26,7 @@
   </select>
   <select id="findTextTemplateList" resultType="com.ht.klinsurance.text.model.TextTemplate">
     select
-    <include refid="Base_Column_List" />
+    text_template_id, name, content, tags, create_time,is_shared
     from text_template
     <where>
       <if test="createTime!=null and createTime!=''">
@@ -83,7 +83,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.text.model.TextTemplate" >
+  <update id="update" parameterType="com.ht.klinsurance.text.model.TextTemplate" >
     update text_template
     <set >
       <if test="name != null" >
