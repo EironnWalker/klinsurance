@@ -1,5 +1,6 @@
 package com.ht.klinsurance.utils.email;
 
+import com.ht.klinsurance.common.KlConsts;
 import org.apache.commons.lang.StringUtils;
 
 import javax.activation.DataHandler;
@@ -35,13 +36,13 @@ public class EmailUtils {
         Properties properties = new Properties();
         properties.setProperty("mail.smtp.auth","true");//设置验证机制
         properties.setProperty("mail.transport.protocol", "smtp");//发送邮件协议
-        properties.setProperty("mail.smtp.host", "smtp.126.com");//设置邮箱服务器地址
+        properties.setProperty("mail.smtp.host", KlConsts.EMAIL_SMTP);//设置邮箱服务器地址
         //properties.setProperty("mail.smtp.host", "smtp.exmail.qq.com");//设置邮箱服务器地址
         properties.setProperty("mail.smtp.port", "25");
         Session session = Session.getInstance(properties,new MyAuthenticator());
         session.setDebug(true);
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("feichenyun@126.com"));
+        message.setFrom(new InternetAddress( KlConsts.EMAIL_SEND_EMAIL));
         message.setSubject(title);
         message.setText("ceshicshiceshiceshidafkdhajfhj");
         message.setRecipients(RecipientType.TO,InternetAddress.parse(receiveEmail));//接收人

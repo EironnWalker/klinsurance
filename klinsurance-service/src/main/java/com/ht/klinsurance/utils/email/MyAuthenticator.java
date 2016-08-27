@@ -1,5 +1,7 @@
 package com.ht.klinsurance.utils.email;
 
+import com.ht.klinsurance.common.KlConsts;
+
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 
@@ -8,10 +10,8 @@ import javax.mail.PasswordAuthentication;
  * @date 2016/8/27
  */
 public class MyAuthenticator extends Authenticator {
-    //private static final String userName = "klapp@kunlunrisk.com";
-    private static final String userName = "feichenyun@126.com";
-    //private static final String passWord = "IHv5qBJJ54";
-    private static final String passWord = "fei370612";
+    private static final String userName = KlConsts.EMAIL_SEND_EMAIL;
+    private static final String passWord =  KlConsts.EMAIL_SEND_PWD;
     // * @author Michael.wu
 //* 密码和用户的验证
     public MyAuthenticator() {
