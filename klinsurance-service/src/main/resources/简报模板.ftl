@@ -341,7 +341,7 @@
 								<w:b/>
 								<w:szCs w:val="21"/>
 							</w:rPr>
-							<w:t>被保障人信息：</w:t>
+							<w:t>被保障人信息及联系方式：</w:t>
 						</w:r>
 					</w:p>
 					<w:p>
@@ -360,9 +360,28 @@
 								<w:rFonts w:hint="eastAsia" w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
 								<w:szCs w:val="21"/>
 							</w:rPr>
-							<w:t>${briefing.insurerName!}</w:t>
+							<w:t>${briefing.insurer!}</w:t>
 						</w:r>
 					</w:p>
+                    <w:p>
+                        <w:pPr>
+                            <w:pStyle w:val="21"/>
+                            <w:spacing w:line="360" w:lineRule="auto"/>
+                            <w:ind w:left="810" w:firstLine="0" w:firstLineChars="0"/>
+                            <w:rPr>
+                                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                                <w:b/>
+                                <w:szCs w:val="21"/>
+                            </w:rPr>
+                        </w:pPr>
+                        <w:r>
+                            <w:rPr>
+                                <w:rFonts w:hint="eastAsia" w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                                <w:szCs w:val="21"/>
+                            </w:rPr>
+                            <w:t>${briefing.insurerName!}${briefing.insurerPhone!}</w:t>
+                        </w:r>
+                    </w:p>
 					<w:p>
 						<w:pPr>
 							<w:pStyle w:val="21"/>
