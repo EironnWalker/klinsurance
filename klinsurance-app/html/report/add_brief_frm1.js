@@ -3,16 +3,22 @@ var HTDatePicker = null;
 var TranslateModule = null;
 var locationJson;
 var projectId;
+var userId;
 apiready = function () {
     projectId = api.pageParam.projectId;
+    userId = ht.storage.getLocalStorage(ht.constants.userId);
     BaiduPush = api.require('LocationModule');
     BaiduPush.initDb();//将模块中的数据库写入手机
     HTDatePicker = api.require('HTDatePicker');
     TranslateModule = api.require('TranslateModule');
     $(".icon-location").click();
-    $("#surveyTime").val(new Date().pattern("yyyy-MM-dd HH:mm:ss"));
+    $("#userId").val(userId);
+    $("#briefingId").val(ht.uuid());
+    var myDate = new Date();//时间实例
+    $("#briefingNo").val(myDate.pattern("yyyyMMddHHmmss")+myDate.getMilliseconds());
+    $("#projectId").val(projectId);
+    $("#surveyTime").val(myDate.pattern("yyyy-MM-dd HH:mm:ss"));
     $("form").baseValidate(function () {
-        alert(2);
         api.openWin({
             name: '/html/report/add_brief_win2.html',
             url: api.wgtRootDir + '/html/report/add_brief_win2.html',

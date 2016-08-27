@@ -15,7 +15,6 @@ var textTemplateListStr = null;
 apiready = function () {
     db = api.require('db');
     userId = ht.storage.getLocalStorage(ht.constants.userId);
-    userId = 1277;
     var lastSyncInfo = ht.storage.getLocalStorage(ht.constants.lastSyncInfo);
     if (lastSyncInfo) {
         lastSyncInfoObj = JSON.parse(lastSyncInfo);
