@@ -1,7 +1,7 @@
 package com.ht.klinsurance.word;
 
 import com.ht.klinsurance.common.FtpServeHelper;
-import com.ht.klinsurance.common.WordUtils;
+import com.ht.klinsurance.utils.word.WordUtils;
 
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
