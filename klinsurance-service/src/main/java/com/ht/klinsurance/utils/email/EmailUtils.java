@@ -1,5 +1,7 @@
 package com.ht.klinsurance.utils.email;
 
+import org.apache.commons.lang.StringUtils;
+
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.Message;
@@ -19,50 +21,57 @@ import java.util.Properties;
  * @date 2016/8/27
  */
 public class EmailUtils {
-    public static void sendMail() throws Exception{
+    /**
+     * 发送邮件
+     * @param title 邮件主题
+     * @param receiveEmail 收件人
+     * @param copyEmail 抄送人，多个用,隔开 没有则传“”即可
+     * @param emailContent 邮件内容 没有则传“”即可
+     * @param path 附件路径（全路径）没有则传“”即可
+     * @throws Exception
+     */
+    public static void sendMail(String title,String receiveEmail,String copyEmail,String emailContent,String path) throws Exception{
         //发送邮件的协议
         Properties properties = new Properties();
         properties.setProperty("mail.smtp.auth","true");//设置验证机制
         properties.setProperty("mail.transport.protocol", "smtp");//发送邮件协议
-        //properties.setProperty("mail.smtp.host", "smtp.126.com");//设置邮箱服务器地址
-        properties.setProperty("mail.smtp.host", "smtp.exmail.qq.com");//设置邮箱服务器地址
+        properties.setProperty("mail.smtp.host", "smtp.126.com");//设置邮箱服务器地址
+        //properties.setProperty("mail.smtp.host", "smtp.exmail.qq.com");//设置邮箱服务器地址
         properties.setProperty("mail.smtp.port", "25");
         Session session = Session.getInstance(properties,new MyAuthenticator());
         session.setDebug(true);
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("feichenyun@haitao-tech.com"));
-        message.setSubject("一封复杂的邮件");
+        message.setFrom(new InternetAddress("feichenyun@126.com"));
+        message.setSubject(title);
         message.setText("ceshicshiceshiceshidafkdhajfhj");
-        message.setRecipients(RecipientType.TO,InternetAddress.parse("liuqi@haitao-tech.com"));//接收人
+        message.setRecipients(RecipientType.TO,InternetAddress.parse(receiveEmail));//接收人
+        if(StringUtils.isNotBlank(copyEmail)){
+            String[] emails = copyEmail.split(",");
+            InternetAddress[] internetAddressCC = new InternetAddress[emails.length];
+            for(int i=0;i<emails.length;i++){
+                internetAddressCC[i]=new InternetAddress(emails[i]);
+            }
+            message.setRecipients(Message.RecipientType.CC, internetAddressCC);
+        }
         /*message.setRecipients(RecipientType.CC,InternetAddress.parse("1348800595@qq.com"));//抄送人
         message.setRecipients(RecipientType.BCC,InternetAddress.parse("1348800595@qq.com"));//密送人*/
         MimeMultipart mimeMuti = new MimeMultipart("mixed");
 
-        MimeBodyPart bodyPartAttch = createAttachMent("d:\\kameng_db.rar");//附件
+        if(StringUtils.isNotBlank(path)){//存在附件
+            MimeBodyPart bodyPartAttch = createAttachMent(path);//附件
+            mimeMuti.addBodyPart(bodyPartAttch);
+        }
         //MimeBodyPart bodyPartContentAndPic = createContentAndPic("I just want to Fuck", "d:\\图片1.jpg");//文本内容
-
-        mimeMuti.addBodyPart(bodyPartAttch);
         //mimeMuti.addBodyPart(bodyPartContentAndPic);
-        // 创建一个部件
-        MimeBodyPart content = new MimeBodyPart();
-        StringBuffer demo = new StringBuffer();
-        demo.append("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">")
-                .append("<html>")
-                .append("<head>")
-                .append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">")
-                .append("<title>测试邮件</title>")
-                .append("<style type=\"text/css\">")
-                .append(".test{font-family:\"Microsoft Yahei\";font-size: 18px;color: red;}")
-                .append("</style>")
-                .append("</head>")
-                .append("<body>")
-                .append("<span class=\"test\">大家好，这里是测试Demo</span>")
-                .append("</body>")
-                .append("</html>");
-        // 给部件指定内容
-        content.setContent(demo.toString(), "text/html;charset=utf-8");
-        // 部件添加到集合中
-        mimeMuti.addBodyPart(content);
+        if(StringUtils.isNotBlank(emailContent)){//存在内容
+            // 创建一个部件
+            MimeBodyPart content = new MimeBodyPart();
+            // 给部件指定内容
+            content.setContent(emailContent, "text/html;charset=utf-8");
+            // 部件添加到集合中
+            mimeMuti.addBodyPart(content);
+        }
+
 
         message.setContent(mimeMuti);
         message.saveChanges();
