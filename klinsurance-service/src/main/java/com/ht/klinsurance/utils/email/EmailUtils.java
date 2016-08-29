@@ -45,7 +45,6 @@ public class EmailUtils {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress( KlConsts.EMAIL_SEND_EMAIL));
             message.setSubject(title);
-            message.setText("ceshicshiceshiceshidafkdhajfhj");
             message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(receiveEmail));//接收人
             if(StringUtils.isNotBlank(copyEmail)){
                 String[] emails = copyEmail.split(",");
