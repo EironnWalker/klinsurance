@@ -11,9 +11,7 @@ public interface WordTemplateMapper {
 
     WordTemplate selectByPrimaryKey(String wordTemplateId);
 
-    List<WordTemplate> findWordTemplateList(Map<String, Object> parameter);
-
-    int insert(WordTemplate record);
+    List<WordTemplate> findWordTemplateListChecked(Map<String, Object> parameter);
 
     int insertSelective(WordTemplate record);
 

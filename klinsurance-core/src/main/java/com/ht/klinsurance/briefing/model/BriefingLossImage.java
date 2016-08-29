@@ -17,5 +17,7 @@ public class BriefingLossImage {
 
     private Date createTime;
 
+    private Integer imageOrder;
+
 
 }

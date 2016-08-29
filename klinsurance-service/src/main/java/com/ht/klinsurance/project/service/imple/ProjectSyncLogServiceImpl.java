@@ -127,7 +127,7 @@ public class ProjectSyncLogServiceImpl implements IProjectSyncLogService {
         List<TextTemplate> textTemplateList = textTemplateMapper.findTextTemplateList(htMap);
         List<TextTemplateTag> textTemplateTagList = textTemplateTagMapper.findTextTemplateTagList(htMap);
         //获取模板信息（Word）
-        List<WordTemplate> wordTemplateList = wordTemplateMapper.findWordTemplateList(htMap);
+        List<WordTemplate> wordTemplateList = wordTemplateMapper.findWordTemplateListChecked(htMap);
         //获取损失项信息
         List<LossItemDict> lossItemDictList = lossItemDictMapper.findLossItemDictList(htMap);
         //获取用户信息
