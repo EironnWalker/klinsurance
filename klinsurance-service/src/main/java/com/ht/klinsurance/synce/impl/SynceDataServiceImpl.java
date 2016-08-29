@@ -72,7 +72,6 @@ public class SynceDataServiceImpl implements ISynceDataService {
         });
         if(userList!=null&&userList.size()>0)
         {
-            List<User> users = new ArrayList<User>();
             for(int i =0 ;i<userList.size();i++)
             {
                 User user = new User();
@@ -84,6 +83,7 @@ public class SynceDataServiceImpl implements ISynceDataService {
                 user.setTel(userList.get(i).getPERSONNEL_PHONE());
                 user.setMobile(userList.get(i).getPERSONNEL_MOBILE());
                 user.setEmail(userList.get(i).getPERSONNEL_EMAIL());
+                user.setUserType("1");
                 user.setCreateTime(new Date());
                 if(StringUtils.isNotBlank(user.getName())){
                     String name = user.getName();
@@ -95,11 +95,8 @@ public class SynceDataServiceImpl implements ISynceDataService {
                         user.setNamePinyin("*");
                     }
                 }
-                users.add(user);
+                result*=userMapper.saveorupdateUser(user);
             }
-
-            userMapper.deleteAll();
-            result*=userMapper.addUserList(users);
         }
         //记录同步信息
         if(result>0)

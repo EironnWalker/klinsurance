@@ -50,8 +50,8 @@ public class UserServiceImpl implements IUserService{
      * @return
      */
     @Override
-    public  List<User> findUserByUserName(Map<String, Object> parameter) {
-        return userMapper.findList(parameter);
+    public  List<User> findUserByUserNameLogin(Map<String, Object> parameter) {
+        return userMapper.findUserByUserNameLogin(parameter);
     }
 
     @Override
