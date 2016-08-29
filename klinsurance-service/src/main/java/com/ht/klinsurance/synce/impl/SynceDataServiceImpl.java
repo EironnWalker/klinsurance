@@ -72,7 +72,6 @@ public class SynceDataServiceImpl implements ISynceDataService {
         });
         if(userList!=null&&userList.size()>0)
         {
-            List<User> users = new ArrayList<User>();
             for(int i =0 ;i<userList.size();i++)
             {
                 User user = new User();
