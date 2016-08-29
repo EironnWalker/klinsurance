@@ -18,7 +18,7 @@ public class UserActionTest extends TestCase {
         HtMap parameter = new HtMap();
         parameter.put("userJson", HtGson.toJson(user, new TypeToken<User>() {
         }));
-        String dataBean = HtRequest.post("http://192.168.23.6:8080/klinsurance-service/userAction/login", parameter);
+        String dataBean = HtRequest.post("http://192.168.0.67:8080/klinsurance-service/userAction/login", parameter);
         System.out.println(dataBean);
     }
 }

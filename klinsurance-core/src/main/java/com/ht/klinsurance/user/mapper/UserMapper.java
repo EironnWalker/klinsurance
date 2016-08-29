@@ -31,4 +31,6 @@ public interface UserMapper {
     int deleteByPrimaryKey(String userId);
 
     int deleteAll();
+
+    int saveorupdateUser(User user);
 }

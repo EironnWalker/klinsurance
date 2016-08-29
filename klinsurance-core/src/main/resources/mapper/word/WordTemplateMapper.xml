@@ -72,7 +72,7 @@
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isChecked != null" >
-        #{isChecked,jdbcType=TIMESTAMP},
+        #{isChecked,jdbcType=TINYINT},
       </if>
 
     </trim>
