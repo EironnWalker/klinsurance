@@ -6,17 +6,17 @@ var codeValue = "";
 
 apiready = function() {
     TranslateModule = api.require('TranslateModule');
-    fs = api.require('fs');
-    fs.moveTo({
-        oldPath: api.wgtRootDir + '/wgt/klinsurance_db.db',
-        newPath: 'fs://'
-    }, function(ret, err) {
-        if (ret.status) {
-            alert(JSON.stringify(ret));
-        } else {
-            alert(JSON.stringify(err));
-        }
-    });
+    //fs = api.require('fs');
+    //fs.moveTo({
+    //    oldPath: api.wgtRootDir + '/wgt/klinsurance_db.db',
+    //    newPath: 'fs://'
+    //}, function(ret, err) {
+    //    if (ret.status) {
+    //        alert(JSON.stringify(ret));
+    //    } else {
+    //        alert(JSON.stringify(err));
+    //    }
+    //});
     showContent();
 };
 
@@ -36,14 +36,6 @@ function showContent() {
                     tipHtml = template("tip-template", ret);
                     $("#tip").html(tipHtml);
                     tipColor();
-                }
-            });
-            db.executeSql({
-                name: 'klinsurance_db',
-                sql: 'update text_template set name = "事故原因" where text_template_id="276ac3079c9042a190ea53a5fd81ce37' +
-                '";'
-            }, function(ret, err) {
-                if(ret.status) {
                 }
             });
             loadTemp();
@@ -89,15 +81,13 @@ function tipColor() {
 function tipActive(obj) {
     if($(obj).attr("class").indexOf("active") == -1) {
         $(obj).addClass("active");
-        codeValue += $(obj).attr("data-code") + " ";
-        codeValue = codeValue.substring(0, codeValue.length-1);
-        searchTemp(codeValue, "tags")
+        codeValue += $(obj).attr("data-code") + ",";
+        searchTemp(codeValue.substring(0,codeValue.length-1), "tags")
     }
     else {
         $(obj).removeClass("active");
-        codeValue = codeValue.replace($(obj).attr("data-code") + " ","");
-        codeValue = codeValue.substring(0, codeValue.length-1);
-        searchTemp(codeValue, "tags")
+        codeValue = codeValue.replace($(obj).attr("data-code") + ",","");
+        searchTemp(codeValue.substring(0,codeValue.length-1), "tags")
     }
 }
 
@@ -127,15 +117,21 @@ function searchTemp(value, option) {
             }
         });
     } else {
-        var tagTip = value.split(" ");
-        alert(tagTip)
+        var tagTip = value.split(",");
         var sql = 'select * from text_template where tags like "%';
         for (var i = 0; i < tagTip.length; i++) {
             sql += tagTip[i] + '%" and tags like "%';
-            alert(tagTip[i])
         }
-        sql = sql.substring(0, sql.length-17);
+        sql = sql.substring(0, sql.length-17) + ' order by create_time desc';
         alert(sql)
+        db.selectSql({
+            name: 'klinsurance_db',
+            sql: sql
+        }, function (ret, err) {
+            tempHtml = template("temp-template", ret);
+            $("#temp").html(tempHtml);
+            alert(JSON.stringify(ret))
+        });
     }
 }
 

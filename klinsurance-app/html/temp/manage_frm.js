@@ -21,7 +21,7 @@ apiready = function() {
             var formObj = form2json('form-manage');
             db.executeSql({
                 name: 'klinsurance_db',
-                sql: 'insert into text_template values ("' + ht.uuid() + '","'+formObj.name + '","' + formObj.detail + '","' + codeValue + '","' + currentTime.toLocaleString() + '")'
+                sql: 'insert into text_template values ("' + ht.uuid() + '","'+formObj.name + '","' + formObj.detail + '","' + codeValue.substring(0, codeValue.length-1) + '","' + currentTime.toLocaleString() + '")'
             },function(ret, err) {
                 if(ret.status) {
                     api.execScript({
@@ -41,14 +41,12 @@ function tipActive(obj) {
     if($(obj).attr("class").indexOf("active") == -1) {
         $(obj).addClass("active");
         tipValue += $(obj).text() + " ";
-        codeValue += $(obj).attr("data-code") + " ";
-        codeValue = codeValue.substring(0, codeValue.length-1);
+        codeValue += $(obj).attr("data-code") + ",";
     }
     else {
         $(obj).removeClass("active");
         tipValue = tipValue.replace($(obj).text() + " ","");
-        codeValue = codeValue.replace($(obj).attr("data-code") + " ","");
-        codeValue = codeValue.substring(0, codeValue.length-1);
+        codeValue = codeValue.replace($(obj).attr("data-code") + ",","");
     }
     $("textarea[name='tip']").val(tipValue);
 }

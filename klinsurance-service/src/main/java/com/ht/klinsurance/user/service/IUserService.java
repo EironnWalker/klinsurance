@@ -26,7 +26,7 @@ public interface IUserService {
      * @param parameter
      * @return
      */
-    List<User> findUserByUserName(Map<String, Object> parameter);
+    List<User> findUserByUserNameLogin(Map<String, Object> parameter);
 
     int addUser(User user);
 

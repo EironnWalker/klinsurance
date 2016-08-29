@@ -31,4 +31,11 @@ public class User {
 
     private String email;
 
+    private String isUsed;
+
+    private String userType;
+
+    ///////////////////********临时字段用于判断saveorupdate*****////////////////////
+    private Integer count;
+
 }

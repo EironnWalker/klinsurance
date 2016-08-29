@@ -48,7 +48,7 @@ public class UserAction  extends BaseAction{
             {
                 HtMap htMap = new HtMap();
                 htMap.put("loginName", user.getLoginName());
-                List<User> userList = userService.findUserByUserName(htMap);
+                List<User> userList = userService.findUserByUserNameLogin(htMap);
                 if(userList!=null&&userList.size()>0)
                 {
                     HtResponse.outJson(response, true, userList.get(0));
@@ -65,7 +65,7 @@ public class UserAction  extends BaseAction{
                     //登录成功之后，根据用户名去查询通讯录信息
                     HtMap htMap = new HtMap();
                     htMap.put("loginName", user.getLoginName());
-                    List<User> userList = userService.findUserByUserName(htMap);
+                    List<User> userList = userService.findUserByUserNameLogin(htMap);
                     if(userList!=null&&userList.size()>0)
                     {
                         HtResponse.outJson(response, true, userList.get(0));
