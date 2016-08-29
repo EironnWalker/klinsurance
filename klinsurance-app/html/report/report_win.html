@@ -2,7 +2,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title></title>
     <link rel="stylesheet" href="../../css/base.css"/>
@@ -13,26 +14,32 @@
         <a class="icon icon-back" onclick="api.closeWin();"></a>
     </div>
     <h1>报告</h1>
+
     <div class="right">
-        <a onclick="add(pageType);"></a>
+        <a onclick="add();"></a>
     </div>
 </header>
 <div class="tab horizontal">
     <h2 id="0" class="flex-1 active">简报信息</h2>
+
     <h2 id="1" class="flex-1">报告信息</h2>
 </div>
 <script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
 <script type="text/javascript">
     var pageType;
     var nowPage;
+    var projectId;
     apiready = function () {
+        projectId = api.pageParam.projectId;
+        var headerHeight = $("header").fixStatusBar();
         api.openFrameGroup({
             name: 'group1',
             background: '#ebebeb',
-            scrollEnabled: true,
+            scrollEnabled: false,
             rect: {
                 x: 0,
-                y: $("header").height() + $(".tab").height(),
+                y: headerHeight + $(".tab").height(),
                 w: 'auto',
                 h: 'auto'
             },
@@ -40,17 +47,19 @@
             frames: [{
                 name: '/html/report/sub_brief_frm.html',
                 url: api.wgtRootDir + '/html/report/sub_brief_frm.html',
+                pageParam: api.pageParam,
                 bgColor: '#ebebeb'
             }, {
                 name: '/html/report/sub_report_frm.html',
                 url: api.wgtRootDir + '/html/report/sub_report_frm.html',
+                pageParam: api.pageParam,
                 bgColor: '#ebebeb'
             }]
         }, function (ret, err) {
 
         });
 
-        $("h2").click(function() {
+        $("h2").click(function () {
             pageType = this.id;
             $("h2").removeClass("active");
             $(this).addClass("active");
@@ -79,12 +88,15 @@
         });
         $("#0").click();
     };
-    function add(obj) {
-        if(pageType == '0') {
+    function add() {
+        if (pageType == '0') {
             api.openWin({
                 name: '/html/report/add_brief_win1.html',
                 url: api.wgtRootDir + '/html/report/add_brief_win1.html',
-                pageParam: {name: 'pageparamname'}
+                pageParam: {
+                    projectId: projectId,
+                    isAdd: 1
+                }
             });
         }
         else {

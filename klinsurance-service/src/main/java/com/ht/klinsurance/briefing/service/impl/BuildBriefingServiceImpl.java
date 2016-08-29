@@ -5,9 +5,11 @@ import com.ht.klinsurance.briefing.mapper.BriefingMapper;
 import com.ht.klinsurance.briefing.model.Briefing;
 import com.ht.klinsurance.briefing.model.BriefingLossImage;
 import com.ht.klinsurance.briefing.service.IBuildBriefingService;
-import com.ht.klinsurance.common.WordUtils;
 import com.ht.klinsurance.loss.mapper.LossMapper;
 import com.ht.klinsurance.loss.model.Loss;
+import com.ht.klinsurance.user.mapper.UserMapper;
+import com.ht.klinsurance.user.model.User;
+import com.ht.klinsurance.utils.word.WordUtils;
 import com.ht.klinsurance.word.mapper.WordTemplateMapper;
 import com.ht.klinsurance.word.model.WordTemplate;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,8 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
     @Resource
     private BriefingMapper briefingMapper;
     @Resource
+    private UserMapper userMapper;
+    @Resource
     private BriefingLossImageMapper briefingLossImageMapper;
     @Resource
     private WordTemplateMapper wordTemplateMapper;
@@ -40,6 +44,16 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
 
         //简报信息
         Briefing briefing = briefingMapper.findDetailInfo(briefingId);
+        if(briefing.getSubSurveyor().indexOf(",")>0){//处理多个协助公估师问题
+            List<User> userList = userMapper.findByIds(briefing.getSubSurveyor().split(","));
+            briefing.setSubSurveyor("");
+            for(User user:userList){
+                briefing.setSubSurveyor(briefing.getSubSurveyor()+","+user.getName());
+            }
+            briefing.setSubSurveyor(briefing.getSubSurveyor().substring(1,briefing.getSubSurveyor().length()));
+        }else{
+            briefing.setSubSurveyor(briefing.getSubSurveyName());
+        }
         //Briefing briefing = briefingMapper.selectByPrimaryKey(briefingId);
         //损失项信息
         List<Loss> lossList = lossMapper.findByBriefing(briefingId);
@@ -85,7 +99,7 @@ public class BuildBriefingServiceImpl implements IBuildBriefingService {
         WordTemplate template=wordTemplateMapper.selectByPrimaryKey(briefing.getWordTemplateId());
 
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-        String path="upload/word/"+briefing.getProjectId()+"/简报-"+briefingId+"-"+format.format(new Date());
+        String path="upload/word/"+briefing.getProjectId()+"/jianbao-"+briefingId+"-"+format.format(new Date());
 
         WordUtils.createWord(template.getName(), webPath+path, dataMap, param);
 

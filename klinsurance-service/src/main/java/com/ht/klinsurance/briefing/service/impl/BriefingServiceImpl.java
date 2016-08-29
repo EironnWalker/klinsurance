@@ -9,6 +9,7 @@ import com.ht.klinsurance.briefing.model.BriefingLoss;
 import com.ht.klinsurance.briefing.model.BriefingLossImage;
 import com.ht.klinsurance.briefing.model.BriefingLossItem;
 import com.ht.klinsurance.briefing.service.IBriefingService;
+import com.ht.klinsurance.briefing.service.IBuildBriefingService;
 import com.ht.klinsurance.loss.mapper.LossItemMapper;
 import com.ht.klinsurance.loss.mapper.LossMapper;
 import com.ht.klinsurance.loss.model.Loss;
@@ -41,6 +42,8 @@ public class BriefingServiceImpl implements IBriefingService {
     @Resource
     private BriefingLossImageMapper briefingLossImageMapper;
 
+    @Resource
+    private IBuildBriefingService buildBriefingService;
     /**
      * 保存简报
      *
@@ -53,39 +56,41 @@ public class BriefingServiceImpl implements IBriefingService {
      * @return
      */
     @Override
-    public int saveBriefing(Briefing briefing, List<BriefingLoss> briefingLossList, List<BriefingLossItem> briefingLossItemList,
-                            List<BriefingLossImage> briefingLossImageList, List<Loss> lossList, List<LossItem> lossItemList)
+    public String saveBriefing(Briefing briefing, List<BriefingLoss> briefingLossList, List<BriefingLossItem> briefingLossItemList,
+                            List<BriefingLossImage> briefingLossImageList, List<Loss> lossList, List<LossItem> lossItemList,String path)
     {
-        //首先判断简报是否存在如果存在则删除再新建，如果不存在这新建
-        briefingMapper.deleteByPrimaryKey(briefing.getBriefingId());
-        briefingMapper.addBriefing(briefing);
-        //BriefingLoss 如果存在则删除再新建 不存在则新建
-        if(briefingLossList!=null)
-        {
-            for(int i =0;i<briefingLossList.size();i++)
-            {
-                briefingLossMapper.deleteByPrimaryKey(briefingLossList.get(i).getBriefingLossId());
-                briefingLossMapper.addBriefingLoss(briefingLossList.get(i));
+       try {
+           int reuslt = 1;
+           //首先判断简报是否存在如果存在则删除再新建，如果不存在这新建
+           briefingMapper.deleteByPrimaryKey(briefing.getBriefingId());
+           briefingMapper.addBriefing(briefing);
+           //BriefingLoss 如果存在则删除再新建 不存在则新建
+           if(briefingLossList!=null)
+           {
+               for(int i =0;i<briefingLossList.size();i++)
+               {
+                   briefingLossMapper.deleteByPrimaryKey(briefingLossList.get(i).getBriefingLossId());
+                   reuslt*=   briefingLossMapper.addBriefingLoss(briefingLossList.get(i));
 
-                //briefingLossItemList 为了方便起见，先清空再重新插入
-                briefingLossItemMapper.deleteByBriefingLossId(briefingLossList.get(i).getBriefingLossId());
+                   //briefingLossItemList 为了方便起见，先清空再重新插入
+                   briefingLossItemMapper.deleteByBriefingLossId(briefingLossList.get(i).getBriefingLossId());
 
-                //briefingLossImageList 为了方便起见，先清空再重新插入
-                briefingLossImageMapper.deleteByBriefingLossId(briefingLossList.get(i).getBriefingLossId());
-            }
-        }
+                   //briefingLossImageList 为了方便起见，先清空再重新插入
+                   briefingLossImageMapper.deleteByBriefingLossId(briefingLossList.get(i).getBriefingLossId());
+               }
+           }
 
-        if(briefingLossItemList!=null&&briefingLossItemList.size()>0)
-        {
-            for(int i = 0; i<briefingLossItemList.size();i++)
-            {
-                briefingLossItemMapper.adddBriefingLossItem(briefingLossItemList.get(i));
-            }
-        }
-        if(briefingLossImageList!=null&&briefingLossImageList.size()>0)
-        {
-            for(int i = 0; i<briefingLossImageList.size();i++)
-            {
+           if(briefingLossItemList!=null&&briefingLossItemList.size()>0)
+           {
+               for(int i = 0; i<briefingLossItemList.size();i++)
+               {
+                   reuslt*=   briefingLossItemMapper.adddBriefingLossItem(briefingLossItemList.get(i));
+               }
+           }
+           if(briefingLossImageList!=null&&briefingLossImageList.size()>0)
+           {
+               for(int i = 0; i<briefingLossImageList.size();i++)
+               {
 //                //处理图片 图片已经在发图片处理
 //                List<String>originalImagelist =  new ArrayList<String>();
 //                originalImagelist.add(briefingLossImageList.get(i).getOriginalImage());
@@ -96,31 +101,35 @@ public class BriefingServiceImpl implements IBriefingService {
 //                imagelist.add(briefingLossImageList.get(i).getImage());
 //                String imagePath = FileUploadUtil.uploadFilePic(imagelist);
 //                briefingLossImageList.get(i).setImage(imagePath);
-                briefingLossImageMapper.addBriefingLossImage(briefingLossImageList.get(i));
-            }
-        }
-        //loss 插入或者更新
-        if(lossList!=null)
-        {
-            for(int i= 0;i<lossList.size();i++) {
-                lossMapper.deleteByPrimaryKey(lossList.get(i).getLossId());
-                lossMapper.addLoss(lossList.get(i));
-            }
-        }
-        //lossItemList为了确保信息的准确性，只能是更新或者插入，不能全部删掉
-        if(lossItemList!=null)
-        {
-            for(int i= 0;i<lossItemList.size();i++)
-            {
-                lossItemMapper.deleteByPrimaryKey(lossItemList.get(i).getLossItemId());
-                lossItemMapper.addLossItem(lossItemList.get(i));
-            }
-        }
-        //TODO 生成简报，如果损失项，地点等信息不存在则提示先同步数据
-
-
-
-
-        return 0;
+                   reuslt*=  briefingLossImageMapper.addBriefingLossImage(briefingLossImageList.get(i));
+               }
+           }
+           //loss 插入或者更新
+           if(lossList!=null)
+           {
+               for(int i= 0;i<lossList.size();i++) {
+                   lossMapper.deleteByPrimaryKey(lossList.get(i).getLossId());
+                   reuslt*=   lossMapper.addLoss(lossList.get(i));
+               }
+           }
+           //lossItemList为了确保信息的准确性，只能是更新或者插入，不能全部删掉
+           if(lossItemList!=null)
+           {
+               for(int i= 0;i<lossItemList.size();i++)
+               {
+                   lossItemMapper.deleteByPrimaryKey(lossItemList.get(i).getLossItemId());
+                   reuslt*=   lossItemMapper.addLossItem(lossItemList.get(i));
+               }
+           }
+           //生成简报
+           String ftpUrl = buildBriefingService.buildBriefing(path,briefing.getBriefingId());
+           briefing.setBriefingFile(ftpUrl);
+           briefingMapper.updateByPrimaryKeySelective(briefing);
+           return ftpUrl;
+       }catch (Exception e)
+       {
+           e.printStackTrace();
+           return  null;
+       }
     }
 }

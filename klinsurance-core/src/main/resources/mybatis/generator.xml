@@ -20,8 +20,8 @@
 
         <!-- java 实体类 -->
         <javaModelGenerator
-                targetPackage="com.ht.klinsurance.crm.model"
-                targetProject="D:\Tools\idea_workspace\klinsurance\klinsurance-core\src\main\java">
+                targetPackage="com.ht.klinsurance.appVersion.model"
+                targetProject="D:\Tools\idea_workspace\klinsuranceGIT\klinsurance-core\src\main\java">
             <!-- 设置是否将生成的实体类放在targetPackage包中 -->
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
@@ -29,31 +29,19 @@
 
         <!-- Mapper XML 文件-->
         <sqlMapGenerator
-                targetPackage="mapper.crm"
-                targetProject="D:\Tools\idea_workspace\klinsurance\klinsurance-core\src\main\resources">
+                targetPackage="mapper.appVersion"
+                targetProject="D:\Tools\idea_workspace\klinsuranceGIT\klinsurance-core\src\main\resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- Mapper接口的生成配置 -->
         <javaClientGenerator type="XMLMAPPER"
-                targetPackage="com.ht.klinsurance.crm.mapper"
-                targetProject="D:\Tools\idea_workspace\klinsurance\klinsurance-core\src\main\java">
+                targetPackage="com.ht.klinsurance.appVersion.mapper"
+                targetProject="D:\Tools\idea_workspace\klinsuranceGIT\klinsurance-core\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="crm_interactive_note" domainObjectName="crmInteractiveNote"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-
-        <table tableName="crm_project" domainObjectName="crmProject"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-
-        <table tableName="crm_schedule" domainObjectName="crmSchedule"
+        <table tableName="app_version" domainObjectName="AppVersion"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

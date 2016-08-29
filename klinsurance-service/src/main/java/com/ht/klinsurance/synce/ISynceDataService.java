@@ -62,6 +62,6 @@ public interface ISynceDataService {
      * @param lossItemDict
      * @return
      */
-    int addLossItemDict(LossItemDict lossItemDict);
+    LossItemDict addLossItemDict(LossItemDict lossItemDict);
 
 }

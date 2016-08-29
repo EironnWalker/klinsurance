@@ -3,7 +3,7 @@
 <mapper namespace="com.ht.klinsurance.loss.mapper.LossItemDictMapper" >
 
   <sql id="Base_Column_List" >
-    loss_item_dict_id, loss_item_dict_pid,loss_item_dict_no, name, price_unit, numeraire,numeraire_msg, remark, create_time
+    loss_item_dict_id, loss_item_dict_pid,loss_item_dict_no, name, price_unit, numeraire,numeraire_msg, remark, create_time,flag
   </sql>
   <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.loss.model.LossItemDict" parameterType="java.lang.String" >
     select 
@@ -59,6 +59,9 @@
       <if test="createTime != null" >
         create_time,
       </if>
+      <if test="flag != null" >
+        flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="lossItemDictId != null" >
@@ -89,6 +92,10 @@
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+
     </trim>
   </insert>
   <insert id="addLossItemDictList">
@@ -124,6 +131,9 @@
       <if test="item.createTime != null" >
         create_time,
       </if>
+      <if test="item.flag != null" >
+        flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="item.lossItemDictId != null" >
@@ -154,6 +164,9 @@
       <if test="item.createTime != null" >
         #{item.createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="item.flag != null" >
+        #{item.flag,jdbcType=VARCHAR},
+      </if>
     </trim>
     </foreach>
   </insert>
@@ -180,6 +193,9 @@
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=VARCHAR},
       </if>
     </set>
     where loss_item_dict_id = #{lossItemDictId,jdbcType=VARCHAR}

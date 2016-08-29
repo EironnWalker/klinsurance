@@ -49,4 +49,30 @@ public interface IProjectSyncLogService
             List<Report> reportListPh,
             List<ReportBriefing> reportBriefingListPh,
             List<TextTemplate> textTemplateList);
+
+        /**
+         * 将手机端数据同步到后台
+         * @param briefingListPh
+         * @param briefingLossListPh
+         * @param briefingLossImageListPh
+         * @param briefingLossItemListPh
+         * @param customerListPh
+         * @param lossListPh
+         * @param lossItemListPh
+         * @param reportListPh
+         * @param reportBriefingListPh
+         * @param textTemplateListPh
+         * @return
+         */
+        int putPhoneSyncMessage( List<Briefing> briefingListPh,
+                                  List<BriefingLoss> briefingLossListPh,
+                                  List<BriefingLossImage> briefingLossImageListPh ,
+                                  List<BriefingLossItem> briefingLossItemListPh ,
+                                  List<Customer> customerListPh,
+                                  List<Loss> lossListPh,
+                                  List<LossItem> lossItemListPh,
+                                  List<Report> reportListPh,
+                                  List<ReportBriefing> reportBriefingListPh,
+                                  List<TextTemplate> textTemplateListPh);
 }
+

@@ -3,7 +3,7 @@
 <mapper namespace="com.ht.klinsurance.user.mapper.UserMapper" >
 
   <sql id="Base_Column_List" >
-    user_id, login_name, login_pwd, name, name_pinyin, company, dept, tel, mobile, remark, email,
+    user_id, login_name, login_pwd,role_id, name, name_pinyin, company, dept, tel, mobile, remark, email,
     create_time
   </sql>
   <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.user.model.User" parameterType="java.lang.String" >
@@ -26,7 +26,6 @@
     </where>
   </select>
   <select id="findList" resultType="com.ht.klinsurance.user.model.User">
-
     select
     <include refid="Base_Column_List" />
     from user
@@ -38,7 +37,16 @@
         and create_time > #{createTime}
       </if>
     </where>
-
+  </select>
+  <select id="findByIds" resultType="com.ht.klinsurance.user.model.User">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where
+      user_id in
+      <foreach collection="array" separator="," open="(" close=")" item="id">
+        #{id}
+      </foreach>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from user
@@ -59,6 +67,9 @@
       </if>
       <if test="loginPwd != null" >
         login_pwd,
+      </if>
+      <if test="roleId != null" >
+        role_id,
       </if>
       <if test="name != null" >
         name,
@@ -103,6 +114,9 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
       <if test="namePinyin != null" >
         #{namePinyin,jdbcType=VARCHAR},
       </if>
@@ -145,6 +159,9 @@
       <if test="item.name != null" >
         name,
       </if>
+      <if test="item.roleId != null" >
+        role_id,
+      </if>
       <if test="item.namePinyin != null" >
         name_pinyin,
       </if>
@@ -185,6 +202,9 @@
       <if test="item.name != null" >
         #{item.name,jdbcType=VARCHAR},
       </if>
+      <if test="item.roleId != null" >
+        #{item.role_id,jdbcType=VARCHAR},
+      </if>
       <if test="item.namePinyin != null" >
         #{item.namePinyin,jdbcType=VARCHAR},
       </if>
@@ -224,6 +244,9 @@
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=VARCHAR},
       </if>
       <if test="namePinyin != null" >
         name_pinyin = #{namePinyin,jdbcType=VARCHAR},

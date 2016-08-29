@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.klinsurance.appVersion.mapper.AppVersionMapper" >
+
+  <sql id="Base_Column_List" >
+    app_version_id, app_type, app_version, app_android_url, app_ios_url, is_closed, create_time, 
+    remark
+  </sql>
+  <select id="selectByAppType" resultType="com.ht.klinsurance.appVersion.model.AppVersion" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from app_version
+    where  app_type = #{appType,jdbcType=VARCHAR}  and  is_closed = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from app_version
+    where app_version_id = #{appVersionId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.ht.klinsurance.appVersion.model.AppVersion" >
+    insert into app_version
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="appVersionId != null" >
+        app_version_id,
+      </if>
+      <if test="appType != null" >
+        app_type,
+      </if>
+      <if test="appVersion != null" >
+        app_version,
+      </if>
+      <if test="appAndroidUrl != null" >
+        app_android_url,
+      </if>
+      <if test="appIosUrl != null" >
+        app_ios_url,
+      </if>
+      <if test="isClosed != null" >
+        is_closed,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="appVersionId != null" >
+        #{appVersionId,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null" >
+        #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null" >
+        #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="appAndroidUrl != null" >
+        #{appAndroidUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appIosUrl != null" >
+        #{appIosUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isClosed != null" >
+        #{isClosed,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.appVersion.model.AppVersion" >
+    update app_version
+    <set >
+      <if test="appType != null" >
+        app_type = #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null" >
+        app_version = #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="appAndroidUrl != null" >
+        app_android_url = #{appAndroidUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appIosUrl != null" >
+        app_ios_url = #{appIosUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isClosed != null" >
+        is_closed = #{isClosed,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where app_version_id = #{appVersionId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

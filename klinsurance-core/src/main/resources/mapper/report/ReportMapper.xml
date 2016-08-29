@@ -9,7 +9,7 @@
     survey_time, survey_place, survey_case, insurer_representative, survey_surveyor, 
     claimant_description, danger_time, danger_place, damaged_object, danger_case, iorder_liability, 
     verify_loss_gist, verify_loss_process, repeat_insure, third_liability, deductible_salvage, 
-    loss_adjustment, surveyor_conclusion, report_file, remark, create_time
+    loss_adjustment, surveyor_conclusion, report_file, remark, create_time,client_id
   </sql>
   <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.report.model.Report" parameterType="java.lang.String" >
     select 
@@ -221,6 +221,10 @@
       <if test="createTime != null" >
         create_time,
       </if>
+      <if test="clientId != null" >
+        client_id,
+      </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="reportId != null" >
@@ -254,7 +258,7 @@
         #{insureDeadline,jdbcType=VARCHAR},
       </if>
       <if test="insureAmount != null" >
-        #{insureAmount,jdbcType=DECIMAL},
+        #{insureAmount,jdbcType=VARCHAR},
       </if>
       <if test="deductible != null" >
         #{deductible,jdbcType=VARCHAR},
@@ -266,22 +270,22 @@
         #{accidentPlace,jdbcType=VARCHAR},
       </if>
       <if test="accidentCause != null" >
-        #{accidentCause,jdbcType=VARCHAR},
+        #{accidentCause,jdbcType=LONGVARCHAR},
       </if>
       <if test="accidentPass != null" >
-        #{accidentPass,jdbcType=VARCHAR},
+        #{accidentPass,jdbcType=LONGVARCHAR},
       </if>
       <if test="liabilityAffirm != null" >
-        #{liabilityAffirm,jdbcType=VARCHAR},
+        #{liabilityAffirm,jdbcType=LONGVARCHAR},
       </if>
       <if test="reportedLossAmount != null" >
-        #{reportedLossAmount,jdbcType=DECIMAL},
+        #{reportedLossAmount,jdbcType=VARCHAR},
       </if>
       <if test="verifyLossAmount != null" >
-        #{verifyLossAmount,jdbcType=DECIMAL},
+        #{verifyLossAmount,jdbcType=VARCHAR},
       </if>
       <if test="adjustmentAmount != null" >
-        #{adjustmentAmount,jdbcType=DECIMAL},
+        #{adjustmentAmount,jdbcType=VARCHAR},
       </if>
       <if test="surveyor != null" >
         #{surveyor,jdbcType=VARCHAR},
@@ -290,19 +294,19 @@
         #{certificateCode,jdbcType=VARCHAR},
       </if>
       <if test="forewordContent != null" >
-        #{forewordContent,jdbcType=VARCHAR},
+        #{forewordContent,jdbcType=LONGVARCHAR},
       </if>
       <if test="objectDescription != null" >
-        #{objectDescription,jdbcType=VARCHAR},
+        #{objectDescription,jdbcType=LONGVARCHAR},
       </if>
       <if test="surveyTime != null" >
         #{surveyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="surveyPlace != null" >
-        #{surveyPlace,jdbcType=VARCHAR},
+        #{surveyPlace,jdbcType=LONGVARCHAR},
       </if>
       <if test="surveyCase != null" >
-        #{surveyCase,jdbcType=VARCHAR},
+        #{surveyCase,jdbcType=LONGVARCHAR},
       </if>
       <if test="insurerRepresentative != null" >
         #{insurerRepresentative,jdbcType=VARCHAR},
@@ -311,7 +315,7 @@
         #{surveySurveyor,jdbcType=VARCHAR},
       </if>
       <if test="claimantDescription != null" >
-        #{claimantDescription,jdbcType=VARCHAR},
+        #{claimantDescription,jdbcType=LONGVARCHAR},
       </if>
       <if test="dangerTime != null" >
         #{dangerTime,jdbcType=TIMESTAMP},
@@ -320,34 +324,34 @@
         #{dangerPlace,jdbcType=VARCHAR},
       </if>
       <if test="damagedObject != null" >
-        #{damagedObject,jdbcType=VARCHAR},
+        #{damagedObject,jdbcType=LONGVARCHAR},
       </if>
       <if test="dangerCase != null" >
-        #{dangerCase,jdbcType=VARCHAR},
+        #{dangerCase,jdbcType=LONGVARCHAR},
       </if>
       <if test="iorderLiability != null" >
-        #{iorderLiability,jdbcType=VARCHAR},
+        #{iorderLiability,jdbcType=LONGVARCHAR},
       </if>
       <if test="verifyLossGist != null" >
-        #{verifyLossGist,jdbcType=VARCHAR},
+        #{verifyLossGist,jdbcType=LONGVARCHAR},
       </if>
       <if test="verifyLossProcess != null" >
-        #{verifyLossProcess,jdbcType=VARCHAR},
+        #{verifyLossProcess,jdbcType=LONGVARCHAR},
       </if>
       <if test="repeatInsure != null" >
-        #{repeatInsure,jdbcType=VARCHAR},
+        #{repeatInsure,jdbcType=LONGVARCHAR},
       </if>
       <if test="thirdLiability != null" >
-        #{thirdLiability,jdbcType=VARCHAR},
+        #{thirdLiability,jdbcType=LONGVARCHAR},
       </if>
       <if test="deductibleSalvage != null" >
-        #{deductibleSalvage,jdbcType=VARCHAR},
+        #{deductibleSalvage,jdbcType=LONGVARCHAR},
       </if>
       <if test="lossAdjustment != null" >
-        #{lossAdjustment,jdbcType=VARCHAR},
+        #{lossAdjustment,jdbcType=LONGVARCHAR},
       </if>
       <if test="surveyorConclusion != null" >
-        #{surveyorConclusion,jdbcType=VARCHAR},
+        #{surveyorConclusion,jdbcType=LONGVARCHAR},
       </if>
       <if test="reportFile != null" >
         #{reportFile,jdbcType=VARCHAR},
@@ -358,6 +362,10 @@
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="clientId != null" >
+        #{clientId,jdbcType=TIMESTAMP},
+      </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.report.model.Report" >
@@ -391,7 +399,7 @@
         insure_deadline = #{insureDeadline,jdbcType=VARCHAR},
       </if>
       <if test="insureAmount != null" >
-        insure_amount = #{insureAmount,jdbcType=DECIMAL},
+        insure_amount = #{insureAmount,jdbcType=VARCHAR},
       </if>
       <if test="deductible != null" >
         deductible = #{deductible,jdbcType=VARCHAR},
@@ -403,22 +411,22 @@
         accident_place = #{accidentPlace,jdbcType=VARCHAR},
       </if>
       <if test="accidentCause != null" >
-        accident_cause = #{accidentCause,jdbcType=VARCHAR},
+        accident_cause = #{accidentCause,jdbcType=LONGVARCHAR},
       </if>
       <if test="accidentPass != null" >
-        accident_pass = #{accidentPass,jdbcType=VARCHAR},
+        accident_pass = #{accidentPass,jdbcType=LONGVARCHAR},
       </if>
       <if test="liabilityAffirm != null" >
-        liability_affirm = #{liabilityAffirm,jdbcType=VARCHAR},
+        liability_affirm = #{liabilityAffirm,jdbcType=LONGVARCHAR},
       </if>
       <if test="reportedLossAmount != null" >
-        reported_loss_amount = #{reportedLossAmount,jdbcType=DECIMAL},
+        reported_loss_amount = #{reportedLossAmount,jdbcType=VARCHAR},
       </if>
       <if test="verifyLossAmount != null" >
-        verify_loss_amount = #{verifyLossAmount,jdbcType=DECIMAL},
+        verify_loss_amount = #{verifyLossAmount,jdbcType=VARCHAR},
       </if>
       <if test="adjustmentAmount != null" >
-        adjustment_amount = #{adjustmentAmount,jdbcType=DECIMAL},
+        adjustment_amount = #{adjustmentAmount,jdbcType=VARCHAR},
       </if>
       <if test="surveyor != null" >
         surveyor = #{surveyor,jdbcType=VARCHAR},
@@ -427,19 +435,19 @@
         certificate_code = #{certificateCode,jdbcType=VARCHAR},
       </if>
       <if test="forewordContent != null" >
-        foreword_content = #{forewordContent,jdbcType=VARCHAR},
+        foreword_content = #{forewordContent,jdbcType=LONGVARCHAR},
       </if>
       <if test="objectDescription != null" >
-        object_description = #{objectDescription,jdbcType=VARCHAR},
+        object_description = #{objectDescription,jdbcType=LONGVARCHAR},
       </if>
       <if test="surveyTime != null" >
         survey_time = #{surveyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="surveyPlace != null" >
-        survey_place = #{surveyPlace,jdbcType=VARCHAR},
+        survey_place = #{surveyPlace,jdbcType=LONGVARCHAR},
       </if>
       <if test="surveyCase != null" >
-        survey_case = #{surveyCase,jdbcType=VARCHAR},
+        survey_case = #{surveyCase,jdbcType=LONGVARCHAR},
       </if>
       <if test="insurerRepresentative != null" >
         insurer_representative = #{insurerRepresentative,jdbcType=VARCHAR},
@@ -448,7 +456,7 @@
         survey_surveyor = #{surveySurveyor,jdbcType=VARCHAR},
       </if>
       <if test="claimantDescription != null" >
-        claimant_description = #{claimantDescription,jdbcType=VARCHAR},
+        claimant_description = #{claimantDescription,jdbcType=LONGVARCHAR},
       </if>
       <if test="dangerTime != null" >
         danger_time = #{dangerTime,jdbcType=TIMESTAMP},
@@ -457,34 +465,34 @@
         danger_place = #{dangerPlace,jdbcType=VARCHAR},
       </if>
       <if test="damagedObject != null" >
-        damaged_object = #{damagedObject,jdbcType=VARCHAR},
+        damaged_object = #{damagedObject,jdbcType=LONGVARCHAR},
       </if>
       <if test="dangerCase != null" >
-        danger_case = #{dangerCase,jdbcType=VARCHAR},
+        danger_case = #{dangerCase,jdbcType=LONGVARCHAR},
       </if>
       <if test="iorderLiability != null" >
-        iorder_liability = #{iorderLiability,jdbcType=VARCHAR},
+        iorder_liability = #{iorderLiability,jdbcType=LONGVARCHAR},
       </if>
       <if test="verifyLossGist != null" >
-        verify_loss_gist = #{verifyLossGist,jdbcType=VARCHAR},
+        verify_loss_gist = #{verifyLossGist,jdbcType=LONGVARCHAR},
       </if>
       <if test="verifyLossProcess != null" >
-        verify_loss_process = #{verifyLossProcess,jdbcType=VARCHAR},
+        verify_loss_process = #{verifyLossProcess,jdbcType=LONGVARCHAR},
       </if>
       <if test="repeatInsure != null" >
-        repeat_insure = #{repeatInsure,jdbcType=VARCHAR},
+        repeat_insure = #{repeatInsure,jdbcType=LONGVARCHAR},
       </if>
       <if test="thirdLiability != null" >
-        third_liability = #{thirdLiability,jdbcType=VARCHAR},
+        third_liability = #{thirdLiability,jdbcType=LONGVARCHAR},
       </if>
       <if test="deductibleSalvage != null" >
-        deductible_salvage = #{deductibleSalvage,jdbcType=VARCHAR},
+        deductible_salvage = #{deductibleSalvage,jdbcType=LONGVARCHAR},
       </if>
       <if test="lossAdjustment != null" >
-        loss_adjustment = #{lossAdjustment,jdbcType=VARCHAR},
+        loss_adjustment = #{lossAdjustment,jdbcType=LONGVARCHAR},
       </if>
       <if test="surveyorConclusion != null" >
-        surveyor_conclusion = #{surveyorConclusion,jdbcType=VARCHAR},
+        surveyor_conclusion = #{surveyorConclusion,jdbcType=LONGVARCHAR},
       </if>
       <if test="reportFile != null" >
         report_file = #{reportFile,jdbcType=VARCHAR},
@@ -495,6 +503,10 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="clientId != null" >
+        client_id = #{clientId,jdbcType=TIMESTAMP},
+      </if>
+
     </set>
     where report_id = #{reportId,jdbcType=VARCHAR}
   </update>

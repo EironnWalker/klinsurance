@@ -18,18 +18,20 @@
     </div>
 </header>
 <script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
 <script type="text/javascript">
     apiready = function() {
+        var headerHeight = $("header").fixStatusBar();
         api.openFrame({
             name: '/html/report/add_brief_frm2.html',
             url: api.wgtRootDir + '/html/report/add_brief_frm2.html',
             rect: {
                 x: 0,
-                y: $("header").height(),
+                y: headerHeight,
                 w: 'auto',
                 h: 'auto'
             },
-            pageParam: {name: 'pageparam'},
+            pageParam: api.pageParam,
             bounces: false
         });
     };
@@ -37,7 +39,7 @@
         api.openWin({
             name: '/html/report/location_win.html',
             url: api.wgtRootDir + '/html/report/location_win.html',
-            pageParam: {name: 'pageparamname'}
+            pageParam: {projectId: api.pageParam.projectId}
         });
     }
 </script>

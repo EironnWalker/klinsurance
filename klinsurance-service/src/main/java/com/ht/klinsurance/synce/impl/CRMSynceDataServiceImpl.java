@@ -2,6 +2,7 @@ package com.ht.klinsurance.synce.impl;
 
 import com.google.gson.reflect.TypeToken;
 import com.ht.common.gson.HtGson;
+import com.ht.common.ht.HtMap;
 import com.ht.common.http.HtRequest;
 import com.ht.klinsurance.common.KlConsts;
 import com.ht.klinsurance.crm.mapper.CrmInteractiveNoteMapper;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,6 +113,32 @@ public class CRMSynceDataServiceImpl implements ICRMSynceDataService {
             result*=crmInteractiveNoteMapper.insertCrmInteractiveNoteList(crmInteractiveNotes);
         }
         return result;
+    }
+
+    /**
+     * 增加交互记录
+     *
+     * @param crmInteractiveNoteBean
+     * @return
+     */
+    @Override
+    public int addInteractiveNote(CRMInteractiveNoteBean crmInteractiveNoteBean) {
+        try {
+            String itemStr = HtGson.toJson(crmInteractiveNoteBean, new TypeToken<CRMInteractiveNoteBean>() {
+            });
+            HtMap htMap = new HtMap();
+            try {
+                htMap.put("noteJson", URLEncoder.encode(itemStr, "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            String resultStr =  HtRequest.post(KlConsts.KLIN_BASE_URL + "/add/interNote\n", htMap);
+
+        }catch (Exception e)
+        {
+            return 0;
+        }
+        return 1;
     }
 
     /**

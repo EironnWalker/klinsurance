@@ -1,6 +1,10 @@
 var TranslateModule = null;
+var db;
+var userId;
 apiready = function () {
+    db = api.require('db');
     TranslateModule = api.require('TranslateModule');
+    userId = ht.storage.getLocalStorage(ht.constants.userId);
 };
 $(function () {
     $("#form-brief2").baseValidate({
@@ -30,8 +34,37 @@ function startRecord(id) {
     });
 }
 
-function doAddLocation(location_id, location_detail) {
-    $("#stake-number").val(location_detail);
+function doAddLocation(lossIdStr) {
+    if (lossIdStr.length > 0) {
+        var sql = "SELECT * FROM loss where userId = '" + userId + "' and lossId in (" + lossIdStr + ")";
+        db.selectSql({
+            name: 'klinsurance_db.db',
+            sql: sql
+        }, function (ret, err) {
+            if (ret.status) {
+                var queryRet = ret;
+                for (var i = 0; i < queryRet.data.length; i++) {
+                    db.selectSql({
+                        name: 'klinsurance_db.db',
+                        sql: "SELECT * FROM loss_item where lossId = '" + queryRet.data[i].lossId + "'"
+                    }, function (ret, err) {
+                        if (ret.status) {
+                            queryRet.data[i]["lossItem"] = ret.data;
+                            queryRet.data[i]["lossImage"] = null;
+                        }
+                    });
+                }
+                var html = template('templateLoss', queryRet);
+                $("#content").append(html);
+            } else {
+                api.toast({
+                    msg: '数据错误，请稍后重试！',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+            }
+        });
+    }
 }
 
 //上传图片

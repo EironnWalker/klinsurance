@@ -51,4 +51,6 @@ public class Briefing {
 
     /*******************************************************/
     private String projectName;//项目名字
+
+    private String subSurveyName;//协助公估师
 }

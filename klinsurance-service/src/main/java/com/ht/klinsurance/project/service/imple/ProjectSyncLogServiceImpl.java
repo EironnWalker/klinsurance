@@ -282,4 +282,111 @@ public class ProjectSyncLogServiceImpl implements IProjectSyncLogService {
         }
         return resultMap;
     }
+
+    /**
+     * 将手机端数据同步到后台
+     *
+     * @param briefingListPh
+     * @param briefingLossListPh
+     * @param briefingLossImageListPh
+     * @param briefingLossItemListPh
+     * @param customerListPh
+     * @param lossListPh
+     * @param lossItemListPh
+     * @param reportListPh
+     * @param reportBriefingListPh
+     * @param textTemplateListPh
+     * @return
+     */
+    @Override
+    public int putPhoneSyncMessage(List<Briefing> briefingListPh, List<BriefingLoss> briefingLossListPh, List<BriefingLossImage> briefingLossImageListPh,
+                                     List<BriefingLossItem> briefingLossItemListPh, List<Customer> customerListPh, List<Loss> lossListPh,
+                                     List<LossItem> lossItemListPh, List<Report> reportListPh, List<ReportBriefing> reportBriefingListPh,
+                                     List<TextTemplate> textTemplateListPh)
+    {
+        int result  = 1;
+
+        //将手机端的数据保存到数据库
+        if(briefingListPh!=null)
+        {
+            for(int i = 0;i <briefingListPh.size();i++)
+            {
+                briefingMapper.deleteByPrimaryKey(briefingListPh.get(i).getBriefingId());
+                result *= briefingMapper.addBriefing(briefingListPh.get(i));
+            }
+        }
+        if(briefingLossListPh!=null)
+        {
+            for(int i = 0;i <briefingLossListPh.size();i++)
+            {
+                briefingLossMapper.deleteByPrimaryKey(briefingLossListPh.get(i).getBriefingLossId());
+                result *=  briefingLossMapper.addBriefingLoss(briefingLossListPh.get(i));
+            }
+        }
+        if(briefingLossImageListPh!=null)
+        {
+            for(int i = 0;i <briefingLossImageListPh.size();i++)
+            {
+                briefingLossImageMapper.deleteByPrimaryKey(briefingLossImageListPh.get(i).getBriefingLossImageId());
+                result *=  briefingLossImageMapper.addBriefingLossImage(briefingLossImageListPh.get(i));
+            }
+        }
+        if(briefingLossItemListPh!=null)
+        {
+            for(int i = 0;i <briefingLossItemListPh.size();i++)
+            {
+                briefingLossItemMapper.deleteByPrimaryKey(briefingLossItemListPh.get(i).getBriefingLossItemId());
+                result *=  briefingLossItemMapper.adddBriefingLossItem(briefingLossItemListPh.get(i));
+            }
+        }
+        if(customerListPh!=null)
+        {
+            for(int i = 0;i <customerListPh.size();i++)
+            {
+                customerMapper.deleteByPrimaryKey(customerListPh.get(i).getCustomerId());
+                result *=  customerMapper.addCustomer(customerListPh.get(i));
+            }
+        }
+        if(lossListPh!=null)
+        {
+            for(int i = 0;i <lossListPh.size();i++)
+            {
+                lossMapper.deleteByPrimaryKey(lossListPh.get(i).getLossId());
+                result *=  lossMapper.addLoss(lossListPh.get(i));
+            }
+        }
+        if(lossItemListPh!=null)
+        {
+            for(int i = 0;i <lossItemListPh.size();i++)
+            {
+                lossItemMapper.deleteByPrimaryKey(lossItemListPh.get(i).getLossItemId());
+                result *=  lossItemMapper.addLossItem(lossItemListPh.get(i));
+            }
+        }
+        if(reportListPh!=null)
+        {
+            for(int i = 0;i <reportListPh.size();i++)
+            {
+                reportMapper.deleteById(reportListPh.get(i).getReportId());
+                result *=   reportMapper.addReport(reportListPh.get(i));
+            }
+        }
+        if(reportBriefingListPh!=null)
+        {
+            for(int i = 0;i <reportBriefingListPh.size();i++)
+            {
+                reportBriefingMapper.deleteByPrimaryKey(reportBriefingListPh.get(i).getReportBriefingId());
+                result *=   reportBriefingMapper.addReportBriefing(reportBriefingListPh.get(i));
+            }
+        }
+        if(textTemplateListPh!=null)
+        {
+            for(int i = 0;i <textTemplateListPh.size();i++)
+            {
+                textTemplateMapper.deleteByPrimaryKey(textTemplateListPh.get(i).getTextTemplateId());
+                result *= textTemplateMapper.addTextTemplate(textTemplateListPh.get(i));
+            }
+        }
+        return result;
+    }
 }
