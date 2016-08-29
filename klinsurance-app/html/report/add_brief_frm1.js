@@ -89,6 +89,12 @@ apiready = function () {
                         projectId: projectId
                     }
                 });
+                //刷新简报列表
+                api.execScript({
+                    name: '/html/report/report_win.html',
+                    frameName: '/html/report/sub_brief_frm.html',
+                    script: 'loadData();'
+                });
             } else {
                 api.toast({
                     msg: '数据错误，请稍后重试！',
