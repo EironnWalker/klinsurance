@@ -37,9 +37,9 @@
             url: api.wgtRootDir + '/html/site/loss_assessment_frm.html',
             rect: {
                 x: 0,
-                y: $("header").height()+$(".ellipsis").height(),
+                y: $("header").height()+12+$(".ellipsis").height(),
                 w: 'auto',
-                h: api.winHeight-$(".zoom").height()
+                h: api.frameHeight-$("header").height()-32-$(".ellipsis").height()-$(".zoom").height()
             },
             pageParam:{
                 lossId:pageParam.lossId

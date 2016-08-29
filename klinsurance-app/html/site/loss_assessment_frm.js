@@ -1,5 +1,4 @@
 var pageParam;
-var searchContent;
 $(function () {
     $("li .flex-1").each(function () {
         if ($(this).height() > 20) {
@@ -17,14 +16,12 @@ $(function () {
 
 apiready = function () {
     pageParam=api.pageParam;
+    db = api.require('db');
     loadData();
 };
 // 加载数据
 function loadData() {
     var sql = "SELECT * FROM loss_item where lossId='"+pageParam.lossId+"'";
-    if (searchContent) {
-        sql += " and lossItemName like '%" + searchContent + "%'";
-    }
     db.selectSql({
             name: 'klinsurance_db.db',
             sql: sql
