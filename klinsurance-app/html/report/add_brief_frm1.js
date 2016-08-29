@@ -79,13 +79,14 @@ apiready = function () {
             if (ret.status) {
                 if (isAdd == 1) {
                     $("#briefingId").val(uuid);
+                    isAdd = 0;
                 }
                 api.openWin({
                     name: '/html/report/add_brief_win2.html',
                     url: api.wgtRootDir + '/html/report/add_brief_win2.html',
                     pageParam: {
                         briefingId: $("#briefingId").val(),
-                        projectId:projectId
+                        projectId: projectId
                     }
                 });
             } else {
