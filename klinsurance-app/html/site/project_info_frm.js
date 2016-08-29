@@ -2,14 +2,14 @@ var totalPages;  // 定义一个变量存储第一次加载返回来的总页数
 var nowPage = 1;  //定义一个变量存储当前的页数
 var limitNum = 20;  //每页数据条数
 var pageType;
-var TranslateModule = null;
+//var TranslateModule = null;
 var db;
 var searchContent;
 apiready = function () {
     db = api.require('db');
     pageType = api.pageParam.type;
-    TranslateModule = api.require('TranslateModule');
-    //queryTotalPage();
+    //TranslateModule = api.require('TranslateModule');
+    queryTotalPage();
     // 下拉刷新
     api.setRefreshHeaderInfo({
         visible: true,
@@ -58,7 +58,7 @@ function queryTotalPage(content) {
                 if (ret.data[0].total > 0) {
                     totalPages = Math.ceil(ret.data[0].total / limitNum);
                     if (totalPages > 0) {
-                        loadData(0); // 第一次加载
+                        loadData(1); // 第一次加载
                     }
                 }
             } else {
