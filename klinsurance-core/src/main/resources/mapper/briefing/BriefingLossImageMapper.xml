@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ht.klinsurance.briefing.mapper.BriefingLossImageMapper" >
   <sql id="Base_Column_List" >
-    briefing_loss_image_id, briefing_loss_id, original_image, image, description, create_time
+    briefing_loss_image_id, briefing_loss_id, original_image, image, description, create_time,image_order
   </sql>
   <select id="selectByPrimaryKey" resultType="com.ht.klinsurance.briefing.model.BriefingLossImage" parameterType="java.lang.String" >
     select 
@@ -14,7 +14,7 @@
     select
     <include refid="Base_Column_List" />
     from briefing_loss_image
-    where briefing_loss_id = #{briefingLossId,jdbcType=VARCHAR}
+    where briefing_loss_id = #{briefingLossId,jdbcType=VARCHAR} order by image_order asc
   </select>
   <insert id="addBriefingLossImage" parameterType="com.ht.klinsurance.briefing.model.BriefingLossImage" >
     insert into briefing_loss_image
@@ -37,6 +37,10 @@
       <if test="createTime != null" >
         create_time,
       </if>
+      <if test="imageOrder != null" >
+        image_order,
+      </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="briefingLossImageId != null" >
@@ -57,6 +61,10 @@
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="imageOrder != null" >
+        #{imageOrder,jdbcType=INTEGER},
+      </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ht.klinsurance.briefing.model.BriefingLossImage" >
@@ -76,6 +84,9 @@
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imageOrder != null" >
+        image_order =  #{imageOrder,jdbcType=INTEGER},
       </if>
     </set>
     where briefing_loss_image_id = #{briefingLossImageId,jdbcType=VARCHAR}

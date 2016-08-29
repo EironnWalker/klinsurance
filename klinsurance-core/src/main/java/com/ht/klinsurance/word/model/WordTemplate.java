@@ -17,4 +17,6 @@ public class WordTemplate {
 
     private Date createTime;
 
+    private Boolean isChecked;
+
 }

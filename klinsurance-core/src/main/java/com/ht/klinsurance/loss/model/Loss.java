@@ -23,6 +23,15 @@ public class Loss {
 
     private Date customerSignTime;
 
+    private String customerSignPath2;
+    private Date customerSignTime2;
+
+    private String customerSignPath3;
+    private Date customerSignTime3;
+
+    private String customerSignPath4;
+    private Date customerSignTime4;
+
     private String remark;
 
     private Date createTime;

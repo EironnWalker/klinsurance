@@ -4,7 +4,7 @@
 
   <sql id="Base_Column_List" >
     loss_id, user_id, project_id, place,place_no, customer_sign_path, customer_sign_time, remark,
-    create_time
+    create_time, customer_sign_path2, customer_sign_time2, customer_sign_path3, customer_sign_time3, customer_sign_path4, customer_sign_time4
   </sql>
   <select id="selectByPrimaryKey"  resultType="com.ht.klinsurance.loss.model.Loss"  parameterType="java.lang.String">
     select 
@@ -21,6 +21,12 @@
       b.place_no,
       b.customer_sign_path,
       b.customer_sign_time,
+        b.customer_sign_path2,
+      b.customer_sign_time2,
+        b.customer_sign_path3,
+      b.customer_sign_time3,
+        b.customer_sign_path4,
+      b.customer_sign_time4,
       b.remark,
       b.create_time,
       a.briefing_loss_id
@@ -39,6 +45,12 @@
       b.place_no,
       b.customer_sign_path,
       b.customer_sign_time,
+       b.customer_sign_path2,
+      b.customer_sign_time2,
+       b.customer_sign_path3,
+      b.customer_sign_time3,
+       b.customer_sign_path4,
+      b.customer_sign_time4,
       b.remark,
       b.create_time,
       a.briefing_loss_id
@@ -77,6 +89,24 @@
       <if test="customerSignTime != null" >
         customer_sign_time,
       </if>
+      <if test="customerSignPath2 != null" >
+        customer_sign_path2,
+      </if>
+      <if test="customerSignTime2 != null" >
+        customer_sign_time2,
+      </if>
+      <if test="customerSignPath3 != null" >
+        customer_sign_path3,
+      </if>
+      <if test="customerSignTime3 != null" >
+        customer_sign_time3,
+      </if>
+      <if test="customerSignPath4 != null" >
+        customer_sign_path4,
+      </if>
+      <if test="customerSignTime4 != null" >
+        customer_sign_time4,
+      </if>
       <if test="remark != null" >
         remark,
       </if>
@@ -106,6 +136,24 @@
       <if test="customerSignTime != null" >
         #{customerSignTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="customerSignPath2 != null" >
+        #{customerSignPath2,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSignTime2 != null" >
+        #{customerSignTime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerSignPath3 != null" >
+        #{customerSignPath3,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSignTime3 != null" >
+        #{customerSignTime3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerSignPath4 != null" >
+        #{customerSignPath4,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSignTime4 != null" >
+        #{customerSignTime4,jdbcType=TIMESTAMP},
+      </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>
@@ -130,10 +178,28 @@
         place_no = #{placeNo,jdbcType=VARCHAR},
       </if>
       <if test="customerSignPath != null" >
-        customer_sign_path = #{customerSignPath,jdbcType=VARCHAR},
-      </if>
+      customer_sign_path = #{customerSignPath,jdbcType=VARCHAR},
+    </if>
       <if test="customerSignTime != null" >
         customer_sign_time = #{customerSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerSignPath2 != null" >
+        customer_sign_path2 = #{customerSignPath2,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSignTime2 != null" >
+        customer_sign_time2 = #{customerSignTime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerSignPath3 != null" >
+        customer_sign_path3 = #{customerSignPath3,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSignTime3 != null" >
+        customer_sign_time3 = #{customerSignTime3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerSignPath4 != null" >
+        customer_sign_path4 = #{customerSignPath4,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSignTime4 != null" >
+        customer_sign_time4 = #{customerSignTime4,jdbcType=TIMESTAMP},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
