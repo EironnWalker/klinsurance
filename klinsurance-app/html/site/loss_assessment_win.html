@@ -22,7 +22,14 @@
 <script src="../../script/lib/jquery.js"></script>
 <script type="text/javascript">
     var pageParam;
+    var customDesignModule;
+    $(".zoom").click(
+            function () {
+                startDesigh();
+            }
+    );
     apiready = function () {
+        customDesignModule = api.require('CustomDesignModule');
         pageParam=api.pageParam;
         $(".ellipsis").text("当前位置："+pageParam.place);
         api.openFrame({
@@ -32,7 +39,7 @@
                 x: 0,
                 y: $("header").height()+$(".ellipsis").height(),
                 w: 'auto',
-                h: 'auto'
+                h: api.winHeight-$(".zoom").height()
             },
             pageParam:{
                 lossId:pageParam.lossId
@@ -40,6 +47,12 @@
             bounces: true
         });
     };
+    function startDesigh() {
+        customDesignModule.startDesigh(function back(ret) {
+            alert(ret.data)
+            $(".sign img").attr("src", ret.data)
+        });
+    }
     function addLoss() {
         api.openWin({
             name: '/html/site/add_loss_win.html',
