@@ -19,7 +19,7 @@
 <ul class="location-ul" id="content">
     <script type="text/html" id="template">
         {{each data as location}}
-        <li onclick="goAssessLoss();">
+        <li onclick="goAssessLoss('{{location.lossId}}','{{location.place}}');">
             <div>
                 <div>编号：{{location.placeNo}}</div>
                 <p>{{location.place}}</p>

@@ -14,8 +14,6 @@ apiready = function () {
     loadData();
 };
 // 加载数据
-// @currentPage:当前页码
-// @isReload：是否为刷新操作
 function loadData() {
     var sql = "SELECT * FROM loss where projectId='"+pageParam.projectId+"'";
     if (searchContent) {
@@ -42,11 +40,14 @@ function loadData() {
     );
 }
 //损失项列表
-function goAssessLoss() {
+function goAssessLoss(lossId,place) {
     api.openWin({
         name: '/html/site/loss_assessment_win.html',
         url: api.wgtRootDir + '/html/site/loss_assessment_win.html',
-        pageParam: {name: 'pageparamname'}
+        pageParam: {
+            lossId:lossId,
+            place: place
+        }
     });
 }
 //添加地点回调

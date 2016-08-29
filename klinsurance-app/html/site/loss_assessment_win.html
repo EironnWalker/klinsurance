@@ -12,22 +12,30 @@
     <div class="left">
         <a class="icon icon-back" onclick="api.closeWin();"></a>
     </div>
-    <h1>山东省烟台市莱山区创业路</h1>
+    <h1>损失项列表</h1>
     <div class="right">
-        <a onclick="addLoss();">添加</a>
+        <a onclick="addLoss();">添加损失项</a>
     </div>
 </header>
+<div class="location-title ellipsis">当前位置：</div>
+<a class="sign-btn zoom">签字</a>
 <script src="../../script/lib/jquery.js"></script>
 <script type="text/javascript">
+    var pageParam;
     apiready = function () {
+        pageParam=api.pageParam;
+        $(".ellipsis").text("当前位置："+pageParam.place);
         api.openFrame({
             name: '/html/site/loss_assessment_frm.html',
             url: api.wgtRootDir + '/html/site/loss_assessment_frm.html',
             rect: {
                 x: 0,
-                y: $("header").height(),
+                y: $("header").height()+$(".ellipsis").height(),
                 w: 'auto',
                 h: 'auto'
+            },
+            pageParam:{
+                lossId:pageParam.lossId
             },
             bounces: true
         });
