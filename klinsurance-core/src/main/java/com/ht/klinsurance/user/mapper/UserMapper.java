@@ -15,6 +15,9 @@ public interface UserMapper {
 
     List<User> findList(Map<String, Object> parameter);
 
+    List<User> findUserByUserNameLogin(Map<String, Object> parameter);
+
+
     /**
      * 批量查询用户
      * @param ids

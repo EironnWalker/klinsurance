@@ -48,6 +48,18 @@
         #{id}
       </foreach>
   </select>
+  <select id="findUserByUserNameLogin" resultType="com.ht.klinsurance.user.model.User">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    <where>
+      <if test="loginName!=null and loginName!=''">
+        and login_name = #{loginName}
+      </if>
+      and is_used= 1
+    </where>
+
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from user
     where user_id = #{userId,jdbcType=VARCHAR}
