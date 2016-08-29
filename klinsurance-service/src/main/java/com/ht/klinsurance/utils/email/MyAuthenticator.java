@@ -12,8 +12,8 @@ import javax.mail.PasswordAuthentication;
 public class MyAuthenticator extends Authenticator {
     private static final String userName = KlConsts.EMAIL_SEND_EMAIL;
     private static final String passWord =  KlConsts.EMAIL_SEND_PWD;
-    // * @author Michael.wu
-//* 密码和用户的验证
+
+    //* 密码和用户的验证
     public MyAuthenticator() {
         super();
     }
