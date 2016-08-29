@@ -17,7 +17,8 @@ public interface IReportService {
      * 创建报告
      * @param report
      * @param reportBriefingList
+     * @param basePath
      * @return
      */
-    int creataReport(Report report,List<ReportBriefing> reportBriefingList);
+    String  creataReport(Report report,List<ReportBriefing> reportBriefingList,String basePath);
 }
