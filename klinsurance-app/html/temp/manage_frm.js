@@ -58,10 +58,10 @@ apiready = function() {
     //增加或修改模板
     $("#form-manage").baseValidate({
         submitHandler: function() {
-            var currentTime = new Date();
             var isShared;
             var sql;
             var formObj = form2json('form-manage');
+            var currentTime = new Date().format("yyyy.MM.dd hh:mm:ss");
             if ($("input[name='isShared']").is(':checked')==true) {
                 isShared = 1;
             }
@@ -69,11 +69,11 @@ apiready = function() {
                 isShared = 0;
             }
             if (api.pageParam.tempId != null) {
-                sql = 'update text_template set name = "' + formObj.name + '", content = "' +formObj.detail + '", tags = "' + codeValue.substring(0, codeValue.length-1) + '", isShared =' + isShared + ' where textTemplateId = "'+ api.pageParam.tempId + '"';
+                sql = 'update text_template set name = "' + formObj.name + '", content = "' +formObj.detail + '", tags = "' + codeValue.substring(0, codeValue.length-1) + '", isShared =' + isShared + ', isSync = '+ 1 + ' where textTemplateId = "'+ api.pageParam.tempId + '"';
             }
             else {
                 sql = 'insert into text_template values ("' + ht.uuid() + '","'+formObj.name + '","' + formObj.detail + '","' + codeValue.substring(0, codeValue.length-1) +
-                    '",' + isShared + ',"' + currentTime.toLocaleString() + '",' + 0 + ')';
+                    '",' + isShared + ',"' + currentTime.toLocaleString() + '",' + 1 + ')';
             }
             db.executeSql({
                 name: 'klinsurance_db',
@@ -91,6 +91,7 @@ apiready = function() {
                     alert(JSON.stringify(err))
                 }
             });
+            ht.storage.setLocalStorage(ht.constants.isSync, 1);
         }
     });
 };

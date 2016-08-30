@@ -2,117 +2,15 @@ var TranslateModule = null;
 var db;
 var tipHtml;
 var tempHtml;
-var codeValue = "";
-
-$(function() {
-//标签展开与合上
-    $(".tip-wrap .icon").click(
-        function() {
-            var tipHeight =  $(".tip-wrap .wrap>div").height();
-            if ($(this).attr("class").indexOf("icon-fold") == -1) {
-                $(this).prev().animate({maxHeight: tipHeight});
-                $(this).removeClass("icon-unfold");
-                $(this).addClass("icon-fold");
-            }
-            else {
-                $(this).prev().animate({maxHeight: '33px'});
-                $(this).removeClass("icon-fold");
-                $(this).addClass("icon-unfold");
-            }
-        }
-    );
-
-    //语音转义
-    $(".icon-record").click(
-        function() {
-            startRecord($(this).attr('data-id'));
-        }
-    );
-
-//输入框搜索
-    $(".search-wrap .btn").click(function() {
-        searchTemp($("#search").val(),"name")
-    });
-    $(".search-wrap input").on("input propertychange", function() {
-        searchTemp($("#search").val(),"name")
-    });
-});
 
 apiready = function() {
-    TranslateModule = api.require('TranslateModule');
-    //fs = api.require('fs');
-    //fs.moveTo({
-    //    oldPath: api.wgtRootDir + '/wgt/klinsurance_db.db',
-    //    newPath: 'fs://'
-    //}, function(ret, err) {
-    //    if (ret.status) {
-    //        alert(JSON.stringify(ret));
-    //    } else {
-    //        alert(JSON.stringify(err));
-    //    }
-    //});
     showContent();
 };
 
-//从数据库中获取标签和模板，并显示
+//从数据库中获取模板，并显示
 function showContent() {
     db = api.require('db');
-    db.openDatabase({
-        name: 'klinsurance_db',
-        path: 'fs://klinsurance_db.db'
-    },function(ret, err) {
-        if (ret.status) {
-            //db.executeSql({
-            //    name: 'klinsurance_db',
-            //    sql: 'delete from text_template'
-            //}, function (ret, err) {
-            //
-            //})
-            db.selectSql({
-                name: 'klinsurance_db',
-                sql: 'select * from text_template_tag order by text_template_tag_id'
-            }, function (ret, err) {
-                if (ret.status) {
-                    tipHtml = template("tip-template", ret);
-                    $("#tip").html(tipHtml);
-                    tipColor();
-                }
-            });
-            loadTemp();
-        } else {
-            alert('打开数据库失败');
-        }
-    });
-}
-
-
-//标签颜色控制
-function tipColor() {
-    $("#tip div").each(function(){
-        var index = $("#tip div").index(this);
-        switch (index % 6) {
-            case 0: $(this).addClass("orange"); break;
-            case 1: $(this).addClass("brown"); break;
-            case 2: $(this).addClass("grey"); break;
-            case 3: $(this).addClass("red"); break;
-            case 4: $(this).addClass("blue"); break;
-            case 5: $(this).addClass("pink"); break;
-        }
-    });
-}
-
-//标签点击
-function tipActive(obj) {
-    if($(obj).attr("class").indexOf("active") == -1) {
-        $(obj).addClass("active");
-        codeValue += $(obj).attr("data-code") + ",";
-        searchTemp(codeValue.substring(0,codeValue.length-1), "tags")
-    }
-    else {
-        $(obj).removeClass("active");
-        codeValue = codeValue.replace($(obj).attr("data-code") + ",","");
-        searchTemp(codeValue.substring(0,codeValue.length-1), "tags")
-    }
+    loadTemp();
 }
 
 //加载模板
@@ -133,7 +31,7 @@ function searchTemp(value, option) {
     if (option == "name") {
         db.selectSql({
             name: 'klinsurance_db',
-            sql: 'select * from text_template where ' + option + ' like "%' + value + '%"'
+            sql: 'select * from text_template where ' + option + ' like "%' + value + '%"' + 'order by createTime desc'
         }, function (ret, err) {
             if (ret.status) {
                 tempHtml = template("temp-template", ret);
@@ -156,20 +54,6 @@ function searchTemp(value, option) {
         });
     }
 }
-
-//语音转义模块
-function startRecord(id){
-    TranslateModule.startRecord(function back(ret){
-        if (JSON.stringify(ret.data).type == 0) {
-            $('#'+id).val(JSON.stringify(ret.data).result);
-        }
-        else {
-            var prev = $('#'+id).val();
-            $('#'+id).val(prev + JSON.stringify(ret.data).result);
-        }
-    });
-}
-
 
 //跳转到模板修改页
 function updateTemp(obj) {
