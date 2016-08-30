@@ -31,7 +31,8 @@ function loadLoss() {
                     if (ret.status) {
                         //查询地点的损失项
                         loss["lossItems"] = ret.data;
-                        var sql = "SELECT * FROM briefing_loss_image where briefingLossId = '" + loss.briefingLossId + "'";
+                        var sql = "SELECT * FROM briefing_loss_image where briefingLossId = '" + loss.briefingLossId + "'" +
+                            " order by createTime,imageOrder";
                         db.selectSql({
                             name: 'klinsurance_db.db',
                             sql: sql
@@ -242,7 +243,6 @@ function addImgTemplate() {
             name: 'klinsurance_db.db',
             sql: sql
         }, function (ret, err) {
-            alert(JSON.stringify(err));
             if (ret.status) {
                 lossImg = {
                     briefingLossImageId: briefingLossImageId,
@@ -254,7 +254,7 @@ function addImgTemplate() {
                         data: lossImgArry
                     };
                     var html = template('templateLossImg', ret);
-                    $("#" + briefingLossId + "Img").before(html);
+                    $("#" + briefingLossId + "Img").append(html);
                     ht.apicloud.hideProgress();
                 }
             } else {

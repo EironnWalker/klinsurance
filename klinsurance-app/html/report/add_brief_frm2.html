@@ -61,33 +61,31 @@
                     </li>
                 </ul>
             {{/each}}
+
             <div class="img-wrapper horizontal">
+                <div class="flex-1 horizontal" id="{{loss.briefingLossId}}Img">
                 {{each loss.lossImages as lossImage}}
-                <div class="flex-1 horizontal" id="{{lossImage.briefingLossImageId}}">
                     <div class="wrap">
                         <a class="bg-cover" style="background-image: url({{lossImage.originalImage}})"></a>
-                        <span class="icon-cross" onclick="delImg('{{lossImage.briefingLossImageId}}')"></span>
+                        <!--<span class="icon-cross" onclick="delImg('{{lossImage.briefingLossImageId}}')"></span>-->
 
                         <p class="ellipsis">{{lossImage.description}}</p>
                     </div>
-                </div>
                 {{/each}}
-
-                <img src="../../image/add_pic.svg" id="{{loss.briefingLossId}}Img" onclick="openSelectPhoto('{{loss.briefingLossId}}')"/>
+                </div>
+                <img src="../../image/add_pic.svg" onclick="openSelectPhoto('{{loss.briefingLossId}}')"/>
             </div>
         </div>
         {{/each}}
 </script>
 <script type="text/html" id="templateLossImg">
     {{each data as image}}
-    <div class="flex-1 horizontal" id="{{image.briefingLossImageId}}">
         <div class="wrap">
             <a class="bg-cover" style="background-image: url({{image.originalImage}})"></a>
-            <span class="icon-cross" onclick="delImg('{{image.briefingLossImageId}}')"></span>
+            <!--<span class="icon-cross" onclick="delImg('{{image.briefingLossImageId}}')"></span>-->
 
             <p class="ellipsis">请描述</p>
         </div>
-    </div>
     {{/each}}
 </script>
 </body>
