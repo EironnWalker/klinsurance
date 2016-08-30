@@ -2,21 +2,25 @@ var db;
 var yH;//打开通讯录列表的起始高度
 var viewADBook;
 var TranslateModule = null;
+var importCustomModule = null;
+var bookType;
 apiready = function () {
     var headerHeight = $("header").fixStatusBar();
     TranslateModule = api.require('TranslateModule');
-    viewADBook = api.require('HTViewADBook');
+    importCustomModule = api.require('ImportCustomModule');
     db = api.require('db');
     yH = headerHeight + $(".horizontal").outerHeight(true);
+    bookType = api.pageParam.bookType;
     firstRefresh();
 };
 //进入页面首次刷新数据
 function firstRefresh() {
     db.selectSql({
-        name: 'insurance_db.db',
+        name: 'klinsurance_db.db',
         sql: "SELECT * FROM customer"
     }, function (ret, err) {
         if (ret.status) {
+            alert(JSON.stringify(ret.data));
             initCustomerBook(ret.data);
         } else {
             api.toast({
@@ -29,23 +33,16 @@ function firstRefresh() {
 }
 //初始化客户列表
 function initCustomerBook(data) {
-    //在名为winName的window中执行jsfun脚本
-    var jsfun = "setDataLength(" + data.length + ");";
-    api.execScript({
-        name: '/html/customer/customer_list_win.html',
-        script: jsfun
-    });
     var param = {
         x: 0,
         y: yH,
         w: 0,
-        h: api.winHeight - footerH - yH,
+        h: api.winHeight - yH,
         type: bookType,
         persons: JSON.stringify(data)
     };
-    viewADBook.startADBookView(param, function resultCallback(ret) {
+    importCustomModule.importCustom(param, function resultCallback(ret) {
         alert(ret.data);
-        var data = JSON.parse(ret.data);
     });
 }
 $(".icon-record").click(

@@ -17,6 +17,7 @@
     <input type="hidden" id="surveyLat" name="surveyLat"/>
     <input type="hidden" id="surveyLng" name="surveyLng"/>
     <input type="hidden" id="insurer" name="insurer"/>
+
     <div class="content-top-10">
         <ul class="ul-one name-right no-active">
             <li>
@@ -24,6 +25,7 @@
                     <div class="name">勘测地点</div>
                     <a class="wrap flex-1"><input id="surveyPlace" name="surveyPlace" validate="{required: true}"
                                                   errormsg="勘测地点" placeholder="勘测地点" value="勘测地点"/></a>
+
                     <div class="icon icon-location"></div>
                 </div>
             </li>
@@ -39,6 +41,8 @@
                     <div class="name">被保人</div>
                     <a class="wrap flex-1"><input validate="{required: true}" errormsg="被保人"
                                                   placeholder="请选择被保人" value="被保人"/></a>
+
+                    <div class="icon icon-personal" onclick="selectCustUser(1)"></div>
                 </div>
             </li>
             <li>
@@ -47,7 +51,6 @@
                     <a class="wrap flex-1"><input name="insurerName" validate="{required: true}" errormsg="联系人"
                                                   placeholder="填写联系人" value="联系人"/></a>
 
-                    <div class="icon icon-personal"></div>
                 </div>
             </li>
             <li>

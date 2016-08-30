@@ -146,6 +146,16 @@ $(".icon-add1").click(function () {
         }
     });
 });
+//打开选择客户页面
+function selectCustUser(bookType){
+    api.openWin({
+        name: '/html/customer/customer_list.html',
+        url: api.wgtRootDir + '/html/customer/customer_list.html',
+        pageParam: {
+            bookType: bookType
+        }
+    });
+}
 
 //获得模板内容
 function getTempDetail(dataID, detail) {
