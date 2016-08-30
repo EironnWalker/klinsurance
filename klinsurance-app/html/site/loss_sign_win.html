@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" href="../../css/base.css"/>
+</head>
+<body>
+<header>
+    <div class="left">
+        <a class="icon icon-back" onclick="api.closeWin();"></a>
+    </div>
+    <h1>签名列表</h1>
+</header>
+<script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
+<script type="text/javascript">
+    apiready = function () {
+        var headerHeight = $("header").fixStatusBar();
+        api.openFrame({
+            name: '/html/site/loss_sign_frm.html',
+            url: api.wgtRootDir + '/html/site/loss_sign_frm.html',
+            rect: {
+                x: 0,
+                y: headerHeight,
+                w: 'auto',
+                h: 'auto'
+            },
+            pageParam:api.pageParam,
+            bounces: true
+        });
+    }
+</script>
+</body>
+</html>
