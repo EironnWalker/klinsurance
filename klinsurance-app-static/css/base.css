@@ -797,13 +797,20 @@ input {
     line-height: 28px;
     margin-bottom: 5px;
 }
-.sign a {
+.sign a, .sign-btn {
     display: block;
     color: #cc0001;
     border: 1px solid #cc0001;
     background-color: #fff;
     border-radius: 15px;
     text-align: center;
+}
+.ul-item {
+    padding-bottom: 10px;
+    background-color: transparent;
+}
+.ul-item li {
+    background-color: #fff;
 }
 .absolute-middle {
     position: absolute !important;
@@ -1230,6 +1237,20 @@ input {
     color: #666;
     top: 0;
     left: 0;
+}
+.location-title {
+    margin-right: 0;
+    padding: 12px 15px;
+    font-size: 12px;
+    color: #999;
+}
+.sign-btn {
+    width: 60px;
+    height: 30px;
+    line-height: 28px;
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
 }
 
 

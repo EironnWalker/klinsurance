@@ -8,56 +8,31 @@
     <link rel="stylesheet" href="../../css/base.css"/>
 </head>
 <body>
-<div class="content-top-10">
-    <ul class="ul-one no-active">
-            <li>
-                <div class="horizontal">
-                    <div class="name">损失项</div>
-                    <div class="flex-1 color-666 text-right">浙江加油站入口处浙江加油站入口处销售台风致损模板浙江加油站入口处销售台风致损模板</div>
-                </div>
-            </li>
-            <li>
-                <div class="horizontal">
-                    <div class="name">损失数量</div>
-                    <div class="flex-1 color-666 text-right">6</div>
-                </div>
-            </li>
-            <!--<li>-->
-                <!--<div class="horizontal">-->
-                    <!--<div class="name">报损金额</div>-->
-                    <!--<div class="flex-1 color-666 text-right">2000</div>-->
-                <!--</div>-->
-            <!--</li>-->
-    </ul>
-</div>
-<div class="content-top-10">
-    <ul class="ul-one no-active">
-        <li>
-            <div class="horizontal">
-                <div class="name">损失项</div>
-                <div class="flex-1 color-666 text-right">浙江加油站入口处销售台风致损模板</div>
-            </div>
-        </li>
-        <li>
-            <div class="horizontal">
-                <div class="name">损失数量</div>
-                <div class="flex-1 color-666 text-right">6</div>
-            </div>
-        </li>
-        <!--<li>-->
-            <!--<div class="horizontal">-->
-                <!--<div class="name">报损金额</div>-->
-                <!--<div class="flex-1 color-666 text-right">2000</div>-->
-            <!--</div>-->
-        <!--</li>-->
-    </ul>
-</div>
-<div class="btn-wrap sign text-right">
-    <div class="tip">客户签字</div>
-    <a class="zoom">签字</a>
-    <img class="absolute-middle" src=""/>
+<div id="content">
+    <script type="text/html" id="template">
+        {{each data as lossItem}}
+        <div class="content-top-10" >
+            <ul class="ul-one no-active">
+                <li>
+                    <div class="horizontal">
+                        <div class="name">损失项</div>
+                        <div class="flex-1 color-666 text-right">{{lossItem.lossItemNsame}}</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="horizontal">
+                        <div class="name">损失数量</div>
+                        <div class="flex-1 color-666 text-right">{{lossItem.lossNumber}}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        {{/each}}
+    </script>
 </div>
 <script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
+<script src="../../script/lib/template.js"></script>
 <script src="loss_assessment_frm.js"></script>
 </body>
 </html>

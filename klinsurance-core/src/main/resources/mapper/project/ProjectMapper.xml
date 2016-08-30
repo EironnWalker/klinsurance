@@ -45,6 +45,7 @@
         and p.project_name like concat('%',#{projectName},'%')
       </if>
     </where>
+    order by create_time desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from project

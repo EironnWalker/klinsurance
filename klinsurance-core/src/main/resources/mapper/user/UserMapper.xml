@@ -33,6 +33,9 @@
       <if test="loginName!=null and loginName!=''">
         and login_name = #{loginName}
       </if>
+      <if test="name!=null and name!=''">
+        and name = #{name}
+      </if>
       <if test="createTime!=null and createTime!=''">
         and create_time > #{createTime}
       </if>
@@ -47,6 +50,17 @@
       <foreach collection="array" separator="," open="(" close=")" item="id">
         #{id}
       </foreach>
+  </select>
+  <select id="findUserPageList" resultType="com.ht.klinsurance.user.model.User">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    <where>
+      <if test="name!=null and name!=''">
+          and name like concat('%',#{name},'%')
+      </if>
+    </where>
+    order by create_time desc
   </select>
   <select id="findUserByUserNameLogin" resultType="com.ht.klinsurance.user.model.User">
     select

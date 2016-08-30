@@ -16,7 +16,7 @@
 <body>
 <div id="content">
 </div>
-<div class="btn-fixed">
+<div class="btn-fixed" onclick="nextStep()">
     <div class="btn btn-active">下一步</div>
 </div>
 <script src="../../script/lib/jquery.js"></script>
@@ -26,67 +26,68 @@
 <script src="add_brief_frm2.js"></script>
 <script type="text/html" id="templateLoss">
     {{each data as loss i}}
-        {{if i ==data.length}}
-            <div class="content-top-10 content-fixed" id="{{loss.lossId}}">
+    {{if i ==data.length}}
+    <div class="content-top-10 content-fixed lossItem">
         {{else}}
-            <div class="content-top-10" id="{{loss.lossId}}">
-        {{/if}}
-        <ul class="ul-one no-active add-brief2">
-            <li>
-                <div class="horizontal">
-                    <div class="name">地点</div>
-                    <a class="wrap flex-1 color-666">
-                        <input name="stake-number" validate="{required: true}" errormsg="地点"
-                               value="{{loss.place}}"/>
-                    </a>
+        <div class="content-top-10 lossItem">
+            {{/if}}
+            {{if loss.isAdd ==0}}<input type="hidden" class="lossItem" data-id="{{loss.lossId}}" isAdd="0"/> {{/if}}
+            <ul class="ul-one no-active add-brief2">
+                <li>
+                    <div class="horizontal">
+                        <div class="name">地点</div>
+                        <a class="wrap flex-1 color-666">
+                            <input name="stake-number" validate="{required: true}" errormsg="地点"
+                                   value="{{loss.place}}" data-id="{{loss.lossId}}"/>
+                        </a>
 
-                    <div class="icon icon-record" data-id="stake-number"></div>
-                </div>
-            </li>
-        </ul>
-        <ul class="ul-one no-active add-brief2">
-            <li>
-                <div class="horizontal">
-                    <div class="name">损失项</div>
-                    <div class="flex-1 color-666">土方回填</div>
-                    <div class="history">查看历史</div>
-                </div>
-            </li>
-            <li>
-                <div class="horizontal">
-                    <div class="name">损失数量</div>
-                    <div class="flex-1 color-666">452</div>
-                </div>
-            </li>
-        </ul>
-        <ul class="ul-one no-active add-brief2">
-            <li>
-                <div class="horizontal">
-                    <div class="name">损失项</div>
-                    <div class="flex-1 color-666">土方回填</div>
-                    <div class="history">查看历史</div>
-                </div>
-            </li>
-            <li>
-                <div class="horizontal">
-                    <div class="name">损失数量</div>
-                    <div class="flex-1 color-666">452</div>
-                </div>
-            </li>
-        </ul>
-        <div class="img-wrapper horizontal">
-            <div class="flex-1 horizontal">
-                <div class="wrap">
-                    <a class="bg-cover" style="background-image: url(../../image/home_top_bg.jpg)"></a>
-                    <span class="icon-cross"></span>
+                        <div class="icon icon-record" data-id="stake-number"></div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="ul-one no-active add-brief2">
+                <li>
+                    <div class="horizontal">
+                        <div class="name">损失项</div>
+                        <div class="flex-1 color-666">土方回填</div>
+                        <div class="history">查看历史</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="horizontal">
+                        <div class="name">损失数量</div>
+                        <div class="flex-1 color-666">452</div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="ul-one no-active add-brief2">
+                <li>
+                    <div class="horizontal">
+                        <div class="name">损失项</div>
+                        <div class="flex-1 color-666">土方回填</div>
+                        <div class="history">查看历史</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="horizontal">
+                        <div class="name">损失数量</div>
+                        <div class="flex-1 color-666">452</div>
+                    </div>
+                </li>
+            </ul>
+            <div class="img-wrapper horizontal">
+                <div class="flex-1 horizontal">
+                    <div class="wrap">
+                        <a class="bg-cover" style="background-image: url(../../image/home_top_bg.jpg)"></a>
+                        <span class="icon-cross"></span>
 
-                    <p class="ellipsis">请描述</p>
+                        <p class="ellipsis">请描述</p>
+                    </div>
                 </div>
+                <img src="../../image/add_pic.svg"/>
             </div>
-            <img src="../../image/add_pic.svg"/>
         </div>
-    </div>
-    {{/each}}
+        {{/each}}
 </script>
 </body>
 </html>

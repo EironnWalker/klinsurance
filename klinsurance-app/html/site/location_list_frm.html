@@ -16,23 +16,23 @@
     </div>
     <a class="btn btn-active">搜索</a>
 </div>
-<ul class="location-ul">
-    <li onclick="goAssessLoss();">
-        <div>
-            <div>编号：552154544<span>中三油山东分公司</span></div>
-            <p>山东省济南市</p>
-            <p>2016.07.05</p>
-        </div>
-    </li>
-    <li onclick="goAssessLoss();">
-        <div>
-            <div>编号：552154544<span>中三油山东分公司</span></div>
-            <p>山东省济南市</p>
-            <p>2016.07.05</p>
-        </div>
-    </li>
+<ul class="location-ul" id="content">
+    <script type="text/html" id="template">
+        {{each data as location}}
+        <li onclick="goAssessLoss('{{location.lossId}}','{{location.place}}');">
+            <div>
+                <div>编号：{{location.placeNo}}</div>
+                <p>{{location.place}}</p>
+                <p>{{location.createTime | dateFormat:'yyyy-MM-dd hh:mm:ss'}}</p>
+            </div>
+        </li>
+        {{/each}}
+    </script>
 </ul>
 <script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
+<script src="../../script/lib/template.js"></script>
+<script src="../../script/lib/moment.min.js"></script>
 <script src="location_list_frm.js"></script>
 </body>
 </html>

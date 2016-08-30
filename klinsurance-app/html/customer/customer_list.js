@@ -1,20 +1,40 @@
 var db;
 var yH;//打开通讯录列表的起始高度
-var viewADBook;
 var TranslateModule = null;
+var importCustomModule = null;
+var searchContent;//搜索内容
+var bookType;//类型 0 user 1 customer
+var fromPage;//从哪个页面过来的，然后选择完成后回调哪个页面的方法
 apiready = function () {
     var headerHeight = $("header").fixStatusBar();
     TranslateModule = api.require('TranslateModule');
-    viewADBook = api.require('HTViewADBook');
+    importCustomModule = api.require('ImportCustomModule');
     db = api.require('db');
     yH = headerHeight + $(".horizontal").outerHeight(true);
-    firstRefresh();
+    bookType = api.pageParam.bookType;
+    fromPage = api.pageParam.fromPage;
+    $("#title").html(api.pageParam.title);
+    refresh();
 };
 //进入页面首次刷新数据
-function firstRefresh() {
+function refresh() {
+    var sql = "";
+    if (bookType == 1) {
+        if (searchContent) {
+            sql = "SELECT * FROM customer where name like '%" + searchContent + "%'";
+        } else {
+            sql = "SELECT * FROM customer";
+        }
+    } else {
+        if (searchContent) {
+            sql = "SELECT * FROM user where name like '%" + searchContent + "%'";
+        } else {
+            sql = "SELECT * FROM user";
+        }
+    }
     db.selectSql({
-        name: 'insurance_db.db',
-        sql: "SELECT * FROM customer"
+        name: 'klinsurance_db.db',
+        sql: sql
     }, function (ret, err) {
         if (ret.status) {
             initCustomerBook(ret.data);
@@ -29,24 +49,35 @@ function firstRefresh() {
 }
 //初始化客户列表
 function initCustomerBook(data) {
-    //在名为winName的window中执行jsfun脚本
-    var jsfun = "setDataLength(" + data.length + ");";
-    api.execScript({
-        name: '/html/customer/customer_list_win.html',
-        script: jsfun
-    });
     var param = {
         x: 0,
         y: yH,
         w: 0,
-        h: api.winHeight - footerH - yH,
+        h: api.winHeight - yH,
         type: bookType,
-        persons: JSON.stringify(data)
+        data: JSON.stringify(data)
     };
-    viewADBook.startADBookView(param, function resultCallback(ret) {
-        alert(ret.data);
-        var data = JSON.parse(ret.data);
+    importCustomModule.importCustom(param, function resultCallback(ret) {
+        var jsfun;
+        if (fromPage == "brief") {
+            if (bookType == 1) {
+                jsfun = 'setBBR(' + ret.data + ');';
+            } else {
+                jsfun = 'setGGR(' + ret.data + ');';
+            }
+            api.execScript({
+                name: '/html/report/add_brief_win1.html',
+                frameName: '/html/report/add_brief_frm1.html',
+                script: jsfun
+            });
+        }
+        api.closeWin();
     });
+}
+
+function searchCustomer(){
+    searchContent = $("#search").val();
+    refresh();
 }
 $(".icon-record").click(
     function () {

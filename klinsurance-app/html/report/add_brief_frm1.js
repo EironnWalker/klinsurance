@@ -79,14 +79,21 @@ apiready = function () {
             if (ret.status) {
                 if (isAdd == 1) {
                     $("#briefingId").val(uuid);
+                    isAdd = 0;
                 }
                 api.openWin({
                     name: '/html/report/add_brief_win2.html',
                     url: api.wgtRootDir + '/html/report/add_brief_win2.html',
                     pageParam: {
                         briefingId: $("#briefingId").val(),
-                        projectId:projectId
+                        projectId: projectId
                     }
+                });
+                //刷新简报列表
+                api.execScript({
+                    name: '/html/report/report_win.html',
+                    frameName: '/html/report/sub_brief_frm.html',
+                    script: 'loadData();'
                 });
             } else {
                 api.toast({
@@ -139,7 +146,39 @@ $(".icon-add1").click(function () {
         }
     });
 });
-
+//打开选择客户页面
+function selectCustUser(bookType) {
+    var title;
+    if (bookType == 1) {
+        title = "选择被保人";
+    } else {
+        title = "选择公估师";
+    }
+    api.openWin({
+        name: '/html/customer/customer_list.html',
+        url: api.wgtRootDir + '/html/customer/customer_list.html',
+        pageParam: {
+            bookType: bookType,
+            fromPage: "brief",
+            title: title
+        }
+    });
+}
+//设置被保人的信息
+function setBBR(data) {
+    $("#insurer").val(data.customerId);
+    $("#insurerCompany").val(data.name);
+    $("#insurerName").val(data.linkMan);
+    $("#insurerPhone").val(data.linkPhone);
+}
+//设置公估人的信息
+function setGGR(data) {
+    var surveyor = $("#surveyor").html();
+    if (surveyor) {
+        surveyor += "\r\n";
+    }
+    $("#surveyor").html(surveyor + data.name + data.mobile);
+}
 //获得模板内容
 function getTempDetail(dataID, detail) {
     $("#" + dataID).val(detail);

@@ -2,24 +2,34 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title></title>
     <link rel="stylesheet" href="../../css/base.css"/>
 </head>
 <body>
 <div class="content-top-10">
-    <ul class="img-list active">
-        <li>
-            <div class="horizontal">
-                <div class="icon icon-report1 orange"></div>
-                <div class="flex-1 ellipsis">
-                    <div class="name">2016.07.04简报</div>
-                    <div class="time">生成时间2016.06.06 18:52:40</div>
-                </div>
-            </div>
-        </li>
+    <ul class="img-list active" id="content">
     </ul>
 </div>
+<script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
+<script src="../../script/lib/jquery.validate.js"></script>
+<script type="text/javascript" src="../../script/lib/template.js"></script>
+<script src="sub_brief_frm.js"></script>
+<script type="text/html" id="template">
+    {{each data as brief i}}
+    <li>
+        <div class="horizontal">
+            <div class="icon icon-report1 orange"></div>
+            <div class="flex-1 ellipsis">
+                <div class="name">{{brief.projectName}}简报_{{brief.briefingNo}}</div>
+                <div class="time">{{brief.createTime}}</div>
+            </div>
+        </div>
+    </li>
+    {{/each}}
+</script>
 </body>
 </html>

@@ -25,6 +25,19 @@
     LEFT join customer f on a.insurer=f.customer_id
     where a.briefing_id = #{briefingId,jdbcType=VARCHAR}
   </select>
+  <select id="findPageList" resultType="com.ht.klinsurance.briefing.model.Briefing">
+    select
+      briefing_id,briefing_no, user_id, project_id, word_template_id, survey_time, survey_place,survey_lat,survey_lng, insurer,
+      insurer_name, insurer_phone, surveyor, accident_description, loss_description, next_work,
+      main_surveyor, sub_surveyor, manager, briefing_file, remark, create_time
+    from briefing
+    <where>
+      <if test="projectId != null and projectId != ''">
+        and project_id = #{projectId}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from briefing
     where briefing_id = #{briefingId,jdbcType=VARCHAR}

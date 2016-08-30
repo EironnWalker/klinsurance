@@ -1,5 +1,6 @@
 package com.ht.klinsurance.user.service.impl;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.ht.klinsurance.user.mapper.UserMapper;
 import com.ht.klinsurance.user.model.User;
 import com.ht.klinsurance.user.service.IUserService;
@@ -52,6 +53,11 @@ public class UserServiceImpl implements IUserService{
     @Override
     public  List<User> findUserByUserNameLogin(Map<String, Object> parameter) {
         return userMapper.findUserByUserNameLogin(parameter);
+    }
+
+    @Override
+    public List<User> findUserPageList(Map<String, Object> parameter, PageBounds pageBounds) {
+        return userMapper.findUserPageList(parameter, pageBounds);
     }
 
     @Override
