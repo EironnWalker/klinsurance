@@ -37,8 +37,7 @@
     // 加载数据
     function loadData() {
         var db = api.require('db');
-        var sql = "SELECT lossItemDictId,lossItemDictPid,lossItemDictNo,name FROM loss_item_dict order by lossItemDictId" +
-                " limit 67";
+        var sql = "SELECT * FROM loss_item_dict order by lossItemDictId";
         db.selectSql({
                 name: 'klinsurance_db.db',
                 sql: sql
@@ -55,11 +54,12 @@
                         data:data
                     },function(ret,err){
                         if(ret){
-                            alert(JSON.stringify(ret));
+                            var lossItem=JSON.parse(ret.data);
                             api.execScript({
                                 name: '/html/site/add_loss_win.html',
                                 frameName: '/html/site/add_loss_frm.html',
-                                script: "selLossSuccess('"+ret.lossItemDictId+"','"+ret.name+"','"+ret.numeraireMsg+"');"
+                                script: "selLossSuccess('"+lossItem.lossItemDictId+"','"+lossItem.name+
+                                "','"+lossItem.numeraireMsg+"','"+lossItem.flag+"');"
                             });
                             api.closeWin();
                         }

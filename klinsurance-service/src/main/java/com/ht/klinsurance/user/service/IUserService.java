@@ -37,7 +37,24 @@ public interface IUserService {
      */
     List<User> findUserPageList(Map<String, Object> parameter,PageBounds pageBounds);
 
+    /**
+     * 用户列表查询
+     * 用于验证账号唯一性
+     * @param parameter
+     * @return
+     */
+    List<User> findUserList(Map<String, Object> parameter);
 
-    int addUser(User user);
+    /**
+     * 设置是否禁用用户
+     */
+    int updateUser(User user);
+
+    /**
+     * 添加系统用户
+     * @param user
+     * @return
+     */
+    int addSysUser(User user);
 
 }

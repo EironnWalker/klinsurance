@@ -1252,6 +1252,27 @@ input {
     bottom: 10px;
     right: 15px;
 }
+.ul-sign {
+    padding: 0 15px;
+}
+.ul-sign li {
+    padding: 10px 0 0;
+    border-bottom: 1px solid #d8d8d8;
+}
+.ul-sign li>div {
+    border-bottom: 0;
+}
+.ul-sign .title {
+    font-size: 14px;
+}
+.ul-sign img {
+    height: 100px;
+    margin-right: 6px;
+}
+.ul-sign .sign-btn {
+    margin-top: 60px;
+    position: static;
+}
 
 
 /*特殊字体*/

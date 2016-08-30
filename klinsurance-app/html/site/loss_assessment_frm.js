@@ -5,13 +5,6 @@ $(function () {
             $(this).removeClass("text-right");
         }
     })
-    $(".ul-one").click(function() {
-        api.openWin({
-            name: '/html/site/add_loss_win.html',
-            url: api.wgtRootDir + '/html/site/add_loss_win.html',
-            pageParam: {name: 'pageparamname'}
-        });
-    });
 });
 
 apiready = function () {
@@ -36,11 +29,19 @@ function loadData() {
                     location: 'bottom'
                 });
             }
-            //将刷新完成后关闭
-            api.refreshHeaderLoadDone();
-            ht.apicloud.hideProgress();
         }
     );
+}
+//编辑损失项信息
+function editLoss(lossItemId){
+    api.openWin({
+        name: '/html/site/add_loss_win.html',
+        url: api.wgtRootDir + '/html/site/add_loss_win.html',
+        pageParam: {
+            lossItemId: lossItemId,
+            isEdit:true
+        }
+    });
 }
 
 

@@ -17,29 +17,30 @@
         <a onclick="addTemp();">添加</a>
     </div>
 </header>
+<div class="search-wrap horizontal">
+    <div class="horizontal flex-1">
+        <div class="icon-search"></div>
+        <div class="flex-1"><input id="search" placeholder="搜索"/></div>
+        <div class="icon-record" data-id="search"></div>
+    </div>
+    <a class="btn btn-active">搜索</a>
+</div>
+<p class="p-title">热门标签</p>
+<!--未展开时-->
+<div class="tip-wrap">
+    <div class="wrap hidden">
+        <div id="tip">
+        </div>
+    </div>
+    <div class="icon icon-unfold"></div>
+</div>
 <script src="../../script/lib/jquery.js"></script>
-<script type="text/javascript">
-    apiready = function () {
-        api.openFrame({
-            name: '/html/temp/select_frm.html',
-            url: api.wgtRootDir + '/html/temp/select_frm.html',
-            rect: {
-                x: 0,
-                y: $("header").height(),
-                w: 'auto',
-                h: 'auto'
-            },
-            pageParam: {name: 'pageparam'},
-            bounces: true
-        });
-    };
-    function addTemp() {
-        api.openWin({
-            name: '/html/temp/manage_win.html',
-            url: api.wgtRootDir + '/html/temp/manage_win.html',
-            pageParam: {name: 'pageparamname'}
-        });
-    }
+<script src="../../script/lib/template.js"></script>
+<script type="text/html" id="tip-template">
+    {{each data as item}}
+    <div onclick="tipActive(this)" data-code="{{item.code}}">{{item.name}}</div>
+    {{/each}}
 </script>
+<script src="select_win.js"></script>
 </body>
 </html>

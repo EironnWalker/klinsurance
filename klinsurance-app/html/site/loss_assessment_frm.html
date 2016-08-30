@@ -12,11 +12,12 @@
     <script type="text/html" id="template">
         {{each data as lossItem}}
         <div class="content-top-10" >
-            <ul class="ul-one no-active">
+            <ul class="ul-one no-active"
+                onclick="editLoss('{{lossItem.lossItemId}}')">
                 <li>
                     <div class="horizontal">
                         <div class="name">损失项</div>
-                        <div class="flex-1 color-666 text-right">{{lossItem.lossItemNsame}}</div>
+                        <div class="flex-1 color-666 text-right">{{lossItem.lossItemName}}</div>
                     </div>
                 </li>
                 <li>

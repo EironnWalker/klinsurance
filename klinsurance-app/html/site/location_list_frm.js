@@ -32,11 +32,12 @@ function loadData(searchContent) {
     );
 }
 //损失项列表
-function goAssessLoss(lossId,place) {
+function goAssessLoss(projectId,lossId,place) {
     api.openWin({
         name: '/html/site/loss_assessment_win.html',
         url: api.wgtRootDir + '/html/site/loss_assessment_win.html',
         pageParam: {
+            projectId:projectId,
             lossId:lossId,
             place: place
         }

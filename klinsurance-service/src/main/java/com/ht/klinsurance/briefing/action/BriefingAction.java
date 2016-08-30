@@ -113,8 +113,6 @@ public class BriefingAction extends BaseAction
             if(StringUtils.isNotBlank(projectId)){
                 htMap.put("projectId", projectId);
             }
-            String path=request.getSession().getServletContext().getRealPath("/");
-            System.out.println("======================"+path);
             PageList<Briefing> textTemplateList = (PageList<Briefing>)briefingService
                     .findBriefingPageList(htMap, new PageBounds(pageNo, limit));
             HtResponse.outPageJson(response, true, textTemplateList);
