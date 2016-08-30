@@ -8,22 +8,26 @@
     <link rel="stylesheet" href="../../css/base.css"/>
 </head>
 <body>
-<ul class="add-img-ul no-active">
-    <li class="horizontal">
-        <div class="bg-cover" style="background-image: url(../../image/home_top_bg.jpg)"></div>
-        <div class="flex-1">
-            <textarea placeholder="请输入照片描述……"></textarea>
-        </div>
-    </li>
-    <li class="horizontal">
-        <div class="bg-cover" style="background-image: url(../../image/home_top_bg.jpg)"></div>
-        <div class="flex-1">
-            <textarea placeholder="请输入照片描述……"></textarea>
-        </div>
-    </li>
+<ul class="add-img-ul no-active" id="content">
 </ul>
 <div class="btn-wrap">
     <a class="btn btn-active">完成</a>
 </div>
+<script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
+<script type="text/javascript" src="../../script/lib/template.js"></script>
+<script src="add_img_frm.js"></script>
+<script type="text/html" id="templateLossImg">
+    {{each data as lossImage}}
+    <div class="wrap">
+        <li class="horizontal">
+            <div class="bg-cover" style="background-image: url({{lossImage.image}})" id="{{lossImage.briefingLossImageId}}"></div>
+            <div class="flex-1">
+                <textarea placeholder="请输入照片描述……">{{lossImage.description}}</textarea>
+            </div>
+        </li>
+    </div>
+    {{/each}}
+</script>
 </body>
 </html>

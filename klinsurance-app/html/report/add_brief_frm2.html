@@ -65,7 +65,7 @@
             <div class="img-wrapper horizontal">
                 <div class="flex-1 horizontal" id="{{loss.briefingLossId}}Img">
                 {{each loss.lossImages as lossImage}}
-                    <div class="wrap">
+                    <div class="wrap" onclick="imgEdit('{{loss.briefingLossId}}')">
                         <a class="bg-cover" style="background-image: url({{lossImage.originalImage}})"></a>
                         <!--<span class="icon-cross" onclick="delImg('{{lossImage.briefingLossImageId}}')"></span>-->
 

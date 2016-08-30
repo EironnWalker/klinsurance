@@ -155,14 +155,13 @@ function doAddLocation(lossIdStr) {
 }
 
 //增加图片描述
-$(".img-wrapper").on('click', '.flex-1', function (event) {
-    event.stopPropagation();
+function imgEdit(briefingLossId){
     api.openWin({
         name: '/html/report/add_img_win.html',
         url: api.wgtRootDir + '/html/report/add_img_win.html',
-        pageParam: {name: 'pageparamname'}
+        pageParam: {briefingLossId: briefingLossId}
     });
-});
+}
 //上传图片
 function openSelectPhoto(blossId) {
     briefingLossId = blossId;
