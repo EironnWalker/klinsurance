@@ -39,8 +39,10 @@
             <li>
                 <div class="horizontal">
                     <div class="name">被保人</div>
-                    <a class="wrap flex-1"><input validate="{required: true}" errormsg="被保人"
-                                                  placeholder="请选择被保人" value="被保人"/></a>
+                    <a class="wrap flex-1">
+                        <input validate="{required: true}" errormsg="被保人" id="insurerCompany" name="insurerCompany"
+                               placeholder="请选择被保人" value="被保人"/>
+                    </a>
 
                     <div class="icon icon-personal" onclick="selectCustUser(1)"></div>
                 </div>
@@ -48,7 +50,7 @@
             <li>
                 <div class="horizontal">
                     <div class="name">联系人</div>
-                    <a class="wrap flex-1"><input name="insurerName" validate="{required: true}" errormsg="联系人"
+                    <a class="wrap flex-1"><input id="insurerName" name="insurerName" validate="{required: true}" errormsg="联系人"
                                                   placeholder="填写联系人" value="联系人"/></a>
 
                 </div>
@@ -56,7 +58,7 @@
             <li>
                 <div class="horizontal">
                     <div class="name">联系方式</div>
-                    <a class="wrap flex-1"><input name="insurerPhone" validate="{required: true, tm: true}"
+                    <a class="wrap flex-1"><input id="insurerPhone" name="insurerPhone" validate="{required: true, tm: true}"
                                                   errormsg="联系方式" placeholder="请填写联系方式" value="13311111111"/></a>
                 </div>
             </li>
@@ -71,7 +73,7 @@
                               placeholder="">公估师信息</textarea>
                 </a>
 
-                <div class="icon-wrap big">
+                <div class="icon-wrap big" onclick="selectCustUser(0)">
                     <a class="btn-active icon-add" data-id="surveyor"></a>
                 </div>
             </div>
