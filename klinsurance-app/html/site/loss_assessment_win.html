@@ -45,6 +45,7 @@
                 h:api.frameHeight-headerHeight-20-$(".zoom").height()
             },
             pageParam:{
+                projectId:pageParam.projectId,
                 lossId:pageParam.lossId
             },
             bounces: true
@@ -60,6 +61,10 @@
         api.openWin({
             name: '/html/site/add_loss_win.html',
             url: api.wgtRootDir + '/html/site/add_loss_win.html',
+            pageParam:{
+                projectId:pageParam.projectId,
+                lossId:pageParam.lossId
+            },
             bounces: false
         });
     }
