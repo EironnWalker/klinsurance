@@ -66,7 +66,7 @@ public class TextTemplateAction extends BaseAction {
     }
 
     /**
-     * 添加文字模板
+     * 修改文字模板
      * @param textTemplateJson
      * @param response
      */

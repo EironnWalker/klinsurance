@@ -90,19 +90,85 @@ public class UserAction  extends BaseAction{
      * @param response
      */
     @RequestMapping("findUserPageList")
-    public void findUserPageList(String name,Integer limit,Integer pageNo, HttpServletResponse response) {
+    public void findUserPageList(String name,String loginName,Integer limit,Integer pageNo, HttpServletResponse response) {
         try {
             limit = limit == null ? KlConsts.PAGE_LIMIT : limit;
             HtMap htMap = new HtMap();
             if(StringUtils.isNotBlank(name)){
                 htMap.put("name",name);
             }
-            PageList<User> textTemplateList = (PageList<User>)userService
+            if(StringUtils.isNotBlank(loginName)){
+                htMap.put("loginName",loginName);
+            }
+            PageList<User> userList = (PageList<User>)userService
                     .findUserPageList(htMap, new PageBounds(pageNo, limit));
-            HtResponse.outPageJson(response, true, textTemplateList);
+            HtResponse.outPageJson(response, true, userList);
         } catch (Exception e) {
-            log.error("显示文字模板列表主方法", e);
+            log.error("查看用户列表列表主方法", e);
         }
     }
+
+    /**
+     * 验证账号唯一性
+     * @param loginName
+     * @param response
+     */
+    @RequestMapping("findUserList")
+    public void findUserList(String loginName,HttpServletResponse response) {
+        try {
+            HtMap htMap = new HtMap();
+            if(StringUtils.isNotBlank(loginName)){
+                htMap.put("loginName",loginName);
+            }
+            List<User> userList = userService.findUserList(htMap);
+            HtResponse.outJson(response, true, userList);
+        } catch (Exception e) {
+            log.error("查看用户列表列表主方法", e);
+        }
+    }
+
+
+    /**
+     * 修改用户
+     * @param userJson
+     * @param response
+     */
+    @RequestMapping("updateUser")
+    public void updateUser(String userJson, HttpServletResponse response) {
+        try {
+            User user =  HtGson.fromJson(userJson, new TypeToken<User>() {});
+            int result = userService.updateUser(user);
+            if (result>0) {
+                HtResponse.outJson(response, true, result);
+            } else {
+                HtResponse.outJson(response, false, result);
+            }
+        } catch (Exception e) {
+            log.error("修改用户主方法", e);
+        }
+    }
+
+    /**
+     * 添加系统用户
+     * @param userJson
+     * @param response
+     */
+    @RequestMapping("addSysUser")
+    public void addSysUser(String userJson, HttpServletResponse response) {
+        try {
+            User user =  HtGson.fromJson(userJson, new TypeToken<User>() {});
+            int result = userService.addSysUser(user);
+            if (result>0) {
+                HtResponse.outJson(response, true, result);
+            } else {
+                HtResponse.outJson(response, false, result);
+            }
+        } catch (Exception e) {
+            log.error("添加系统用户主方法", e);
+        }
+    }
+
+
+
 
 }
