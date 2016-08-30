@@ -22,33 +22,38 @@ function loadLoss() {
     }, function (ret, err) {
         if (ret.status) {
             queryData = ret.data;
-            for (var i = 0; i < queryData.length; i++) {
-                var loss = queryData[i];
+            $.each(queryData,function(i,n){
+                var loss = n;
                 db.selectSql({
                     name: 'klinsurance_db.db',
-                    sql: "SELECT * FROM loss_item where lossId = '" + queryData[i].lossId + "'"
+                    sql: "SELECT * FROM loss_item where lossId = '" + loss.lossId + "'"
                 }, function (ret, err) {
                     if (ret.status) {
                         //查询地点的损失项
-                        loss.lossItems = ret.data;
+                        loss["lossItems"] = ret.data;
+                        var sql = "SELECT * FROM briefing_loss_image where briefingLossId = '" + loss.briefingLossId + "'";
+                        db.selectSql({
+                            name: 'klinsurance_db.db',
+                            sql: sql
+                        }, function (ret, err) {
+                            if (ret.status) {
+                                //查询地点的图片
+                                loss["lossImages"] = ret.data;
+                                queryArry.push(loss);
+                                if (i == queryData.length-1) {
+                                    var ret = {
+                                        data: queryArry
+                                    };
+                                    var html = template('templateLoss', ret);
+                                    $("#content").html(html);
+                                }
+                            }
+                        });
                     }
                 });
-                db.selectSql({
-                    name: 'klinsurance_db.db',
-                    sql: "SELECT * FROM briefing_loss_image where briefingLossId = '" + queryData[i].briefingLossId + "'"
-                }, function (ret, err) {
-                    if (ret.status) {
-                        //查询地点的图片
-                        loss.lossImages = ret.data;
-                    }
-                });
-                queryArry.push(loss);
-            }
-            var ret = {
-                data: queryArry
-            };
-            var html = template('templateLoss', ret);
-            $("#content").append(html);
+
+            })
+
         } else {
             api.toast({
                 msg: '数据错误，请稍后重试！',
@@ -134,9 +139,11 @@ function doAddLocation(lossIdStr) {
                             loss.lossItems = ret.data;
                         }
                     });
+                    var briefingLossId = ht.uuid();
+                    loss["briefingLossId"] = briefingLossId;
                     queryArry.push(loss);
                     var sql = 'INSERT INTO briefing_loss (briefingLossId, briefingId, lossId, createTime, isSync) VALUES ('
-                        + ht.formatData(ht.uuid()) + ','
+                        + ht.formatData(briefingLossId) + ','
                         + ht.formatData(briefingId) + ','
                         + ht.formatData(queryData[i].lossId) + ','
                         + ht.formatData(new Date().pattern("yyyy-MM-dd HH:mm:ss")) + ','
@@ -210,8 +217,8 @@ $(".img-wrapper").on('click', '.flex-1', function (event) {
     });
 });
 //上传图片
-function openSelectPhoto(lossId) {
-    briefingLossId = lossId;
+function openSelectPhoto(blossId) {
+    briefingLossId = blossId;
     //还可以添加的图片数量
     media.openPhoto(addImgTemplate, 5);
 }
@@ -235,21 +242,23 @@ function addImgTemplate() {
             name: 'klinsurance_db.db',
             sql: sql
         }, function (ret, err) {
+            alert(JSON.stringify(err));
             if (ret.status) {
                 lossImg = {
-                    briefingLossImageId:briefingLossImageId,
-                    originalImage:url
+                    briefingLossImageId: briefingLossImageId,
+                    originalImage: url
                 };
                 lossImgArry.push(lossImg);
-                if(i==Imgs.length-1){
+                if (i == Imgs.length - 1) {
                     var ret = {
                         data: lossImgArry
                     };
                     var html = template('templateLossImg', ret);
-                    $("#"+briefingLossId+"Img").before(html);
+                    $("#" + briefingLossId + "Img").before(html);
                     ht.apicloud.hideProgress();
                 }
             } else {
+                ht.apicloud.hideProgress();
                 api.toast({
                     msg: '数据错误，请稍后重试！',
                     duration: 2000,
@@ -260,10 +269,10 @@ function addImgTemplate() {
     });
 }
 
-function delImg(briefingLossImageId){
+function delImg(briefingLossImageId) {
     db.executeSql({
         name: 'klinsurance_db.db',
-        sql: "DELETE from  briefing_loss_image WHERE briefingLossImageId ='"+briefingLossImageId+"'"
+        sql: "DELETE from  briefing_loss_image WHERE briefingLossImageId ='" + briefingLossImageId + "'"
     }, function (ret, err) {
         if (ret.status) {
             $("#" + briefingLossImageId).remove();
