@@ -52,4 +52,8 @@ public class Project {
 
     private String isBriefing;//项目简报
 
+    private String linkMan; //被保人
+
+    private String linkPhone;//被保人电话
+
   }

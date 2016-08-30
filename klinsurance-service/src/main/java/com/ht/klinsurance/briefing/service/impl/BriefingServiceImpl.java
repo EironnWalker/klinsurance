@@ -1,5 +1,6 @@
 package com.ht.klinsurance.briefing.service.impl;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.ht.klinsurance.briefing.mapper.BriefingLossImageMapper;
 import com.ht.klinsurance.briefing.mapper.BriefingLossItemMapper;
 import com.ht.klinsurance.briefing.mapper.BriefingLossMapper;
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 简报
@@ -131,5 +133,10 @@ public class BriefingServiceImpl implements IBriefingService {
            e.printStackTrace();
            return  null;
        }
+    }
+
+    @Override
+    public List<Briefing> findBriefingPageList(Map<String, Object> parameter, PageBounds pageBounds) {
+        return briefingMapper.findPageList(parameter,pageBounds);
     }
 }

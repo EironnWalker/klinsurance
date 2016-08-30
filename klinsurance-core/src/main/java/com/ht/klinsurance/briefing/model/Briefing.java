@@ -50,7 +50,10 @@ public class Briefing {
     private Date createTime;
 
     /*******************************************************/
-    private String projectName;//项目名字
+    private String projectName; //项目名字
 
-    private String subSurveyName;//协助公估师
+    private String subSurveyName; //协助公估师
+
+    private String downloadFile; //下载Word地址
+
 }
