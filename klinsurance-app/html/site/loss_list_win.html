@@ -20,20 +20,12 @@
     </div>
 </header>
 <script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
 <script type="text/javascript">
+    var treeLossModule;
     apiready = function () {
-        api.openFrame({
-            name: '/html/site/loss_list_frm.html',
-            url: api.wgtRootDir + '/html/site/loss_list_frm.html',
-            rect: {
-                x: 0,
-                y: $('header').height(),
-                w: 'auto',
-                h: 'auto'
-            },
-            pageParam: api.pageParam,
-            bounces: true
-        });
+        treeLossModule = api.require('TreeLossModule');
+        loadData();
     };
     $(".right a").click(function () {
         api.openWin({
@@ -42,6 +34,46 @@
             pageParam: {name: 'pageparamname'}
         });
     });
+    // 加载数据
+    function loadData() {
+        var db = api.require('db');
+        var sql = "SELECT lossItemDictId,lossItemDictPid,lossItemDictNo,name FROM loss_item_dict order by lossItemDictId" +
+                " limit 67";
+        db.selectSql({
+                name: 'klinsurance_db.db',
+                sql: sql
+            }, function (ret, err) {
+                var data = JSON.stringify(ret.data);
+
+                if (ret.status) {
+                    treeLossModule.chooseLoss({
+                        x : 0,
+                        y :$("header").fixStatusBar(),
+                        w : api.frameWidth,
+                        h : 'auto',
+                        type:0,
+                        data:data
+                    },function(ret,err){
+                        if(ret){
+                            alert(JSON.stringify(ret));
+                            api.execScript({
+                                name: '/html/site/add_loss_win.html',
+                                frameName: '/html/site/add_loss_frm.html',
+                                script: "selLossSuccess('"+ret.lossItemDictId+"','"+ret.name+"','"+ret.numeraireMsg+"');"
+                            });
+                            api.closeWin();
+                        }
+                    })
+                } else {
+                    api.toast({
+                        msg: '数据错误，请稍后重试！',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                }
+            }
+        );
+    }
 </script>
 </body>
 </html>

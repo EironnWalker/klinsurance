@@ -1,25 +1,5 @@
-/**
- * Created by Administrator on 2016/8/12.
- */
 var loss_id;
-function goList() {
-    api.openWin({
-        name: '/html/site/loss_list_win.html',
-        url: api.wgtRootDir + '/html/site/loss_list_win.html',
-        bounces: false,
-        pageParam: {name: loss_id}
-    });
-}
-
-function doChangeLoss(lossId,lossDetail,lossMoney){
-    $("#loss-detail").val(lossDetail);
-    //$("#loss-money").val(lossMoney);
-    loss_id = lossId;
-}
-
-
 $(function() {
-
     $("#form-loss").baseValidate({
         submitHandler: function(){
             alert("提交");
@@ -36,3 +16,23 @@ $(function() {
     );
 
 });
+apiready=function(){
+
+}
+//进入损失项列表
+function goLossList() {
+    api.openWin({
+        name: '/html/site/loss_list_win.html',
+        url: api.wgtRootDir + '/html/site/loss_list_win.html',
+        bounces: false
+    });
+}
+//选中损失项回调
+function selLossSuccess(dictId,name,numeraireMsg){
+    alert(dictId+":"+name+":"+numeraireMsg);
+}
+function doChangeLoss(lossId,lossDetail,lossMoney){
+    $("#loss-detail").val(lossDetail);
+    //$("#loss-money").val(lossMoney);
+    loss_id = lossId;
+}
