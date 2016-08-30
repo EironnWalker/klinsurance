@@ -19,7 +19,7 @@
 <form id="form-loss" action="">
 <div class="content-top-10">
     <ul class="ul-one no-active">
-        <li onclick="goList();">
+        <li onclick="goLossList();">
             <div class="horizontal select">
                 <div class="name">损失项</div>
                     <a class="wrap flex-1">
@@ -32,22 +32,22 @@
             <div class="horizontal">
                 <div class="name">数量</div>
                 <a class="wrap flex-1"><input name="long" validate="{number: true}" errormsg="数量" placeholder="请输入数量"/></a>
-                <span>m³</span>
+                <span id="units">m³</span>
             </div>
         </li>
-        <li style="display: none">
+        <li id="long" style="display: none">
             <div class="horizontal">
                 <div class="name">长</div>
                 <a class="wrap flex-1"><input name="long" validate="{number: true}" errormsg="长" placeholder="请输入长"/></a>
             </div>
         </li>
-        <li>
+        <li id="width" style="display: none">
             <div class="horizontal">
                 <div class="name">宽</div>
                 <a class="wrap flex-1"><input name="width" validate="{number: true}" errormsg="宽" placeholder="请输入宽"/></a>
             </div>
         </li>
-        <li>
+        <li id="height" style="display: none">
             <div class="horizontal">
                 <div class="name">高</div>
                 <a class="wrap flex-1"><input name="high" validate="{number: true}" errormsg="高" placeholder="请输入高"/></a>
