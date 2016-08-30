@@ -37,10 +37,10 @@
                         <div class="name">地点</div>
                         <a class="wrap flex-1 color-666">
                             <input name="stake-number" validate="{required: true}" errormsg="地点"
-                                   value="{{loss.place}}" data-id="{{loss.lossId}}"/>
+                                   value="{{loss.place}}" id="{{loss.lossId}}" onblur="placeChange('{{loss.lossId}}')"/>
                         </a>
 
-                        <div class="icon icon-record" data-id="stake-number"></div>
+                        <div class="icon icon-record" onclick="record('{{loss.lossId}}')"></div>
                     </div>
                 </li>
             </ul>

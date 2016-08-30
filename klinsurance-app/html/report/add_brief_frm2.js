@@ -22,7 +22,7 @@ function loadLoss() {
     }, function (ret, err) {
         if (ret.status) {
             queryData = ret.data;
-            $.each(queryData,function(i,n){
+            $.each(queryData, function (i, n) {
                 var loss = n;
                 db.selectSql({
                     name: 'klinsurance_db.db',
@@ -41,7 +41,7 @@ function loadLoss() {
                                 //查询地点的图片
                                 loss["lossImages"] = ret.data;
                                 queryArry.push(loss);
-                                if (i == queryData.length-1) {
+                                if (i == queryData.length - 1) {
                                     var ret = {
                                         data: queryArry
                                     };
@@ -66,59 +66,42 @@ function loadLoss() {
 }
 //下一步点击事件
 function nextStep() {
-    $.each($(".lossItem"), function (i, obj) {
-        var lossItemObj = $(obj);
-        var lossId = lossItemObj.attr("data-id");
-        var isAdd = lossItemObj.attr("isAdd");
-        if (isAdd == 0) {
-            var sql = 'INSERT INTO briefing_loss (briefingLossId, briefingId, lossId, createTime, isSync) VALUES ('
-                + ht.formatData(ht.uuid()) + ','
-                + ht.formatData(briefingId) + ','
-                + ht.formatData(lossId) + ','
-                + ht.formatData(new Date().pattern("yyyy-MM-dd HH:mm:ss")) + ','
-                + 0 + ')';
-            db.executeSql({
-                name: 'klinsurance_db.db',
-                sql: sql
-            }, function (ret, err) {
-                if (ret.status) {
-                    lossItemObj.attr("isAdd", 1);
-                } else {
-                    api.toast({
-                        msg: '数据错误，请稍后重试！',
-                        duration: 2000,
-                        location: 'bottom'
-                    });
-                }
-            });
+
+}
+//录音按钮点击事件
+function record(id) {
+    TranslateModule.startRecord(function back(ret) {
+        var data = JSON.parse(ret.data);
+        if (data.type == "0") {
+            $('#' + id).val(data.result);
+        } else {
+            $('#' + id).val($('#' + id).val() + data.result);
+        }
+        placeChange(id);
+    });
+}
+//地点修改时间
+function placeChange(lossId) {
+    var newPlace = $("#" + lossId).val();
+    if (!newPlace) {
+        api.toast({
+            msg: '地点名称不能为空！',
+            duration: 2000,
+            location: 'bottom'
+        });
+        return;
+    }
+    var sql = "UPDATE loss SET place = '" + newPlace + "',isSync = 1 WHERE lossId = '" + lossId + "'";
+    db.executeSql({
+        name: 'klinsurance_db.db',
+        sql: sql
+    }, function (ret, err) {
+        if(ret.status){
+
         }
     });
 }
-$(function () {
-    $("form").baseValidate(function () {
-        api.openWin({
-            name: '/html/report/add_brief_win3.html',
-            url: api.wgtRootDir + '/html/report/add_brief_win3.html',
-            pageParam: {name: 'pageparamname'}
-        });
-    });
-    $(".btn").click(function () {
-        $("#form-brief2").submit();
-    });
-});
-
-//语音转义
-$(".icon-record").click(
-    function () {
-        startRecord($(this).attr('data-id'));
-    }
-);
-function startRecord(id) {
-    TranslateModule.startRecord(function back(ret) {
-        $('#' + id).val(ret.data);
-    });
-}
-
+//选择地点回调时间
 function doAddLocation(lossIdStr) {
     var queryData = null;
     var queryArry = new Array();
@@ -170,43 +153,6 @@ function doAddLocation(lossIdStr) {
         });
     }
 }
-
-//上传图片
-$(".img-wrapper img").click(function () {
-    if ($(".img-wrapper .flex-1").children(".wrap").length < 5) {
-        api.getPicture({
-            sourceType: 'library',
-            encodingType: 'jpg',
-            mediaValue: 'pic',
-            destinationType: 'url',
-            allowEdit: false,
-            saveToPhotoAlbum: false
-        }, function (ret, err) {
-            if (ret.data != null) {
-                $(".img-wrapper .flex-1").append("<div class='wrap'>" +
-                    "<a class='bg-cover' style='background-image: url(" +
-                    ret.data +
-                    ")'></a>" +
-                    "<span class='icon-cross'></span>" +
-                    "<p class='ellipsis'>请描述</p>" +
-                    "</div>");
-            }
-        });
-    }
-    else {
-        api.toast({
-            msg: '最多上传五张照片',
-            duration: 2000,
-            location: 'bottom'
-        });
-    }
-});
-
-//删除图片
-$(".img-wrapper").on('click', 'span', function (event) {
-    event.stopPropagation();
-    $(this).parent().remove();
-});
 
 //增加图片描述
 $(".img-wrapper").on('click', '.flex-1', function (event) {
