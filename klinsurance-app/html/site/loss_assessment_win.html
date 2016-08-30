@@ -23,14 +23,12 @@
 <script src="../../script/ht.js"></script>
 <script type="text/javascript">
     var pageParam;
-    var customDesignModule;
     $(".zoom").click(
             function () {
-                startDesigh();
+                goSignList();
             }
     );
     apiready = function () {
-        customDesignModule = api.require('CustomDesignModule');
         pageParam=api.pageParam;
         $(".horizontal").text("当前位置："+pageParam.place);
         //api.frameHeight- $("header").fixStatusBar()-20-$(".horizontal").outerHeight(true)-$(".zoom").height();
@@ -51,12 +49,7 @@
             bounces: true
         });
     };
-    function startDesigh() {
-        customDesignModule.startDesigh(function back(ret) {
-            alert(ret.data)
-            $(".sign img").attr("src", ret.data)
-        });
-    }
+    //添加损失项
     function addLoss() {
         api.openWin({
             name: '/html/site/add_loss_win.html',
@@ -65,6 +58,17 @@
                 projectId:pageParam.projectId,
                 lossId:pageParam.lossId,
                 isEdit:false
+            },
+            bounces: false
+        });
+    }
+    //跳转到签名列表
+    function goSignList(){
+        api.openWin({
+            name: '/html/site/loss_sign_win.html',
+            url: api.wgtRootDir + '/html/site/loss_sign_win.html',
+            pageParam:{
+                lossId:pageParam.lossId
             },
             bounces: false
         });
