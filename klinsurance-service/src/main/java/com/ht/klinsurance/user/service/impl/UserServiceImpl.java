@@ -92,6 +92,7 @@ public class UserServiceImpl implements IUserService{
     @Override
     public int addSysUser(User user) {
         user.setUserId(UUIDGenerate.generate());
+        user.setRoleId("1");
         user.setUserType("2");
         user.setCreateTime(new Date());
         user.setNamePinyin(getFirstSpell(user.getName()));

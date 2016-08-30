@@ -118,14 +118,12 @@
       <if test="mobile != null" >
         mobile,
       </if>
-
       <if test="remark != null" >
         remark,
       </if>
       <if test="createTime != null" >
         create_time,
       </if>
-
       <if test="email != null" >
         email,
       </if>
@@ -146,11 +144,11 @@
       <if test="loginPwd != null" >
         #{loginPwd,jdbcType=VARCHAR},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
       <if test="roleId != null" >
         #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="namePinyin != null" >
         #{namePinyin,jdbcType=VARCHAR},
