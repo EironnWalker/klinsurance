@@ -36,7 +36,7 @@
 </script>
 <script type="text/html" id="temp-template">
     {{each data as item}}
-    <li>
+    <li id="{{item.textTemplateId}}" onclick="updateTemp(this);">
         <div class="horizontal">
             <div class="name">模板名称</div>
             <div class="flex-1">{{item.name}}</div>
@@ -45,7 +45,7 @@
             <div class="name">模板详情</div>
             <div class="flex-1">
                 <div class="detail">{{item.content}}</div>
-                <p>{{item.create_time}}</p>
+                <p>{{item.createTime}}</p>
             </div>
         </div>
     </li>

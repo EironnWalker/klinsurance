@@ -4,6 +4,40 @@ var tipHtml;
 var tempHtml;
 var codeValue = "";
 
+$(function() {
+//标签展开与合上
+    $(".tip-wrap .icon").click(
+        function() {
+            var tipHeight =  $(".tip-wrap .wrap>div").height();
+            if ($(this).attr("class").indexOf("icon-fold") == -1) {
+                $(this).prev().animate({maxHeight: tipHeight});
+                $(this).removeClass("icon-unfold");
+                $(this).addClass("icon-fold");
+            }
+            else {
+                $(this).prev().animate({maxHeight: '33px'});
+                $(this).removeClass("icon-fold");
+                $(this).addClass("icon-unfold");
+            }
+        }
+    );
+
+    //语音转义
+    $(".icon-record").click(
+        function() {
+            startRecord($(this).attr('data-id'));
+        }
+    );
+
+//输入框搜索
+    $(".search-wrap .btn").click(function() {
+        searchTemp($("#search").val(),"name")
+    });
+    $(".search-wrap input").on("input propertychange", function() {
+        searchTemp($("#search").val(),"name")
+    });
+});
+
 apiready = function() {
     TranslateModule = api.require('TranslateModule');
     //fs = api.require('fs');
@@ -28,6 +62,12 @@ function showContent() {
         path: 'fs://klinsurance_db.db'
     },function(ret, err) {
         if (ret.status) {
+            //db.executeSql({
+            //    name: 'klinsurance_db',
+            //    sql: 'delete from text_template'
+            //}, function (ret, err) {
+            //
+            //})
             db.selectSql({
                 name: 'klinsurance_db',
                 sql: 'select * from text_template_tag order by text_template_tag_id'
@@ -45,22 +85,6 @@ function showContent() {
     });
 }
 
-//标签展开与合上
-$(".tip-wrap .icon").click(
-    function() {
-        var tipHeight =  $(".tip-wrap .wrap>div").height();
-        if ($(this).attr("class").indexOf("icon-fold") == -1) {
-            $(this).prev().animate({maxHeight: tipHeight});
-            $(this).removeClass("icon-unfold");
-            $(this).addClass("icon-fold");
-        }
-        else {
-            $(this).prev().animate({maxHeight: '33px'});
-            $(this).removeClass("icon-fold");
-            $(this).addClass("icon-unfold");
-        }
-    }
-);
 
 //标签颜色控制
 function tipColor() {
@@ -95,7 +119,7 @@ function tipActive(obj) {
 function loadTemp() {
     db.selectSql({
         name: 'klinsurance_db',
-        sql: 'select * from text_template order by create_time desc'
+        sql: 'select * from text_template order by createTime desc'
     }, function (ret, err) {
         if (ret.status) {
             tempHtml = template("temp-template", ret);
@@ -122,35 +146,36 @@ function searchTemp(value, option) {
         for (var i = 0; i < tagTip.length; i++) {
             sql += tagTip[i] + '%" and tags like "%';
         }
-        sql = sql.substring(0, sql.length-17) + ' order by create_time desc';
-        alert(sql)
+        sql = sql.substring(0, sql.length-17) + ' order by createTime desc';
         db.selectSql({
             name: 'klinsurance_db',
             sql: sql
         }, function (ret, err) {
             tempHtml = template("temp-template", ret);
             $("#temp").html(tempHtml);
-            alert(JSON.stringify(ret))
         });
     }
 }
 
-//语音转义
-$(".icon-record").click(
-    function() {
-        startRecord($(this).attr('data-id'));
-    }
-);
+//语音转义模块
 function startRecord(id){
     TranslateModule.startRecord(function back(ret){
-        $('#'+id).val(ret.data);
+        if (JSON.stringify(ret.data).type == 0) {
+            $('#'+id).val(JSON.stringify(ret.data).result);
+        }
+        else {
+            var prev = $('#'+id).val();
+            $('#'+id).val(prev + JSON.stringify(ret.data).result);
+        }
     });
 }
 
-//输入框搜索
-$(".search-wrap .btn").click(function() {
-    searchTemp($("#search").val(),"name")
-});
-$(".search-wrap input").on("input propertychange", function() {
-    searchTemp($("#search").val(),"name")
-});
+
+//跳转到模板修改页
+function updateTemp(obj) {
+        api.openWin({
+            name: '/html/temp/manage_win.html',
+            url: api.wgtRootDir + '/html/temp/manage_win.html',
+            pageParam: {tempId: $(obj).attr("id") }
+        });
+}
