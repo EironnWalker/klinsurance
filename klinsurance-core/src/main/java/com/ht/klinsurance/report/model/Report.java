@@ -116,4 +116,6 @@ public class Report {
     private String surName;//公估人名字
     private String surPhone;//公估人电话
     private String surTel;//公估人传真
+
+    private String downloadFile;//下载Word地址
 }

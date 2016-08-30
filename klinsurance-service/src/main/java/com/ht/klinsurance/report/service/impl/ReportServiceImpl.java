@@ -1,5 +1,6 @@
 package com.ht.klinsurance.report.service.impl;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.ht.klinsurance.report.mapper.ReportBriefingMapper;
 import com.ht.klinsurance.report.mapper.ReportMapper;
 import com.ht.klinsurance.report.model.Report;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -54,5 +56,10 @@ public class ReportServiceImpl implements IReportService {
        {
            return  null;
        }
+    }
+
+    @Override
+    public List<Report> findPageList(Map<String, Object> parameter, PageBounds pageBounds) {
+        return reportMapper.findPageList(parameter,pageBounds);
     }
 }

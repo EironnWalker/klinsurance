@@ -83,6 +83,24 @@
     LEFT JOIN customer e on a.client_id=e.customer_id
     where report_id = #{reportId,jdbcType=VARCHAR}
   </select>
+  <select id="findPageList" resultType="com.ht.klinsurance.report.model.Report">
+    SELECT
+       report_id,report_no, user_id, project_id, word_template_id, insure_type, insure_code, insurer,
+    insurer_name, insure_deadline, insure_amount, deductible, accident_time, accident_place,
+    accident_cause, accident_pass, liability_affirm, reported_loss_amount, verify_loss_amount,
+    adjustment_amount, surveyor, certificate_code, foreword_content, object_description,
+    survey_time, survey_place, survey_case, insurer_representative, survey_surveyor,
+    claimant_description, danger_time, danger_place, damaged_object, danger_case, iorder_liability,
+    verify_loss_gist, verify_loss_process, repeat_insure, third_liability, deductible_salvage,
+    loss_adjustment, surveyor_conclusion, report_file, remark, create_time,client_id
+    FROM report
+    <where>
+      <if test="projectId != null and projectId != ''">
+        and project_id = #{projectId}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
   <insert id="addReport" parameterType="com.ht.klinsurance.report.model.Report" >
     insert into report
     <trim prefix="(" suffix=")" suffixOverrides="," >

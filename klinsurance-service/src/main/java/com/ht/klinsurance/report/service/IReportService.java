@@ -1,9 +1,11 @@
 package com.ht.klinsurance.report.service;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.ht.klinsurance.report.model.Report;
 import com.ht.klinsurance.report.model.ReportBriefing;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 报告
@@ -21,4 +23,12 @@ public interface IReportService {
      * @return
      */
     String  creataReport(Report report,List<ReportBriefing> reportBriefingList,String basePath);
+
+    /**
+     * 分页查询报告信息
+     * @param pageBounds
+     * @return
+     */
+    List<Report> findPageList(Map<String, Object> parameter, PageBounds pageBounds);
+
 }
