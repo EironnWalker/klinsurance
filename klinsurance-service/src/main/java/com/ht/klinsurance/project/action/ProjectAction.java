@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -28,7 +29,7 @@ public class ProjectAction extends BaseAction {
     private IProjectService projectService;
 
     /**
-     * 显示文字模板
+     * 显示项目信息
      * @param projectName
      * @param response
      */
@@ -46,6 +47,17 @@ public class ProjectAction extends BaseAction {
         } catch (Exception e) {
             log.error("显示项目信息列表主方法", e);
         }
+    }
+
+    /**
+     * 查找World下载路径
+     * @param response
+     */
+    @RequestMapping("findWorldUrl")
+    public void findWorldUrl(HttpServletRequest request, HttpServletResponse response ){
+        String path=request.getSession().getServletContext().getRealPath("/");
+        System.out.println("======================"+path);
+        HtResponse.outJson(response, true, path);
     }
 
 }

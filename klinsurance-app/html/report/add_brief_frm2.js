@@ -23,7 +23,6 @@ function loadLoss() {
             queryData = ret.data;
             for (var i = 0; i < queryData.length; i++) {
                 var loss = queryData[i];
-                loss["isAdd"] = 1;
                 db.selectSql({
                     name: 'klinsurance_db.db',
                     sql: "SELECT * FROM loss_item where lossId = '" + queryData[i].lossId + "'"
@@ -71,7 +70,7 @@ function nextStep() {
                 + ht.formatData(lossId) + ','
                 + ht.formatData(new Date().pattern("yyyy-MM-dd HH:mm:ss")) + ','
                 + 0 + ')';
-            db.selectSql({
+            db.executeSql({
                 name: 'klinsurance_db.db',
                 sql: sql
             }, function (ret, err) {
@@ -126,16 +125,26 @@ function doAddLocation(lossIdStr) {
                 queryData = ret.data;
                 for (var i = 0; i < queryData.length; i++) {
                     var loss = queryData[i];
-                    loss["isAdd"] = 0;
                     db.selectSql({
                         name: 'klinsurance_db.db',
                         sql: "SELECT * FROM loss_item where lossId = '" + queryData[i].lossId + "'"
                     }, function (ret, err) {
                         if (ret.status) {
-                            loss.lossItems = 1;
+                            loss.lossItems = ret.data;
                         }
                     });
                     queryArry.push(loss);
+                    var sql = 'INSERT INTO briefing_loss (briefingLossId, briefingId, lossId, createTime, isSync) VALUES ('
+                        + ht.formatData(ht.uuid()) + ','
+                        + ht.formatData(briefingId) + ','
+                        + ht.formatData(queryData[i].lossId) + ','
+                        + ht.formatData(new Date().pattern("yyyy-MM-dd HH:mm:ss")) + ','
+                        + 0 + ')';
+                    db.executeSql({
+                        name: 'klinsurance_db.db',
+                        sql: sql
+                    }, function (ret, err) {
+                    });
                 }
                 var ret = {
                     data: queryArry

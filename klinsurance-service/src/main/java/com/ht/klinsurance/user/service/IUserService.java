@@ -1,6 +1,7 @@
 package com.ht.klinsurance.user.service;
 
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.ht.klinsurance.user.model.User;
 
 import java.util.List;
@@ -27,6 +28,15 @@ public interface IUserService {
      * @return
      */
     List<User> findUserByUserNameLogin(Map<String, Object> parameter);
+
+
+    /**
+     * 分页查询用户信息
+     * @param parameter
+     * @return
+     */
+    List<User> findUserPageList(Map<String, Object> parameter,PageBounds pageBounds);
+
 
     int addUser(User user);
 

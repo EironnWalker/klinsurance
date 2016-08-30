@@ -1,5 +1,6 @@
 package com.ht.klinsurance.user.mapper;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.ht.klinsurance.user.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -24,6 +25,14 @@ public interface UserMapper {
      * @return
      */
     List<User> findByIds(String[] ids);
+
+    /**
+     * 分页查询用户信息
+     * @param parameter
+     * @param pageBounds
+     * @return
+     */
+    List<User> findUserPageList(Map<String, Object> parameter,PageBounds pageBounds);
 
     int addUser(User record);
 

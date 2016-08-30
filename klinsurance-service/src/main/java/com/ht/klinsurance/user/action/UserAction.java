@@ -2,6 +2,8 @@ package com.ht.klinsurance.user.action;
 
 import cn.jingsheng.ldap.WinUser;
 import cn.jingsheng.ldap.service.WindowsDomainService;
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.google.gson.reflect.TypeToken;
 import com.ht.common.gson.HtGson;
 import com.ht.common.ht.HtMap;
@@ -10,6 +12,7 @@ import com.ht.klinsurance.common.BaseAction;
 import com.ht.klinsurance.common.KlConsts;
 import com.ht.klinsurance.user.model.User;
 import com.ht.klinsurance.user.service.IUserService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -81,5 +84,25 @@ public class UserAction  extends BaseAction{
         }
     }
 
+    /**
+     * 查看用户列表
+     * @param name
+     * @param response
+     */
+    @RequestMapping("findUserPageList")
+    public void findUserPageList(String name,Integer limit,Integer pageNo, HttpServletResponse response) {
+        try {
+            limit = limit == null ? KlConsts.PAGE_LIMIT : limit;
+            HtMap htMap = new HtMap();
+            if(StringUtils.isNotBlank(name)){
+                htMap.put("name",name);
+            }
+            PageList<User> textTemplateList = (PageList<User>)userService
+                    .findUserPageList(htMap, new PageBounds(pageNo, limit));
+            HtResponse.outPageJson(response, true, textTemplateList);
+        } catch (Exception e) {
+            log.error("显示文字模板列表主方法", e);
+        }
+    }
 
 }

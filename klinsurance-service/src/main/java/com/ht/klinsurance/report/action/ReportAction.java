@@ -1,12 +1,17 @@
 package com.ht.klinsurance.report.action;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.google.gson.reflect.TypeToken;
 import com.ht.common.gson.HtGson;
+import com.ht.common.ht.HtMap;
 import com.ht.common.http.HtResponse;
 import com.ht.klinsurance.common.BaseAction;
+import com.ht.klinsurance.common.KlConsts;
 import com.ht.klinsurance.report.model.Report;
 import com.ht.klinsurance.report.model.ReportBriefing;
 import com.ht.klinsurance.report.service.IReportService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -70,4 +75,24 @@ public class ReportAction extends BaseAction
             log.error("生成报告",e);
         }
     }
+
+    /**
+     * 分页查看项目报告信息
+     */
+    @RequestMapping("findReportPageList")
+    public void findReportPageList(String projectId,Integer limit,Integer pageNo, HttpServletResponse response){
+        try {
+            limit = limit == null ? KlConsts.PAGE_LIMIT : limit;
+            HtMap htMap = new HtMap();
+            if(StringUtils.isNotBlank(projectId)){
+                htMap.put("projectId",projectId);
+            }
+            PageList<Report> textTemplateList = (PageList<Report>)reportService
+                    .findPageList(htMap, new PageBounds(pageNo, limit));
+            HtResponse.outPageJson(response, true, textTemplateList);
+        } catch (Exception e) {
+            log.error("显示项目信息列表主方法", e);
+        }
+    }
+
 }

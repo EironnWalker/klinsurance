@@ -6,13 +6,14 @@ var ht = (function ($) {
 
     // 常量
     var constants = {};
-    constants.userId = "userId"; // 用户Id
+    constants.userId = "userId"; // 用户Id\
     constants.loginName = "loginName"; // 登陆账号
     constants.name = "name"; // 用户名字
     constants.phone = "phone"; // 用户电话
     constants.headImg = "headImg"; // 头像
     constants.rightCode = "rightCode"; // 手势密码
     constants.lastSyncInfo = "lastSyncInfo"; // 上次同步内容
+    constants.isSync = "isSync"; // 是否需要同步数据 1需要0不需要
 
     var apicloud = {};
     apicloud.showProgress = function (str) {
