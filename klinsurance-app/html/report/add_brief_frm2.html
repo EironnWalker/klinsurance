@@ -21,8 +21,8 @@
 </div>
 <script src="../../script/lib/jquery.js"></script>
 <script src="../../script/ht.js"></script>
-<script src="../../script/lib/jquery.validate.js"></script>
 <script type="text/javascript" src="../../script/lib/template.js"></script>
+<script type="text/javascript" src="../../script/lib/common-media.js"></script>
 <script src="add_brief_frm2.js"></script>
 <script type="text/html" id="templateLoss">
     {{each data as loss i}}
@@ -63,8 +63,8 @@
             {{/each}}
             <div class="img-wrapper horizontal">
                 {{each loss.lossImages as lossImage}}
-                <div class="flex-1 horizontal">
-                    <div class="wrap" id="{{lossImage.briefingLossImageId}}">
+                <div class="flex-1 horizontal" id="{{lossImage.briefingLossImageId}}">
+                    <div class="wrap">
                         <a class="bg-cover" style="background-image: url({{lossImage.originalImage}})"></a>
                         <span class="icon-cross" onclick="delImg('{{lossImage.briefingLossImageId}}')"></span>
 
@@ -73,10 +73,22 @@
                 </div>
                 {{/each}}
 
-                <img src="../../image/add_pic.svg" id="{{loss.lossId}}Img" onclick="addImg('{{loss.lossId}}')"/>
+                <img src="../../image/add_pic.svg" id="{{loss.lossId}}Img" onclick="openSelectPhoto('{{loss.lossId}}')"/>
             </div>
         </div>
         {{/each}}
+</script>
+<script type="text/html" id="templateLossImg">
+    {{each data as image}}
+    <div class="flex-1 horizontal" id="{{image.briefingLossImageId}}">
+        <div class="wrap">
+            <a class="bg-cover" style="background-image: url({{image.originalImage}})"></a>
+            <span class="icon-cross" onclick="delImg('{{image.briefingLossImageId}}')"></span>
+
+            <p class="ellipsis">请描述</p>
+        </div>
+    </div>
+    {{/each}}
 </script>
 </body>
 </html>
