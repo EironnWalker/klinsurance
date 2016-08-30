@@ -49,6 +49,8 @@ public class ReportServiceImpl implements IReportService {
                }
            }
            String ftpUrl=buildReportService.buildReport(basePath,report.getReportId());
+           report.setReportFile(ftpUrl);
+           result*=reportMapper.updateByPrimaryKeySelective(report);
            return ftpUrl;
        }catch (Exception e)
        {
