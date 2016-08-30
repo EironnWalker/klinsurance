@@ -2,6 +2,7 @@ var TranslateModule = null;
 var db;
 var userId;
 var briefingId;
+var briefingLossId;
 apiready = function () {
     db = api.require('db');
     TranslateModule = api.require('TranslateModule');
@@ -23,7 +24,6 @@ function loadLoss() {
             queryData = ret.data;
             for (var i = 0; i < queryData.length; i++) {
                 var loss = queryData[i];
-                loss["isAdd"] = 1;
                 db.selectSql({
                     name: 'klinsurance_db.db',
                     sql: "SELECT * FROM loss_item where lossId = '" + queryData[i].lossId + "'"
@@ -71,7 +71,7 @@ function nextStep() {
                 + ht.formatData(lossId) + ','
                 + ht.formatData(new Date().pattern("yyyy-MM-dd HH:mm:ss")) + ','
                 + 0 + ')';
-            db.selectSql({
+            db.executeSql({
                 name: 'klinsurance_db.db',
                 sql: sql
             }, function (ret, err) {
@@ -126,16 +126,26 @@ function doAddLocation(lossIdStr) {
                 queryData = ret.data;
                 for (var i = 0; i < queryData.length; i++) {
                     var loss = queryData[i];
-                    loss["isAdd"] = 0;
                     db.selectSql({
                         name: 'klinsurance_db.db',
                         sql: "SELECT * FROM loss_item where lossId = '" + queryData[i].lossId + "'"
                     }, function (ret, err) {
                         if (ret.status) {
-                            loss.lossItems = 1;
+                            loss.lossItems = ret.data;
                         }
                     });
                     queryArry.push(loss);
+                    var sql = 'INSERT INTO briefing_loss (briefingLossId, briefingId, lossId, createTime, isSync) VALUES ('
+                        + ht.formatData(ht.uuid()) + ','
+                        + ht.formatData(briefingId) + ','
+                        + ht.formatData(queryData[i].lossId) + ','
+                        + ht.formatData(new Date().pattern("yyyy-MM-dd HH:mm:ss")) + ','
+                        + 0 + ')';
+                    db.executeSql({
+                        name: 'klinsurance_db.db',
+                        sql: sql
+                    }, function (ret, err) {
+                    });
                 }
                 var ret = {
                     data: queryArry
@@ -199,7 +209,73 @@ $(".img-wrapper").on('click', '.flex-1', function (event) {
         pageParam: {name: 'pageparamname'}
     });
 });
+//上传图片
+function openSelectPhoto(lossId) {
+    briefingLossId = lossId;
+    //还可以添加的图片数量
+    media.openPhoto(addImgTemplate, 5);
+}
+//显示图片并且添加本地数据库
+function addImgTemplate() {
+    var lossImg = {};
+    var lossImgArry = new Array();
+    $.each(Imgs, function (i, url) {
+        var briefingLossImageId = ht.uuid();
+        var sql = 'INSERT INTO briefing_loss_image (briefingLossImageId, briefingLossId, originalImage, image, description, ' +
+            'imageOrder,createTime, isSync) VALUES ('
+            + ht.formatData(briefingLossImageId) + ','
+            + ht.formatData(briefingLossId) + ','
+            + ht.formatData(url) + ','
+            + ht.formatData(url) + ','
+            + ht.formatData("请描述") + ','
+            + i + ','
+            + ht.formatData(new Date().pattern("yyyy-MM-dd HH:mm:ss")) + ','
+            + 1 + ')';
+        db.executeSql({
+            name: 'klinsurance_db.db',
+            sql: sql
+        }, function (ret, err) {
+            if (ret.status) {
+                lossImg = {
+                    briefingLossImageId:briefingLossImageId,
+                    originalImage:url
+                };
+                lossImgArry.push(lossImg);
+                if(i==Imgs.length-1){
+                    var ret = {
+                        data: lossImgArry
+                    };
+                    var html = template('templateLossImg', ret);
+                    $("#"+briefingLossId+"Img").before(html);
+                    ht.apicloud.hideProgress();
+                }
+            } else {
+                api.toast({
+                    msg: '数据错误，请稍后重试！',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+            }
+        });
+    });
+}
 
+function delImg(briefingLossImageId){
+    db.executeSql({
+        name: 'klinsurance_db.db',
+        sql: "DELETE from  briefing_loss_image WHERE briefingLossImageId ='"+briefingLossImageId+"'"
+    }, function (ret, err) {
+        if (ret.status) {
+            $("#" + briefingLossImageId).remove();
+        } else {
+            api.toast({
+                msg: '数据错误，请稍后重试！',
+                duration: 2000,
+                location: 'bottom'
+            });
+        }
+    });
+}
 //日期格式化
 Date.prototype.pattern = function (fmt) {
     var o = {

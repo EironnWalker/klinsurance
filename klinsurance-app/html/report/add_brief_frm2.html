@@ -21,8 +21,8 @@
 </div>
 <script src="../../script/lib/jquery.js"></script>
 <script src="../../script/ht.js"></script>
-<script src="../../script/lib/jquery.validate.js"></script>
 <script type="text/javascript" src="../../script/lib/template.js"></script>
+<script type="text/javascript" src="../../script/lib/common-media.js"></script>
 <script src="add_brief_frm2.js"></script>
 <script type="text/html" id="templateLoss">
     {{each data as loss i}}
@@ -31,7 +31,6 @@
         {{else}}
         <div class="content-top-10 lossItem">
             {{/if}}
-            {{if loss.isAdd ==0}}<input type="hidden" class="lossItem" data-id="{{loss.lossId}}" isAdd="0"/> {{/if}}
             <ul class="ul-one no-active add-brief2">
                 <li>
                     <div class="horizontal">
@@ -45,49 +44,51 @@
                     </div>
                 </li>
             </ul>
-            <ul class="ul-one no-active add-brief2">
-                <li>
-                    <div class="horizontal">
-                        <div class="name">损失项</div>
-                        <div class="flex-1 color-666">土方回填</div>
-                        <div class="history">查看历史</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="horizontal">
-                        <div class="name">损失数量</div>
-                        <div class="flex-1 color-666">452</div>
-                    </div>
-                </li>
-            </ul>
-            <ul class="ul-one no-active add-brief2">
-                <li>
-                    <div class="horizontal">
-                        <div class="name">损失项</div>
-                        <div class="flex-1 color-666">土方回填</div>
-                        <div class="history">查看历史</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="horizontal">
-                        <div class="name">损失数量</div>
-                        <div class="flex-1 color-666">452</div>
-                    </div>
-                </li>
-            </ul>
+            {{each loss.lossItems as lossItem}}
+                <ul class="ul-one no-active add-brief2">
+                    <li>
+                        <div class="horizontal">
+                            <div class="name">损失项</div>
+                            <div class="flex-1 color-666">{{lossItem.lossItemName}}</div>
+                            <div class="history">查看历史</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="horizontal">
+                            <div class="name">损失数量</div>
+                            <div class="flex-1 color-666">{{lossItem.lossNumber}}</div>
+                        </div>
+                    </li>
+                </ul>
+            {{/each}}
             <div class="img-wrapper horizontal">
-                <div class="flex-1 horizontal">
+                {{each loss.lossImages as lossImage}}
+                <div class="flex-1 horizontal" id="{{lossImage.briefingLossImageId}}">
                     <div class="wrap">
-                        <a class="bg-cover" style="background-image: url(../../image/home_top_bg.jpg)"></a>
-                        <span class="icon-cross"></span>
+                        <a class="bg-cover" style="background-image: url({{lossImage.originalImage}})"></a>
+                        <span class="icon-cross" onclick="delImg('{{lossImage.briefingLossImageId}}')"></span>
 
-                        <p class="ellipsis">请描述</p>
+                        <p class="ellipsis">{{lossImage.description}}</p>
                     </div>
                 </div>
-                <img src="../../image/add_pic.svg"/>
+                {{/each}}
+
+                <img src="../../image/add_pic.svg" id="{{loss.lossId}}Img" onclick="openSelectPhoto('{{loss.lossId}}')"/>
             </div>
         </div>
         {{/each}}
+</script>
+<script type="text/html" id="templateLossImg">
+    {{each data as image}}
+    <div class="flex-1 horizontal" id="{{image.briefingLossImageId}}">
+        <div class="wrap">
+            <a class="bg-cover" style="background-image: url({{image.originalImage}})"></a>
+            <span class="icon-cross" onclick="delImg('{{image.briefingLossImageId}}')"></span>
+
+            <p class="ellipsis">请描述</p>
+        </div>
+    </div>
+    {{/each}}
 </script>
 </body>
 </html>

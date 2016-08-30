@@ -25,6 +25,36 @@ apiready = function () {
         $("#surveyTime").val(myDate.pattern("yyyy-MM-dd HH:mm:ss"));
     } else {
         briefingId = api.pageParam.briefingId;
+        db.selectSql({
+            name: 'klinsurance_db.db',
+            sql: "SELECT b.*,c.linkMan FROM briefing b LEFT JOIN customer c on b.insurer = c.customerId where b.briefingId = '" + briefingId + "'"
+        }, function (ret, err) {
+            if (ret.status) {
+                var obj = ret.data[0];
+                $("#briefingId").val(briefingId);
+                $("#briefingNo").val(obj.briefingNo);
+                $("#userId").val(obj.userId);
+                $("#projectId").val(obj.projectId);
+                $("#surveyLat").val(obj.surveyLat);
+                $("#surveyLng").val(obj.surveyLng);
+                $("#insurer").val(obj.insurer);
+
+                $("#surveyPlace").val(obj.surveyPlace);
+                $("#surveyTime").val(obj.surveyTime);
+                $("#insurerCompany").val(obj.linkMan);
+                $("#insurerName").val(obj.insurerName);
+                $("#insurerPhone").val(obj.insurerPhone);
+                $("#surveyor").val(obj.surveyor);
+                $("#accidentDescription").val(obj.accidentDescription);
+                $("#lossDescription").val(obj.lossDescription);
+            } else {
+                api.toast({
+                    msg: '数据错误，请稍后重试！',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+            }
+        });
     }
     $("form").baseValidate(function () {
         var uuid = ht.uuid();
@@ -146,7 +176,39 @@ $(".icon-add1").click(function () {
         }
     });
 });
-
+//打开选择客户页面
+function selectCustUser(bookType) {
+    var title;
+    if (bookType == 1) {
+        title = "选择被保人";
+    } else {
+        title = "选择公估师";
+    }
+    api.openWin({
+        name: '/html/customer/customer_list.html',
+        url: api.wgtRootDir + '/html/customer/customer_list.html',
+        pageParam: {
+            bookType: bookType,
+            fromPage: "brief",
+            title: title
+        }
+    });
+}
+//设置被保人的信息
+function setBBR(data) {
+    $("#insurer").val(data.customerId);
+    $("#insurerCompany").val(data.name);
+    $("#insurerName").val(data.linkMan);
+    $("#insurerPhone").val(data.linkPhone);
+}
+//设置公估人的信息
+function setGGR(data) {
+    var surveyor = $("#surveyor").val();
+    if (surveyor) {
+        surveyor += "\r\n";
+    }
+    $("#surveyor").val(surveyor + data.name + data.mobile);
+}
 //获得模板内容
 function getTempDetail(dataID, detail) {
     $("#" + dataID).val(detail);

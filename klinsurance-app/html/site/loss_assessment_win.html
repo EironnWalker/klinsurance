@@ -17,9 +17,10 @@
         <a onclick="addLoss();">添加损失项</a>
     </div>
 </header>
-<div class="location-title ellipsis">当前位置：</div>
+<div class="search-wrap horizontal">当前位置：</div>
 <a class="sign-btn zoom">签字</a>
 <script src="../../script/lib/jquery.js"></script>
+<script src="../../script/ht.js"></script>
 <script type="text/javascript">
     var pageParam;
     var customDesignModule;
@@ -31,17 +32,20 @@
     apiready = function () {
         customDesignModule = api.require('CustomDesignModule');
         pageParam=api.pageParam;
-        $(".ellipsis").text("当前位置："+pageParam.place);
+        $(".horizontal").text("当前位置："+pageParam.place);
+        //api.frameHeight- $("header").fixStatusBar()-20-$(".horizontal").outerHeight(true)-$(".zoom").height();
+        var headerHeight=$("header").fixStatusBar()+$(".horizontal").outerHeight(true)
         api.openFrame({
             name: '/html/site/loss_assessment_frm.html',
             url: api.wgtRootDir + '/html/site/loss_assessment_frm.html',
             rect: {
                 x: 0,
-                y: $("header").height()+12+$(".ellipsis").height(),
+                y: headerHeight ,
                 w: 'auto',
-                h: api.frameHeight-$("header").height()-32-$(".ellipsis").height()-$(".zoom").height()
+                h:api.frameHeight-headerHeight-20-$(".zoom").height()
             },
             pageParam:{
+                projectId:pageParam.projectId,
                 lossId:pageParam.lossId
             },
             bounces: true
@@ -57,6 +61,10 @@
         api.openWin({
             name: '/html/site/add_loss_win.html',
             url: api.wgtRootDir + '/html/site/add_loss_win.html',
+            pageParam:{
+                projectId:pageParam.projectId,
+                lossId:pageParam.lossId
+            },
             bounces: false
         });
     }

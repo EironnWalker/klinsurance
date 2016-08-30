@@ -1,20 +1,12 @@
-var TranslateModule;//语音识别插件
 var pageParam;
 var db;
-var searchContent;//搜索内容
-$(".icon-record").click(
-    function() {
-        startRecord($(this).attr('data-id'));
-    }
-);
 apiready = function () {
-    TranslateModule = api.require('TranslateModule');
     pageParam=api.pageParam;
     db = api.require('db');
     loadData();
 };
 // 加载数据
-function loadData() {
+function loadData(searchContent) {
     var sql = "SELECT * FROM loss where projectId='"+pageParam.projectId+"'";
     if (searchContent) {
         sql += " and place like '%" + searchContent + "%'";
@@ -40,11 +32,12 @@ function loadData() {
     );
 }
 //损失项列表
-function goAssessLoss(lossId,place) {
+function goAssessLoss(projectId,lossId,place) {
     api.openWin({
         name: '/html/site/loss_assessment_win.html',
         url: api.wgtRootDir + '/html/site/loss_assessment_win.html',
         pageParam: {
+            projectId:projectId,
             lossId:lossId,
             place: place
         }
@@ -71,10 +64,4 @@ function newLocation(place) {
             }
         }
     );
-}
-//录音
-function startRecord(id){
-    TranslateModule.startRecord(function back(ret){
-        $('#'+id).val(ret.data);
-    });
 }
