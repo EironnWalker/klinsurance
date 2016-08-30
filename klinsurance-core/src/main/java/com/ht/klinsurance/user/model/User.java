@@ -31,7 +31,7 @@ public class User {
 
     private String email;
 
-    private String isUsed;
+    private Boolean isUsed;
 
     private String userType;
 

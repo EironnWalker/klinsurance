@@ -33,16 +33,19 @@
         customDesignModule = api.require('CustomDesignModule');
         pageParam=api.pageParam;
         $(".horizontal").text("当前位置："+pageParam.place);
+        //api.frameHeight- $("header").fixStatusBar()-20-$(".horizontal").outerHeight(true)-$(".zoom").height();
+        var headerHeight=$("header").fixStatusBar()+$(".horizontal").outerHeight(true)
         api.openFrame({
             name: '/html/site/loss_assessment_frm.html',
             url: api.wgtRootDir + '/html/site/loss_assessment_frm.html',
             rect: {
                 x: 0,
-                y:  $("header").fixStatusBar()+$(".horizontal").outerHeight(true),
+                y: headerHeight ,
                 w: 'auto',
-                h: api.frameHeight- $("header").fixStatusBar()-20-$(".horizontal").outerHeight(true)-$(".zoom").height()
+                h:api.frameHeight-headerHeight-20-$(".zoom").height()
             },
             pageParam:{
+                projectId:pageParam.projectId,
                 lossId:pageParam.lossId
             },
             bounces: true
@@ -58,6 +61,10 @@
         api.openWin({
             name: '/html/site/add_loss_win.html',
             url: api.wgtRootDir + '/html/site/add_loss_win.html',
+            pageParam:{
+                projectId:pageParam.projectId,
+                lossId:pageParam.lossId
+            },
             bounces: false
         });
     }
