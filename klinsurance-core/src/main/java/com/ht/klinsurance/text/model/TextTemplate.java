@@ -17,4 +17,8 @@ public class TextTemplate {
     private Date createTime;
 
     private Boolean isShared;
+
+    //===============标签名字===============
+    private String tagName;
+
 }
