@@ -43,16 +43,17 @@ function loadData() {
 //打开签名插件
 function startDesigh(id) {
     customDesignModule.startDesigh(function back(ret) {
-        $("#customer"+id).attr("src", ret.data);
+        var path=JSON.parse(ret.data).picUri;
+        $("#customer"+id).attr("src",path);
         var sql="update loss set "
         if(id=='1'){
-            sql=sql+"customerSignPath='"+ret.data+"',customerSignTime=datatime('now')"
+            sql=sql+"customerSignPath='"+path+"',customerSignTime=datetime('now')"
         }else if(id=='2'){
-            sql=sql+"customerSignPath2='"+ret.data+"',customerSignTime2=datatime('now')"
+            sql=sql+"customerSignPath2='"+path+"',customerSignTime2=datetime('now')"
         }else if(id=='3'){
-            sql=sql+"customerSignPath3='"+ret.data+"',customerSignTime3=datatime('now')"
+            sql=sql+"customerSignPath3='"+path+"',customerSignTime3=datetime('now')"
         }else if(id=='4'){
-            sql=sql+"customerSignPath4='"+ret.data+"',customerSignTime4=datatime('now')"
+            sql=sql+"customerSignPath4='"+path+"',customerSignTime4=datetime('now')"
         }
         db.executeSql({
                 name: 'klinsurance_db.db',
